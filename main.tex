@@ -1,0 +1,55 @@
+%
+% Remi Beges PhD final report
+%
+
+% Page creation engine
+\documentclass[11pt,a4paper]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+% Meta-data
+\title{phd}
+\author{Remi Beges}
+\date{}
+
+% Main modules
+\usepackage{url}      % URL
+\usepackage{hyperref} % Links
+\usepackage{graphicx} % Pictures
+\usepackage{wrapfig}  % In-line Pictures
+\usepackage{verbatim} % Code
+\usepackage{moreverb} % Encoding
+\usepackage{listings} % Code
+\usepackage{color}    % Highlight
+
+
+% Glossary
+\usepackage[nomain,acronym,xindy,toc]{glossaries}
+\loadglsentries[main]{../src/glos}
+\makeglossaries
+\usepackage{makeidx}
+\makeindex
+
+
+% Document
+\begin{document}
+
+\maketitle
+
+% Chapter files listing
+\input{src/1/main.tex}
+% End of chapter files listing
+
+
+% Bibliography
+\bibliographystyle{unsrt}
+\bibliography{../src/refs}
+
+\printindex
+% Glossary
+\setglossarystyle{altlist}
+\printglossary
+
+
+\end{document}
