@@ -3,15 +3,11 @@
 %
 
 % Page creation engine
-\documentclass[11pt,a4paper]{memoir}
+\documentclass[11pt,a4paper]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 
-% Meta-data
-\title{phd}
-\author{Remi Beges}
-\date{}
 
 % Main modules
 \usepackage{url}      % URL
@@ -31,11 +27,39 @@
 \usepackage{makeidx}
 \makeindex
 
+% Front page
+\usepackage[ED=GEET-Elec, Ets=UT3]{tlsflyleaf}
+
+% Meta-data
+\title{Development of analysis and prediction method for operating ESD robustness}
+\author{R\'emi B/'eges}
+\defencedate{01/01/2017}
+\lab{Laboratoire d'analyse et d'architecture des systems (UMR ?)}
+
+% PhD mentors
+
+\nboss{3}
+\makesomeone{boss}{1}{Fabrice Caignet}{}{}
+\makesomeone{boss}{2}{Patrice Besse}{}{}
+\makesomeone{boss}{3}{Marise Bafleur}{}{}
+
+% PhD Defence meta-data
+%% Referee
+\nreferee{2}
+\makesomeone{referee}{1}{First referee}{}{}
+\makesomeone{referee}{2}{Second referee}{}{}
+%% Judges
+\njudge{5}
+\makesomeone{judge}{1}{First member}{Teacher ? }{Jury President}
+\makesomeone{judge}{2}{Second MEMBRE}{?}{Jury Member}
+\makesomeone{judge}{3}{?}{?}{Membre du Jury}
+\makesomeone{judge}{4}{?}{?}{Membre du Jury}
+\makesomeone{judge}{5}{?}{?}{Membre du Jury}
 
 % Document
 \begin{document}
 
-\maketitle
+\makeflyleaf
 
 % Chapter files listing
 \input{src/1/main.tex}
