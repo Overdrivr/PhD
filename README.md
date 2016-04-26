@@ -5,11 +5,13 @@
 pdflatex
 ```
 to check latex properly installed
+
 3. run
 ```
 grunt latex
 ```
 To check latex has all required packages installed
+
 4. start
 ```
 grunt
