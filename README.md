@@ -1,19 +1,24 @@
 # Prepare
-1. install Latex for your OS
-2. type in a terminal
+Install Latex, then type in a terminal
 ```
 pdflatex
 ```
-to check latex properly installed
+to check latex properly installed.
 
-3. run
+Then, make sure you have npm installed and run
+
 ```
+npm install -g grunt-cli
 grunt latex
 ```
-To check latex has all required packages installed
 
-4. start
+# Generate
+
+To let grunt monitor changes in files and regenerate the output, run
 ```
 grunt
 ```
-to let grunt monitor changes in files and regenerate the output
+
+# Resources
+
+* Latex quick reference: https://latex-project.org/guides/usrguide.tex
