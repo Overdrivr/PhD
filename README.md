@@ -22,3 +22,4 @@ grunt
 # Resources
 
 * Latex quick reference: https://latex-project.org/guides/usrguide.tex
+* Latex cheat sheet: https://wch.github.io/latexsheet/latexsheet.pdf
