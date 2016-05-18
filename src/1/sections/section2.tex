@@ -1,3 +1,57 @@
-\section{State of the art in silicon-level operating ESD investigation}
+\section{Research problem}
+\subsection{Impact of ESD on electronic devices}
 
-Sub section
+Hardware failure, at equipment level, at silicon level (gate oxide breakdown, short, etc)
+Software failure
+
+\subsection{Identification and modeling of design weaknesses against ESD}
+
+Core question
+
+\subsection{Research approach}
+
+The category of systems we are dealing with here are purely hierarchical.
+The final failure signature may be located at the silicon-level of an integrated circuit.
+This IC is part of an electronic equipment, itself part of a multitude of devices connected together,
+that are in charge of several functionnalities of a vehicle.
+
+SCHEMA
+
+ESD (vehicle level) -> communication bus, power line -> electronic equipment ->
+PCB -> Integrated circuit -> FAILURE -> propagates back, with consequences up to vehicle level
+
+*SIMULATION*
+
+It is important to estimate properly the amount of stress a particular integrated circuits will be exposed to.
+Appropriate models need to be derived for running electrical simulations at the system level (everything up to the integrated circuit pins).
+Those models need to comply with the timescales, voltage and current dynamics, frequency behaviors, etc, encountered during electrostatic discharges.
+
+This system level modeling methodology is the first step in this research work.
+
+Once we are able to estimate which amount of stress is actually injected inside the IC, the objective is to estimate how the current propagates at the silicon-level.
+Typically, at silicium level, a part of the ESD can be absorbed by ESD protections, or injected inside the substrate through parasitic coupling, etc.
+
+In this second part, it will be necessary to estimate the accuracy of the existing device models at silicium level, provided by technology foundries.
+Missing elements, such as layout resistance, parasitic couplings, etc, will need to be identified in order to try to achieve accurate ESD simulations at ESD level.
+To validate the methodology, measurement data will need to be gathered at silicium level, which will require particular methods to be obtained.
+
+Once done, both simulation methodology at system and silicium level will constitute a first tool for soft-failure investigation.
+
+*INVESTIGATION*
+
+The investigation focuses on the behavior of the integrated circuit and tries to answer the following.
+How a 100 ns electrical event can disturb an integrated circuit to the point where the entire system is no longer fullfilling its job for a notable period of time ?
+
+For this investigation, there is a clear relationship between the duration of the ESD and the duration where the function is no longer in specification.
+In itself, an ESD is an extremely short even, almost always to the point where it negligible compare to the time constants of the studied system.
+However, (litterature ?), this short event can cause functions to shut down in cascade, leading to an effective multiplication of the disturbance duration.
+How to predict this behavior, and what options can be used to avoid ?
+
+Real-cases will be detailed to understand this problem.
+
+*MODELING*
+
+The multi-level characteristic of the studied system will also call for simplified IC models.
+Given today's circuit simulator performance in terms of speed and convergence, it is unrealistic to hope to achieve full system simulation.
+Simplified IC models will either target higher-order modeling of functions performed by the IC, or modeling in terms of IO (input/output impedance).
+A failure model that will raise an error during simulation given some conditions are met will also probably be required.
