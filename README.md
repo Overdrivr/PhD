@@ -23,3 +23,4 @@ grunt
 
 * Latex quick reference: https://latex-project.org/guides/usrguide.tex
 * Latex cheat sheet: https://wch.github.io/latexsheet/latexsheet.pdf
+* Bibliography management: https://fr.sharelatex.com/learn/Bibliography_management_with_bibtex
