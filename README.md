@@ -24,3 +24,8 @@ grunt
 * Latex quick reference: https://latex-project.org/guides/usrguide.tex
 * Latex cheat sheet: https://wch.github.io/latexsheet/latexsheet.pdf
 * Bibliography management: https://fr.sharelatex.com/learn/Bibliography_management_with_bibtex
+
+# Gotchas
+
+When changing bibliography-related stuff, the build needs to run twice for references to be up-to-date.
+See: http://tex.stackexchange.com/questions/63852/question-mark-instead-of-citation-number
