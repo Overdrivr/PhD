@@ -12,11 +12,18 @@ npm install -g grunt-cli
 grunt latex
 ```
 
+Also install [Perl interpreter](https://www.perl.org/get.html) (required for generating the glossary)
+
 # Generate
 
 To let grunt monitor changes in files and regenerate the output, run
 ```
 grunt
+```
+
+Run the `latex` task to generate the pdf file manually
+```
+grunt latex
 ```
 
 # Resources
@@ -27,5 +34,7 @@ grunt
 
 # Gotchas
 
-When changing bibliography-related stuff, the build needs to run twice for references to be up-to-date.
+When changing bibliography related stuff, the build needs to run twice for references to be up-to-date.
 See: http://tex.stackexchange.com/questions/63852/question-mark-instead-of-citation-number
+
+When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
