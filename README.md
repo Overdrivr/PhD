@@ -31,6 +31,13 @@ grunt latex
 * Latex quick reference: https://latex-project.org/guides/usrguide.tex
 * Latex cheat sheet: https://wch.github.io/latexsheet/latexsheet.pdf
 * Bibliography management: https://fr.sharelatex.com/learn/Bibliography_management_with_bibtex
+* Interesting info about Grunt and automation: https://jonsuh.com/blog/take-grunt-to-the-next-level/
+
+# Figures
+
+```
+inskscape -D -z --file=myImage.svg --export-pdf=image.pdf --export-latex
+```
 
 # Gotchas
 
