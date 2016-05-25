@@ -38,3 +38,6 @@ jspm_packages
 
 # dist folder
 dist
+
+# build output files
+*.pdf
