@@ -4,9 +4,18 @@ To ensure proper operation once in the field, hardware is tested against \gls{es
 The goal for each method is to reproduce a particular \gls{esd} waveform in lab conditions.
 In this chapter, we will introduce most relevant \gls{esd} generators, which will be useful later on for modeling them accurately.
 
+In ESD testing, distinction is often made between so-called system-level level tests and \gls{ic} level tests.
+The first kind reproduces \gls{esd} events that a system deployed in the field may encounter during its lifetime, while the latter is targeting \gls{esd} events
+happening during \gls{ic} manufactoring.
+
+System-level tests involve higher voltage and current amplitudes, and are more harmful for electronic devices than \gls{ic} level tests.
+EXTERNAL DEVICES FOR PROTECTING ?
+ICs now have to sustain SYSTEM level tests
+
 \subsection{Transmission Line Pulsing (TLP)}
 
-\gls{tlp} generators use the discharge of a coaxial cable to generate a fast and square pulse.
+\gls{tlp} generators generate a fast rectangular pulse \ref{tlp_concept}.
+The pulse is produced by the discharge of a coaxial cable.
 The cable is charged by a high-voltage power supply then discharged into a load by switching a relay.
 
 \begin{figure}[h]
@@ -21,6 +30,7 @@ The charge is performed through a high value resistor to keep the current small 
 TLP systems constitute very well-controlled test generators, because the pulse is generated inside a shielded and isolated environment.
 Characteristic impedance can be controlled up to the load.
 Those features allow for extremely clean and repeatable pulse waveforms.
+Main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}
 
 \begin{figure}[h]
   \centering
@@ -29,18 +39,40 @@ Those features allow for extremely clean and repeatable pulse waveforms.
   \label{tlp_pulse}
 \end{figure}
 
-Using time-domain reflectometry methods, it is possible to reconstitute the current and voltage waveforms inside the load,
-from measured current and voltage inside the \gls{tlp}, even if the \gls{tlp} and the load are separated by cables, devices, etc.
-Indeed, the superposition of the incident and reflected pulses during the discharge show that the voltage and current
+Using time-domain reflectometry, it is possible to reconstitute the current and voltage waveforms inside the load,
+from measured current and voltage inside the \gls{tlp} \cite{TLP}.
+The superposition of the incident and reflected pulses during the discharge show that the voltage and current
 measured inside the generator are direct image of the ones accross and through the load.
 
-\gls{tlp} are extensively used for characterizing the response of ESD protections \cite{TLP, TLPforESDProtectionCz}
+\gls{tlp} are extensively used for characterizing the response of ESD protections \cite{TLPforESDProtectionCz}
 or testing the response of systems and devices against a clean and well repeatable pulse \cite{TLPthroubleshooting, LacrampeTransientImmunity}.
 
 \subsection{ESD Gun (IEC 61000-4-2 / ISO 10605)}
-blabla
+The system-level ESD Gun aims at reproducing the discharge of a human body through an electronic device.
+This test is used extensively for the qualification of products.
+
+Two standards define the construction and waveform requirements for this ESD generator, but with different fields of application.
+
+\cite{iec61000-4-2} standard targets consumer electronics, while \cite{iso10605} standard is intented for automotive equipment.
+The latter defines additional pulse waveforms to cover a wider range of ESD events.
+
+Principle of operation
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-2_waveform.pdf}
+  \caption{Main characteristics of an IEC 61000-4-2 pulse on a 2\Omega resistive load}
+  \label{tlp_pulse}
+\end{figure}
+
+Standards and waveforms
 
 \subsection{ISO 7637-2}
+Test purpose
+
+Principle of operation
+
+Waveform
 
 \subsection{Burst test (IEC 61000-4-4)}
 
