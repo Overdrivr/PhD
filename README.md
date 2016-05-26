@@ -35,8 +35,24 @@ grunt latex
 
 # Figures
 
+In the current workflow, figures are drawn with inkscape in vector format.
+Figures should preferably be imported from `.pdf` files to get the best render, rather than direct svg import which is broken at the moment.
+To generate `.pdf` from `.svg`, the inkscape command line can be used.
+
+With Inkscape, to get a clean output of the figure, it is required to set the page size and position properly before converting to `.pdf`.
+Once a figure drawing is done:
+
+1. Unselect everything
+2. Go to `File`->`Document Properties`.
+3. In the custom size tab, click on `resize page to content`.
+4. Eventually set some margin, then click `resize page to drawing or selection`.
+
+At this point the drawing should be properly surrounded by the page.
+
+The `.svg` file can now be converted to `.pdf` with the following command.
+
 ```
-inskscape -D -z --file=myImage.svg --export-pdf=image.pdf --export-latex
+inkscape --file=myImage.svg --export-pdf=image.pdf
 ```
 
 # Gotchas
