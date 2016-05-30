@@ -51,28 +51,49 @@ or testing the response of systems and devices against a clean and well repeatab
 The system-level ESD Gun aims at reproducing the discharge of a human body through an electronic device.
 This test is used extensively for the qualification of products.
 
-Two standards define the construction and waveform requirements for this ESD generator, but with different fields of application.
-
-\cite{iec61000-4-2} standard targets consumer electronics, while \cite{iso10605} standard is intented for automotive equipment.
-The latter defines additional pulse waveforms to cover a wider range of ESD events.
-
-Principle of operation
-
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-2_waveform.pdf}
-  \caption{Main characteristics of an IEC 61000-4-2 pulse on a 2\Omega resistive load}
-  \label{tlp_pulse}
+  \caption{Main characteristics of an IEC 61000-4-2 pulse on a 2&\X\Omega resistive load}
+  \label{iec_pulse}
 \end{figure}
 
-Standards and waveforms
+The generation of the ESD pulse is done by an resistor-capacitor discharge network, however, the RC network alone does not suffice to reproduce the waveform given \ref{iec_pulse}.
+Parasitic devices play an important part in shaping the waveform.
+
+Two standards define the construction and waveform requirements for this ESD generator, but with different fields of application.
+
+IEC 61000-4-2\cite{iec61000-4-2} standard targets consumer electronics, while ISO 10605\cite{iso10605} standard is intented for automotive equipment.
+The latter defines additional pulse waveforms to cover a wider range of ESD events (See fig \ref{iso_pulse}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/iso10605_waveform.pdf}
+  \caption{All waveforms defined in ISO 10605 standard on a 2&\X\Omega resistive load}
+  \label{iso_pulse}
+\end{figure}
+
 
 \subsection{ISO 7637-2}
-Test purpose
+ISO 7637-2\cite{iso7637-2} is an automotive standard for testing immunity of electronic devices against transient electrical disturbances.
+It is mostly targeting disturbances applied on supply lines.
+This standard gathers many different pulses. Pulse 2A and 3B are in the ESD timescale.
 
-Principle of operation
+Pulse 2A simulates the sudden disconnection of a load placed in parallel with the \ref{dut}.
 
-Waveform
+SCHEMA
+
+The parasitic inductance of the wiring harness is opposing to this interruption of current.
+Instead of flowing through the load, this extra transient current is reported on the \ref{dut} which can be damaged or disturbed in the process.
+
+The characteristics of pulse 2A are given in fig. \ref{...?}
+
+PULSE 2A waveform
+
+On the other side, pulse 3B simulates the result of a switching process with a wiring harness.
+The waveform is similar to pulse 2a, but with a shorter duration and risetime and higher amplitude.
+
+PULSE 3A waveform
 
 \subsection{Burst test (IEC 61000-4-4)}
 
