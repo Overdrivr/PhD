@@ -24,6 +24,12 @@ module.exports = function (grunt) {
     shell: {
       glossary: {
         command: 'makeglossaries -d ./dist phd'
+      },
+      figs: {
+        command: function() {
+          return 'inkscape --file="' + grunt.config('shell.figs.src') + '" --export-pdf="' + grunt.config('shell.figs.src').replace('.svg', '.pdf') + '"';
+        },
+        src: '**/*.svg'
       }
     },
     connect: {
@@ -44,6 +50,13 @@ module.exports = function (grunt) {
         files: '**/*.bib',
         tasks: ['latex:bib', 'latex:pdf']
       },
+      svgs: {
+        files: '**/*.svg',
+        tasks: ['shell:figs'],
+        options: {
+        spawn: false,
+        }
+      },
       livereload: {
         options: {
           livereload: true
@@ -51,6 +64,10 @@ module.exports = function (grunt) {
         files: ['dist/phd.pdf'],
       },
     }
+  });
+
+  grunt.event.on('watch', function(action, filepath) {
+    grunt.config('shell.figs.src', filepath);
   });
 
   // These plugins provide necessary tasks
