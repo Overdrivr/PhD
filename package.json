@@ -9,5 +9,7 @@
     "grunt-contrib-connect": "*",
     "grunt-latex": "*",
     "grunt-shell": "^1.3.0",
+    "glob": "^7.0.3",
+    "shelljs": "^0.7.0"
   }
 }
