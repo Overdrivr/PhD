@@ -49,15 +49,20 @@ Once a figure drawing is done:
 
 At this point the drawing should be properly surrounded by the page.
 
-The `.svg` file can now be converted to `.pdf` with the following command.
+The `.svg` file can now be converted manually to `.pdf` with the following command.
 
 ```
 inkscape --file=myImage.svg --export-pdf=image.pdf
 ```
 
-# Gotchas
+To regenerate at once all `.pdf` from all `.svg`
 
-When changing bibliography related stuff, the build needs to run twice for references to be up-to-date.
-See: http://tex.stackexchange.com/questions/63852/question-mark-instead-of-citation-number
+```
+node figs.js
+```
+
+Grunt will watch for changes and new files and will regenerate automatically `.pdf` for modified files.
+
+# Gotchas
 
 When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
