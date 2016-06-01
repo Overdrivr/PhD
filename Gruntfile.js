@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         files: '**/*.svg',
         tasks: ['shell:figs'],
         options: {
-        spawn: false,
+          spawn: false
         }
       },
       livereload: {
