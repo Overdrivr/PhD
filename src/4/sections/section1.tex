@@ -1,3 +1,50 @@
-\section{Bottom-up modeling approach}
+\section{Study case failure signature}
 
-Characterize blocks individually, then assemble models together
+This chapter focuses on the functionnal failure caused by an \gls{esd} of an integrated function.
+The studied function is the primary supply of a complex \gls{asic}.
+This supply plays a critical role in the functionning of the entire product.
+It is connected to the battery of the vehicle, and is the first block of the product to start.
+It wakes up and powers all other functions inside the integrated circuit.
+In case of failure, it can cause the entire product to shut down.
+
+SCHEMATIC OF THE TESTCHIP
+
+The primary supply processes the battery supply in a chained fashion.
+A first block (pre-regulator) clamps the battery voltage (that can reach up to 40V) to 9V, a more acceptable voltage for the silicium technology.
+This clamped voltaged is then used to power up a bandgap reference.
+Once properly started, this bandgap generates a 1.23 V voltage reference, stable accross a wide range of temperature, process variation and mismatchs.
+The bandgap also outputs a 10uA current reference, stable in the same conditions.
+
+After the bandgap, a \gls{ldo} regulator relies on the voltage reference to generate a stable 2.5V supply voltage, able to deliver and sustain up to 20mA.
+This first regulator is connected externally to a 100nF decoupling capacitor to absorb peak currents and achieve stability.
+This supply is used to supply most analog (digital ?) functions inside the integrated circuit.
+
+A second regulator performs the same task, but starts with a delay compared to the first one.
+It also ouputs a 2.5V supply, that powers digital logic inside the circuit.
+
+\subsection{Full function failure modeling with a bottom-up approach}
+
+Consider a system constituted of two blocks A and B connected together.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/4/figures/system_ab.pdf}
+  \caption{Basic IC function}
+  \label{basic_ic_function}
+\end{figure}
+
+During normal operation, the \textbf{\textit{out}} signal complies with its specification,
+under the condition that the \textbf{\textit{in}} signal does too.
+This guarantees that block A and B are performing as expected.
+When the system is exposed to an ESD on the input during normal operation, the \textbf{\textit{in}} signal is disturbed.
+It no longer complies with its specification for a short amount of time.
+
+The robustness of the entire system is defined by its ability to maintain signal \textbf{\textit{out}} in specification
+while signal \textbf{\textit{in}} is temporarily disturbed.
+Time is a key parameter here. On one extreme side, a disturbance that lasts forever is equivalent to the \textbf{\textit{in}} signal not fullfilling its DC specification,
+and thus the \textbf{\textit{out}} signal will not fullfill its spec as well.
+On the other extreme side, an extremely short disturbance, much shorter than the functionnal timescales of the integrated function will most likely not disturb ??
+
+The first task for defining the robustness of an integrated function is to determine the time threshold under which it can maintain functionnality while being disturbed.
+The second key parameter is related to the amplitude of the disturbance, whether it is a voltage, current, energy, etc.
+A larger amplitude can make a short pulse more harmful than a lomg one.
