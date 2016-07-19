@@ -60,7 +60,10 @@ To regenerate at once all `.pdf` from all `.svg`
 ```
 node figs.js
 ```
-
+or
+```
+grunt execute:figs
+```
 Grunt will watch for changes and new files and will regenerate automatically `.pdf` for modified files.
 
 # Gotchas
