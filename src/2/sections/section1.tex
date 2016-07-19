@@ -1,3 +1,27 @@
-\section{System level modeling}
+\section{System-level modeling}
 
-Blabla
+Simulations are a great tool to get a better understanding of the impact of \gls{esd}s on integrated circuits.
+They allow introspection inside specific nets of the circuit, observe behavior that would be hard to observe in the field.
+However, \gls{esd} simulations are not common practice and must be validated against measurement data before being used as an investigation tool.
+Models for key devices must be derived, at each scale of the system.
+
+In this chapter, the methodology for building models at the system level is detailed.
+It mostly targets ESD generators and lab equipment.
+
+\subsection{Lossless transmission lines}
+
+\gls{esd} events generally last a few hundred nanoseconds.
+At this timescale, delays introduced by usual coaxial cables found in labs and metal traces on \gls{pcb} are no longer negligible.
+Depending on the configuration, these delays can generate oscillations, amplitude variations.
+
+Most cables and PCB traces, although of very different construction, usually behave as lossless transmission lines.
+
+A transmission line is defined by two key parameters, its \gls{Zc} and propagation delay.
+Alone, these two parameters can be used in a behavioral model to describe efficiently and with great accuracy the behavior of lossless transmission lines.
+
+The electrical model is constituted of two voltage-controlled voltage sources and two resistors.
+Compared to the classic RLC distributed model, the behavioral model has infinite bandwith, and constant complexity (compared to RLC where the amount of elements increases with the required bandwidth).
+
+ELECTRICAL MODEL
+
+EQUATIONS
