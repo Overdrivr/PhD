@@ -1,15 +1,18 @@
-\section{Study case failure signature}
+\section{Test vehicule description and failure signature}
 
 This chapter focuses on the functionnal failure caused by an \gls{esd} of an integrated function.
 The studied function is the primary supply of a complex \gls{asic}.
 This supply plays a critical role in the functionning of the entire product.
 It is connected to the battery of the vehicle, and is the first block of the product to start.
 It wakes up and powers all other functions inside the integrated circuit.
-In case of failure, it can cause the entire product to shut down.
 
-SCHEMATIC OF THE TESTCHIP
+\centering
+\includegraphics{src/4/figures/testchip_overview.pdf}
+\caption{Architecture of the studied functionnality}
+\label{testchip_overview}
+\end{figure}
 
-The primary supply processes the battery supply in a chained fashion.
+The primary supply processes the battery supply in a chained fashion (see Fig. \ref{testchip_overview}).
 A first block (pre-regulator) clamps the battery voltage (that can reach up to 40V) to 9V, a more acceptable voltage for the silicium technology.
 This clamped voltaged is then used to power up a bandgap reference.
 Once properly started, this bandgap generates a 1.23 V voltage reference, stable accross a wide range of temperature, process variation and mismatchs.
@@ -22,7 +25,41 @@ This supply is used to supply most analog (digital ?) functions inside the integ
 A second regulator performs the same task, but starts with a delay compared to the first one.
 It also ouputs a 2.5V supply, that powers digital logic inside the circuit.
 
-\subsection{Full function failure modeling with a bottom-up approach}
+In case of failure, the primary supply can cause the entire product to shut down.
+Indeed, this entire system requires soft-start behavior to avoid generating harmful voltage spikes to powered functions.
+This functionnality enforces the system to start on a \br{long} period of time, in the order of a hundred microseconds.
+
+When the system is stressed with an \gls{esd}, voltages and currents are fluctuating inside the block.
+Under certain conditions, and especially important stress levels, the block will detects some nodes going in undervoltage or overvoltage.
+This will cause the block to go into safe or protected mode, where it will restart because the functionnality cannot be assured properly.
+The direct consequence is that the block will require again a hundred microseconds to be again in normal operation mode.
+
+This failure can in a first time be observed in simulation.
+An \gls{ESD} is superimposed on the DC battery voltage.
+This is the most likely entry point for a stress, because the \gls{IC} exposes a pin to the external workd and is usally connected to the battery via a long cable
+To detect is a block reset happened, the voltage on the first voltage regulator is observed.
+Fig. X shows the stress waveform on the input.
+
+STRESS WAVEFORM INPUT
+
+Fig. X shows a simulation where a small glitch can be observed on the regulated output, but without clear reset or soft-failure signature.
+In this case, the block and the rest of the product is most likely not affected by the ESD.
+
+WAVEFORM OUTPUT NO RESET
+
+Fig. X shows a simulation where a clear reset hapened.
+The output voltage is maintained by a 100nF capacitor.
+However, it clearly goes down \br{after} the \gls{esd} and rises slowly afterward, a sign that the block went into full reset and restard.
+
+WAVEFORM OUTPUT RESET
+
+By going inside the \gls{IC}...
+
+bandgap, voltage ref, current ref, etc
+
+DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
+
+\section{Full function failure modeling with a bottom-up approach}
 
 Consider a system constituted of two blocks A and B connected together.
 
@@ -41,6 +78,7 @@ It no longer complies with its specification for a short amount of time.
 
 The robustness of the entire system is defined by its ability to maintain signal \textbf{\textit{out}} in specification
 while signal \textbf{\textit{in}} is temporarily disturbed.
+
 Time is a key parameter here. On one extreme side, a disturbance that lasts forever is equivalent to the \textbf{\textit{in}} signal not fullfilling its DC specification,
 and thus the \textbf{\textit{out}} signal will not fullfill its spec as well.
 On the other extreme side, an extremely short disturbance, much shorter than the functionnal timescales of the integrated function will most likely not disturb ??
@@ -48,3 +86,59 @@ On the other extreme side, an extremely short disturbance, much shorter than the
 The first task for defining the robustness of an integrated function is to determine the time threshold under which it can maintain functionnality while being disturbed.
 The second key parameter is related to the amplitude of the disturbance, whether it is a voltage, current, energy, etc.
 A larger amplitude can make a short pulse more harmful than a lomg one.
+
+\subsection{Block characterization method}
+In any bottom-up approach, the study starts from the small components and then assembled together to reach higher levels of complexity.
+This is the philosophy employed here.
+Blocks are characterized in a particular setup, and their own robustness is deduced.
+The studied block is placed under normal operating conditions.
+Input and output pin of interest are determined according to the block's connection inside the chain constituting the total function.
+Fix. X gives an example of such a characterization setup.
+
+CHARACTERIZATION SETUP
+
+The block is then stressed with a square impulse of variable length and variable amplitude.
+Such stress method is called Wunsch & Bell in the litterature (REFERENCE).
+The goal is to find out, for each stress duration, what is the minimal failure level of the system.
+Fix. X gives an example of such a characterization curve.
+
+TRANSFERT CURVE
+
+Robustness of the block is then modeled in the form of a curve.
+This is done for each block constituting the circuit.
+It represents the robustness of the block as a function of the input stress amplitude and duration.
+Basically, it gives for a stress length the minimal amount of stress beyond which the block will be in reset.
+
+PERKS FOR CURRENT IP DESIGN FLOW ?
+
+\subsection{Models assembly for full-function robustness}
+
+At this point, all three blocks in the supply chain, respectively pre-regulator, bandgap and regulator have been characterized with the method.
+The characterization curves are given in fig. X., Y and Z.
+
+CURVE CZ VPRE
+
+CURVE CZ BANDGAP
+
+CURVE CZ REGULATOR
+
+The goal now is to link those curves together, in order to predict if an input stress applied on the first block can affect the final functionnality outputed on the last block.
+This technique can be done manually in a first time.
+To validate it, a simulation is run on the entire schematic will all three blocks connected together (see Fig. X).
+An ESD is injected on pin X, and the functionnality on pin Y is monitored for resets.
+The result of this simulation and especially the minimal stress amplitude serves as reference.
+
+SCHEMATIC FULL CIRCUIT
+
+On the other side, the curve method is used to try to reach the same level.
+
+
+
+CHAIN TRANSFERT FUNCTIONS TO PREDICT ROBUSTNESS OF SEVERAL BLOCKS
+
+PROBLEMS, LIMITS
+
+ACCURACY
+WHAT THRESHOLD TO GIVE FOR BLOCKS WITH NO CLEAR FAILURE
+
+CONCLUDE ON FEASABILITY
