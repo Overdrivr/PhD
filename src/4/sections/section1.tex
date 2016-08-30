@@ -1,15 +1,16 @@
 \section{Test vehicule description and failure signature}
 
 This chapter focuses on the functionnal failure caused by an \gls{esd} of an integrated function.
-The studied function is the primary supply of a complex \gls{asic}.
+The studied function is the primary supply of a complex automotive \gls{asic}.
 This supply plays a critical role in the functionning of the entire product.
 It is connected to the battery of the vehicle, and is the first block of the product to start.
 It wakes up and powers all other functions inside the integrated circuit.
 
-\centering
-\includegraphics{src/4/figures/testchip_overview.pdf}
-\caption{Architecture of the studied functionnality}
-\label{testchip_overview}
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/4/figures/testchip_overview.pdf}
+  \caption{Architecture of the studied functionnality}
+  \label{testchip_overview}
 \end{figure}
 
 The primary supply processes the battery supply in a chained fashion (see Fig. \ref{testchip_overview}).
