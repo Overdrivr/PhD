@@ -1,6 +1,29 @@
 \section{Top-down modeling approach}
 
-Consider IC in terms of IO and specifications.
+Unlike the bottom-up modeling approach, the top-down considers an IC in terms of
+externally-exposed IO, and a specification regarding the state of these IOs.
+
+The main advantage compared to the bottom-up method, is that where there was no
+way to set a clear failure criteria with the bottom-up, using the top-down, the
+product specification serves as a clear reference for defining failures.
+
+Indeed, we can consider using this specification to say that, during an ESD,
+any signal that goes outside its nominal range is at fault.
+
+Then, the idea is to inject the ESD on an input pin, and observe if some output
+pins go out of specification, and so, in fault.
+
+Another advantage of this method is the abstraction over the design. Since it is
+easy to probe pins of the IC, we can measure voltage/current at those pins fairly
+easily, and derive models from those values, without needing the access the chip's internals.
+
+The question is, is this sufficient to build an accurate enough model ?
+
+\subsection{Characterization}
 Apply variable width/variable height stress
+
+Talk about injection setup. Move away from DPI system
+
+\subsection{Failure modeling}
 Make failure model + IO model
 Use it in other simulations (Gun for instance), to check if failure level can be predicted
