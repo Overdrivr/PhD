@@ -114,7 +114,13 @@ PERKS FOR CURRENT IP DESIGN FLOW ?
 
 \subsection{Models assembly for full-function robustness}
 
-At this point, all three blocks in the supply chain, respectively pre-regulator, bandgap and regulator have been characterized with the method.
+At this point, all three blocks in the supply chain, respectively pre-regulator,
+bandgap and regulator have been characterized with the method.
+In a first time, a very naive approach is used for the loads placed on the output.
+
+A load value of 1Megohm is chosen. It is arbitrary, and just for the purpose of
+presenting the method.
+
 The characterization curves are given in fig. X., Y and Z.
 
 CURVE CZ VPRE
@@ -123,9 +129,13 @@ CURVE CZ BANDGAP
 
 CURVE CZ REGULATOR
 
-The goal now is to link those curves together, in order to predict if an input stress applied on the first block can affect the final functionnality outputed on the last block.
-This technique can be done manually in a first time.
-To validate it, a simulation is run on the entire schematic will all three blocks connected together (see Fig. X).
+The goal now is to link those curves together, in order to predict if an input
+stress applied on the first block can affect the final functionnality outputed
+on the last block.
+
+This technique can be done manually in a first time. To validate it,
+a simulation is run on the entire schematic will all three blocks
+connected together (see Fig. X).
 An ESD is injected on pin X, and the functionnality on pin Y is monitored for resets.
 The result of this simulation and especially the minimal stress amplitude serves as reference.
 
@@ -133,13 +143,26 @@ SCHEMATIC FULL CIRCUIT
 
 On the other side, the curve method is used to try to reach the same level.
 
-
-
 CHAIN TRANSFERT FUNCTIONS TO PREDICT ROBUSTNESS OF SEVERAL BLOCKS
 
-PROBLEMS, LIMITS
+We see that quickly, after the second block, the model predicted a failure at
+XXX volts while in simulation it is much smaller than that.
 
-ACCURACY
-WHAT THRESHOLD TO GIVE FOR BLOCKS WITH NO CLEAR FAILURE
+The main issue with this modelling method is the fact that it relies too much
+on the value of the output load for performing the characterization of a block.
+This load depends on many different parameters.
+This value may not be constant in frequency and in time (during the
+ESD impulse).
 
-CONCLUDE ON FEASABILITY
+Also, this method is very limited because it is a binary FAIL/NO FAIL method,
+but the criteria used to define it is completely arbitrary.
+For most purely-analog blocks, there will not be a clear failure, rather, most
+nets will have degraded values until maybe biasing of the block completely fail.
+But in between, no clear failure criteria can be established.
+
+In conclusion, this approach was interesting on the paper to integrate with a
+block-reuse workflow, and seemed similar to current verification flow during IC design.
+
+However, with this current approach, it seems rather difficult to achieve
+building a reusable model for an IC block that could predict ESD failures at
+the architecture level and during the IC architecture phase.
