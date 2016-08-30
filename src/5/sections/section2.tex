@@ -2,3 +2,21 @@
 
 Use actual product board
 Perform powered on injection
+
+Problem:
+Even with a very well calibrated setup, up the IC pin, the defect is not
+reproduced with the simulation.
+Given that we have ringing behavior during the pulse injection, we suspect
+that the failure comes from a coupling mechanism. Potentially, a coupling with
+the substrate is suspected.
+
+Couplings are layout-specific,
+and as such, are not simulated by default and hard to simulate.
+
+Back-annoted sims ?
+
+During substrate coupling, a part of the ESD current is evacuated through the
+substrate. If substrate potential rises locally above Vt of body diode, body diodes
+can be turn on in direct.
+
+Consequences: triggering or disabling functionnalities
