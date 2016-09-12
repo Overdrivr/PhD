@@ -1,10 +1,13 @@
-\section{Top-down modeling approach}
+\section{Black box modeling approach}
 
-Unlike the bottom-up modeling approach, the top-down considers an IC in terms of
-externally-exposed IO, and a specification regarding the state of these IOs.
+Unlike the bottom-up modeling approach, the black box method studies the relationship of
+between Input/Outputs of the complete integrated circuit.
+
+This approach abstracts the IC internal complexity with a single model focused on
+describing the failure of an output when an input is stressed.
 
 The main advantage compared to the bottom-up method, is that where there was no
-way to set a clear failure criteria with the bottom-up, using the top-down, the
+way to set a clear failure criteria with the bottom-up, using the black box method, the
 product specification serves as a clear reference for defining failures.
 
 Indeed, we can consider using this specification to say that, during an ESD,
@@ -17,13 +20,71 @@ Another advantage of this method is the abstraction over the design. Since it is
 easy to probe pins of the IC, we can measure voltage/current at those pins fairly
 easily, and derive models from those values, without needing the access the chip's internals.
 
-The question is, is this sufficient to build an accurate enough model ?
+Overall, the aim of the black-box model is make abstractions of internal complexities, which is very suitable in our case.
 
 \subsection{Characterization}
-Apply variable width/variable height stress
+To build the black-box model that links an output with an input, a characterisation is needed.
+Once again, a WB method is used. A variable width/variable amplitude stress is applied on the input pin.
+The output pin is then observed to detect at which (width, amplitude) it is going out of specification.
 
-Talk about injection setup. Move away from DPI system
+This characterization is performed on the testchip, still on the pre-regulator/bandgap/regulator supply chain.
+The stress is injected on the pre-regulator VBAT pin (input of our black-box).
+The output is the output of the regulator V2P5, which is supposed to deliver a 2.5V regulated supply.
+
+Since the injection is performed on a supply, an injection method is required to superimpose a stress on the DC voltage,
+and to make sure that the stress will not propagate inside the supply but preferably inside the IC.
+
+A very popular method to superimpose a stress on a DC voltage is using a bias tee as described in the DPI standard (REF ?).
+This standard targets EMC disturbances injection (frequency domain),
+but was employed at multiple times (REFS ?) for time-domain disturbances injection.
+
+The bias tee schematic is given Fig. X.
+
+BIAS TEE SCHEMATIC
+
+This injection method was initially used for performing the powered-on characterization.
+
+Fig X shows the waveform of the VBAT injected current when stressed with a TLP (square) impulse.
+The TLP waveform before the capacitor is shown for reference.
+
+WAVEFORM CURRENT VBAT AND TLP BEFORE INJECTION CAPACITOR
+
+Obviously, there is an issue with the injection setup ? Current not square ?
+
+...
+
+Finally, the characterization curve is obtained.
+On x-axis, there is the pulse width.
+On y-axis, there is the minimal stress amplitude that caused a failure on the output (V2P5 < 2.3 V ?)
+
+Now that the (VBAT,V2P5) response has been characterized, a model of the failure can be constructed.
 
 \subsection{Failure modeling}
-Make failure model + IO model
+
+To model the failure, a verilog-ams model is written.
+It continuously checks the input current and deduces if the output is going out of spec.
+
+Algorithm:
+- Take minimum failing threshold input current
+- If on the input, current goes above this threshold
+  - start counting time
+  - If time goes above corresponding failure pulse width
+    - mark this level as failure
+  - If on the input, current goes above the next threshold
+    - start counting time
+    - If time goes above corresponding failure pulse width
+      - mark this level as failure
+    - Etc.
+
+At the end, list of all fails.
+
+TODO: Improve algorithm
+
+\subsection{Input modeling}
+
+Along with the black-box failure model, a black box input model is required to run a SPICe simulation.
+
+TLP characterization ?
+
+\subsection{Validation on a ESD Gun stress}
 Use it in other simulations (Gun for instance), to check if failure level can be predicted
