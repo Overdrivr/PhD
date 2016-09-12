@@ -1,1 +1,32 @@
-\section{Blabla}
+\section{Hierarchical bottom-up assertions}
+
+Principle of an assertion. Assertions are written for each block (each cell in Cadence).
+
+How to write assertions ?
+Use specification of the block + a few rules of thumbs (for instance, ground nets should not be above, below 1V).
+
+Why are assertions useful ?
+Inherent scale factor and complexity makes inspecting the top-cell and all its sub cells impossible for a human.
+Need an automated checking system, that runs for any simulation (ESD or other).
+
+Applicability?
+Determine automatically in a top simulation (or simplified top) which blocks/nets went out of spec and so at fault.
+Also, determine mistakes when building testbenches.
+Also, constitute an electrical documentation of the block block.
+Also, determine during DC spec if all blocks are properly started.
+Also, determine connection issues (floating ground and nets).
+
+Potential integration in Cadence environment
+So far, limited support for assertions in Cadence.
+In an ideal case, assertion files should be a specific view of the asserted cell.
+This way, when the cell is copied or moved around, the assertions will move with it and be reused.
+
+Major perks
+Simple to write.
+Reusable.
+Integrates well into the design flow
+General purpose (not limited to ESD, very useful in general considering all applications).
+
+User interface proposal for monitoring assertions.
+Visualize when circuit is ready (all assertions are gree)
+During and after ESD, which nets/blocks are disturbed first, how disturbances propagate inside the circuit.
