@@ -69,3 +69,44 @@ Grunt will watch for changes and new files and will regenerate automatically `.p
 # Gotchas
 
 When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
+
+# Cheat-sheet
+
+## Figures
+
+To leave figure as-is
+
+```
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/1/figures/iso10605_waveform.pdf}
+  \caption{All waveforms defined in ISO 10605 standard}
+  \label{iso_pulse}
+\end{figure}
+```
+
+To clamp figure width to text width
+
+```
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/iso10605_waveform.pdf}
+  \caption{All waveforms defined in ISO 10605 standard}
+  \label{iso_pulse}
+\end{figure}
+```
+
+See [here](http://tex.stackexchange.com/a/1527/105955) to why `!htbp`
+
+## Greek letters
+
+Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letters-in-text-without-changing-to-math-mode/))
+```
+\textOmega
+```
+
+Append a `\` afterward to get a trailing space afterward. Example:
+
+```
+\textOmega\ foo
+```
