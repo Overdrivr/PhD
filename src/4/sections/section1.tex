@@ -60,7 +60,7 @@ bandgap, voltage ref, current ref, etc
 
 DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
 
-\section{Full function failure modeling with a bottom-up approach}
+\section{Bottom-up block failure modeling}
 
 Consider a system constituted of two blocks A and B connected together.
 
@@ -74,8 +74,11 @@ Consider a system constituted of two blocks A and B connected together.
 During normal operation, the \textbf{\textit{out}} signal complies with its specification,
 under the condition that the \textbf{\textit{in}} signal does too.
 This guarantees that block A and B are performing as expected.
-When the system is exposed to an ESD on the input during normal operation, the \textbf{\textit{in}} signal is disturbed.
-It no longer complies with its specification for a short amount of time.
+
+When the system is exposed to an electrical stress on the input during normal operation,
+the \textbf{\textit{in}} signal is disturbed.
+
+It no longer complies with its specification, for a given amount of time.
 
 The robustness of the entire system is defined by its ability to maintain signal \textbf{\textit{out}} in specification
 while signal \textbf{\textit{in}} is temporarily disturbed.
@@ -89,22 +92,39 @@ The second key parameter is related to the amplitude of the disturbance, whether
 A larger amplitude can make a short pulse more harmful than a lomg one.
 
 \subsection{Block characterization method}
-In any bottom-up approach, the study starts on the small-scale components, later assembled together to reach higher levels of complexity.
-In this section, such approach is used.
+
+In a bottom-up approach, the study starts on the small-scale components,
+later assembled together to reach higher levels of complexity.
+
+This method fits well with the integrated circuit design flow in general,
+where blocks are build from transistors and other devices, then
+
 Blocks are characterized in a particular setup, and their own robustness is deduced. The final goal is to determine if the robustness of
 a system can be assimilated as the sum of the robustness of its parts.
-The studied block is placed under normal operating conditions.
-Input and output pin of interest are determined according to the block's connection inside the chain constituting the total function.
-Fix. X gives an example of such a characterization setup.
 
-CHARACTERIZATION SETUP
+The studied block is placed under normal operating conditions. EXPLAIN MORE.
+
+An input and output pin of interest are selected according to the block's connection inside the chain constituting the total function.
+Fix. \ref{block_function_cz} gives an example of such a characterization setup.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/4/figures/characterization_setup.pdf}
+  \caption{Block function characterization setup}
+  \label{block_function_cz}
+\end{figure}
 
 The block is then stressed with a square impulse of variable length and variable amplitude.
 Such stress method is called Wunsch & Bell in the litterature (REFERENCE).
 The goal is to find out, for each stress duration, what is the minimal failure level of the system.
-Fix. X gives an example of such a characterization curve.
+Fix. \ref{wb_cz_curve_example} gives an example of such a characterization curve.
 
-TRANSFERT CURVE
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/4/figures/example_curve.pdf}
+  \caption{Principle of Wunsch & Bell curve for powered-on block testing}
+  \label{wb_cz_curve_example}
+\end{figure}
 
 Robustness of the block is then modeled in the form of a curve.
 This is done for each block constituting the circuit.
