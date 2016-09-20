@@ -65,20 +65,23 @@ To model the failure, a verilog-ams model is written.
 It continuously checks the input current and deduces if the output is going out of spec.
 
 Algorithm:
-- Take minimum failing threshold input current
-- If on the input, current goes above this threshold
-  - start counting time
-  - If time goes above corresponding failure pulse width
-    - mark this level as failure
-  - If on the input, current goes above the next threshold
-    - start counting time
-    - If time goes above corresponding failure pulse width
-      - mark this level as failure
-    - Etc.
+- Maintain an array SLICES[] that will contain amount of slices found superior to a voltage
+- Record time intervals where voltage is higher than minimum failure voltage
+- For each interval:
+  - divide it in 1ns slices
+  - For each slice:
+      - if slice average voltage superior to voltage 1, increment SLICES[1]
+      - if slice average voltage superior to voltage 2, increment SLICES[2]
+      - etc
+      - until slice average voltage no longer superior to voltage n or max voltage reached
+- For each entry of SLICES:
+  - multiply SLICES[i] by 1ns
+  - This translates in : Voltage was superior to voltage 1 for SLICES[i] * 1ns
+  - If the point (SLICES[i] * 1ns, voltage 1) is superior than the failure curve, then mark this point as FAIL
+
+GRAPHS FOR DESCRIBING PRINCIPLE
 
 At the end, list of all fails.
-
-TODO: Improve algorithm
 
 \subsection{Input modeling}
 
