@@ -64,7 +64,7 @@ DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
 
 Consider a system constituted of two blocks A and B connected together.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/system_ab.pdf}
   \caption{Basic IC function}
@@ -97,7 +97,12 @@ In a bottom-up approach, the study starts on the small-scale components,
 later assembled together to reach higher levels of complexity.
 
 This method fits well with the integrated circuit design flow in general,
-where blocks are build from transistors and other devices, then
+where blocks are build from transistors and other devices, then assembled together to build interesting functionnalities.
+
+The main perk of this characterization method is its modularity.
+Each block can be studied independently.
+It complies well with a block-reuse design flow as well.
+A characterized block can be reused multiple times without having to re-do the characterization.
 
 Blocks are characterized in a particular setup, and their own robustness is deduced. The final goal is to determine if the robustness of
 a system can be assimilated as the sum of the robustness of its parts.
@@ -107,7 +112,7 @@ The studied block is placed under normal operating conditions. EXPLAIN MORE.
 An input and output pin of interest are selected according to the block's connection inside the chain constituting the total function.
 Fix. \ref{block_function_cz} gives an example of such a characterization setup.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/characterization_setup.pdf}
   \caption{Block function characterization setup}
@@ -116,43 +121,78 @@ Fix. \ref{block_function_cz} gives an example of such a characterization setup.
 
 The block is then stressed with a square impulse of variable length and variable amplitude.
 Such stress method is called Wunsch & Bell in the litterature (REFERENCE).
-The goal is to find out, for each stress duration, what is the minimal failure level of the system.
+
+The goal is to find out, for each stress duration, what is the minimal voltage \textbf{\textit{V(in)}} required to make the block fail.
+
 Fix. \ref{wb_cz_curve_example} gives an example of such a characterization curve.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/example_curve.pdf}
   \caption{Principle of Wunsch & Bell curve for powered-on block testing}
   \label{wb_cz_curve_example}
 \end{figure}
 
-Robustness of the block is then modeled in the form of a curve.
-This is done for each block constituting the circuit.
-It represents the robustness of the block as a function of the input stress amplitude and duration.
-Basically, it gives for a stress length the minimal amount of stress beyond which the block will be in reset.
+The main limitation of this curve is the lack of information on how long the output was disturbed.
 
-The main perk of this characterization method is its modularity.
-Each block can be studied independently.
-It complies well with a block-reuse design flow as well.
-A characterized block can be reused multiple times without having to re-do the characterization.
+If the output is only disturbed for a picosecond, then the failure is most certainly less severe than if it was for a millisecond.
+
+To account for this information, a gradient can be used rather than a simple above/below Vmax curve.
+For each point of the curve, the gradient will have a value reprensting the duration of the failure on \textbf{\textit{V(out)}}.
+The figure \ref{wb_cz_curve_example_v2} warmer the gradient, the longer the output was disturbed.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/example_curve_v2.pdf}
+  \caption{Improved curve for Wunsch & Bell powered-on characterization}
+  \label{wb_cz_curve_example_v2}
+\end{figure}
+
+The gradient can also be discretized into a few aeras for better readability as shown in figure \ref{wb_cz_curve_example_v2_discrete}.
+This representation looses some information compared to the gradient one, but is easier to generate and read.
+This is the representation we have adopted in the next section, to express the functionnal robustness of a block.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/example_curve_v2_discrete.pdf}
+  \caption{Improved discrete curve for Wunsch & Bell powered-on characterization}
+  \label{wb_cz_curve_example_v2_discrete}
+\end{figure}
 
 \subsection{Models assembly for full-function robustness}
 
-To study the viability of this method, it is performed on all three blocks in the supply chain, respectively pre-regulator,
-bandgap and regulator from the testchip presented in previous section.
-In a first time, a very naive approach is used for the loads placed on the output.
+The method described in section 4.2.1 is is performed in simulation on the regulation function of the testchip.
 
-A load value of 1Megohm is chosen.
-It is arbitrary, and just for the purpose of presenting the method.
+This function is composed mainly of three blocks, a pre-regulator, a bandgap and a regulator.
 
-Also, a failure treshold is chosen for each block.
+In a first time, a very naive approach is used for the characterization load Z (see figure \ref{block_function_cz}) placed on the output of each block.
+An arbitrary load value of 1MΩ is chosen. WHY ?
+
+Like explained previously with Vmax (TO CALL Verr ?) in 4.2.1, a failure treshold is chosen for each block.
 Under this threshold, the output of each concerned block is considered at fault.
 
-The characterization curves are given in fig. X., Y and Z.
+DETAIL MORE SIMULATION PROCESS. PARAMETERIZED SIMULATION WITH MULTIPLE AMPLITUDE/LENGTH
 
-CURVE CZ VPRE
+The characterization curves are given in figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and Z.
+For the given testchip, it was found that the regulation function shows clear failure when exposed to negative stresses.
+For simplicity, the voltage scale was simply reversed, but this doesn't affect the results in any case.
 
-CURVE CZ BANDGAP
+TODO: REVERT Y SCALE ON ALL CURVES
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/cz_vpre.png}
+  \caption{Testchip's pre-regulator Wunsch & Bell characterization}
+  \label{pre_regu_wb}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/cz_bandgap.png}
+  \caption{Testchip's bandgap Wunsch & Bell characterization}
+  \label{bandgap_wb}
+\end{figure}
+
 
 CURVE CZ REGULATOR
 
