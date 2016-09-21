@@ -120,7 +120,7 @@ Fix. \ref{block_function_cz} gives an example of such a characterization setup.
 \end{figure}
 
 The block is then stressed with a square impulse of variable length and variable amplitude.
-Such stress method is called Wunsch & Bell in the litterature (REFERENCE).
+Such stress method is called Wunsch and Bell in the litterature (REFERENCE).
 
 The goal is to find out, for each stress duration, what is the minimal voltage \textbf{\textit{V(in)}} required to make the block fail.
 
@@ -129,7 +129,7 @@ Fix. \ref{wb_cz_curve_example} gives an example of such a characterization curve
 \begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/example_curve.pdf}
-  \caption{Principle of Wunsch & Bell curve for powered-on block testing}
+  \caption{Principle of Wunsch and Bell curve for powered-on block testing}
   \label{wb_cz_curve_example}
 \end{figure}
 
@@ -144,7 +144,7 @@ The figure \ref{wb_cz_curve_example_v2} warmer the gradient, the longer the outp
 \begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/example_curve_v2.pdf}
-  \caption{Improved curve for Wunsch & Bell powered-on characterization}
+  \caption{Improved curve for Wunsch and Bell powered-on characterization}
   \label{wb_cz_curve_example_v2}
 \end{figure}
 
@@ -155,7 +155,7 @@ This is the representation we have adopted in the next section, to express the f
 \begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/example_curve_v2_discrete.pdf}
-  \caption{Improved discrete curve for Wunsch & Bell powered-on characterization}
+  \caption{Improved discrete curve for Wunsch and Bell powered-on characterization}
   \label{wb_cz_curve_example_v2_discrete}
 \end{figure}
 
@@ -182,14 +182,14 @@ TODO: REVERT Y SCALE ON ALL CURVES
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/cz_vpre.png}
-  \caption{Testchip's pre-regulator Wunsch & Bell characterization}
+  \caption{Testchip's pre-regulator Wunsch and Bell characterization}
   \label{pre_regu_wb}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/cz_bandgap.png}
-  \caption{Testchip's bandgap Wunsch & Bell characterization}
+  \caption{Testchip's bandgap Wunsch and Bell characterization}
   \label{bandgap_wb}
 \end{figure}
 
@@ -243,7 +243,7 @@ SIMULATIONS 2 * 2
 
 Previously, it was indicated that all WnB curves were extracted with a fixed Zout = 1M\textOmega.
 In practice, each block (pre-regulator, bandgap, regulator) sees a load impedance on its output much different than that.
-Thus, it is important to evaluate the impact of this value on the Wunsch & Bell characterization curve.
+Thus, it is important to evaluate the impact of this value on the Wunsch and Bell characterization curve.
 The pre-regulator is characterized again, this time with a load impedance of 100\textOmega.
 This value is rather small impedance, but sufficiently high to not draw too much current on the pre-regulator.
 This second characterization is given fig. X.
@@ -260,6 +260,7 @@ SO FAR, CONSIDERED IMPEDANCE AS STATIC AND REAL.
 TALK ABOUT IMAGINARY IMPEDANCES, AND DYNAMIC IMPEDANCES
 
 TALK ABOUT ERROR CAUSED BY GRADIENT ?
+
 
 \subsection{Conclusion regarding bottom-up block failure modeling method}
 
