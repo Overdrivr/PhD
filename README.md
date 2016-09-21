@@ -74,7 +74,7 @@ When changing glossary related stuff, glossary generation can fail if the makegl
 
 ## Figures
 
-To leave figure as-is
+To leave figure as-is (works well with pdf)
 
 ```
 \begin{figure}[!htbp]
@@ -100,7 +100,9 @@ See [here](http://tex.stackexchange.com/a/1527/105955) to why `!htbp`
 
 ## Greek letters
 
-Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letters-in-text-without-changing-to-math-mode/))
+Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letters-in-text-without-changing-to-math-mode/)).
+`textgreek` requires `cbgreek` package, you should install it with your package manager.
+
 ```
 \textOmega
 ```
