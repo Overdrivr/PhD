@@ -1,15 +1,48 @@
-\section{Hierarchical bottom-up assertions}
+\section{Functionnal block checks}
 
-Principle of an assertion. Assertions are written for each block (each cell in Cadence).
+In this section, another bottom-up method is proposed.
+Like detailed previously, bottom-up methods are interesting for the intrisic modularity and reusability they offer.
 
-How to write assertions ?
-Use specification of the block + a few rules of thumbs (for instance, ground nets should not be above, below 1V).
+In section 4.2, a block-failure modeling approach was detailed.
+Mainly, it focused on modeling the failure of a block as a time and amplitude criteria on an input.
+By going beyond the criteria, a failure was generated, and the output was put at fault.
+This fault was propagated then further in the system.
+The main issue with this approach is the strong coupling between blocks.
+To check that an input did not violate its failure criteria, you needed to know information about its surrounding blocks.
 
+In this section, the method is also bottom-up but we focus instead on the signals inside the block itself, and not at its boundaries.
+The idea is to write a set of rules or assertions on a few signals inside the block.
+When those rules are violated, we know the block is in a faulty state.
+
+This approach offers two main advantages compared to the section 4.2 method.
+
+First, the rules are written logically based on the design of the block, and not arbitrariraly defined.
+If for instance a net is the gate command of a current mirror, a few criteria can be derived logically.
+For the current mirror to function properly, at least 1 gate voltage is required for biasing.
+Going below this voltage, the current mirror will not perform its copy anymore.
+
+SCHEMATIC SIMPLE CURRENT MIRROR
+
+Another example is taking a regulator.
+If current drawn on the output of the regulator exceeds nominal capability, then the block will be considered faulty.
+
+A set of simple rules could also be derived on supplies and ground.
+For all blocks, supplies should be expected within a given range.
+Grounds should be expected close to 0, and most likely lower than a body diode triggering voltage.
+
+The second major advantage is that the rules are specific to a block.
+They do not depend on boundary blocks, because they focus on the logical behavior of the block itself.
+This means that this approach is highly modular and scalable.
+Indeed, a set of rules written with an IP can travel with the block.
+In any project/IC the block will be used, the rules will apply.
+
+\subsection{Problem solved}
 Why are assertions useful ?
 Inherent scale factor and complexity makes inspecting the top-cell and all its sub cells impossible for a human.
 Need an automated checking system, that runs for any simulation (ESD or other).
 
-Applicability?
+\subsection{Applicability}
+
 Determine automatically in a top simulation (or simplified top) which blocks/nets went out of spec and so at fault.
 Also, determine mistakes when building testbenches.
 Also, constitute an electrical documentation of the block block.
@@ -21,11 +54,21 @@ So far, limited support for assertions in Cadence.
 In an ideal case, assertion files should be a specific view of the asserted cell.
 This way, when the cell is copied or moved around, the assertions will move with it and be reused.
 
-Major perks
+\subsection{Perks and Drawbacks}
+
 Simple to write.
 Reusable.
 Integrates well into the design flow
 General purpose (not limited to ESD, very useful in general considering all applications).
+
+DRAWBACKS ?
+
+\subsection{Proof of concept with a simple study-case}
+
+EVEREST ?
+SIMPLE CIRCUIT IN SIMULATION ?
+
+\subsection{Proposed debugging interface}
 
 User interface proposal for monitoring assertions.
 Visualize when circuit is ready (all assertions are gree)
