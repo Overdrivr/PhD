@@ -5,8 +5,8 @@ Like detailed previously, bottom-up methods are interesting for the intrisic mod
 
 In section 4.2, a block-failure modeling approach was detailed.
 Mainly, it focused on modeling the failure of a block as a time and amplitude criteria on an input.
-By going beyond the criteria, a failure was generated, and the output was put at fault.
-This fault was propagated then further in the system.
+By going beyond the criteria, a failure was detected, and the output was considered at fault.
+This fault was propagated then further in the system, to the input of the next block.
 The main issue with this approach is the strong coupling between blocks.
 To check that an input did not violate its failure criteria, you needed to know information about its surrounding blocks.
 
@@ -16,7 +16,7 @@ When those rules are violated, we know the block is in a faulty state.
 
 This approach offers two main advantages compared to the section 4.2 method.
 
-First, the rules are written logically based on the design of the block, and not arbitrariraly defined.
+First, the rules are written logically based on the design of the block, and not arbitrarily defined.
 If for instance a net is the gate command of a current mirror, a few criteria can be derived logically.
 For the current mirror to function properly, at least 1 gate voltage is required for biasing.
 Going below this voltage, the current mirror will not perform its copy anymore.
@@ -33,21 +33,53 @@ Grounds should be expected close to 0, and most likely lower than a body diode t
 The second major advantage is that the rules are specific to a block.
 They do not depend on boundary blocks, because they focus on the logical behavior of the block itself.
 This means that this approach is highly modular and scalable.
-Indeed, a set of rules written with an IP can travel with the block.
+Indeed, a set of rules written with an IP block can travel with it.
 In any project/IC the block will be used, the rules will apply.
 
-\subsection{Problem solved}
-Why are assertions useful ?
-Inherent scale factor and complexity makes inspecting the top-cell and all its sub cells impossible for a human.
-Need an automated checking system, that runs for any simulation (ESD or other).
+TALK ABOUT VIRTUAL TEST. DIFFERENCE IS VIRTUAL TEST IS INTERESTED IN INTER-BLOCK RELATIONSHIP ?
 
-\subsection{Applicability}
+\subsection{Objective}
 
-Determine automatically in a top simulation (or simplified top) which blocks/nets went out of spec and so at fault.
-Also, determine mistakes when building testbenches.
-Also, constitute an electrical documentation of the block block.
-Also, determine during DC spec if all blocks are properly started.
-Also, determine connection issues (floating ground and nets).
+The objective of writing these assertions is to handle easily the inherent scale factor and complexity of an IC.
+When performing simulations in soft-failure investigations, it became clear that the system, even with a few blocks,
+was too complex to be analysed manually.
+The amount of nets to check in order to ensure a block is operating normally is quite important.
+Most blocks can have multiple current mirror, bias structures, etc. that can be in various states.
+
+Automated checks help solve this issue, by enabling monitoring of a large amount of nets.
+For the automated check to be useful, it needs to be performed in any simulation.
+The following subsection details potential application of this technique, and how it should be setup to prove useful.
+
+\subsection{Applicability and integration}
+
+The main application the assertion approach was imagined for in this work is to detect blocks in failure state,
+during an \gls{esd}.
+
+However, this technique can have multiple different applications.
+The major interest of these assertions would be to run them in any simulation, not just \gls{esd} simulations.
+
+First, the file containing the assertions constitutes an electrical documentation of the block.
+Any designer tasked with upgrading a block developped by someone else will immediately get a view of biasing levels,
+expected current capabilities, etc.
+
+Also, in a multi-person IC design team, a single block can be simulated by many different people (designer, verification, esd, etc.).
+Those people will write testbenches to put those blocks into different situations.
+Almost always, testbenches will take quite some time to be debugged, sometimes involving interaction with the original designer of the block.
+Here, the assertion system can help avoid that, by highlighting when a block is not properly biased or operated.
+Mistakes in testbenches will be easy to detect and understand, for anyone, without requiring the intervention of the original designer.
+
+Also, some blocks require long startup sequence (slow ramp-up), usually regulators that power digital cells.
+Those sequences can take an important simulation time.
+Those long sequences are an issue if a testbench tries to validate some functionnality after startup.
+To overcome this issue, some testbenches immediately put the block into its final DC state (using DC sources instead of ramp-up DC sources).
+The problem with this approach is that in some cases the block will not be properly biased.
+The assertion can help determine whether or not the block is in its final state and properly started.
+
+Also, assertions can help detect early connection issues.
+This is very useful for instance to detect floating ground.
+A voltage criteria can be set on all ground nets, that will trigger a failure if a ground voltage exceeds for instance 1V.
+This is very useful to detect unconnected nets, which can happen regurlarly with complex IC blocks that mix power functions, digital, analog
+and usually have dedicated grounds for each domain.
 
 Potential integration in Cadence environment
 So far, limited support for assertions in Cadence.
@@ -62,6 +94,8 @@ Integrates well into the design flow
 General purpose (not limited to ESD, very useful in general considering all applications).
 
 DRAWBACKS ?
+Right amount of checks to write
+Compare to unit tests in software design
 
 \subsection{Proof of concept with a simple study-case}
 
