@@ -112,3 +112,8 @@ Append a `\` afterward to get a trailing space afterward. Example:
 ```
 \textOmega\ foo
 ```
+
+## External tools
+
+For viewing the generated `phd.pdf`, consider using the amazing [Sumatra pdf reader](http://www.sumatrapdfreader.org/free-pdf-reader.html).
+It is free, extremely fast, portable, small and is packed with good features.
