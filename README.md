@@ -70,6 +70,13 @@ Grunt will watch for changes and new files and will regenerate automatically `.p
 
 When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
 
+For tables, it is good to enforce strict placement just like figures by adding `[!htbp]` in the table options.
+For instance
+```
+\begin{table}[!htbp]
+% etc, table code
+```
+
 # Cheat-sheet
 
 ## Figures
@@ -114,6 +121,12 @@ Append a `\` afterward to get a trailing space afterward. Example:
 ```
 
 ## External tools
+### Viewing pdf files
 
 For viewing the generated `phd.pdf`, consider using the amazing [Sumatra pdf reader](http://www.sumatrapdfreader.org/free-pdf-reader.html).
 It is free, extremely fast, portable, small and is packed with good features.
+
+### Generating code for LaTeX tables using an online WYSIWYG editor
+
+This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables.
+This [one](http://truben.no/table/) exists too, probably just as good. (Supports more outputs than Latex, just as Markdown for instance !)
