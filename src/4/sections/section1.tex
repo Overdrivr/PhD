@@ -193,7 +193,8 @@ A curve can be build from this table, to make visualization easier.
 It gives a visual representation of the functionnal robustness of the block.
 Following table \ref{simulation-results}, the x axis is the duration of the input stress.
 The y axis is the amplitude of the input signal during the stress.
-This amplitude is the voltage or current seen by the characterized input pin. It is the sum of the stress amplitude and an eventual biasing level.
+This amplitude is the voltage or current seen by the characterized input pin.
+It is the sum of the stress amplitude and an eventual biasing level.
 Finally, each point (x,y) of the curve represents the \textbf{minimal} amplitude (y) for the given pulse width (x) at which failures occur.
 
 Fig. \ref{wb_cz_curve_example} gives an example of such a characterization curve.
@@ -283,7 +284,7 @@ Section \ref{sec:wb-for-arbitrary-wvfs} describes methods for applying the block
 The stress is injected on the global \textbf{\textit{in}} pin.
 This pin is also the input pin of the first block.
 Thus, the properties of the \gls{tlp} pulse can directly be applied to the model of block A.
-Fig. \ref{example_complete_curve} shows the response of model A, and the location of the TLP pulse characteristics on this curve.
+Fig. \ref{example_complete_curve} shows an example curve for model A, and the location of the TLP pulse characteristics on this curve.
 
 
 \begin{figure}[!htbp]
@@ -293,26 +294,30 @@ Fig. \ref{example_complete_curve} shows the response of model A, and the locatio
   \label{example_complete_curve}
 \end{figure}
 
+% Interpretate stress to deduce net1
+
 Like stated earlier, the pulse has a duration of 100ns and an amplitude of 15V. By reporting this point on curve \ref{example_complete_curve},
 it is visible that this will cause the output of block A to violate its failure criteria between 1us and 10 us.
-If we consider the failure criteria of block A is net1 > 5V (arbitrary value, just for the sake of the example),
-this means that with a 100ns 15V pulse on the input of A, the output of block A will go above 5V for at least 1us (best case scenario).
+We consider, for the sake of this example, the failure criteria of block A to be net1 > 5V.
+With a 100ns long 15V pulse on the input of A, the characterization states that the output of block A will go above 5V for at least 1us.
+This is the best case value for net1.
 
+% Use net1 as input of next block
+\textit{net1} is the output of block A, but it is also the input of block B.
+Thus, best case (amplitude, duration) values for net1 can be used as input for block B's model.
+Fig. \ref{example_complete_curve_B} shows an example curve for model B, and the location of the \textit{net1} disturbance on this curve.
+This shows that \textit{net2}, the output of block B and the input of block C, will go below B's failure level for at least 10 us.
 
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/example_complete_curve_B.pdf}
+  \caption{Model B curve and determination of impact of the TLP pulse}
+  \label{example_complete_curve_B}
+\end{figure}
 
-Get new output voltage on net1
-
-Use new voltage on net1 as input voltage on block B model
-
-Got new output voltage on net2
-
-Use new voltage on net2 as input voltage on block C model
-
-Got new output voltage on out
-
-Process is iterative, in theory can be repeated with as many blocks as wanted
-
-% HOW TO GET THE NEW VOLTAGE
+% Repeatable process
+As shown, this process can be repeated in theory with as many blocks as required by the original design, until the final pin is reached.
+The is possible because the output of a block is used as the input of the next one.
 
 % How to select pins to characterize
 
@@ -320,22 +325,30 @@ Process is iterative, in theory can be repeated with as many blocks as wanted
 
 \subsection{Application to the test vehicle}
 
-The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is performed in simulation-only on the regulation function of the testchip.
+The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on real blocks.
+More precisely, it will be tested against the regulation function of the testchip.
 
-This function is composed mainly of three blocks, a pre-regulator, a bandgap and a regulator.
+% Which pins are selected for characterization
+This function is composed of three blocks, a pre-regulator, a bandgap and a regulator.
+For each one, an input and output pin are selected.
+Basically, pins were chosen because they play a key role on the regulation function.
+%TODO DETAIL THE PINS PER BLOCK, MAKE A TABLE
 
-% Which pins are selected ?
-An input and output pin of interest are selected according to the block's connection inside the chain constituting the total function.
+% Which load value for characterization
+The test setup described in section \ref{sec:block-failure-cz} requires a characterization load to simulate the impact of neighbor blocks.
+In a first time, a very simplistic model is employed for this load.
+An arbitrary load value of 1M\textgreek{Omega}\ is initially chosen, just to perform a preliminary test.
 
-In a first time, a very naive approach is used for the characterization load Z (see figure \ref{block_function_cz}) placed on the output of each block.
-An arbitrary load value of 1MΩ is chosen. WHY ?
-
-Like explained previously with Vmax (TO CALL Verr ?) in 4.2.1, a failure treshold is chosen for each block.
+% Which characterization threshold
+Also, a failure treshold is chosen for each block.
 Under this threshold, the output of each concerned block is considered at fault.
 
-DETAIL MORE SIMULATION PROCESS. PARAMETERIZED SIMULATION WITH MULTIPLE AMPLITUDE/LENGTH
 
-The characterization curves are given in figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and Z.
+% Simulation process
+%TODO: DETAIL MORE SIMULATION PROCESS
+% PARAMETERIZED SIMULATION WITH MULTIPLE AMPLITUDE/LENGTH
+
+The characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and XXX.
 For the given testchip, it was found that the regulation function shows clear failure when exposed to negative stresses.
 For simplicity, the voltage scale was simply reversed, but this doesn't affect the results in any case.
 
@@ -358,6 +371,31 @@ TODO: REVERT Y SCALE ON ALL CURVES
 
 CURVE CZ REGULATOR
 
+% Characterization done, now perform chaining
+After the characterization phase, it is now possible to chain the models together to evaluate the entire function's robustness.
+To check the validity of the model, a rectangular pulse is injected on the global input (pre-regulator input).
+The chain of models is used to predict, without running any more simulations, the failure or not on the output pin.
+
+% Do it on one pulse config
+
+% Perform standard complete simulation for reference
+The result will then be compared by performing a complete simulation of the entire regulation function (all three block).
+This simulation uses transistor-level models, and will serve as a reference to compare the models against.
+The same rectangular pulse will be injected on the global input, and the global output will be monitored as well.
+
+% Show the waveform on the same pulse config
+
+% Compare both
+Afterwards, the reference simulation and the model-predicted failure level on the global output are compared.
+This way, the validity of the model can be checked against at least a complete transistor-level simulation.
+
+% What's the result
+
+% Results for many different pulse configs
+%TODO: MAKE A TABLE THAT COMPARES, FOR A BUNCH AND AMPLITUDE AND LENGTH, DIFFERENCES BETWEEN MODEL AND FULL TRANSISTOR SIM
+
+% Review next
+% Make the chaining
 The goal now is to link those curves together, in order to predict if an input
 stress applied on the first block can affect the final functionnality outputed
 on the last block.
@@ -440,6 +478,8 @@ Also, this value may not be constant in frequency.
 And this value may also not be constant in time (multiple operating modes, biasing points, etc).
 
 % SHOW SIMULATIONS FOR THIS PROBLEM OF IMPEDANCE VARIATION
+
+% DIRECTIVITY - WE ASSUME STRESS AND FAILURES PROPAGATE FROM INPUT TO OUTPUT. MAY NOT BE THE CASE. ALSO, MAY NOT WORK IN REVERSE WITH SINGLE2MANY BLOCK CONNECTIONS
 
 Another issue, this method is limited to a binary FAIL/NO FAIL criteria.
 Not only this criteria is arbitrary (in some cases, the specification could be used to set it), but
