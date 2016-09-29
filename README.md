@@ -129,4 +129,4 @@ It is free, extremely fast, portable, small and is packed with good features.
 ### Generating code for LaTeX tables using an online WYSIWYG editor
 
 This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables.
-This [one](http://truben.no/table/) exists too, probably just as good. (Supports more outputs than Latex, just as Markdown for instance !)
+This [one](http://truben.no/table/) exists too, but has less features (no support for merging cells for instance).
