@@ -331,28 +331,48 @@ More precisely, it will be tested against the regulation function of the testchi
 % Which pins are selected for characterization
 This function is composed of three blocks, a pre-regulator, a bandgap and a regulator.
 For each one, an input and output pin are selected.
-Basically, pins were chosen because they play a key role on the regulation function.
-%TODO DETAIL THE PINS PER BLOCK, MAKE A TABLE
+The input/outputs that play a key role on the regulation function were selected on the regulation function.
+Details of the selected pins is given in Table \ref{selected-pins-for-cz}.
+
+% TODO : Give more pins and just indicates the one that were chosen ?
+\begin{table}[!htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\toprule
+{\color[HTML]{000000} \textbf{IC block}} & \multicolumn{2}{c|}{{\color[HTML]{000000} \textbf{input}}}                                                                                                                                                 & \multicolumn{2}{c|}{{\color[HTML]{000000} \textbf{output}}}                                                                                        \\ \midrule
+{\color[HTML]{000000} }                  & {\color[HTML]{000000} \textbf{function}}                                                            & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}c@{}}characterization\\ range (V)\end{tabular}}} & {\color[HTML]{000000} \textbf{function}}                                                        & {\color[HTML]{000000} \textbf{Failure criteria}} \\ \midrule
+{\color[HTML]{000000} pre-regulator}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}external supply\\ battery connection\end{tabular}} & {\color[HTML]{000000} {[}0V ; -10V{]} ?}                                                             & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}9V clamped\\ voltage\end{tabular}}             & {\color[HTML]{000000} V \textless 5V ?}          \\ \midrule
+{\color[HTML]{000000} bandgap}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}9V clamped\\ voltage\end{tabular}}                 & {\color[HTML]{000000} {[}0V ; -5V{]} ?}                                                              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}bandgap voltage\\ 1.25V ?\end{tabular}}        & {\color[HTML]{000000} V \textless 1.3V ?}        \\ \midrule
+{\color[HTML]{000000} regulator}         & {\color[HTML]{000000} bandgap 1.25 V}                                                               & {\color[HTML]{000000} {[}0V ; -3V{]} ?}                                                              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}regulated 2.5V\\ 20mA capability\end{tabular}} & {\color[HTML]{000000} V \textless 2.2 V?}        \\ \bottomrule
+\end{tabular}%
+}
+\caption{Selected pins for characterization and characterization limits}
+\label{selected-pins-for-cz}
+\end{table}
+
+% Talk about the characterization limits and failure criteria chosen
+%TODO: TALK ABOUT NEGATIVE PULSE + REFER TO INITIAL TESTCHIP FAILURE ANALYSIS DONE EARLIER IN THE Document
 
 % Which load value for characterization
 The test setup described in section \ref{sec:block-failure-cz} requires a characterization load to simulate the impact of neighbor blocks.
 In a first time, a very simplistic model is employed for this load.
 An arbitrary load value of 1M\textgreek{Omega}\ is initially chosen, just to perform a preliminary test.
-
-% Which characterization threshold
-Also, a failure treshold is chosen for each block.
-Under this threshold, the output of each concerned block is considered at fault.
-
+%TODO: DETAIL MORE ?
 
 % Simulation process
-%TODO: DETAIL MORE SIMULATION PROCESS
-% PARAMETERIZED SIMULATION WITH MULTIPLE AMPLITUDE/LENGTH
+For each block, the characterization testbench is setup and a set of simulations is run.
+This set is calculated with the characterization range given in Table \ref{selected-pins-for-cz}.
+This type of parameterized simulations can be efficiently distributed on multiple machines.
+This way, the complete characterization of a block does not take longer than the time taken by a single simulation.
+Once all simulations are run, the results are analysed and plotted using the method detailed in the previous sections.
 
-The characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and XXX.
+% Talk about the output
+These characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and XXX.
 For the given testchip, it was found that the regulation function shows clear failure when exposed to negative stresses.
 For simplicity, the voltage scale was simply reversed, but this doesn't affect the results in any case.
 
-TODO: REVERT Y SCALE ON ALL CURVES
+%TODO: REVERT Y SCALE ON ALL CURVES
 
 \begin{figure}[!htbp]
   \centering
@@ -368,8 +388,7 @@ TODO: REVERT Y SCALE ON ALL CURVES
   \label{bandgap_wb}
 \end{figure}
 
-
-CURVE CZ REGULATOR
+%TODO: CURVE CZ REGULATOR
 
 % Characterization done, now perform chaining
 After the characterization phase, it is now possible to chain the models together to evaluate the entire function's robustness.
@@ -394,7 +413,7 @@ This way, the validity of the model can be checked against at least a complete t
 % Results for many different pulse configs
 %TODO: MAKE A TABLE THAT COMPARES, FOR A BUNCH AND AMPLITUDE AND LENGTH, DIFFERENCES BETWEEN MODEL AND FULL TRANSISTOR SIM
 
-% Review next
+%TODO: Review next
 % Make the chaining
 The goal now is to link those curves together, in order to predict if an input
 stress applied on the first block can affect the final functionnality outputed
@@ -417,13 +436,13 @@ In conclusion, using this method, an 100 ns XX V stress on the input of the firs
 
 The entire process is summarized in fig. X.
 
-ALL THREE CURVES WITH POINT REPORT
+%TODO: SHOW ALL THREE CZ CURVES WITH POINT REPORT FROM ONE TO ANOTHER
 
 To validate it, a full-transistor simulation is run with all three blocks (see Fig. X).
 The same 100 ns XX V TLP stress is injected on the same input pin, and the functionnality on the same output pin Y is monitored.
 To check the validity of the model, we also monitor voltages at the output of the pre-regulator and the bandgap.
 
-SCHEMATIC FULL CIRCUIT
+%TODO: SCHEMATIC FULL CIRCUIT
 
 The simulation of the input, pre-regulator output, bandgap output and final (regulator) output are given fig. X.
 On the final output, the complete simulation predicts a much smaller failure than the model.
@@ -439,10 +458,11 @@ In simulation, the output goes below XX V for XXX ns, while the model predicted 
 Not only each curve introduces an important error, but errors tend to accumulate after each block.
 The origin of this problem needs to be adressed to try to get more accurate results.
 
-SIMULATIONS 2 * 2
+%TODO: PLOT TRANSIENT SIMULATIONS, USING 2 * 2 GRID, PLOTTING INPUT, PRE_REG_OUT, BANDGAP_OUT and REGU_OUT
 
+% Where does error come from ? Load impedance
 Previously, it was indicated that all WnB curves were extracted with a fixed Zout = 1M\textOmega.
-In practice, each block (pre-regulator, bandgap, regulator) sees a load impedance on its output much different than that.
+When connected together, each block (pre-regulator, bandgap, regulator) sees a load impedance on its output much different than that.
 Thus, it is important to evaluate the impact of this value on the Wunsch and Bell characterization curve.
 The pre-regulator is characterized again, this time with a load impedance of 100\textOmega.
 This value is rather small impedance, but sufficiently high to not draw too much current on the pre-regulator.
