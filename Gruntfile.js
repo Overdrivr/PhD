@@ -83,5 +83,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-execute');
 
   // Default task
-  grunt.registerTask('default', ['execute:figs','connect', 'watch']);
+  grunt.registerTask('default', ['execute:figs', 'watch']);
 };
