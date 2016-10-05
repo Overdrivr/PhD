@@ -10,19 +10,16 @@ For each one, an input and output pin are selected.
 The input/outputs that play a key role on the regulation function were selected on the regulation function.
 Details of the selected pins is given in Table \ref{selected-pins-for-cz}.
 
-% TODO : Give more pins and just indicates the one that were chosen ?
-\begin{table}[!htbp]
+\begin{table}[]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\begin{tabularx}{\linewidth}@{}|c|c|c|c|c|c|c|@{}}
 \toprule
-{\color[HTML]{000000} \textbf{IC block}} & \multicolumn{2}{c|}{{\color[HTML]{000000} \textbf{input}}}                                                                                                                                                 & \multicolumn{2}{c|}{{\color[HTML]{000000} \textbf{output}}}                                                                                        \\ \midrule
-{\color[HTML]{000000} }                  & {\color[HTML]{000000} \textbf{function}}                                                            & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}c@{}}characterization\\ range (V)\end{tabular}}} & {\color[HTML]{000000} \textbf{function}}                                                        & {\color[HTML]{000000} \textbf{Failure criteria}} \\ \midrule
-{\color[HTML]{000000} pre-regulator}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}external supply\\ battery connection\end{tabular}} & {\color[HTML]{000000} {[}0V ; -10V{]} ?}                                                             & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}9V clamped\\ voltage\end{tabular}}             & {\color[HTML]{000000} V \textless 5V ?}          \\ \midrule
-{\color[HTML]{000000} bandgap}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}9V clamped\\ voltage\end{tabular}}                 & {\color[HTML]{000000} {[}0V ; -5V{]} ?}                                                              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}bandgap voltage\\ 1.25V ?\end{tabular}}        & {\color[HTML]{000000} V \textless 1.3V ?}        \\ \midrule
-{\color[HTML]{000000} regulator}         & {\color[HTML]{000000} bandgap 1.25 V}                                                               & {\color[HTML]{000000} {[}0V ; -3V{]} ?}                                                              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}regulated 2.5V\\ 20mA capability\end{tabular}} & {\color[HTML]{000000} V \textless 2.2 V?}        \\ \bottomrule
-\end{tabular}%
-}
+{ \textbf{IC block}} & { \textbf{input pin}}                 & \multicolumn{1}{l|}{{ }} & { }                                & \multicolumn{1}{l|}{{ }}               & { \textbf{output pin}}            & { }                          \\ \midrule
+{ }                  & { \textbf{specification}}             & { \textbf{DC value (V)}} & { \textbf{stress amplitude range}} & { \textbf{stress width range}}         & { \textbf{specification}}         & { \textbf{Failure criteria}} \\ \midrule
+{ pre-regulator}     & { external supply battery connection} & { 12V}                   & { -1V to -10V with 1V step}        & { 1ns to 1000ns with 30 pts log scale} & { 9V clamped voltage}             & { vclamp9 \textless 0V}      \\ \midrule
+{ bandgap}           & { 9V clamped voltage}                 & { 9V}                    & { -1V to -15V with 1V step}        & { 1ns to 1000ns with 30 pts log scale} & { bandgap voltage 2.5V reference} & { vref2p5 \textless 1.25V}   \\ \midrule
+{ regulator}         & { bandgap 2.5V reference}             & { 2.5V}                  & { -0.5 to -10V with 0.5V step}     & { 1ns to 1000ns with 30 pts log scale} & { regulated 2.5V 20mA capability} & { v2p5 \textless 2.1 V}      \\ \bottomrule
+\end{tabularx}
 \caption{Selected pins for characterization and characterization limits}
 \label{selected-pins-for-cz}
 \end{table}
@@ -51,27 +48,31 @@ This way, the complete characterization of a block does not take longer than the
 Once all simulations are run, the results are analysed and plotted using the method detailed in the previous sections.
 
 % Talk about the output
-These characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and XXX.
+These characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and \ref{regu_wb}.
 For the given testchip, it was found that the regulation function shows clear failure when exposed to negative stresses.
 For simplicity, the voltage scale was simply reversed, but this doesn't affect the results in any case.
 
-%TODO: REVERT Y SCALE ON ALL CURVES
-
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/cz_vpre.png}
-  \caption{Testchip's pre-regulator Wunsch and Bell characterization}
+  \includegraphics[width=\textwidth]{src/4/figures/preregulator_cz.png}
+  \caption{Pre-regulator characterization}
   \label{pre_regu_wb}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/cz_bandgap.png}
-  \caption{Testchip's bandgap Wunsch and Bell characterization}
+  \includegraphics[width=\textwidth]{src/4/figures/bandgap_cz.png}
+  \caption{Bandgap characterization}
   \label{bandgap_wb}
 \end{figure}
 
-%TODO: CURVE CZ REGULATOR
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/regulator_cz.png}
+  \caption{Regulator characterization}
+  \label{regu_wb}
+\end{figure}
+
 
 % Characterization done, now perform chaining
 After the characterization phase, it is now possible to chain the models together to evaluate the entire function's robustness, using method described in \label{sec:block-chaining}.
@@ -81,6 +82,7 @@ For the purpose of this test, the input stress will be generated by a \gls{tlp} 
 
 % Do it on one pulse config
 First, the coordinaates (100ns, -50V) are reported on curve \ref{pre_regu_wb}, the first block model of the system.
+%TODO: PAS POSSIBLE, CAR COURBES MONTRENT DC + STRESS
 This point indicates a failure on the output of the pre-regulator, for a duration between XXns and XXns.
 This gives the next point coordinates (XXns, -XXV).
 This point is reported on the bandgap's model, the next block in the system.
