@@ -62,41 +62,4 @@ DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
 
 \input{src/4/sections/s1-block-cz.tex}
 \input{src/4/sections/s1-application.tex}
-
-\subsection{Conclusion regarding bottom-up block failure modeling method}
-
-On paper, this method was rather promising in terms of applicability.
-A block could be characterized once, and reused in different places.
-The robustness of a full system could have been quickly and easily deduced from the models of its parts.
-
-However, with the study case exposed earlier, several issues arose that clearly limit the ability of the model to perform as expected.
-
-The main issue with this modelling method is the fact that it relies too much
-on the value of the output load for performing the characterization of a block.
-This load depends on many different parameters.
-And this value will change in function out the block connected on the output (think about block-reuse)
-Also, this value may not be constant in frequency.
-And this value may also not be constant in time (multiple operating modes, biasing points, etc).
-
-% SHOW SIMULATIONS FOR THIS PROBLEM OF IMPEDANCE VARIATION
-
-% DIRECTIVITY - WE ASSUME STRESS AND FAILURES PROPAGATE FROM INPUT TO OUTPUT. MAY NOT BE THE CASE. ALSO, MAY NOT WORK IN REVERSE WITH SINGLE2MANY BLOCK CONNECTIONS
-
-Another issue, this method is limited to a binary FAIL/NO FAIL criteria.
-Not only this criteria is arbitrary (in some cases, the specification could be used to set it), but
-for most purely-analog blocks, there will not be a clear failure, rather, most
-nets will have degraded values until maybe biasing of the block completely fails.
-In this case, the binary criteria hides a lot of information about the degradation.
-
-ANY CLUES TO OVERCOME THESE ISSUES ?
-
-ALSO, FAILURE MAY NOT PROPAGATE IN THIS ONLY WAY, BUT BACKWARD TOO
-
-The main reason why this approach was investigated was for its very interesting modularity
-that was highly suitable for block reuse workflow.
-
-However, because of the intrisic interactions between block functions in an integrated circuit,
-TRY TO EXPRESS BETTER WHAT PRINCIPLE OF THIS METHOD BOUNDS IT TO FAIL
-
-this approach seems to be bound to fail for building a reusable model for an IC block that could predict
-ESD failures at the architecture level and during the IC architecture phase.
+\input{src/4/sections/s1-conclusion.tex}
