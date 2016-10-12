@@ -1,4 +1,5 @@
 \subsection{Application to the test vehicle}
+\label{sec:application-test-vehicle}
 
 The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on real blocks.
 More precisely, it will be tested against the regulation function of the testchip.
@@ -41,6 +42,7 @@ This criteria corresponds to a voltage below which digital cells using this supp
 The test setup described in section \ref{sec:block-failure-cz} requires a characterization load to simulate the impact of neighbor blocks.
 In a first time, a very simplistic model is employed for this load.
 An arbitrary load value of 1M\textgreek{Omega}\ is initially chosen, just to perform a preliminary test.
+A high-impedance avoids drawing too much current on the output, which could affect or prevent normal operation.
 The impact of this load on the characterization will be evaluated later on in the analysis.
 
 % Simulation process
@@ -164,9 +166,9 @@ In the case of the reference simulations, no failure is ever recorded.
 The models on the opposite predict that in the worst case (-50V, 1us) the regulator's output will go below 2.1V for 2us.
 
 % Observe intermediate nets
-%TODO:
-Full simu: vlamp9 1us, v1p0 2us
-With model: vclamp9 2800 ns, v1p0 3200ns
+Unlike the final output, the full simulation exhibits failures on intermediate nets.
+In the worst case (TLP -50V 1us), the first net vlamp9 is disturbed during 1us and the second net v1p0 during 2us.
+With the model chain, vclamp9 is disturbed during 2800ns and v1p0 for 3200ns.
 
 % Conclusion regarding the results
 In conclusion, the model was tested against reference simulations on a wide range of input stresses.
