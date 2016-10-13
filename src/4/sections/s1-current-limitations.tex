@@ -1,11 +1,11 @@
 \subsection{Current limitations}
-
+\label{sec:current-limitations}
 % Short intro
 The bottom-up characterization method helps create higher-order models of circuit functions.
 However, preliminary tests regarding this method are inconclusive.
 Multiple sources of errors in the modeling method can be found to explain the differences observed.
 
-\subsubsection{Impact of characterization output load}
+\subsubsection{Impact of characterization output load and output modeling method}
 
 % First source of error - load impedance
 Previously, it was indicated that all characterization curves were extracted with a fixed output load.
@@ -35,14 +35,12 @@ The output goes below 0V for 1330 ns with 500\textOmega\ on the output, but with
 However, it is interesting to notice that for larger pulse amplitudes, the output load has a limited impact on the failure duration.
 It seems that once the output is at fault, having 500\textOmega\ or 1M\textOmega\ connected to it doesn't change how long it remains at fault.
 Fig. \ref{fig:impact-time-domain-load} provides a visual representation of the phenomenon, to try to explain why this result is obtained.
-%TODO: Explain more
+When the output is disturbed and its amplitude is near the failure criteria, the load value has a strong impact on the width of the failure.
+Indeed, a large load value (1 M\textOmega) causes the output to be slightly above the failure criteria, thus no failure is recorded.
+On the contrary, with a small load (500 \textOmega\) the output amplitude has changed a little bit and is now below the failure criteria.
+It is interesting to notice that in the reference simulations, the width of the disturbance doesn't change much with the load.
 
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics{src/4/figures/zout_impact_time_domain.pdf}
-  \caption{Represented impact of output load impedance on the output waveform during a disturbance with a small amplitude (green) and a large amplitude (red)}
-  \label{fig:impact-time-domain-load}
-\end{figure}
+%TODO: To do with more blocks
 
 \begin{table}[!htbp]
 \centering
@@ -100,21 +98,40 @@ load (\textOmega) & amplitude (V) & length (ns) & output disturbed (ns)   \\ \mi
 \label{tab:impact-load-on-cz}
 \end{table}
 
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/zout_impact_time_domain.pdf}
+  \caption{Represented impact of output load impedance on the output waveform during a disturbance with a small amplitude (green) and a large amplitude (red)}
+  \label{fig:impact-time-domain-load}
+\end{figure}
+
+% Conclusion, the main impact is not the characterization load, but the single failure criteria
+In conclusion, the load value used during characterization does not seem to be the main source of error.
+Rather, it is the consequence of using a single level as failure criteria, which eliminates a lot of information.
+Basically, it oversimplifies the waveform of the output.
+This is illustrated by figure. \ref{fig:impact-single-failure-criteria}.
+Any disturbance under the failure criteria is modeled as no disturbance.
+This is the case even if the disturbance is just below the failure criteria, without crossing it.
+On the contrary, any disturbance beyond the failure criteria uses the failure level for modeling.
+The max value of the output may be much larger than the failure criteria, however, it will still be modeled as a square pulse of amplitude Vfail.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/bad_output_modelling.pdf}
+  \caption{Lack of accuracy caused by the use of a single failure criteria to model the output}
+  \label{fig:impact-single-failure-criteria}
+\end{figure}
+
 % Talk about static impedances vs dynamic
-
+%TODO: Not studied ?
 % Talk about real vs imaginary impedances
-
-\subsubsection{Impact of single level failure criteria}
-
-% Second source of error - single level failure criteria
-The use of a single failure criteria per block can introduce an important error as well.
-It oversimplifies the response of the output against an input stress.
+%TODO: Not studied
 
 \subsubsection{Other sources}
 
 %TODO: Make section ? Speak about limitations with multiples nets that are responsible for error propagation
 %TODO: Limitation with multiple nets. Interactions between inputs.
-
+%TODO: Speak about failure criteria is single level but actual failure may be much larger
 
 On paper, this method was rather promising in terms of applicability.
 A block could be characterized once, and reused in different places.
@@ -151,3 +168,27 @@ TRY TO EXPRESS BETTER WHAT PRINCIPLE OF THIS METHOD BOUNDS IT TO FAIL
 
 this approach seems to be bound to fail for building a reusable model for an IC block that could predict
 ESD failures at the architecture level and during the IC architecture phase.
+
+\subsection{Proposed workaround}
+% What's the plan to fix that crap
+As was identified earlier in \ref{sec:current-limitations}, using a single failure criteria for modeling the output waveform is the main cause of error.
+A modification to the characterization method is now proposed.
+
+% What is kept in the method, What is modified
+The characterization is still performed per-block, by injecting variable width and variable amplitude rectangular pulses on an input.
+However, the failure criteria on the output is now eliminated.
+Instead, the maximum amplitude value on the output is recorded.
+Then, the width of the disturbance at 90\% of the maximum amplitude is also measured.
+%TODO: Why 90% ?
+This greatly improves the modeling of the output curve.
+%TODO: Why is it an improvement ?
+This process is illustrated in Fig. \ref{fig:impact-single-failure-criteria}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/4/figures/better_output_modelling.pdf}
+  \caption{Improved output modelling method based on 90\% of maximum disturbance amplitude}
+  \label{fig:impact-single-failure-criteria}
+\end{figure}
+
+% Result, 2 curves - explain what they are.
