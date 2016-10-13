@@ -28,6 +28,8 @@ grunt latex
 
 # Resources
 
+Figures use the Roboto font. Available [here](https://fonts.google.com/specimen/Roboto).
+
 * Latex quick reference: https://latex-project.org/guides/usrguide.tex
 * Latex cheat sheet: https://wch.github.io/latexsheet/latexsheet.pdf
 * Bibliography management: https://fr.sharelatex.com/learn/Bibliography_management_with_bibtex
@@ -128,5 +130,5 @@ It is free, extremely fast, portable, small and is packed with good features.
 
 ### Generating code for LaTeX tables using an online WYSIWYG editor
 
-This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables. Doesn't work very well with large tables, doesn't support tabularx package. 
+This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables. Doesn't work very well with large tables, doesn't support tabularx package.
 This [one](http://truben.no/table/) exists too, but has less features (no support for merging cells for instance).
