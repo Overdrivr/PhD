@@ -1,10 +1,19 @@
-\subsection{Test vehicule description}
+\subsection{Test vehicle description}
 
-This chapter focuses on the functionnal failure caused by an \gls{esd} of an integrated function.
-The studied function is the primary supply of a complex automotive \gls{asic}.
-This supply plays a critical role in the functionning of the entire product.
-It is connected to the battery of the vehicle, and is the first block of the product to start.
-It wakes up and powers all other functions inside the integrated circuit.
+% Why making a testchip
+It is difficult to realize good measurements on an integrated circuit.
+The chip is enclosed in a package, and without physical access it is impossible to measure electrical properties.
+Even with physical access, placing micro-probes to contact metal connections can disturb sensitive parts of the device.
+To overcome these issues, a custom test vehicle has been designed and manufactured.
+%TODO: Detail more
+
+% What is in the testchip
+It reuses most blocks from the Everest product described previously in \ref{sec:study-real-product}.
+In addition, custom functions were integrated to allow the measurement and monitoring of internal parameters.
+A communication system was setup to output all easurement data using a few pins.
+
+
+
 
 \begin{figure}[h]
   \centering
@@ -12,6 +21,14 @@ It wakes up and powers all other functions inside the integrated circuit.
   \caption{Architecture of the studied functionnality}
   \label{testchip_overview}
 \end{figure}
+
+\subsection{Monitored analog function}
+
+This chapter focuses on the functionnal failure caused by an \gls{esd} of an integrated function.
+The studied function is the primary supply of a complex automotive \gls{asic}.
+This supply plays a critical role in the functionning of the entire product.
+It is connected to the battery of the vehicle, and is the first block of the product to start.
+It wakes up and powers all other functions inside the integrated circuit.
 
 The primary supply processes the battery supply in a chained fashion (see Fig. \ref{testchip_overview}).
 A first block (pre-regulator) clamps the battery voltage (that can reach up to 40V) to 9V, a more acceptable voltage for the silicium technology.
