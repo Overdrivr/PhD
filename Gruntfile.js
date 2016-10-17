@@ -56,7 +56,7 @@ module.exports = function (grunt) {
         tasks: ['latex:bib', 'latex:pdf']
       },
       svgs: {
-        files: '**/*.svg',
+        files: '**/**.svg',
         tasks: ['shell:figs'],
         options: {
           spawn: false
