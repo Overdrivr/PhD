@@ -20,7 +20,7 @@ It is connected to the battery of the vehicle, and is the first block of the pro
 It wakes up and powers all other functions inside the integrated circuit.
 
 % Global architecture
-The global architecture of the testchip (Fig. \ref{XX}) is comprised of a duplicated supply function.
+The global architecture of the testchip (Fig. \ref{architecture_testchip}) is comprised of a duplicated supply function.
 The same supply block is instanciated twice on silicon.
 One of them is the function under test, which is exposed to \gls{ESD} stresses and is monitored for failures.
 The second one is responsible for powering the monitoring functions.
@@ -41,66 +41,75 @@ The communication function performs a parallel to serial conversion, in order to
 Special structures for specific monitoring functions is also implemented.
 Details about the monitored and monitoring functions are given in the next sub-sections.
 
-\subsection{Monitored analog function}
+\subsection{Supply function under monitoring}
 
-The primary supply processes the battery supply in a chained fashion (see Fig. \ref{testchip_overview}).
-A first block (pre-regulator) clamps the battery voltage (that can reach up to 40V) to 9V, a more acceptable voltage for the silicium technology.
-This clamped voltaged is then used to power up a bandgap reference.
-Once properly started, this bandgap generates a 1.23 V voltage reference, stable accross a wide range of temperature, process variation and mismatchs.
-The bandgap also outputs a 10uA current reference, stable in the same conditions.
+% Main task
+The main function of the supply block is mostly to down-convert a battery voltage to a 2.5V regulated supply.
+Several blocks are involved for processing the battery supply.
+The overall architecture is given in fig. \ref{fig:monitored_function}).
 
-\begin{figure}[h]
+% First block
+First, a pre-regulator clamps the battery voltage that can reach 40V down to a 9V.
+This is done to protect more sensitive circuits connected downstream.
+This output has low current capability and is used for low-power functions.
+A second output provides a 12V clamped output with a large current capability.
+
+% Second block
+A bandgap reference is connected downstream.
+It is powered by the 9V supply.
+Once properly started after a certain delay, the bandgap generates a 1.23 V voltage reference.
+This reference is stable accross a wide range of temperature, process variation and process mismatchs.
+The bandgap also outputs a 10uA current reference, and a flag \textit{bgok} to signal it is ready for operation.
+
+\begin{figure}[!htbp]
   \centering
-  \includegraphics{src/4/figures/testchip_overview.pdf}
-  \caption{Architecture of the studied functionnality}
-  \label{testchip_overview}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/monitored_function.pdf}
+  \caption{Architecture of the supply under test}
+  \label{fig:monitored_function}
 \end{figure}
 
-After the bandgap, a \gls{ldo} regulator relies on the voltage reference to generate a stable 2.5V supply voltage, able to deliver and sustain up to 20mA.
-This first regulator is connected externally to a 100nF decoupling capacitor to absorb peak currents and achieve stability.
-This supply is used to supply most analog (digital ?) functions inside the integrated circuit.
+% Third major block
+Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage, able to deliver and sustain up to 20mA.
+In the original product, this output is used further in the system to power digital gates.
 
-A second regulator performs the same task, but starts with a delay compared to the first one.
-It also ouputs a 2.5V supply, that powers digital logic inside the circuit.
+% Detail nets connections
+The regulator relies on multiple signals generated in the upstream blocks for operation.
+The most critical nets are the 1.0V reference from the bandgap, and the ramp-up signal.
+Circuit analysis show that both nets can directly affect the output voltage.
+A variation on the reference voltage is immediately copied on the output.
+The ramp-up signal controls the soft-start of the regulator, that can directly change the output value.
+Other nets provide bias to the regulator, and their impact on the output is more limited.
 
-In case of failure, the primary supply can cause the entire product to shut down.
-Indeed, this entire system requires soft-start behavior to avoid generating harmful voltage spikes to powered functions.
-This functionnality enforces the system to start on a \br{long} period of time, in the order of a hundred microseconds.
+% Talk about external devices
+The regulator is connected externally to a 100nF decoupling capacitor to absorb peak currents and achieve stability.
 
-When the system is stressed with an \gls{esd}, voltages and currents are fluctuating inside the block.
-Under certain conditions, and especially important stress levels, the block will detects some nodes going in undervoltage or overvoltage.
-This will cause the block to go into safe or protected mode, where it will restart because the functionnality cannot be assured properly.
-The direct consequence is that the block will require again a hundred microseconds to be again in normal operation mode.
-
-This failure can in a first time be observed in simulation.
-An \gls{ESD} is superimposed on the DC battery voltage.
-This is the most likely entry point for a stress, because the \gls{IC} exposes a pin to the external workd and is usally connected to the battery via a long cable
-To detect is a block reset happened, the voltage on the first voltage regulator is observed.
-Fig. X shows the stress waveform on the input.
-
-STRESS WAVEFORM INPUT
-
-Fig. X shows a simulation where a small glitch can be observed on the regulated output, but without clear reset or soft-failure signature.
-In this case, the block and the rest of the product is most likely not affected by the ESD.
-
-WAVEFORM OUTPUT NO RESET
-
-Fig. X shows a simulation where a clear reset hapened.
-The output voltage is maintained by a 100nF capacitor.
-However, it clearly goes down \br{after} the \gls{esd} and rises slowly afterward, a sign that the block went into full reset and restard.
-
-WAVEFORM OUTPUT RESET
-
-By going inside the \gls{IC}...
-
-bandgap, voltage ref, current ref, etc
-
-DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
+% What are the minor blocks doing
+The \textit{current mirrors} provide copied current values from the bandgap, while offering much larger output impedance.
+The \textit{enable} block mostly checks and waits for the bandgap to be properly started.
+It then triggers a startup ramp-up sequence on the regulator.
 
 \subsection{Voltage monitoring}
 
 % What are the OV/UV detectors made of
-Overvoltage and undervoltage detectors are implemented with fast latched comparators.
+Overvoltage and undervoltage detectors are implemented as latched comparators.
+They record if a monitored net crosses a threshold.
+The latch behavior stores the value until it can be read.
+The architecture of a detector is given Fig. \ref{fig:architecture-ov}.
+The same architecture is used for the overvoltage and the undervoltage.
+Monitored and reference inputs are just inversed on the undervoltage detector.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/3/figures/architecture_OV.pdf}
+  \caption{Architecture of the overvoltage detector}
+  \label{fig:architecture-ov}
+\end{figure}
+
+% What is the purpose of filter
+%TODO
+Optional filter, with hysteresis threshold, to evaluate duration of violation
+
+% Origin of reference voltages
 The reference voltages for these comparators come from the protected supply.
 The comparators monitor several key voltages inside the supply under test.
 The output of these latched comparators form a register bank of 35 bits.
