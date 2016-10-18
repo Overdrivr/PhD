@@ -4,3 +4,38 @@ Failure in cascade of the regulation function, when the disturbance propagates t
 
 %TODO: Investigate on source of failure ?
 Single block, multiple block, multiple nets, etc.
+
+%TODO: Review
+In case of failure, the primary supply can cause the entire product to shut down.
+Indeed, this entire system requires soft-start behavior to avoid generating harmful voltage spikes to powered functions.
+This functionnality enforces the system to start on a \br{long} period of time, in the order of a hundred microseconds.
+
+When the system is stressed with an \gls{esd}, voltages and currents are fluctuating inside the block.
+Under certain conditions, and especially important stress levels, the block will detects some nodes going in undervoltage or overvoltage.
+This will cause the block to go into safe or protected mode, where it will restart because the functionnality cannot be assured properly.
+The direct consequence is that the block will require again a hundred microseconds to be again in normal operation mode.
+
+This failure can in a first time be observed in simulation.
+An \gls{ESD} is superimposed on the DC battery voltage.
+This is the most likely entry point for a stress, because the \gls{IC} exposes a pin to the external workd and is usally connected to the battery via a long cable
+To detect is a block reset happened, the voltage on the first voltage regulator is observed.
+Fig. X shows the stress waveform on the input.
+
+STRESS WAVEFORM INPUT
+
+Fig. X shows a simulation where a small glitch can be observed on the regulated output, but without clear reset or soft-failure signature.
+In this case, the block and the rest of the product is most likely not affected by the ESD.
+
+WAVEFORM OUTPUT NO RESET
+
+Fig. X shows a simulation where a clear reset hapened.
+The output voltage is maintained by a 100nF capacitor.
+However, it clearly goes down \br{after} the \gls{esd} and rises slowly afterward, a sign that the block went into full reset and restard.
+
+WAVEFORM OUTPUT RESET
+
+By going inside the \gls{IC}...
+
+bandgap, voltage ref, current ref, etc
+
+DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
