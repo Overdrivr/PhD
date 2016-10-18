@@ -105,6 +105,17 @@ To clamp figure width to text width
 \end{figure}
 ```
 
+To clamp width to text width with some ration
+
+```
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/1/figures/iso10605_waveform.pdf}
+  \caption{All waveforms defined in ISO 10605 standard}
+  \label{iso_pulse}
+\end{figure}
+```
+
 See [here](http://tex.stackexchange.com/a/1527/105955) to why `!htbp`
 
 ## Greek letters
