@@ -36,7 +36,8 @@ The monitoring's supply is protected against disturbances to ensure good measure
 
 % What is in the monitoring system
 The monitoring system is comprised of several functions.
-Overvoltage and undervoltage detectors monitor voltage on nets in the supply under test.
+The overvoltage and undervoltage detectors monitor several key voltages inside the supply under test.
+There are in total 35 detectors in the testchip.
 The communication function performs a parallel to serial conversion, in order to read and write a large amount of bits using just a few pins.
 Special structures for specific monitoring functions is also implemented.
 Details about the monitored and monitoring functions are given in the next sub-sections.
@@ -92,9 +93,8 @@ It then triggers a startup ramp-up sequence on the regulator.
 
 % What are the OV/UV detectors made of
 Overvoltage and undervoltage detectors are implemented as latched comparators.
-They record if a monitored net crosses a threshold.
-The latch behavior stores the value until it can be read.
-The architecture of a detector is given Fig. \ref{fig:architecture-ov}.
+A flag is raised if a monitored net crosses a threshold, and stored using a latch, until it can be read.
+The architecture of a single detector is given Fig. \ref{fig:architecture-ov}.
 The same architecture is used for the overvoltage and the undervoltage.
 Monitored and reference inputs are just inversed on the undervoltage detector.
 
@@ -105,16 +105,66 @@ Monitored and reference inputs are just inversed on the undervoltage detector.
   \label{fig:architecture-ov}
 \end{figure}
 
+% Detail architecture
+The first block in this detector is the comparator.
+It is designed with a two-stage operational amplifier with an output buffer (see Fig. \ref{fig:comparator-design}).
+This topology is well suited for high-gain, open-loop comparators.
+This comparator provides a very high output impedance, to ensure the monitored net is not disturbed.
+A high-gain is useful for limiting the comparator's offset.
+The performance of the comparator is given in table \ref{tab:comparator-performance}.
+The critical factors are the high to low delay, to detect very fast transients, and the offset, to ensure detection accuracy is good.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/3/figures/comparator_design_clean.pdf}
+  \caption{Comparator design}
+  \label{fig:comparator-design}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+property           & specification & value (typical) \\
+\midrule
+offset             & +/- 10mV      & 2.65 mV \\
+V(IH)              & +/- 10mV      & 1.15 mV \\
+V(IL)              & +/- 10 mV     & 4.16 mV \\
+delay low2high     & 50 ns         & 41 ns   \\
+delay high2low     & 50 ns         & 12.8 ns \\
+consumption (dc)   & 60 uA         & 33 uA \\
+consumption (peak) & 350 uA        & 264 uA \\
+\bottomrule
+\end{tabular}
+\caption{Comparator performance (typical)}
+\label{tab:comparator-performance}
+\end{table}
+
+
 % What is the purpose of filter
-%TODO
-Optional filter, with hysteresis threshold, to evaluate duration of violation
+On the output of the comparator, an optional RC filter can be connected.
+This filter can deglitch very short overvoltages, to only let large overvoltages pass through the detector.
+The stratety behind this filter is to use multiple detectors monitoring the same net, each one with a different filter.
+In function of which detectors triggered, an estimation of the overvoltage length can be made.
+
+% Hysteresis buffer
+After the filter, an hysteresis buffer increases the deglitching action of the filter.
+If the comparator's output remains high for a short period of time, the output of the filter will rise slowly.
+If a standard buffer was used in place of the hysteresis buffer, it would latch at about half the supply voltage.
+With the hysteresis, the buffer switches at a voltage much closer from the supply.
+With the same RC filter, this results in a much longer deglitching time.
+This was done because RC-filters require large resistors and large capacitors for integration on silicon, and occupy a considerable area on the chip.
+By increasing the deglitching time, smaller RC-filters could be used.
+
+% Latch
+Finally, the latch stores the overvoltage flag.
+By default, the latch is reset at `0`.
+Its copy input `D` is connected to the supply.
+If the hysteresis buffer triggers high, the enable pin will trigger a copy in the latch.
+The output `Q` will copy the value from the input `D`, storing a logical high in the latch.
 
 % Origin of reference voltages
 The reference voltages for these comparators come from the protected supply.
-The comparators monitor several key voltages inside the supply under test.
-The output of these latched comparators form a register bank of 35 bits.
-
-%TODO: Detail
 
 \subsection{Communication system}
 
