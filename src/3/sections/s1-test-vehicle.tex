@@ -42,6 +42,8 @@ The communication function performs a parallel to serial conversion, in order to
 Special structures for specific monitoring functions is also implemented.
 Details about the monitored and monitoring functions are given in the next sub-sections.
 
+%TODO: Show da layout, explain a little
+
 \subsection{Supply function under monitoring}
 
 % Main task
@@ -164,16 +166,85 @@ If the hysteresis buffer triggers high, the enable pin will trigger a copy in th
 The output `Q` will copy the value from the input `D`, storing a logical high in the latch.
 
 % Origin of reference voltages
+%TODO: DETAIL
 The reference voltages for these comparators come from the protected supply.
+Or DACs ?
+
+%TODO: Designs of other blocks ?
 
 \subsection{Communication system}
 
-% What does the comm IO
-The monitoring system also provides a bidirectionnal communication system.
-It is designed to read with a single pin the values from the comparator register bank.
-It also supports writing to a second register bank, that is used in the monitoring system for configuration.
+% Why a comm IO
+The testchip requires many pins for basic functionnality, such as supplies, grounds, substrate connections, regulation functions.
+The manufacturing process for test vehicles enforces an LQFP-48 package.
+With the given requirements, this does not leave much pins available for directly outputting monitoring data.
+A communication bus was designed to reduce the pin count.
 
-%TODO: Detail
+% What does the comm IO
+Two read-only and two write-only communication buses are implemented on the testchip.
+Read-only buses are connected to overvoltage and undervoltage detectors, for reading them.
+Write-only buses are connected to configuration registers for some monitoring functions.
+For instance, the variable voltage references for the detectors can be set using this bus.
+
+% Why two buses each
+A pair of read/write bus serves to validate some monitoring blocks.
+The second pair is connected to the actual monitoring function.
+
+% Overall architecture
+Each bus is constituted of individual identical cells.
+The main principle is to propagate an enable signal.
+Each time a cell receives the enable signal, it will perform its duty, wait for a delay, then pass the enable to the next cell.
+%TODO: Talk about scalability
+%TODO: Speak about JTAG
+%TODO: Explain why custom solution and not digital-synthesis
+
+\subsubsection{Read cell}
+
+% Explain behavior
+The read cell is constituted of a tri-state buffer and a D-latch (see Fig. \ref{fig:read-cell-design}).
+The output of the tri-state buffer is set in high-impedance when the \textit{x} input is LOW.
+This action releases the communication bus for other read cells and is the default state.
+
+% Explain time-response
+When the \textit{en} input goes HIGH, the output of the latch switches high at the next clock cycle.
+During one clock cycle, the \textit{x} sign is HIGH and the \textit{flag} is written on the reading \textit{bus}.
+At the next clock cycle, the \textit{en} signal is set low (by the previous cell).
+The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively releasing the bus.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_read_cell.pdf}
+  \caption{Read-only cell design}
+  \label{fig:read-cell-design}
+\end{figure}
+
+% Chaining
+Multiple cells can be connected in a chain.
+Increasing the total register size is simply done by adding more cells to the chain.
+This is convenient for testchip developments that have limited design resources.
+
+\subsubsection{Write cell}
+
+% Explain behavior
+The write cell is a bit more complex but operates on the same principle (Fig. \ref{fig:write-cell-design}).
+Data is placed serially by the user on the \textit{bus} line, syncronously with the clock.
+The enable signal is propagated from cell to cell, so that each cell can know when to sample the bus line and store the value.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_write_cell.pdf}
+  \caption{Write-only cell design}
+  \label{fig:write-cell-design}
+\end{figure}
+
+% Detail operation
+
+% Truth table of scan D latch
+
+\subsubsection{Register map}
+
+%TODO
+Register table
 
 \subsection{On-chip near-field current sensors}
 
