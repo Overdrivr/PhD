@@ -162,7 +162,7 @@ By increasing the deglitching time, smaller RC-filters could be used.
 Finally, the latch stores the overvoltage flag.
 By default, the latch is reset at `0`.
 Its copy input `D` is connected to the supply.
-If the hysteresis buffer triggers high, the enable pin will trigger a copy in the latch.
+If the hysteresis buffer triggers high, the enable pin triggers a copy in the latch.
 The output `Q` will copy the value from the input `D`, storing a logical high in the latch.
 
 % Origin of reference voltages
@@ -197,6 +197,8 @@ Each time a cell receives the enable signal, it will perform its duty, wait for 
 %TODO: Talk about scalability
 %TODO: Speak about JTAG
 %TODO: Explain why custom solution and not digital-synthesis
+%TODO: Talk about comm not being used during the ESD, but afterward
+
 
 \subsubsection{Read cell}
 
@@ -228,7 +230,8 @@ This is convenient for testchip developments that have limited design resources.
 % Explain behavior
 The write cell is a bit more complex but operates on the same principle (Fig. \ref{fig:write-cell-design}).
 Data is placed serially by the user on the \textit{bus} line, syncronously with the clock.
-The enable signal is propagated from cell to cell, so that each cell can know when to sample the bus line and store the value.
+The enable signal is propagated from cell to cell, so that each cell knows when to sample the bus line and store the value.
+Basically, this cell sets on the \textit{output} the value on the bus when its enable is high.
 
 \begin{figure}[!htbp]
   \centering
@@ -237,17 +240,70 @@ The enable signal is propagated from cell to cell, so that each cell can know wh
   \label{fig:write-cell-design}
 \end{figure}
 
-% Detail operation
+% Detail devices
+D1 is a synchronous D-latch.
+The output Q copies the input D on rising clock edges.
+D2 is a synchronous D-latch with scan.
+The output Q copies the data input D on rising clock edges, storing a value.
+When the scan enable \textit{se} input is HIGH, the data input D copies the value of the scan data input (\textit{SDI}), effectively changing the stored value.
+The truth table of this latch is given in table \ref{tab:d-latch-scan-truth}.
 
-% Truth table of scan D latch
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+D  &  SDI  &  SE  &  CLK  &  Q \\ \midrule
+0  &  -    &  0   &  \nearrow    &  0 \\
+1  &  -    &  0   &  \nearrow    &  1 \\
+-  &  0    &  1   &  \nearrow    &  0 \\
+-  &  1    &  1   &  \nearrow    &  1 \\
+-  &  -    &  -   &  \searrow    &  Q \\
+\bottomrule
+\end{tabular}
+\caption{D-latch with scan truth-table}
+\label{tab:d-latch-scan-truth}
+\end{table}
 
 \subsubsection{Register map}
 
-%TODO
-Register table
+The complete register maps of readable and writable data is given in appendix \ref{apx:testchip-register-maps}.
+%TODO: Detail more ? amount of readable bits, writeable bits, registers
 
 \subsection{On-chip near-field current sensors}
 
-To be done
-%TODO: Refer to PhD Alain
-%TODO: Use document These/07
+% Measuring currents is important too
+All monitoring structures presented so far watch for voltages.
+There is no measurement or monitoring function for currents.
+To this goal, current sensors were integrated on silicon, on a few critical nets.
+
+% What is a current sensors
+In this testchip, the current sensor is a near-field current loop.
+The sensor is placed close to a metal track in which current must be measured.
+By coupling, the sensor generates a voltage proportional to the derivative of the current in the track.
+Figure. \ref{fig:near-field-current-sensor} show the principle of this sensor.
+This kind of integrated loop was originally designed and studied in \cite{AlainSallesInductors}.
+On silicon, three levels of metal are used to build the sensor.
+The first level (in red) and the third level (in purple) form a metal loop.
+Metallic vias connect both levels to close the loop vertically.
+Finally, the sensed current is at the second level (pale blue).
+
+%TODO: Use document Drive/These/07
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.98\textwidth]{src/3/figures/near-field-current-sensor.pdf}
+  \caption{Near-field current sensor design}
+  \label{fig:near-field-current-sensor}
+\end{figure}
+
+%TODO: Show schema
+%TODO: Show layout
+
+This sensor requires specific post-processing to reconstitute the original current waveform.
+The method is detailed in section \ref{sec:on-chip-near-field-process}.
+
+\subsection{Topcell}
+
+Show da layout
+
+Pinout
