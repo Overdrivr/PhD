@@ -21,6 +21,7 @@
 \usepackage{booktabs} % Tables
 \usepackage[table,xcdraw]{xcolor} % For colors in tables
 \usepackage{colortbl} % For coloring rows, columns of table
+\usepackage[toc,page]{appendix}
 
 % Glossary
 \usepackage[nomain,acronym,xindy,toc]{glossaries}
@@ -73,6 +74,8 @@
 \input{src/5/main.tex}
 % End of chapter files listing
 
+% Appendix
+\input{src/appendices/main.tex}
 
 % Bibliography
 \bibliographystyle{unsrt}
@@ -82,6 +85,7 @@
 % Glossary
 \setglossarystyle{altlist}
 \printglossaries
+
 
 
 \end{document}
