@@ -296,9 +296,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.8157903"
-     inkscape:cx="352.11271"
-     inkscape:cy="49.381602"
+     inkscape:zoom="2.5679153"
+     inkscape:cx="262.23001"
+     inkscape:cy="60.128309"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -331,7 +331,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -515,17 +515,17 @@
          sodipodi:role="line">en_next</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1657.9318"
-       y="-4779.2642"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1656.8303"
+       y="-4782.5684"
        id="text4963"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360"><tspan
          id="tspan4965"
          sodipodi:role="line"
-         x="1657.9318"
-         y="-4779.2642">D-latch</tspan></text>
+         x="1656.8303"
+         y="-4782.5684">D1</tspan></text>
     <text
        inkscape:export-ydpi="360"
        inkscape:export-xdpi="360"
@@ -634,18 +634,14 @@
        inkscape:export-xdpi="360"
        sodipodi:linespacing="125%"
        id="text4845"
-       y="-4831.7627"
-       x="1746.5688"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       y="-4826.8062"
+       x="1746.8442"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="-4831.7627"
-         x="1746.5688"
+         y="-4826.8062"
+         x="1746.8442"
          sodipodi:role="line"
-         id="tspan4847">D-latch</tspan><tspan
-         y="-4822.3877"
-         x="1746.5688"
-         sodipodi:role="line"
-         id="tspan4857">w/ scan</tspan></text>
+         id="tspan4857">D2</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
