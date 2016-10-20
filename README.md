@@ -81,6 +81,27 @@ For instance
 
 # Cheat-sheet
 
+## Cross references
+
+For chapters, sections, declare a cross-reference like this (prefixing with `sec` is not mandatory, but a good practice).
+
+```
+\section{foo}
+\label{sec:foo}
+```
+
+For bibliography, declare in `src/refs.bib`, then use the reference like this:
+
+```
+\cite{biblioEntryName}
+```
+
+You can reference multiple bibliography entries like this:
+
+```
+\cite{biblioEntry1, biblioEntry2}
+```
+
 ## Figures
 
 To leave figure as-is (works well with pdf)
