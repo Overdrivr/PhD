@@ -10,6 +10,7 @@ They are characterized individually, and a model is derived for each component.
 Afterwards, these models are assembled together to match the full system architecture.
 The main idea of a bottom-up approach is that a system is the sum of its parts.
 Ultimately, we study if the robustness of a system can be assimilated as the sum of the robustness of its parts.
+%TODO: Detail more
 
 % Applicability to IC design
 This approach fits well with the \gls{asic} design flow in general.
@@ -33,6 +34,8 @@ This setup provides appropriate biasing to the block, in order to set it in norm
 This setup is also in charge of injecting the characterization signal on the tested input, and monitoring of the output under test.
 Fig. \ref{block_function_cz} gives an example of such a characterization setup for a supply input.
 
+%TODO: Improve figure (text sizes)
+%TODO: Remove range comparator
 \begin{figure}[!htbp]
   \centering
   \includegraphics{src/4/figures/characterization_setup.pdf}
@@ -74,6 +77,7 @@ In the time domain, this set of simulations is illustrated in Fig. \ref{set_inpu
 For each simulation, the waveform of the output under test is recorded.
 The waveform is compared against a threshold.
 This threshold can also be seen as failure criteria of the studied function.
+%TODO: Donner un example : If we consider the pre-reg block, the failure criteria will be ...
 
 This treshold is set prior to the simulation.
 There is no general rule for setting it.
@@ -230,6 +234,8 @@ This shows that \textit{net2}, the output of block B and the input of block C, w
 % Repeatable process
 As shown, this process can be repeated in theory with as many blocks as required by the original design, until the final pin is reached.
 The is possible because the output of a block is used as the input of the next one.
+
+%TODO: Algorithm organigram
 
 % How to select pins to characterize
 

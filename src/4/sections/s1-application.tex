@@ -11,23 +11,23 @@ The input/outputs that play a key role on the regulation function were selected 
 Details of the selected pins is given in Table \ref{selected-pins-for-cz}.
 
 %TODO: To simplify
-\begin{table}[]
+\begin{table}[!htbp]
 \centering
-\begin{tabularx}{\linewidth}@{}|c|c|c|c|c|c|c|@{}}
+\begin{tabular}{@{}llllll@{}}
 \toprule
-{ \textbf{IC block}} & { \textbf{input pin}}                 & \multicolumn{1}{l|}{{ }} & { }                                & \multicolumn{1}{l|}{{ }}               & { \textbf{output pin}}            & { }                          \\ \midrule
-{ }                  & { \textbf{specification}}             & { \textbf{DC value (V)}} & { \textbf{stress amplitude range}} & { \textbf{stress width range}}         & { \textbf{specification}}         & { \textbf{Failure criteria}} \\ \midrule
-{ pre-regulator}     & { external supply battery connection} & { 12V}                   & { -1V to -10V with 1V step}        & { 1ns to 1000ns with 30 pts log scale} & { 9V clamped voltage}             & { vclamp9 \textless 0V}      \\ \midrule
-{ bandgap}           & { 9V clamped voltage}                 & { 9V}                    & { -1V to -15V with 1V step}        & { 1ns to 1000ns with 30 pts log scale} & { bandgap voltage 2.5V reference} & { vref2p5 \textless 1.25V}   \\ \midrule
-{ regulator}         & { bandgap 2.5V reference}             & { 2.5V}                  & { -0.5 to -10V with 0.5V step}     & { 1ns to 1000ns with 30 pts log scale} & { regulated 2.5V 20mA capability} & { v2p5 \textless 2.1 V}      \\ \bottomrule
-\end{tabularx}
+input pin       &  DC value (V) & stress amplitude   &  stress width   &   output      & Fail criteria \\ \midrule
+vbat            &  12V          & -1V to -10V        &  1ns to 1000ns  &   vclamp9     & < 0V             \\
+vclamp9         &  9V           & -1V to -15V        &  1ns to 1000ns  &   vref1p0     & < 1.25 V         \\
+v1p0            &  1.0V         & -0.5 to -10V       &  1ns to 1000ns  &   v2p5        & < 2.1 V          \\
+\bottomrule
+\end{tabular}
 \caption{Selected pins for characterization and characterization limits}
 \label{selected-pins-for-cz}
 \end{table}
 
 % Talk about the characterization limits
 The characterization is done using negative voltages.
-The goal is to exploit the weakness of the testchip against negative pulses discovered and highlighted in section \ref{sec:testchip_study}.
+The goal is to exploit the weakness of the suuply function against negative pulses detailed in section \ref{sec:failure-case-study}.
 Basically, it was observed for sufficiently high negative voltage a short pulse can cause a full restart of the system.
 The time taken by this restart, observed on the regulator output, is several order of magnitudes longer than the original pulse injected on the pre-regulator input.
 
@@ -60,7 +60,7 @@ On the other hand, the bandgap and regulator curves are using instead the voltag
 
 
 % TODO: Why curve 1 has different x-axis
-The reason for using the set voltage directly, and not
+%The reason for using the set voltage directly, and not
 
 \begin{figure}[!htbp]
   \centering
@@ -123,19 +123,12 @@ To check the validity of the models at each stage, intermediate voltages are als
 The simulation of the input, pre-regulator output, bandgap output and final (regulator) output are given fig. \ref{fig:reference_simu}.
 
 %TODO: Add perfect sources in schematic
+%TODO: Improve figures (text fonts)
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/complete_simulation_setup.pdf}
   \caption{Complete reference simulation circuit}
   \label{fig:reference_simu_circuit}
-\end{figure}
-
-%TODO: To replace with one extracted with perfect sources
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/total_simulation.png}
-  \caption{Reference simulation waveform - TLP stress -30V 1us }
-  \label{fig:reference_simu}
 \end{figure}
 
 % Result of the simulation
@@ -148,6 +141,14 @@ To understand those differences, intermediate nets are now observed.
 At the output of the first block (the pre-regulator), the reference simulation shows voltage going below 0V (failure criteria) for 1000ns.
 The model predicted 2300 ns.
 At the first block's output, there is a factor of 2 between model and reference simulation.
+
+%TODO: To replace with one extracted with perfect sources
+\begin{figure}[]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/total_simulation.png}
+  \caption{Reference simulation waveform - TLP stress -30V 1us }
+  \label{fig:reference_simu}
+\end{figure}
 
 % Error at the second block
 At the output the second block (bandgap), the reference simulation falls below 0V during approximately 1800 ns.
