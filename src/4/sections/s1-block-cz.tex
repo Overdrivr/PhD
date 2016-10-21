@@ -1,33 +1,5 @@
 \section{Bottom-up block failure modeling}
-
-Consider a system constituted of two blocks A and B connected together.
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics{src/4/figures/system_ab.pdf}
-  \caption{Basic IC function}
-  \label{basic_ic_function}
-\end{figure}
-
-During normal operation, the \textbf{\textit{out}} signal complies with its specification,
-under the condition that the \textbf{\textit{in}} signal does too.
-This guarantees that block A and B are performing as expected.
-
-When the system is exposed to an electrical stress on the input during normal operation,
-the \textbf{\textit{in}} signal is disturbed.
-
-It no longer complies with its specification, for a given amount of time.
-
-The robustness of the entire system is defined by its ability to maintain signal \textbf{\textit{out}} in specification
-while signal \textbf{\textit{in}} is temporarily disturbed.
-
-Time is a key parameter here. On one extreme side, a disturbance that lasts forever is equivalent to the \textbf{\textit{in}} signal not fullfilling its DC specification,
-and thus the \textbf{\textit{out}} signal will not fullfill its spec as well.
-On the other extreme side, an extremely short disturbance, much shorter than the functionnal timescales of the integrated function will most likely not disturb ??
-
-The first task for defining the robustness of an integrated function is to determine the time threshold under which it can maintain functionnality while being disturbed.
-The second key parameter is related to the amplitude of the disturbance, whether it is a voltage, current, energy, etc.
-A larger amplitude can make a short pulse more harmful than a lomg one.
+%TODO: Introduction
 
 \subsection{Block failure characterization and modeling method}
 \label{sec:block-failure-cz}
