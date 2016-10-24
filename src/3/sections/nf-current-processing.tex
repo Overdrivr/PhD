@@ -1,4 +1,56 @@
 \subsection{On-chip near-field current measurement and postprocessing}
 \label{sec:on-chip-near-field-process}
 
-TO BE DONE
+%TODO: Mathematical concept ?
+
+\subsubsection{Time-domain integration method}
+
+% Describe the algorithm
+The time-domain method relies on the fact that the measured voltage is proportionnal to the derivative of the coupled current.
+The algorithm begins with integrating the measured voltage, using a basic trapezoidal integration.
+With the calibration sensor, it is possible to determinate experimentally the gain of the sensor.
+%TODO: How is it done ?
+Indeed, 1A of current does not generate 1V on the sensor, but a much lower value.
+The correction factor with the current design was found to be $8.10^8$.
+As a result of the integration, an offset is present a $t=0$.
+So far, it is simply given the value of the calibration measurement at $t=0$.
+
+%TODO: Give the result
+
+% Limitations
+The time-domain method is simple to compute.
+However, it makes several assumptions on the sensor.
+Mainly, it assumes that the gain of the sensor is constant for all frequencies.
+
+\subsubsection{Frequency-domain reconstruction method}
+
+The frequency domain tries to improve the post-processing by taking the sensor's response into account.
+First, the sensor must be characterized, using a virtual network analyzer (Put glossary) (sure ?).
+%TODO: Talk about complex measurement required
+Then, the inverse of the sensor's characterization in the frequency domain is calculated.
+%TODO: Is it really the inverse ?
+%TODO: Give the formula
+
+%TODO: Setup and Curve
+
+In parallel, the FFT (glossary) of the measured waveform to post-process is computed.
+For the algorithm to work, a complex FFT must be employed.
+It computes for each frequency the amplitude and phase of the signal.
+
+Afterwards, the FFT of the signal to process is multiplied by the inverse of the sensor's characterization.
+Since both are complex numbers, real and imaginary parts must be multiplied separately, following complex-numbers algebra rules (source).
+
+%TODO: Formula
+
+Finally, the inverse FFT of the result is calculated to bring back the waveform into the time-domain.
+
+% Talk about discrete
+All waveforms, either measured experimentally or simulated, are constituted by a set of discrete points.
+As such, discrete FFT and IFFT must be employed.
+
+% Talk about repo
+This post-processing method was implemented in python (ref).
+It is freely distributed as open-source software (ref).
+
+\subsubsection{Comparison of both methods}
+This waveform can be compared with the original TLP stress used during calibration, and the curve reconstituted with the integration method.
