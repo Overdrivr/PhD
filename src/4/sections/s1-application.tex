@@ -132,7 +132,7 @@ The simulation of the input, pre-regulator output, bandgap output and final (reg
 \end{figure}
 
 % Result of the simulation
-The reference simulation showed that for a -30V 1us TLP stress, the output V(out2p5) does not fall below 2.1V.
+The reference simulation showed that for a -30V 1\textmugreek{}s TLP stress, the output V(out2p5) does not fall below 2.1V.
 The minimal value is 2.15V.
 As a reminder, with the same conditions, the chain of models estimated the output to go below 2.1V for 1500ns, without informations regarding minimal value.
 To understand those differences, intermediate nets are now observed.
@@ -146,7 +146,7 @@ At the first block's output, there is a factor of 2 between model and reference 
 \begin{figure}[]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/total_simulation.png}
-  \caption{Reference simulation waveform - TLP stress -30V 1us }
+  \caption{Reference simulation waveform - TLP stress -30V 1\textmugreek{}s }
   \label{fig:reference_simu}
 \end{figure}
 
@@ -168,7 +168,7 @@ The models on the opposite predict that in the worst case (-50V, 1us) the regula
 
 % Observe intermediate nets
 Unlike the final output, the full simulation exhibits failures on intermediate nets.
-In the worst case (TLP -50V 1us), the first net vlamp9 is disturbed during 1us and the second net v1p0 during 2us.
+In the worst case (TLP -50V 1us), the first net vlamp9 is disturbed during 1\textmugreek{}s and the second net v1p0 during 2us.
 With the model chain, vclamp9 is disturbed during 2800ns and v1p0 for 3200ns.
 
 % Conclusion regarding the results

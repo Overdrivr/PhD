@@ -54,7 +54,7 @@ Such testing method is called Wunsch and Bell in the litterature (REFERENCE).
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
-    & 1ns   & 10ns  & 100ns & 1us   \\ \midrule
+    & 1ns   & 10ns  & 100ns & 1\textmugreek{}s   \\ \midrule
 5V  & sim11 & sim21 & sim31 & sim41 \\
 10V & sim12 & sim22 & sim32 & sim42 \\
 15V & sim13 & sim23 & sim33 & sim43 \\ \bottomrule
@@ -93,7 +93,7 @@ The results are summarized into table \ref{simulation-results}.
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
-    & 1ns                          & 10ns                         & 100ns                        & 1us                          \\ \midrule
+    & 1ns                          & 10ns                         & 100ns                        & 1\textmugreek{}s             \\ \midrule
 5V  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
 10V & {\color[HTML]{32CB00} sim12} & {\color[HTML]{FE0000} sim22} & {\color[HTML]{FE0000} sim32} & {\color[HTML]{FE0000} sim42} \\
 15V & {\color[HTML]{FE0000} sim13} & {\color[HTML]{FE0000} sim23} & {\color[HTML]{FE0000} sim33} & {\color[HTML]{FE0000} sim43} \\ \bottomrule
@@ -213,7 +213,7 @@ Fig. \ref{example_complete_curve} shows an example curve for model A, and the lo
 
 % Interpretate stress to deduce net1
 Like stated earlier, the pulse has a duration of 100ns and an amplitude of 15V. By reporting this point on curve \ref{example_complete_curve},
-it is visible that this will cause the output of block A to violate its failure criteria between 1us and 10 us.
+it is visible that this will cause the output of block A to violate its failure criteria between 1 \textmugreek{}s and 10 \textmugreek{}s.
 We consider, for the sake of this example, the failure criteria of block A to be net1 > 5V.
 With a 100ns long 15V pulse on the input of A, the characterization states that the output of block A will go above 5V for at least 1us.
 This is the best case value for net1.
@@ -222,7 +222,7 @@ This is the best case value for net1.
 \textit{net1} is the output of block A, but it is also the input of block B.
 Thus, best case (amplitude, duration) values for net1 can be used as input for block B's model.
 Fig. \ref{example_complete_curve_B} shows an example curve for model B, and the location of the \textit{net1} disturbance on this curve.
-This shows that \textit{net2}, the output of block B and the input of block C, will go below B's failure level for at least 10 us.
+This shows that \textit{net2}, the output of block B and the input of block C, will go below B's failure level for at least 10 \textmugreek{}s.
 
 \begin{figure}[!htbp]
   \centering
