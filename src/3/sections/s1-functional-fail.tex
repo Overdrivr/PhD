@@ -1,47 +1,55 @@
 \subsection{Functional failure study}
 \label{sec:failure-case-study}
 
-% What is done here, introduction
+% What is done here, what was the initial motivation
 In this section, a practical case of functional failure of an integrated function is studied.
-It was found on the real product described previously in \ref{sec:real-product-study}.
-exploring robustness when reducing the amount of external protection devices.
+It was found on the integrated circuit described previously in \ref{sec:real-product-study}.
+It was discovered while exploring the impact of reducing the amount of external devices on the robustness of the chip.
+Reducing the amount of external devices is always interesting to lower the cost of an electronic system.
 
-Failure in cascade of the regulation function, when the disturbance propagates through all blocks
+% How does it happen
+The failure can be induced by injecting a negative-voltage \gls{esd} discharge on the battery input pin (Fig. \ref{XX}).
+The \gls{ESD} is superimposed on the DC battery voltage, when the product is in operation.
+This input is a realistic entry point for an \gls{esd}.
+Indeed, it is connected directly to the integrated circuit, but it is exposed at the system level.
+The battery is connected to this input by a cable, which is a frequent entry point for \gls{esd} (Source ?).
 
-%TODO: Investigate on source of failure ?
-Single block, multiple block, multiple nets, etc.
+TODO: SCHEMA injection setup
 
-%TODO: Review
-In case of failure, the primary supply can cause the entire product to shut down.
-Indeed, this entire system requires soft-start behavior to avoid generating harmful voltage spikes to powered functions.
-This functionnality enforces the system to start on a \br{long} period of time, in the order of a hundred microseconds.
+% What is the result
+The failure can be observed on the regulated 2.5V supplies, and in general on the entire system's behavior.
+With a sufficiently large negative stress, the regulated output is disturbed and goes into soft-start (Fig. \ref{XX}).
+A soft-start is a special sequence, normally happening when the device is first powered-on.
+During this sequence, the supply voltage slowly rises from 0V to its nominal value, to avoid overshoots that could damage sensitive blocks.
+Soft-starts can last from tens to hundreds of microseconds (source ?).
+As a consequence the entire integrated functions are not available during the soft-start.
+Some functions can be disturbed for much longer if they also need to follow their own startup sequences.
 
-When the system is stressed with an \gls{esd}, voltages and currents are fluctuating inside the block.
-Under certain conditions, and especially important stress levels, the block will detects some nodes going in undervoltage or overvoltage.
-This will cause the block to go into safe or protected mode, where it will restart because the functionnality cannot be assured properly.
-The direct consequence is that the block will require again a hundred microseconds to be again in normal operation mode.
+TODO: MEASUREMENT FAILURE OUTPUT
 
-This failure can in a first time be observed in simulation.
-An \gls{ESD} is superimposed on the DC battery voltage.
-This is the most likely entry point for a stress, because the \gls{IC} exposes a pin to the external workd and is usally connected to the battery via a long cable
-To detect is a block reset happened, the voltage on the first voltage regulator is observed.
-Fig. \ref{fig:wvf-vboost} shows the stress waveform on the input.
+% Talk about the scale factor
+To summarize, a negative stress of a hundred nanoseconds induces here a supply restart of tens of microseconds.
+Parts of the system can be disturbed for much longer.
+There is a scale factor of at least 100 between the stress width and the regulation function.
+In this study, we try to explain how an \gls{esd} can generate such a scale factor.
 
+\subsubsection{Study through simulation}
+
+% Is the simulation accurate
+To understand the failure mechanism, top-level simulations are first ran to see if the global failure can be reproduced.
+A simulation setup is built to match closely the real circuit.
+The \gls{tlp} model (described in section \ref{sec:tlp-modeling}) is also employed.
+The external input and output voltage waveforms are compared in Fig. \ref{fig:wvf-vboost} (input) and Fig. \ref{fig:wvf-v2p5} (output).
+Both curves correlate well, and the regulator restart is correctly reproduced in simulation.
+These results tend to indicate that the simulations can be trusted for this study case.
+
+% TODO: MEASUREMENT vs SIMULATION
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/vboost.png}
   \caption{Waveform of the vboost input pin}
   \label{fig:wvf-vboost}
 \end{figure}
-
-Fig. X shows a simulation where a small glitch can be observed on the regulated output, but without clear reset or soft-failure signature.
-In this case, the block and the rest of the product is most likely not affected by the ESD.
-
-WAVEFORM OUTPUT NO RESET
-
-Fig. \ref{fig:wvf-v2p5} shows a simulation where a clear reset hapened.
-The output voltage is maintained by a 100nF capacitor.
-However, it clearly goes down after the \gls{esd} and rises slowly afterward, a sign that the block went into full reset and restard.
 
 \begin{figure}[!htbp]
   \centering
@@ -50,9 +58,19 @@ However, it clearly goes down after the \gls{esd} and rises slowly afterward, a 
   \label{fig:wvf-v2p5}
 \end{figure}
 
-By going inside the \gls{IC}...
+% Make the investigation
+The investigation process is now conducted.
+The injected stress is a rectangular pulse of -100V amplitude and 100ns width.
+The main output of the first block (the pre-regulator) is observed in simulation (Fig. \ref{fig:wvf-vclamp9}).
+At 54 \textmugreek{}s, its \textit{vclamp9} output voltage is clearly disturbed by the negative stress.
+The net reaches as low as 0V for a brief amount of time.
+Overall, the net is disturbed for 750 ns.
 
-bandgap, voltage ref, current ref, etc
+% Next net, bandgap input
+In turn, this net powers the bandgap reference.
+Thus, it can be expected that the bandgap is going to be disturbed as well.
+The observation of the 1.0V bandgap reference \textit{vref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
+The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 
 \begin{figure}[!htbp]
   \centering
@@ -68,6 +86,31 @@ bandgap, voltage ref, current ref, etc
   \label{fig:wvf-v1p0}
 \end{figure}
 
-DISCUSSION AROUND INCREASE OF FAILURE LENGTH after each stage of the chain
+% Final net
+Finally, this bandgap reference is used by the regulator to generate the 2.5 V external supply output.
+Net \textit{v2p5} drops below 1.5V, and is disturbed for more than 30 \textmugreek{}s.
+Clearly, the scale factor is well reproduced in the simulation.
 
+% Preliminary conclusion with scale factor
+In the first block (pre-regulator), the disturbance width increased from 100 ns to 750 ns.
+In the second block (bandgap), it increased from 750 ns to 3 \textmugreek{}s.
+In the third block (regulator), it reached 30 \textmugreek{}s.
+In each block, there is an aggravation of the failure.
+
+% Talk about failure in cascade
+%TODO: Review next
+It appears there is a failure in cascade of the regulation function.
+When the disturbance propagates through a block, it is amplified and becomes more severe.
+Time is a key parameter here.
+If the disturbance only affected the final output for 100 ns, the integrated circuit functionnality would most likely not be affected.
+WHY ?
+%TODO: Detail more. Duration key parameter here
+
+% What is really causing the failure
+%TODO: Detail
+Soft-start, what can impact it ?
 WHICH SIGNAL IS GOING out of spec first ?
+
+%TODO; Talk about hypothesis that this is why system is failing, but maybe it is more complex than that.
+So far rely exclusively on simulations.
+To confirm the simulation, and acquire more internal data, a testchip is designed.
