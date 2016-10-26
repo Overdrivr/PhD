@@ -1,12 +1,6 @@
 \subsection{Functional failure study}
 \label{sec:failure-case-study}
 
-% What is done here, what was the initial motivation
-In this section, a practical case of functional failure of an integrated function is studied.
-It was found on the integrated circuit described previously in \ref{sec:real-product-study}.
-It was discovered while exploring the impact of reducing the amount of external devices on the robustness of the chip.
-Reducing the amount of external devices is always interesting to lower the cost of an electronic system.
-
 % How does it happen
 The failure can be induced by injecting a negative-voltage \gls{esd} discharge on the battery input pin (Fig. \ref{XX}).
 The \gls{ESD} is superimposed on the DC battery voltage, when the product is in operation.
@@ -86,6 +80,7 @@ The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
   \label{fig:wvf-v1p0}
 \end{figure}
 
+%TODO: Most likely, this needs to be reviewed later and detailed more.
 % Final net
 Finally, this bandgap reference is used by the regulator to generate the 2.5 V external supply output.
 Net \textit{v2p5} drops below 1.5V, and is disturbed for more than 30 \textmugreek{}s.
@@ -95,22 +90,20 @@ Clearly, the scale factor is well reproduced in the simulation.
 In the first block (pre-regulator), the disturbance width increased from 100 ns to 750 ns.
 In the second block (bandgap), it increased from 750 ns to 3 \textmugreek{}s.
 In the third block (regulator), it reached 30 \textmugreek{}s.
-In each block, there is an aggravation of the failure.
+Each time, there is an aggravation of the failure.
+
+%TODO: Make full schematic analysis ?
 
 % Talk about failure in cascade
-%TODO: Review next
-It appears there is a failure in cascade of the regulation function.
+To conclude, it appears there is a failure in cascade of the regulation function.
 When the disturbance propagates through a block, it is amplified and becomes more severe.
-Time is a key parameter here.
-If the disturbance only affected the final output for 100 ns, the integrated circuit functionnality would most likely not be affected.
-WHY ?
-%TODO: Detail more. Duration key parameter here
+Ultimately, a function that takes a lot of time to recover (soft-start) is hit, causing a full system restart.
 
-% What is really causing the failure
-%TODO: Detail
-Soft-start, what can impact it ?
-WHICH SIGNAL IS GOING out of spec first ?
+The next part of this research work is focused on acquiring measurement data on silicon, to confirm the simulations.
+Also, this study case remains simple to understand, but fixing the issue is difficult.
+It must be ensured that a circuit correction for \gls{esd} does not affect normal operation.
+In practice this can be difficult, because both can have opposite requirements.
+There are also many situations where the failure cause is not so obvious, and calls for advanced investigation methods.
 
-%TODO; Talk about hypothesis that this is why system is failing, but maybe it is more complex than that.
-So far rely exclusively on simulations.
-To confirm the simulation, and acquire more internal data, a testchip is designed.
+For these purposes a testchip is designed in next section \ref{sec:test-vehicle-desc}.
+Modeling methods are explored in section \ref{sec:bottom-up-modeling} as a way to understand better these issues.
