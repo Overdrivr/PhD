@@ -43,54 +43,7 @@ The overvoltage and undervoltage detectors monitor several key voltages inside t
 There are in total 35 detectors in the testchip.
 The communication function performs a parallel to serial conversion, in order to read and write a large amount of bits using just a few pins.
 Special structures for specific monitoring functions is also implemented.
-Details about the monitored and monitoring functions are given in the next sub-sections.
-
-\subsection{Supply function under monitoring}
-
-% Main task
-The main function of the supply block is mostly to down-convert a battery voltage to a 2.5V regulated supply.
-Several blocks are involved for processing the battery supply.
-The overall architecture is given in fig. \ref{fig:monitored_function}).
-
-% First block
-First, a pre-regulator clamps the battery voltage that can reach 40V down to a 9V.
-This is done to protect more sensitive circuits connected downstream.
-This output has low current capability and is used for low-power functions.
-A second output provides a 12V clamped output with a large current capability.
-
-% Second block
-A bandgap reference is connected downstream.
-It is powered by the 9V supply.
-Once properly started after a certain delay, the bandgap generates a 1.23 V voltage reference.
-This reference is stable accross a wide range of temperature, process variation and process mismatchs.
-The bandgap also outputs a 10uA current reference, and a flag \textit{bgok} to signal it is ready for operation.
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/monitored_function.pdf}
-  \caption{Architecture of the supply under test}
-  \label{fig:monitored_function}
-\end{figure}
-
-% Third major block
-Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage, able to deliver and sustain up to 20mA.
-In the original product, this output is used further in the system to power digital gates.
-
-% Detail nets connections
-The regulator relies on multiple signals generated in the upstream blocks for operation.
-The most critical nets are the 1.0V reference from the bandgap, and the ramp-up signal.
-Circuit analysis show that both nets can directly affect the output voltage.
-A variation on the reference voltage is immediately copied on the output.
-The ramp-up signal controls the soft-start of the regulator, that can directly change the output value.
-Other nets provide bias to the regulator, and their impact on the output is more limited.
-
-% Talk about external devices
-The regulator is connected externally to a 100nF decoupling capacitor to absorb peak currents and achieve stability.
-
-% What are the minor blocks doing
-The \textit{current mirrors} provide copied current values from the bandgap, while offering much larger output impedance.
-The \textit{enable} block mostly checks and waits for the bandgap to be properly started.
-It then triggers a startup ramp-up sequence on the regulator.
+Details about the monitoring functions are given in the next sub-sections.
 
 \subsection{Voltage monitoring}
 
