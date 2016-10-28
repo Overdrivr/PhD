@@ -2,24 +2,24 @@
 \label{sec:failure-case-study}
 
 % How does it happen
-The failure can be induced by injecting a negative-voltage \gls{esd} discharge on the battery input pin (Fig. \ref{XX}).
-The \gls{ESD} is superimposed on the DC battery voltage, when the product is in operation.
-This input is a realistic entry point for an \gls{esd}.
-Indeed, it is connected directly to the integrated circuit, but it is exposed at the system level.
-The battery is connected to this input by a cable, which is a frequent entry point for \gls{esd} (Source ?).
+The failure can be induced by injecting a negative-voltage stress on the battery input pin (Fig. \ref{fig:system_architecture}).
+The discharge is superimposed on the DC battery voltage, when the product is in operation.
+This input is a realistic entry point for \gls{esd} in the integrated circuit, because it is exposed at the system level and connected to the battery by a cable.
 
+% How is the ESD injected in reality
 TODO: SCHEMA injection setup
+
+%TODO: Speak about impact (or no) of positive stress. Say that only neg stress causes a restart
 
 % What is the result
 The failure can be observed on the regulated 2.5V supplies, and in general on the entire system's behavior.
-With a sufficiently large negative stress, the regulated output is disturbed and goes into soft-start (Fig. \ref{XX}).
-A soft-start is a special sequence, normally happening when the device is first powered-on.
+With a sufficiently large negative stress, the regulated output is disturbed and goes into soft-start \gls{soft-start} (Fig. \ref{XX}).
 During this sequence, the supply voltage slowly rises from 0V to its nominal value, to avoid overshoots that could damage sensitive blocks.
-Soft-starts can last from tens to hundreds of microseconds (source ?).
+Soft-starts can last tens to hundreds microseconds (source ?).
 As a consequence the entire integrated functions are not available during the soft-start.
 Some functions can be disturbed for much longer if they also need to follow their own startup sequences.
 
-TODO: MEASUREMENT FAILURE OUTPUT
+%TODO: MEASUREMENT FAILURE OUTPUT
 
 % Talk about the scale factor
 To summarize, a negative stress of a hundred nanoseconds induces here a supply restart of tens of microseconds.
@@ -53,7 +53,6 @@ These results tend to indicate that the simulations can be trusted for this stud
 \end{figure}
 
 % Make the investigation
-The investigation process is now conducted.
 The injected stress is a rectangular pulse of -100V amplitude and 100ns width.
 The main output of the first block (the pre-regulator) is observed in simulation (Fig. \ref{fig:wvf-vclamp9}).
 At 54 \textmugreek{}s, its \textit{vclamp9} output voltage is clearly disturbed by the negative stress.
