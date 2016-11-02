@@ -39,10 +39,11 @@ This pin can very likely be exposed to electrostatic discharges during real oper
 Then, one of its output is also exposed externally, because the function requires a large capacitor for stabilisation that cannot be integrated on silicon.
 This pin is a very convenient monitoring point during tests.
 
+%TODO: Increase font size
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/monitored_function.pdf}
-  \caption{Architecture of the monitored function}
+  \caption{Architecture of the primary supply}
   \label{fig:monitored_function}
 \end{figure}
 
@@ -64,7 +65,7 @@ A second output provides a 12V clamped output with a large current capability.
 % Second block
 A bandgap reference is connected downstream.
 It is powered by the 9V supply.
-Once properly started after a certain delay, the bandgap generates a 1.23 V voltage reference.
+Once properly started after a certain delay, the bandgap generates a 1.0 V voltage reference.
 This reference is stable accross a wide range of temperature, process variation and process mismatchs.
 The bandgap also outputs a 10uA current reference, and a flag \textit{bgok} to signal it is ready for operation.
 
