@@ -1,97 +1,108 @@
 \subsection{Functional failure study}
 \label{sec:failure-case-study}
 
-% How does it happen
-The failure can be induced by injecting a negative-voltage stress on the battery input pin (Fig. \ref{fig:system_architecture}).
-The discharge is superimposed on the DC battery voltage, when the product is in operation.
-This input is a realistic entry point for \gls{esd} in the integrated circuit, because it is exposed at the system level and connected to the battery by a cable.
-
-% How is the ESD injected in reality
-TODO: SCHEMA injection setup
-
 %TODO: Speak about impact (or no) of positive stress. Say that only neg stress causes a restart
 
-% What is the result
-The failure can be observed on the regulated 2.5V supplies, and in general on the entire system's behavior.
-With a sufficiently large negative stress, the regulated output is disturbed and goes into soft-start \gls{soft-start} (Fig. \ref{XX}).
-During this sequence, the supply voltage slowly rises from 0V to its nominal value, to avoid overshoots that could damage sensitive blocks.
-Soft-starts can last tens to hundreds microseconds (source ?).
-As a consequence the entire integrated functions are not available during the soft-start.
-Some functions can be disturbed for much longer if they also need to follow their own startup sequences.
+% What is the failure
+The failure is observed on the V\textsubscript{2p5} output pin (Fig. \ref{fig:meas-reset-v2p5}).
+It affects the behavior of the entire system, because this net powers many other functions in the system.
+The failure is induced by injecting a large negative-voltage stress on the input V\textsubscript{batt}, when the product is in operation.
+The discharge is superimposed on a DC voltage value.
+This input is a realistic entry point for \gls{esd} in the integrated circuit, because it is exposed at the system level and connected to the battery by a cable.
+The disturbance on the output V\textsubscript{2p5} is much longer (30 \textmu{}s) than on the input V\textsubscript{batt} (100 ns).
+It seems the negative stress is triggering a reset of the regulator.
 
-%TODO: MEASUREMENT FAILURE OUTPUT
+%TODO: MEASUREMENT of the output during failure
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/measure_v2p5.png}
+  \caption{Measurement of V\textsubscript{2p5} after a negative stress}
+  \label{fig:meas-reset-v2p5}
+\end{figure}
 
-% Talk about the scale factor
-To summarize, a negative stress of a hundred nanoseconds induces here a supply restart of tens of microseconds.
-Parts of the system can be disturbed for much longer.
-There is a scale factor of at least 100 between the stress width and the regulation function.
-In this study, we try to explain how an \gls{esd} can generate such a scale factor.
+% What is the root cause -> reset of regulator, soft-start
+It seems that the negative stress is causing an unwanted \gls{soft-start} sequence in the regulator.
+A soft-start normally happens only during system power-up, when the main external supply is switched on.
+During a soft-start, the supply voltage slowly rises from 0V to its nominal value.
+It avoids overshoots that could damage sensitive blocks.
+By design, soft-starts require a large amount of time to complete, in the range of tens to hundreds microseconds.
+As a consequence, the function is not available, or at least not considered valid, until the soft-start is finished.
 
-\subsubsection{Study through simulation}
+% How is the test conducted
+To generate the negative stress, a \gls{tlp} generator is employed.
+The simulations use the \gls{tlp} model described previously in section \ref{sec:tlp-modeling}).
+The injection is performed with DPI pattern (ref?).
+Basically, the stress and DC supply are isolated from one another with a capacitor-inductor network.
+The injection setup is given in Fig. \ref{fig:sim-setup-reset}.
 
-% Is the simulation accurate
-To understand the failure mechanism, top-level simulations are first ran to see if the global failure can be reproduced.
-A simulation setup is built to match closely the real circuit.
-The \gls{tlp} model (described in section \ref{sec:tlp-modeling}) is also employed.
-The external input and output voltage waveforms are compared in Fig. \ref{fig:wvf-vboost} (input) and Fig. \ref{fig:wvf-v2p5} (output).
+%TODO: Injection setup with injection pattern
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/injection_setup_simulations.png}
+  \caption{Simulation setup to reproduce the reset}
+  \label{fig:sim-setup-reset}
+\end{figure}
+
+% Are the simulations accurate
+%TODO: Detail more
+In a first step, it is checked if the reset is reproduced correctly by simulation.
+V\textsubscript{batt} and V\textsubscript{2p5} simulations are compared with measurements in Fig. \ref{fig:wvf-vbatt} and Fig. \ref{fig:wvf-v2p5}.
 Both curves correlate well, and the regulator restart is correctly reproduced in simulation.
 These results tend to indicate that the simulations can be trusted for this study case.
 
 % TODO: MEASUREMENT vs SIMULATION
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/vboost.png}
-  \caption{Waveform of the vboost input pin}
-  \label{fig:wvf-vboost}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/vbatt.png}
+  \caption{Simulation versus measurement for V\textsubscript{batt}}
+  \label{fig:wvf-vbatt}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5.png}
-  \caption{Waveform of the v2p5 output pin}
+  \caption{Simulation versus measurement for V\textsubscript{2p5}}
   \label{fig:wvf-v2p5}
 \end{figure}
 
-% Make the investigation
-The injected stress is a rectangular pulse of -100V amplitude and 100ns width.
-The main output of the first block (the pre-regulator) is observed in simulation (Fig. \ref{fig:wvf-vclamp9}).
-At 54 \textmugreek{}s, its \textit{vclamp9} output voltage is clearly disturbed by the negative stress.
+% Now use the simulation for analysis
+Since the simulation correctly reproduces the external input and output waveforms, it is used to observe the intermediate nets.
+The simulation is run with a rectangular pulse of -100V amplitude and 100 ns width.
+The waveform for output V\textsubscript{clamp9} of the pre-regulator is given in Fig. \ref{fig:wvf-vclamp9}.
+At 54 \textmugreek{}s,  V\textsubscript{clamp9} is clearly disturbed by the negative stress.
 The net reaches as low as 0V for a brief amount of time.
 Overall, the net is disturbed for 750 ns.
-
-% Next net, bandgap input
-In turn, this net powers the bandgap reference.
-Thus, it can be expected that the bandgap is going to be disturbed as well.
-The observation of the 1.0V bandgap reference \textit{vref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
-The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/vclamp9.png}
-  \caption{Waveform of the vclamp9 internal net}
+  \caption{Simulated waveform of the V\textsubscript{clamp9} internal net}
   \label{fig:wvf-vclamp9}
 \end{figure}
+
+% Next net, bandgap input
+V\textsubscript{clamp9} is used as input for powering the bandgap reference.
+In turn, the bandgap is expected to be disturbed as well.
+The observation of the 1.0V bandgap reference V\textsubscript{ref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
+The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v1p0.png}
-  \caption{Waveform of the vref1p0 internal net}
+  \caption{Simulated waveform of the V\textsubscript{ref1p0} internal net}
   \label{fig:wvf-v1p0}
 \end{figure}
 
-%TODO: Most likely, this needs to be reviewed later and detailed more.
 % Final net
-Finally, this bandgap reference is used by the regulator to generate the 2.5 V external supply output.
-Net \textit{v2p5} drops below 1.5V, and is disturbed for more than 30 \textmugreek{}s.
-Clearly, the scale factor is well reproduced in the simulation.
+Finally, V\textsubscript{ref1p0} is used by the regulator to generate the 2.5 V external supply output V\textsubscript{2p5}.
+Previously,  Fig. \ref{fig:wvf-v2p5} showed that V\textsubscript{2p5} drops below 1.5V, and is disturbed for more than 30 \textmugreek{}s.
 
 % Preliminary conclusion with scale factor
+There is a clear trend regarding the duration of the failure.
 In the first block (pre-regulator), the disturbance width increased from 100 ns to 750 ns.
 In the second block (bandgap), it increased from 750 ns to 3 \textmugreek{}s.
 In the third block (regulator), it reached 30 \textmugreek{}s.
 Each time, there is an aggravation of the failure.
-
-%TODO: Make full schematic analysis ?
 
 % Talk about failure in cascade
 To conclude, it appears there is a failure in cascade of the regulation function.
