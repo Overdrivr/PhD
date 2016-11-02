@@ -41,3 +41,6 @@ dist
 
 # build output files
 *.pdf
+
+#IPython notebook files
+.ipynb_checkpoints
