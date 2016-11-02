@@ -49,6 +49,7 @@ This pin is a very convenient monitoring point during tests.
 
 
 \subsubsection{Integrated supply function description}
+\label{sec:supply-desc}
 
 % Main task
 The main function of the regulation function is to down-convert a battery voltage to a 2.5V regulated supply.
@@ -57,32 +58,34 @@ The overall architecture is given in fig. \ref{fig:monitored_function}).
 
 %TODO: Uniform net names
 % First block
-First, a pre-regulator clamps the battery voltage that can reach up to 40V down to 9V.
+First, a pre-regulator clamps the battery input (V\textsubscript{batt}) that can reach up to 40V and down to 9V.
 This is done to protect more sensitive circuitry connected downstream.
-This output has low current capability and is used for low-power functions.
-A second output provides a 12V clamped output with a large current capability.
+This clamped voltage is accessible on output V\textsubscript{clamp9}.
+V\textsubscript{clamp9} has low current capability and is used for low-power functions.
+A second output V\textsubscript{pwr} provides a 12V clamped output with a large current capability.
 
 % Second block
 A bandgap reference is connected downstream.
-It is powered by the 9V supply.
-Once properly started after a certain delay, the bandgap generates a 1.0 V voltage reference.
+It is powered with V\textsubscript{clamp9}.
+Once properly started after a certain delay, the bandgap generates a 1.0 V voltage reference on V\textsubscript{ref1p0}.
 This reference is stable accross a wide range of temperature, process variation and process mismatchs.
-The bandgap also outputs a 10uA current reference, and a flag \textit{bgok} to signal it is ready for operation.
+The bandgap also outputs a 10uA current reference on I\textsubscript{ref10u}, and a flag V\textsubscript{bgok} to signal it is ready for operation.
 
 % Third major block
-Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage, able to deliver and sustain up to 20mA.
-In the original product, this output is used further in the system to power digital gates.
+Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage on V\textsubscript{2p5}.
+This output can deliver up to 20mA.
+V\textsubscript{2p5} is used further in the system to power digital gates.
 
 % Detail nets connections
 The regulator relies on multiple signals generated in the upstream blocks for operation.
-The most critical nets are the 1.0V reference from the bandgap, and the ramp-up signal.
-Circuit analysis show that both nets can directly affect the output voltage.
+The most critical nets are the 1.0V reference V\textsubscript{ref1p0} from the bandgap, and the ramp-up signal V\textsubscript{ramp-up}.
+Circuit analysis shows that both nets can directly affect the output voltage.
 A variation on the reference voltage is immediately copied on the output.
 The ramp-up signal controls the soft-start of the regulator, that can directly change the output value.
 Other nets provide bias to the regulator, and their impact on the output is more limited.
 
 % Talk about external devices
-The regulator is connected externally to a 100nF decoupling capacitor to absorb peak currents and achieve stability.
+V\textsubscript{2p5} requires externally a 100nF decoupling capacitor to absorb peak currents and achieve stability.
 
 % What are the minor blocks doing
 The \textit{current mirrors} provide copied current values from the bandgap, while offering much larger output impedance.

@@ -69,9 +69,12 @@ These results tend to indicate that the simulations can be trusted for this stud
 Since the simulation correctly reproduces the external input and output waveforms, it is used to observe the intermediate nets.
 The simulation is run with a rectangular pulse of -100V amplitude and 100 ns width.
 The waveform for output V\textsubscript{clamp9} of the pre-regulator is given in Fig. \ref{fig:wvf-vclamp9}.
-At 54 \textmugreek{}s,  V\textsubscript{clamp9} is clearly disturbed by the negative stress.
-The net reaches as low as 0V for a brief amount of time.
-Overall, the net is disturbed for 750 ns.
+At 54 \textmugreek{}s,  V\textsubscript{clamp9} is disturbed by the negative stress, in two phases.
+The first phase is 100 ns wide, and corresponds to the direct exposure to the stress.
+During this phase, V\textsubscript{clamp9} reaches as low as 0V for a brief amount of time.
+Afterwards, there is a second phase, that lasts approximately 650 ns.
+The reason for this second undervoltage is not clearly known, but it looks similar to the positive overshoot on the  V\textsubscript{batt} curve (Fig. \ref{fig:wvf-vbatt}).
+Overall, V\textsubscript{clamp9} is disturbed for 750 ns.
 
 \begin{figure}[!htbp]
   \centering

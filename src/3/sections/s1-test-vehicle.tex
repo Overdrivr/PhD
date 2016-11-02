@@ -10,8 +10,9 @@ For that matter, a custom test vehicle has been designed and manufactured.
 
 % What is in the testchip
 The testchip reuses most blocks from the Everest product described previously in \ref{sec:study-real-product}.
-%TODO: What is monitored
-In addition, custom functions were integrated to allow the measurement and monitoring of internal parameters.
+
+% What is monitored
+In addition, custom functions were integrated on silicon to measure and monitor amplitude and duration of disturbances on internal nets.
 A communication system was setup to output measurement data using a few pins.
 
 %TODO: Talk about the inputs, outputs
@@ -27,8 +28,12 @@ The global architecture of the testchip (Fig. \ref{architecture_testchip}) is co
 The same supply block is instanciated twice on silicon.
 One of them is the function under test, which is exposed to \gls{ESD} stresses and is monitored for failures.
 The second one is responsible for powering the monitoring functions.
-Both blocks are isolated from one another as much as possible.
-The monitoring's supply is protected against disturbances to ensure good measurements.
+
+% Isolation between supplies
+Several steps were put in place to isolate the reference regulator from disturbances, to ensure good measurements.
+First, it has its own external supply pin., and is powered externally by a different DC supply than the regulator under test.
+Much larger filtering is setup for the reference regulator.
+Both block only share the external ground connections.
 
 \begin{figure}[h]
   \centering
@@ -38,8 +43,8 @@ The monitoring's supply is protected against disturbances to ensure good measure
 \end{figure}
 
 % What is in the monitoring system
-The monitoring system is comprised of several functions.
-The overvoltage and undervoltage detectors monitor several key voltages inside the supply under test.
+The \textit{monitoring system} is comprised of several functions.
+The overvoltage and undervoltage detectors monitor multiple net voltages inside the supply under test.
 There are in total 35 detectors in the testchip.
 The communication function performs a parallel to serial conversion, in order to read and write a large amount of bits using just a few pins.
 Special structures for specific monitoring functions is also implemented.
@@ -76,6 +81,8 @@ The critical factors are the high to low delay, to detect very fast transients, 
   \caption{Comparator design}
   \label{fig:comparator-design}
 \end{figure}
+
+%TODO: Detail nets of the schematic
 
 \begin{table}[!htbp]
 \centering
@@ -132,7 +139,11 @@ Or DACs ?
 The testchip requires many pins for basic functionnality, such as supplies, grounds, substrate connections, regulation functions.
 The manufacturing process for test vehicles enforces an LQFP-48 package.
 With the given requirements, this does not leave much pins available for directly outputting monitoring data.
-A communication bus was designed to reduce the pin count.
+A custom communication bus was designed to reduce the pin count.
+Initially, the JTAG (TODO: ref or gloss ?) protocol was envisionned for this application.
+However, JTAG requires to use a digital state-machine for operation.
+This requires digital-synthesis (TODO: glos), which was not available with our given resource constraints.
+Instead, a simplified serie to parallel protocol has been designed from scratch.
 
 % What does the comm IO
 Two read-only and two write-only communication buses are implemented on the testchip.
@@ -174,6 +185,14 @@ The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively 
   \label{fig:read-cell-design}
 \end{figure}
 
+%TODO: Add chronogram
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/curve_read_cell.pdf}
+  \caption{Chronogram for the read cell}
+  \label{fig:read-cell-curve}
+\end{figure}
+
 % Chaining
 Multiple cells can be connected in a chain.
 Increasing the total register size is simply done by adding more cells to the chain.
@@ -185,13 +204,21 @@ This is convenient for testchip developments that have limited design resources.
 The write cell is a bit more complex but operates on the same principle (Fig. \ref{fig:write-cell-design}).
 Data is placed serially by the user on the \textit{bus} line, syncronously with the clock.
 The enable signal is propagated from cell to cell, so that each cell knows when to sample the bus line and store the value.
-Basically, this cell sets on the \textit{output} the value on the bus when its enable is high.
+Basically, this cell sets on the \textit{output} the value on the bus when its enable is high (Fig. \ref{fig:write-cell-curve}).
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_write_cell.pdf}
   \caption{Write-only cell design}
   \label{fig:write-cell-design}
+\end{figure}
+
+%TODO: Add chronogram
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/curve_write_cell.pdf}
+  \caption{Chronogram for the write cell}
+  \label{fig:write-cell-curve}
 \end{figure}
 
 % Detail devices
@@ -224,6 +251,7 @@ The complete register maps of readable and writable data is given in appendix \r
 %TODO: Detail more ? amount of readable bits, writeable bits, registers
 
 \subsection{On-chip near-field current sensors}
+%TODO: Add reference to article ESREF 2012
 
 % Measuring currents is important too
 All monitoring structures presented so far watch for voltages.
@@ -259,8 +287,16 @@ The first level (in red) and the third level (in purple) form a metal loop.
 Metallic vias connect both levels to close the loop vertically.
 Finally, the sensed current is at the second level (pale blue), and circulates between nets \textit{S1} and \textit{S2}.
 An oscilloscope with 50\textOmega\ input impedance performs a differential voltage measurement between pins \textit{C1} and \textit{C2}.
+An example waveform obtained by injecting a rectangular pulse is given in Fig. \ref{fig:nfs-wvf}.
 The obtained waveform requires specific post-processing to reconstitute the original current waveform.
 The post-processing is detailed later in section \ref{sec:on-chip-near-field-process}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/original_vs_measured_nfs.png}
+  \caption{Original versus measured on-chip near-field sensor}
+  \label{fig:nfs-wvf}
+\end{figure}
 
 \subsection{Topcell}
 % intro
