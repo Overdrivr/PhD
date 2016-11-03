@@ -1,29 +1,91 @@
 \subsection{On-chip near-field current measurement and postprocessing}
 \label{sec:on-chip-near-field-process}
 
-%TODO: Mathematical concept ?
+% Introduction
+In this section, two different methods are described for reconstructing the original current from a near-field magnetic scanner measurement.
+Each method requires a characterization of the sensor, to obtain its transfer function.
+Overall, they differ mostly in the modelisation of the transfer function.
+The original time-domain waveform is obtained by using the measured waveform and the inverse transfer function.
+%TODO: Say pretty standard
+%TODO: Refs monnereau, review of nfs methods
+
+\subsubsection{Physical concepts}
+\label{sec:phys-concepts-nfs}
+
+The sensor is a near-field magnetic current loop.
+We are interested in the relation between voltage difference across the sensor and the current value circulating through the track.
+
+% Creation of the magnetic field
+Circulating current in a conductor creates a magnetic field.
+In steady-state conditions (static current), and by approximating the shape of the metal track to an infinitely long wire, Biot-savart law could be employed (Eq. \ref{eq:biot-savart}).
+It states that magnetic field decreases with the square of the distance from a current segment of the track.
+\begin{equation}
+  \label{eq:biot-savart}
+  \overrightarrow{B}(\overrightarrow{r}) = \frac{\mu_{0}}{4\pi}\oint_{C}\frac{I \mathrm{d}\overrightarrow{l} \wedge (\overrightarrow{r} - \overrightarrow{r'}) }{|\overrightarrow{r} - \overrightarrow{r'}|^3}
+\end{equation}
+
+However Biot-Savart works only for magnetostatic approximation ? What is it ?
+Steady state magnetic field.
+General purpose is Jefimenko's equations
+
+% Generation of voltage difference from the magnetic
+The sensor is placed near the monitored metal track.
+The sensor is approximated as a perfect loop in a magnetic field.
+In that case, the Faraday law's of induction gives Eq. \ref{eq:faraday}
+where \textepsilon{} is the electromotrice force (TODO: gloss) and \textPhi{}\textsubscript{B} is given in \ref{eq:phi}.
+
+\begin{equation} \label{eq:faraday}
+  \varepsilon = - \frac{\mathrm{d} \phi _{B}}{\mathrm{d} t}
+\end{equation}
+
+
+\textPhi{}\textsubscript{B} is the magnetic flux through the loop, $B$ is the magnetic field, \textSigma{}(t) is a surface bounded by the closed contour,
+and $dA$ is an infinitesimal vector area element of \textSigma{}(t) (magnitude is the area of the element, direction is orthogonal to the loop surface).
+
+\begin{equation} \label{eq:phi}
+  \phi _{B} = - \iint_{\Sigma(t)} \mathrm{d}A . B(r,t)
+\end{equation}
+
+% Global equation and conclusion
+%TODO: eq
+Original current and measured voltage are related by a time-domain derivative ? Only in magnetostatic conditions ?
 
 \subsubsection{Time-domain integration method}
 
 % Describe the algorithm
-The time-domain method relies on the fact that the measured voltage is proportionnal to the derivative of the coupled current.
-The algorithm begins with integrating the measured voltage, using a basic trapezoidal integration.
-With the calibration sensor, it is possible to determinate experimentally the gain of the sensor.
-%TODO: How is it done ?
-Indeed, 1A of current does not generate 1V on the sensor, but a much lower value.
+As detailed previously in \ref{sec:phys-concepts-nfs}, the measured voltage is proportional to the time derivative of the original current.
+The time-domain method is based on this property.
+The original current waveform can be found equal to the integral of the voltage by a scale factor.
+The scale factor can be determined experimentally during calibration.
+
+% Talk about calibration
+
+% Integration method
+The algorithm begins by integrating the measured voltage, using a basic trapezoidal integration.
+%TODO: Why trapezoidal
+
+% Talk about current sensor
 The correction factor with the current design was found to be $8.10^8$.
 As a result of the integration, an offset is present a $t=0$.
 So far, it is simply given the value of the calibration measurement at $t=0$.
+The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain-reconstructed}.
 
-%TODO: Give the result
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/time_method.pdf}
+  \caption{Reference current waveform versus time-domain reconstructed}
+  \label{fig:time-domain-reconstructed}
+\end{figure}
 
 % Limitations
 The time-domain method is simple to compute.
-However, it makes several assumptions on the sensor.
-Mainly, it assumes that the gain of the sensor is constant for all frequencies.
+However, it makes several approximations regarding the sensor's shape and the validity of the underlying physical laws for fast transient waveforms.
+Overall, it assumes that the gain of the sensor is constant for all frequencies, which is not correct either.
 
 \subsubsection{Frequency-domain reconstruction method}
 
+%TODO: Say that it is general purpose
+%TODO: Which approximations compared to physical principles
 The frequency domain tries to improve the post-processing by taking the sensor's response into account.
 First, the sensor must be characterized, using a virtual network analyzer (Put glossary) (sure ?).
 %TODO: Talk about complex measurement required
@@ -32,6 +94,13 @@ Then, the inverse of the sensor's characterization in the frequency domain is ca
 %TODO: Give the formula
 
 %TODO: Setup and Curve
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics{src/3/figures/freq_method.pdf}
+  \caption{Reference current waveform versus frequency-domain and time-domain reconstructions}
+  \label{fig:freq-domain-reconstructed}
+\end{figure}
 
 In parallel, the FFT (glossary) of the measured waveform to post-process is computed.
 For the algorithm to work, a complex FFT must be employed.
@@ -48,9 +117,12 @@ Finally, the inverse FFT of the result is calculated to bring back the waveform 
 All waveforms, either measured experimentally or simulated, are constituted by a set of discrete points.
 As such, discrete FFT and IFFT must be employed.
 
-% Talk about repo
-This post-processing method was implemented in python (ref).
-It is freely distributed as open-source software (ref).
 
-\subsubsection{Comparison of both methods}
-This waveform can be compared with the original TLP stress used during calibration, and the curve reconstituted with the integration method.
+\subsubsection{Conclusion}
+% Conclusion
+
+% Limitations
+
+% Code repository
+This post-processing method was implemented in python language (ref).
+It is freely distributed as open-source software (ref) under the MIT licensing (ref).
