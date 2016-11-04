@@ -148,10 +148,10 @@ Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letter
 \textOmega
 ```
 
-Append a `\` afterward to get a trailing space afterward. Example:
+Append a `{}` afterward to get a trailing space afterward. Example:
 
 ```
-\textOmega\ foo
+\textOmega{} foo
 ```
 
 ## External tools
