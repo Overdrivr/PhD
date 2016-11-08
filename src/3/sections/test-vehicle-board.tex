@@ -1,0 +1,55 @@
+\subsection{Test boards}
+
+% Why these board
+For providing the external devices required by the testchip, and communicating with it, a master-slave architecture is selected.
+One \gls{pcb} is designed for the master, and one for the slave.
+The slave board contains the testchip and the required external devices.
+The master board contains mostly a microcontroller.
+It is responsible for generating the frames for the testchip's monitoring system (section \ref{sec:comm-system-testchip}).
+The master board connects to a computer for providing a user interface, reading, writing and storing the monitoring data.
+
+% Overview of the setup
+To protect the computer from the \gls{esd} discharges, the two boards are isolated electrically.
+Each board is powered with its own isolated battery, to avoid conducted stress propagating in the AC supply network.
+The communication between the two is achieved with several optical fibers.
+This type of setup was successfully employed in [TODO: REF Alain] to measure \gls{spi} registers before and after electro-static discharges were applied on a product.
+
+%TODO: System architecture
+%TODO: Picture
+
+\subsubsection{Master board}
+
+% Architecture
+The master board is actually just a shield for the microcontroller board Kinetis KL25Z.
+It provides pin-compatible headers with the KL25Z, an isolated and regulated supply, and the devices required for optical communication.
+The architecture is given in Fig. \ref{fig:master-board-architecture}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/3/figures/master_board_architecture.pdf}
+  \caption{Master board architecture}
+  \label{fig:master-board-architecture}
+\end{figure}
+
+%TODO: Picture
+
+\subsubsection{Slave board}
+The slave board provides two isolated and regulated supplies and devices required for the testchip and the optical communication.
+The architecture is given in Fig. \ref{fig:slave-board-architecture}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/3/figures/slave_board_architecture.pdf}
+  \caption{Slave board architecture}
+  \label{fig:slave-board-architecture}
+\end{figure}
+
+%TODO: Picture
+
+\subsubsection{Optical fiber communication}
+
+% IO Spec - Pin connections
+%TODO
+
+% Opto-coupler references
+To be done
