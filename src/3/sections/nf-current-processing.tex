@@ -6,7 +6,6 @@ In this section, two different methods are described for reconstructing the orig
 Each method requires a characterization of the sensor, to obtain its transfer function.
 Overall, they differ mostly in the modelisation of the transfer function.
 The original time-domain waveform is obtained by using the measured waveform and the inverse transfer function.
-%TODO: Say pretty standard
 %TODO: Refs monnereau, review of nfs methods
 
 \subsubsection{Physical concepts}
@@ -64,10 +63,9 @@ The calibration is conducted with the calibration sensor integrated on silicon (
 A square impulse is injected between pins XX and XX, and the response is measured with a 2GHz bandwith oscilloscope in differential input.
 Both the injected current and measured voltage waveforms are recorded.
 
-% TODO: Layout + measurement setup
 \begin{figure}[!htbp]
   \centering
-  \includegraphics{src/3/figures/calibration_sensor.pdf}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/sensor_measurement_setup.pdf}
   \caption{Calibration sensor setup for time-domain method}
   \label{fig:calibration-sensor}
 \end{figure}
@@ -83,26 +81,31 @@ The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics{src/3/figures/measured_waveform.png}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
   \caption{Measured voltage waveform}
   \label{fig:measurement-nfs}
 \end{figure}
 
+%TODO: Comment : Curve is really derivative of a rectangular pulse
+
 \begin{figure}[!htbp]
   \centering
-  \includegraphics{src/3/figures/time_method.pdf}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/time_domain_vs_ref.png}
   \caption{Reference current waveform versus time-domain reconstructed}
   \label{fig:time-domain-reconstructed}
 \end{figure}
 
 % Limitations
+For this particular rectangular pulse, the integration method seems to work well.
+%TODO: test for more dynamic pulse.
+
+% Defaults to overcome
 The time-domain method is simple to compute.
 However, it makes several approximations regarding the sensor's shape and the validity of the applicable physical laws.
 Overall, it assumes that the gain of the sensor is constant for all frequencies, which is not correct either.
 
 \subsubsection{Frequency-domain reconstruction method}
 %TODO: Make a schematic to show the entire algorithm ?
-
 % Intro
 The frequency domain tries to improve the post-processing by taking the sensor's response into account.
 More generally, this method applies to all types of sensors.
@@ -110,13 +113,13 @@ After characterization, the frequency response of the sensor is used to recomput
 
 % Characterization
 The characterization is conducted with the calibration sensor, using a \gls{vna}.
-The calibration setup is given in Fig. \ref{fig:calibration-sensor}.
+The calibration setup is given with in Fig. \ref{fig:calibration-sensor-rf}.
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics{src/3/figures/calibration_setup_freq.pdf}
-  \caption{Calibration sensor setup for frequency-domain method}
-  \label{fig:calibration-sensor}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/sensor_measurement_setup_rf.pdf}
+  \caption{Calibration sensor setup for time-domain method}
+  \label{fig:calibration-sensor-rf}
 \end{figure}
 
 % Detail characterization
@@ -224,13 +227,13 @@ The resulting waveform is compared to the original and the integration method in
 \subsubsection{Conclusion}
 
 % Conclusion
-Freq method works better.
-Remaining sources of error are differences in the layout between the calibration sensor and the real sensor.
-Bandwidth of the calibration equipment maybe is too small.
-Integration method accumulates error over time, due to major approximations.
+The frequency method is more realistic, because it makes less approximations regarding the physical laws and sensor's geometry.
+Overall, it is the method selected to process the measurement data in section \ref{sec:test-vehicle-testing}
+The remaining sources of error lie in the layout differences between the calibration sensor and the real sensor.
+Also, the bandwidth of the calibration equipment might be too small to reproduce high-frequency events..
 
-% Limitations
+The integration method can work for short pulses, but accumulates error over time.
 
 % Code repository
-This post-processing method was implemented in Python language.
-It is freely distributed \cite{nfs-repository} as open-source software under the MIT licensing \cite{mit-licensing}.
+Both post-processing methods were implemented in Python language.
+The code is freely distributed \cite{nfs-repository} as open-source software under the MIT licensing \cite{mit-licensing}.
