@@ -1,4 +1,25 @@
-# Prepare
+# Description
+
+This repository contains:
+* Full phd report, written in Latex
+* IPython notebooks, for reading data, processing it and saving it
+
+Together, they make for a nice stress-free workflow.
+IPython notebooks are particularly good at telling a story more than just storing code.
+As such, they are particularly well suited to collaborate with a latex document.
+
+# Python
+
+You will need to install anaconda or miniconda.
+
+Then, start the notebook explorer.
+
+```
+jupyter notebook
+```
+
+# Latex
+## Prepare
 Install Latex, then type in a terminal
 ```
 pdflatex
@@ -14,7 +35,7 @@ grunt latex
 
 Also install [Perl interpreter](https://www.perl.org/get.html) (required for generating the glossary)
 
-# Generate
+## Generate
 
 To let grunt monitor changes in files and regenerate the output, run
 ```
@@ -26,7 +47,7 @@ Run the `latex` task to generate the pdf file manually
 grunt latex
 ```
 
-# Resources
+## Resources
 
 Figures use the Roboto font. Available [here](https://fonts.google.com/specimen/Roboto).
 
@@ -35,7 +56,7 @@ Figures use the Roboto font. Available [here](https://fonts.google.com/specimen/
 * Bibliography management: https://fr.sharelatex.com/learn/Bibliography_management_with_bibtex
 * Interesting info about Grunt and automation: https://jonsuh.com/blog/take-grunt-to-the-next-level/
 
-# Figures
+## Figures
 
 In the current workflow, figures are drawn with inkscape in vector format.
 Figures should preferably be imported from `.pdf` files to get the best render, rather than direct svg import which is broken at the moment.
@@ -68,7 +89,7 @@ grunt execute:figs
 ```
 Grunt will watch for changes and new files and will regenerate automatically `.pdf` for modified files.
 
-# Gotchas
+## Gotchas
 
 When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
 
@@ -79,9 +100,9 @@ For instance
 % etc, table code
 ```
 
-# Cheat-sheet
+## Cheat-sheet
 
-## Cross references
+### Cross references
 
 For chapters, sections, declare a cross-reference like this (prefixing with `sec` is not mandatory, but a good practice).
 
@@ -102,7 +123,7 @@ You can reference multiple bibliography entries like this:
 \cite{biblioEntry1, biblioEntry2}
 ```
 
-## Figures
+### Figures
 
 To leave figure as-is (works well with pdf)
 
@@ -115,7 +136,7 @@ To leave figure as-is (works well with pdf)
 \end{figure}
 ```
 
-To clamp figure width to text width
+To clamp figure width to text width use `[width=\textwidth]`
 
 ```
 \begin{figure}[!htbp]
@@ -126,7 +147,7 @@ To clamp figure width to text width
 \end{figure}
 ```
 
-To clamp width to text width with some ration
+To clamp width to text width with some ratio use `[width=0.9\textwidth]`
 
 ```
 \begin{figure}[!htbp]
@@ -139,7 +160,7 @@ To clamp width to text width with some ration
 
 See [here](http://tex.stackexchange.com/a/1527/105955) to why `!htbp`
 
-## Greek letters
+### Greek letters
 
 Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letters-in-text-without-changing-to-math-mode/)).
 `textgreek` requires `cbgreek` package, you should install it with your package manager.
@@ -154,13 +175,13 @@ Append a `{}` afterward to get a trailing space afterward. Example:
 \textOmega{} foo
 ```
 
-## External tools
-### Viewing pdf files
+### External tools
+#### Viewing pdf files
 
 For viewing the generated `phd.pdf`, consider using the amazing [Sumatra pdf reader](http://www.sumatrapdfreader.org/free-pdf-reader.html).
 It is free, extremely fast, portable, small and is packed with good features.
 
-### Generating code for LaTeX tables using an online WYSIWYG editor
+#### Generating code for LaTeX tables using an online WYSIWYG editor
 
 This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables. Doesn't work very well with large tables, doesn't support tabularx package.
 This [one](http://truben.no/table/) exists too, but has less features (no support for merging cells for instance).
