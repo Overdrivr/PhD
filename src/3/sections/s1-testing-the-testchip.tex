@@ -6,22 +6,105 @@ To be done
 
 \subsubsection{Test plan}
 
-1. Board supplies
-2. Testchip supplies
-2. Master-slave communication
-4. Near field current measurement
-5. Testchip communication
-6. Monitoring system validation
-7. ESD tests for regulation failure
+The testplan for the testchip is constituted of 7 steps.
+
+\begin{enumerate}
+\item Board supplies
+\item Testchip supplies
+\item Master-slave communication
+\item Near field current measurement
+\item Testchip communication
+\item Monitoring system validation
+\item ESD tests for regulation failure
+\end{enumerate}
+
+For steps 1 and 2, the supplies were simply checked with a voltmeter.
+All regulators from both boards and inside the testchip were found to operate as expected.
+
+\subsubsection{master-slave communication}
+
+% What is this step
+In step 3, the communication between the master board and the slave board is verified.
+The goal is to ensure that signals transit correctly between the microcontroller \gls{io}s and the testchip \gls{io}s.
+The goal is not however to validate that the data is correctly exchanged.
+Only the physical layer is checked.
+
+% What is the result
+Overall, minor issues were identified and corrected.
+Some pull-up resistors on the optical diodes were too large, preventing the communication to happen.
+After the resistors were replaced, the optical communication was functional.
 
 \subsubsection{Near-field current measurement}
 
-To be done
+The near-field current sensor is validated by injected a rectangular waveform on the sensed input.
+On the output, a curve close the input waveform's derivative is obtained.
+This result was expected because of the sensor's properties.
+A much more detailed analysis in done in section \ref{sec:on-chip-near-field-process}.
 
-\subsubsection{Issues with the communication system}
+\subsubsection{Testchip communication}
 
-TO BE DONE
+Finally, the integrated communication system is tested.
+Unfortunaley, several issues were found with this system, completely preventing the communication.
 
-\subsubsection{Workarounds and alternative measurements}
+% How is the test done
+The test is conducted by sending the appropriate reading frame multiple times.
+By design, the integrated communication system expects a \textit{clock} signal with a frequency lower than 2MHz, and an \textit{en\_in} signal that must be high for a single rising clock edge.
+With both these criteria met, the communication system should return the data on the \textit{data\_out} pin.
 
-TO BE DONE
+% What is expected
+By design, each frame incorporates a few mechanisms to ensure the returned data is correct.
+Any \textit{data\_out} frame must start with binary code 1010 and end with binary code 01.
+The \textit{enable} signal set on input \textit{en\_in} is propagated from one read cell to the next one.
+The last cell of the chain is connected to the output pin \textit{en\_out}.
+Confidence in the data is increased if the \textit{enable} signal (a pulse with a width of a single clock period) is observed on \textit{en\_out},
+
+% What are the results
+After attempting multiple readings with the same board, with different boards and different clock frequencies, the results are inconsistent.
+Sometimes, the communication system returns an incomplete frame like in Fig. \ref{fig:read-only-partial-frame}.
+In this case, the enable signal is not propagated correctly through the chain.
+The \textit{en\_out} signal (not displayed here) stays low all the time.
+
+%TODO: Add scale to label
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_partial_frame.pdf}
+  \caption{Read-only partially returned frame (4ms/div, 5V/div) - clock frequency 1kHz}
+  \label{fig:read-only-partial-frame}
+\end{figure}
+
+In other cases, the chain returns a complete but corrupted frame like in Fig. \ref{fig:read-only-full-frame}.
+The enable is correctly propagated, and is visible on \textit{en\_out}, however the data start pattern is not correct (b'1011 instead of b'1010) and some intermediate digital values are not clearly defined.
+
+%TODO: Add scale to label
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_corrupted_frame.pdf}
+  \caption{Read-only corrupted frame (4ms/div, 5V/div) - clock frequency 1kHz}
+  \label{fig:read-only-full-frame}
+\end{figure}
+
+%TODO: Detail more investigation
+% Potential cause - clock freq
+The clock frequency was initially suspected as a root cause for the problem.
+Previous measurements were taken for a slow 1kHz clock frequency, which is far slower than the upper limit 2MHz.
+Increasing the clock frequency at 10kHz, 100kHz and 1MHz did not improve the situation.
+
+% Potential cause - delays
+The impact of parasitic delays causing the communication system to malfunction was also suspected.
+Multiple simulations of the entire read chain were run by placing large delays in multiple locations.
+No failure could be highlighted using this method.
+
+% Potential cause - parasitic RC
+Afterwards, an RC parasitics were extracted from the layout.
+Once again, the read chain performed correctly.
+
+% Potential cause - susbstrate coupling
+Susbtrate couplings were also suspected.
+Some reading issues could be reproduced, but this type of coupling is highly unlikely to happen for clock frequencies of 1kHz.
+
+\subsubsection{Future work}
+
+% Multiple bonding diagrams
+A second revision of the testchip is planned.
+Since the investigation on the communication system is unconclusive, it was decided to remove it.
+%TODO: Workaround ?
