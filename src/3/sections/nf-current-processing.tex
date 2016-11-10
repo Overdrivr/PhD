@@ -55,15 +55,14 @@ Original current and measured voltage are related by a time-domain derivative ? 
 As detailed previously in \ref{sec:phys-concepts-nfs}, the measured voltage is proportional to the time derivative of the original current.
 The time-domain method is based on this property.
 The original current waveform is the integral of the sensor voltage times a scale factor plus an offset.
-The scale factor can be determined experimentally during calibration.
-The offset can be initialized to 0 ?
+The offset and scale factor can be determined experimentally with the calibration.
 
 % Talk about calibration
 The calibration is conducted with the calibration sensor integrated on silicon (\ref{fig:calibration-sensor}).
-A square impulse is injected between pins XX and XX, and the response is measured with a 2GHz bandwith oscilloscope in differential input.
+A square impulse is injected between pins S1 and S2, and the response is measured with a 2GHz bandwith 10GS/s oscilloscope in differential input between C1 and C2.
 Both the injected current and measured voltage waveforms are recorded.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/sensor_measurement_setup.pdf}
   \caption{Calibration sensor setup for time-domain method}
@@ -73,13 +72,13 @@ Both the injected current and measured voltage waveforms are recorded.
 % Integration method
 Afterwards, the measured voltage is integrated with a trapezoidal method.
 Experimentally, the correction factor with the current design was found to be $8.10^8$.
-As a result of the integration, an offset is present a $t=0$.
-The offset is set equal to the value of the voltage waveform at $t=0$ ?
+As a result of the integration, an offset is present.
+The offset is calculated such as $V(t=0) = 0.$
 
 The voltage waveform measured with the sensor is given Fig. \ref{fig:measurement-nfs}.
 The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain-reconstructed}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
   \caption{Measured voltage waveform}
@@ -88,7 +87,7 @@ The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain
 
 %TODO: Comment : Curve is really derivative of a rectangular pulse
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/time_domain_vs_ref.png}
   \caption{Reference current waveform versus time-domain reconstructed}
@@ -115,7 +114,7 @@ After characterization, the frequency response of the sensor is used to recomput
 The characterization is conducted with the calibration sensor, using a \gls{vna}.
 The calibration setup is given with in Fig. \ref{fig:calibration-sensor-rf}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/sensor_measurement_setup_rf.pdf}
   \caption{Calibration sensor setup for time-domain method}
@@ -129,7 +128,7 @@ S21 is the transmitted power between port 1 and port 2.
 In theory, S12 is identical to S21 for symetrical 2-port devices.
 And S22 is the reflected power from the output, which is not relevant for this study.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/sensor_freq_response.png}
   \caption{Sensor frequency response}
@@ -150,7 +149,7 @@ With only the magnitude, the phase information is lost, making the reconstructio
 %TODO: Is it required to explain ? Make an example with a square impulse without phase information
 Another \gls{sparams} measurement has been performed, configured to obtain both magnitude and phase information (Fig. \ref{fig:s21-response-complex}).
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/s21_freq_response.png}
   \caption{Sensor frequency response - complex S21 (magnitude and phase)}
@@ -167,7 +166,7 @@ The S21 respone is used during post-processing to compensate this variation.
 The post-processing methods starts with computing the \gls{fft} of the voltage waveform, storing it in array \textit{fft\_measure}.
 This array has the structure given in Table \ref{tab:complex-fft}.
 
-\begin{table}[!htbp]
+\begin{table}[!h]
   \centering
   \begin{tabular}{@{}lllll@{}}
   \toprule
@@ -182,7 +181,7 @@ This array has the structure given in Table \ref{tab:complex-fft}.
 
 On the other hand, the S21 measurement, stored in array \textit{s21\_sensor}, has the structure of Table \ref{tab:sparams}.
 
-\begin{table}[!htbp]
+\begin{table}[!h]
   \centering
   \begin{tabular}{@{}lllll@{}}
   \toprule
@@ -217,7 +216,7 @@ Afterwards, Eq. \ref{eq:final-divide} is done for each row.
 Finally, the inverse FFT of \textit{fft\compensated} is calculated to bring back the waveform into the time-domain.
 The resulting waveform is compared to the original and the integration method in Fig. \ref{fig:freq-domain-reconstructed}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/final_comparison_reconstructions.png}
   \caption{Reference current waveform versus frequency-domain and time-domain reconstructions}

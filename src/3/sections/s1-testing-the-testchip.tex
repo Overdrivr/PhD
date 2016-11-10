@@ -1,11 +1,6 @@
 \subsection{Test vehicle verification and testing after manufacturing}
 \label{sec:test-vehicle-testing}
 
-%TODO
-To be done
-
-\subsubsection{Test plan}
-
 The testplan for the testchip is constituted of 7 steps.
 
 \begin{enumerate}
@@ -65,7 +60,7 @@ In this case, the enable signal is not propagated correctly through the chain.
 The \textit{en\_out} signal (not displayed here) stays low all the time.
 
 %TODO: Add scale to label
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_partial_frame.pdf}
   \caption{Read-only partially returned frame (4ms/div, 5V/div) - clock frequency 1kHz}
@@ -76,7 +71,7 @@ In other cases, the chain returns a complete but corrupted frame like in Fig. \r
 The enable is correctly propagated, and is visible on \textit{en\_out}, however the data start pattern is not correct (b'1011 instead of b'1010) and some intermediate digital values are not clearly defined.
 
 %TODO: Add scale to label
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_corrupted_frame.pdf}
   \caption{Read-only corrupted frame (4ms/div, 5V/div) - clock frequency 1kHz}

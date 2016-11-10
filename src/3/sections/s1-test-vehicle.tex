@@ -59,7 +59,7 @@ The architecture of a single detector is given Fig. \ref{fig:architecture-ov}.
 The same architecture is used for the overvoltage and the undervoltage.
 Monitored and reference inputs are just inversed on the undervoltage detector.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/architecture_OV.pdf}
   \caption{Architecture of the overvoltage detector}
@@ -75,7 +75,7 @@ A high-gain is useful for limiting the comparator's offset.
 The performance of the comparator is given in table \ref{tab:comparator-performance}.
 The critical factors are the high to low delay, to detect very fast transients, and the offset, to ensure detection accuracy is good.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/comparator_design_clean.pdf}
   \caption{Comparator design}
@@ -84,7 +84,7 @@ The critical factors are the high to low delay, to detect very fast transients, 
 
 %TODO: Detail nets of the schematic
 
-\begin{table}[!htbp]
+\begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
@@ -179,7 +179,7 @@ During one clock cycle, the \textit{x} sign is HIGH and the \textit{flag} is wri
 At the next clock cycle, the \textit{en} signal is set low (by the previous cell).
 The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively releasing the bus.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_read_cell.pdf}
   \caption{Read-only cell design}
@@ -187,7 +187,7 @@ The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively 
 \end{figure}
 
 %TODO: Add chronogram
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/3/figures/curve_read_cell.pdf}
   \caption{Chronogram for the read cell}
@@ -207,7 +207,7 @@ Data is placed serially by the user on the \textit{bus} line, syncronously with 
 The enable signal is propagated from cell to cell, so that each cell knows when to sample the bus line and store the value.
 Basically, this cell sets on the \textit{output} the value on the bus when its enable is high (Fig. \ref{fig:write-cell-curve}).
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_write_cell.pdf}
   \caption{Write-only cell design}
@@ -215,7 +215,7 @@ Basically, this cell sets on the \textit{output} the value on the bus when its e
 \end{figure}
 
 %TODO: Add chronogram
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/3/figures/curve_write_cell.pdf}
   \caption{Chronogram for the write cell}
@@ -230,7 +230,7 @@ The output Q copies the data input D on rising clock edges, storing a value.
 When the scan enable \textit{se} input is HIGH, the data input D copies the value of the scan data input (\textit{SDI}), effectively changing the stored value.
 The truth table of this latch is given in table \ref{tab:d-latch-scan-truth}.
 
-\begin{table}[!htbp]
+\begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
@@ -267,14 +267,14 @@ By coupling, the sensor generates a voltage proportional to the derivative of th
 Figure. \ref{fig:near-field-current-sensor} and \ref{fig:near-field-current-sensor-layout} gives respectively a visual representation of the sensor and the final layout.
 This kind of integrated loop was originally designed and studied in \cite{AlainSallesInductors}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.98\textwidth]{src/3/figures/near-field-current-sensor.pdf}
   \caption{Near-field current sensor design}
   \label{fig:near-field-current-sensor}
 \end{figure}
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.5\textwidth]{src/3/figures/sensor_layout.png}
   \caption{Near-field current sensor layout}
@@ -292,7 +292,7 @@ An example waveform obtained by injecting a rectangular pulse is given in Fig. \
 The obtained waveform requires specific post-processing to reconstitute the original current waveform.
 The post-processing is detailed later in section \ref{sec:on-chip-near-field-process}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
   \caption{Measured waveform with the on-chip near-field sensor}
@@ -305,7 +305,7 @@ Except for the two supply blocks, all the functionnalities described previously 
 All layouts were assembled together to form the topcell (Fig. \ref{fig:top-cell-layout}).
 The complete pinout is given in appendix \ref{apx:testchip-pinout}.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/3/figures/topcell_layout.pdf}
   \caption{Top-cell layout}

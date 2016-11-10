@@ -37,7 +37,7 @@ Fig. \ref{block_function_cz} gives an example of such a characterization setup f
 
 %TODO: Improve figure (text sizes)
 %TODO: Remove range comparator
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/characterization_setup.pdf}
   \caption{Block characterization setup (supply input)}
@@ -51,7 +51,7 @@ Each simulation runs with a different pair of values for the \textbf{amplitude} 
 Table \ref{parameterized-simulations} illustrates this simulation process.
 Such testing method is called Wunsch and Bell in the litterature (REFERENCE).
 
-\begin{table}[!htbp]
+\begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
@@ -67,7 +67,7 @@ Such testing method is called Wunsch and Bell in the litterature (REFERENCE).
 In the time domain, this set of simulations is illustrated in Fig. \ref{set_input_signals}.
 
 %TODO: Fix sim 12 sim12
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/time_domain_cz_curves.pdf}
   \caption{Variations on (amplitude, duration) of the input characterization signal}
@@ -90,7 +90,7 @@ Once all simulations are complete, it is known which ones contain a \textit{fail
 
 The results are summarized into table \ref{simulation-results}.
 
-\begin{table}[!htbp]
+\begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
@@ -115,7 +115,7 @@ Finally, each point (x,y) of the curve represents the \textbf{minimal} amplitude
 Fig. \ref{wb_cz_curve_example} gives an example of such a characterization curve.
 
 %TODO: REVOIR COULEURS
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_curve.pdf}
   \caption{Principle of Wunsch and Bell curve for powered-on block testing}
@@ -128,7 +128,7 @@ The duration during which an output is in fail was recorded for each simulation,
 It is possible to improve table \ref{simulation-results} by replacing the \textit{fail} by the duration of the fail.
 This is illustrated in table \ref{simulation-results-bis}.
 
-\begin{table}[!htbp]
+\begin{table}[!h]
 \centering
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -148,7 +148,7 @@ For each point of the curve, the gradient will have a value representing the dur
 The figure \ref{wb_cz_curve_example_v2} provides an example of this improved representation.
 In this figure, the warmer the gradient, the longer the output is disturbed.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_curve_v2.pdf}
   \caption{Improved curve for Wunsch and Bell powered-on characterization}
@@ -159,7 +159,7 @@ The gradient can also be discretized into a few aeras for better readability as 
 This representation looses some information compared to the gradient one, but is easier to generate and read.
 This is the representation we have adopted further in this study, to express the functionnal robustness of a single block.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_curve_v2_discrete.pdf}
   \caption{Improved discrete curve for Wunsch and Bell powered-on characterization}
@@ -180,7 +180,7 @@ It is assumed that each of these blocks has been characterized.
 
 % WHICH NET IS TOP MONITORED ?
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_top_level_function.pdf}
   \caption{Example of a top-level function with 3 characterized blocks}
@@ -205,7 +205,7 @@ Thus, the properties of the \gls{tlp} pulse can directly be applied to the model
 Fig. \ref{example_complete_curve} shows an example curve for model A, and the location of the TLP pulse characteristics on this curve.
 
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_complete_curve.pdf}
   \caption{Model A curve and determination of impact of the TLP pulse - values in color represent the duration of failure on the output}
@@ -225,7 +225,7 @@ Thus, best case (amplitude, duration) values for net1 can be used as input for b
 Fig. \ref{example_complete_curve_B} shows an example curve for model B, and the location of the \textit{net1} disturbance on this curve.
 This shows that \textit{net2}, the output of block B and the input of block C, will go below B's failure level for at least 10 \textmugreek{}s.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_complete_curve_B.pdf}
   \caption{Model B curve and determination of impact of the TLP pulse}

@@ -13,7 +13,7 @@ The disturbance on the output V\textsubscript{2p5} is much longer (30 \textmu{}s
 It seems the negative stress is triggering a reset of the regulator.
 
 %TODO: MEASUREMENT of the output during failure
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/3/figures/measure_v2p5.png}
   \caption{Measurement of V\textsubscript{2p5} after a negative stress}
@@ -36,7 +36,7 @@ Basically, the stress and DC supply are isolated from one another with a capacit
 The injection setup is given in Fig. \ref{fig:sim-setup-reset}.
 
 %TODO: Injection setup with injection pattern
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/3/figures/injection_setup_simulations.png}
   \caption{Simulation setup to reproduce the reset}
@@ -51,14 +51,14 @@ Both curves correlate well, and the regulator restart is correctly reproduced in
 These results tend to indicate that the simulations can be trusted for this study case.
 
 % TODO: MEASUREMENT vs SIMULATION
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/vbatt.png}
   \caption{Simulation versus measurement for V\textsubscript{batt}}
   \label{fig:wvf-vbatt}
 \end{figure}
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5.png}
   \caption{Simulation versus measurement for V\textsubscript{2p5}}
@@ -76,7 +76,7 @@ Afterwards, there is a second phase, that lasts approximately 650 ns.
 The reason for this second undervoltage is not clearly known, but it looks similar to the positive overshoot on the  V\textsubscript{batt} curve (Fig. \ref{fig:wvf-vbatt}).
 Overall, V\textsubscript{clamp9} is disturbed for 750 ns.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/vclamp9.png}
   \caption{Simulated waveform of the V\textsubscript{clamp9} internal net}
@@ -89,7 +89,7 @@ In turn, the bandgap is expected to be disturbed as well.
 The observation of the 1.0V bandgap reference V\textsubscript{ref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
 The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v1p0.png}
   \caption{Simulated waveform of the V\textsubscript{ref1p0} internal net}
@@ -112,6 +112,7 @@ To conclude, it appears there is a failure in cascade of the regulation function
 When the disturbance propagates through a block, it is amplified and becomes more severe.
 Ultimately, a function that takes a lot of time to recover (soft-start) is hit, causing a full system restart.
 
+%TODO: This section will need a lot of more detail + references to support the argument
 The next part of this research work is focused on acquiring measurement data on silicon, to confirm the simulations.
 Also, this study case remains simple to understand, but fixing the issue is difficult.
 It must be ensured that a circuit correction for \gls{esd} does not affect normal operation.
