@@ -43,7 +43,7 @@ It is interesting to notice that in the reference simulations, the width of the 
 
 %TODO: To do with more blocks
 
-\begin{table}[!htbp]
+\begin{table}[!p]
 \centering
 \begin{tabular}{llll}
 \toprule
@@ -99,7 +99,7 @@ load (\textOmega) & amplitude (V) & length (ns) & output disturbed (ns)   \\ \mi
 \label{tab:impact-load-on-cz}
 \end{table}
 
-\begin{figure}[!htbp]
+\begin{figure}
   \centering
   \includegraphics{src/4/figures/zout_impact_time_domain.pdf}
   \caption{Represented impact of output load impedance on the output waveform during a disturbance with a small amplitude (green) and a large amplitude (red)}
@@ -116,7 +116,7 @@ This is the case even if the disturbance is just below the failure criteria, wit
 On the contrary, any disturbance beyond the failure criteria uses the failure level for modeling.
 The max value of the output may be much larger than the failure criteria, however, it will still be modeled as a square pulse of amplitude Vfail.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/bad_output_modelling.pdf}
   \caption{Lack of accuracy caused by the use of a single failure criteria to model the output}
@@ -132,60 +132,55 @@ The max value of the output may be much larger than the failure criteria, howeve
 
 %TODO: Make section ? Speak about limitations with multiples nets that are responsible for error propagation
 %TODO: Limitation with multiple nets. Interactions between inputs. Diamond-like connections
-%TODO: Speak about failure criteria is single level but actual failure may be much larger
 
-On paper, this method was rather promising in terms of applicability.
-A block could be characterized once, and reused in different places.
-The robustness of a full system could have been quickly and easily deduced from the models of its parts.
+% What was the promise of this model
+This method looked rather promising in terms of applicability.
+In theory, a block could be characterized once, and its model reused in different places.
+The robustness of a full system could be quickly and easily deduced from the models of its parts.
 
+% Real outcome is that it's not working well
 However, with the study case exposed earlier, several issues arose that clearly limit the ability of the model to perform as expected.
 
-The main issue with this modelling method is the fact that it relies too much
-on the value of the output load for performing the characterization of a block.
-This load depends on many different parameters.
-And this value will change in function out the block connected on the output (think about block-reuse)
-Also, this value may not be constant in frequency.
-And this value may also not be constant in time (multiple operating modes, biasing points, etc).
+% Main issue
+So far the main issue of this method is to be limited to a binary fail/no fail criteria.
+In some cases, the specification could be used to set this criteria, but mostly it was an arbitrary level.
+For digital cells, a binary criteria is correct because above a certain input level disturbance an output can be switched, and the failure is then clear.
+However, for most analog functions, there is no clear failure.
+Most nets will have degraded values until extreme levels where biasing might completely fail.
+Sometimes, the product is destroyed before reaching those extreme levels.
+In any case, the binary criteria hides a lot of information about the degradation.
 
-% SHOW SIMULATIONS FOR THIS PROBLEM OF IMPEDANCE VARIATION
+% Secondary issue
+It was also suspected that the output load used during characterization might impact the results too much.
+In practice, it was proven in the case of the regulator that this is not exactly true.
+Changing the load can induce a varation, but seemingly more limited than the impact of the binary failure criteria.
 
-% DIRECTIVITY - WE ASSUME STRESS AND FAILURES PROPAGATE FROM INPUT TO OUTPUT. MAY NOT BE THE CASE. ALSO, MAY NOT WORK IN REVERSE WITH SINGLE2MANY BLOCK CONNECTIONS
+% Directivity ?
+% Basically : WE ASSUME STRESS AND FAILURES PROPAGATE FROM INPUT TO OUTPUT. MAY NOT BE THE CASE. ALSO, MAY NOT WORK IN REVERSE WITH SINGLE2MANY BLOCK CONNECTIONS
 
-Another issue, this method is limited to a binary FAIL/NO FAIL criteria.
-Not only this criteria is arbitrary (in some cases, the specification could be used to set it), but
-for most purely-analog blocks, there will not be a clear failure, rather, most
-nets will have degraded values until maybe biasing of the block completely fails.
-In this case, the binary criteria hides a lot of information about the degradation.
-
-ANY CLUES TO OVERCOME THESE ISSUES ?
-
-ALSO, FAILURE MAY NOT PROPAGATE IN THIS ONLY WAY, BUT BACKWARD TOO
-
-The main reason why this approach was investigated was for its very interesting modularity
-that was highly suitable for block reuse workflow.
-
-However, because of the intrisic interactions between block functions in an integrated circuit,
-TRY TO EXPRESS BETTER WHAT PRINCIPLE OF THIS METHOD BOUNDS IT TO FAIL
-
-this approach seems to be bound to fail for building a reusable model for an IC block that could predict
-ESD failures at the architecture level and during the IC architecture phase.
+% Next
+The next section will explore a modification of the characterization method to fix the binary failure criteria issue.
 
 \subsection{Proposed workaround}
 % What's the plan to fix that crap
-As was identified earlier in \ref{sec:current-limitations}, using a single failure criteria for modeling the output waveform is the main cause of error.
-A modification to the characterization method is now proposed.
+As it was identified earlier, a binary failure criteria for modeling the output waveform is the main cause of error.
+A modification to the characterization method is proposed.
 
 % What is kept in the method, What is modified
-The characterization is still performed per-block, by injecting variable width and variable amplitude rectangular pulses on an input.
+The characterization is still performed per-block, still by injecting variable width and variable amplitude rectangular pulses on an input.
 However, the failure criteria on the output is now eliminated.
-Instead, the maximum amplitude value on the output is recorded.
-Then, the width of the disturbance at 90\% of the maximum amplitude is also measured.
-%TODO: Why 90% ?
-This greatly improves the modeling of the output curve.
-%TODO: Why is it an improvement ?
-This process is illustrated in Fig. \ref{fig:impact-single-failure-criteria}.
+Instead, two values are recorded rather than one.
+First, the maximum amplitude value on the output is measured.
+Second, the width of the disturbance is also sampled.
+It is measured at a fixed percentage of the maximum amplitude.
 
-\begin{figure}[!htbp]
+% What value and why ?
+In our current study case, a value of 90\% was employed.
+It provides some noise-margin against voltage fluctuations near maximum amplitude during the pulse.
+The concept is illustrated in Fig. \ref{fig:impact-single-failure-criteria}.
+Basically, this method can be seen as modelling and simplifying a complex waveform into a rectangular waveform.
+
+\begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/better_output_modelling.pdf}
   \caption{Improved output modelling method based on 90\% of maximum disturbance amplitude}
@@ -193,3 +188,23 @@ This process is illustrated in Fig. \ref{fig:impact-single-failure-criteria}.
 \end{figure}
 
 % Result, 2 curves - explain what they are.
+Since two parameters are now recorded, two curves are obtained per block rather than one.
+The first curve is $out_{amplitude} = f(in_{width}, in_{amplitude})$.
+The second curve is $out_{width} = f(in_{width}, in_{amplitude})$.
+
+% What is the improvement
+These two curves constitute the model of the block.
+Like done previously, models are chained together to deduce the robustness of a complete function.
+Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process using these two curves per model.
+
+\begin{figure}[!hp]
+  \centering
+  \includegraphics{src/4/figures/full_method_overview_v2.pdf}
+  \caption{Overview of improved bottom-up method - example with two blocks}
+  \label{fig:full-method-v2}
+\end{figure}
+
+% Explain the figure
+First, the transistor-level schematic of each block is used to perform a characterization.
+For each block, the two curves detailed previously are obtained.
+Afterwards, the impact of a \gls{tlp} stress is simulated using those models.
