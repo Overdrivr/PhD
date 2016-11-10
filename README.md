@@ -93,13 +93,6 @@ Grunt will watch for changes and new files and will regenerate automatically `.p
 
 When changing glossary related stuff, glossary generation can fail if the makeglossaries executable is not found.
 
-For tables, it is good to enforce strict placement just like figures by adding `[!htbp]` in the table options.
-For instance
-```
-\begin{table}[!htbp]
-% etc, table code
-```
-
 ## Cheat-sheet
 
 ### Cross references
@@ -128,7 +121,7 @@ You can reference multiple bibliography entries like this:
 To leave figure as-is (works well with pdf)
 
 ```
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics{src/1/figures/iso10605_waveform.pdf}
   \caption{All waveforms defined in ISO 10605 standard}
@@ -139,7 +132,7 @@ To leave figure as-is (works well with pdf)
 To clamp figure width to text width use `[width=\textwidth]`
 
 ```
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iso10605_waveform.pdf}
   \caption{All waveforms defined in ISO 10605 standard}
@@ -150,7 +143,7 @@ To clamp figure width to text width use `[width=\textwidth]`
 To clamp width to text width with some ratio use `[width=0.9\textwidth]`
 
 ```
-\begin{figure}[!htbp]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/1/figures/iso10605_waveform.pdf}
   \caption{All waveforms defined in ISO 10605 standard}
@@ -158,7 +151,15 @@ To clamp width to text width with some ratio use `[width=0.9\textwidth]`
 \end{figure}
 ```
 
-See [here](http://tex.stackexchange.com/a/1527/105955) to why `!htbp`
+Using the `[!h]` qualifier tells Latex to place the figure *right here*, as much as possible.
+The `!` is enforcing further the placement rules given in the next table.
+
+qualifier | name | comment
+----------|------|--------
+h | here | Place the figure where the `figure` environment was called (if the available page space permits it)
+t | top | Place the figure at the top of a page
+b | bottom | Place the figure at the bottom of a page
+p | page |  Place the figure in its own page, separated from text
 
 ### Greek letters
 
