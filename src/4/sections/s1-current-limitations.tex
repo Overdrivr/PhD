@@ -205,6 +205,38 @@ Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaini
 \end{figure}
 
 % Explain the figure
-First, the transistor-level schematic of each block is used to perform a characterization.
-For each block, the two curves detailed previously are obtained.
-Afterwards, the impact of a \gls{tlp} stress is simulated using those models.
+After each block is characterized, a \gls{tlp} stress is applied to the first model.
+In this example, the pulse has an amplitude of 50V ($in_{amplitude}$) and a width of 100ns ($in_{width}$).
+The first curve indicates the output is disturbed with a maximum amplitude of 12V ($out_{amplitude}$).
+The second curve indicates the output is disturbed during 350ns ($out_{width}$).
+These two values can now be applied to the model of block B with the same process.
+Finally, it is found that the output is disturbed at a maximum amplitude of 3V during 4000ns.
+
+\subsection{Application to the testchip}
+
+% Apply to the teschip
+The new method is applied to the testchip for testing its validity.
+The pre-regulator, bandgap and regulator characterizion are given in Figs. \ref{fig:pre-reg-cz-v2},
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_prereg_v2.pdf}
+  \caption{Pre-regulator characterization}
+  \label{fig:pre-reg-cz-v2}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_bandgap_v2.pdf}
+  \caption{Bandgap characterization}
+  \label{fig:bandgap-cz-v2}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_reg_v2.pdf}
+  \caption{Regulator characterization}
+  \label{fig:reg-cz-v2}
+\end{figure}
+
+% Apply a TLP to the models
