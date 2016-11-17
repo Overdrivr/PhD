@@ -218,25 +218,42 @@ Finally, it is found that the output is disturbed at a maximum amplitude of 3V d
 The new method is applied to the testchip for testing its validity.
 The pre-regulator, bandgap and regulator characterizion are given in Figs. \ref{fig:pre-reg-cz-v2},
 
-\begin{figure}[!h]
+\begin{figure}[!hp]
   \centering
   \includegraphics[width=0.4\textwidth]{src/4/figures/cz_prereg_v2.pdf}
   \caption{Pre-regulator characterization}
   \label{fig:pre-reg-cz-v2}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hp]
   \centering
-  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_bandgap_v2.pdf}
+  \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_amplitude.png}
   \caption{Bandgap characterization}
-  \label{fig:bandgap-cz-v2}
+  \label{fig:bandgap-cz-v2-amp}
 \end{figure}
 
-\begin{figure}[!h]
+% Comment a little
+
+\begin{figure}[!hp]
   \centering
-  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_reg_v2.pdf}
+  \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_width.png}
+  \caption{Bandgap characterization}
+  \label{fig:bandgap-cz-v2-width}
+\end{figure}
+
+%TODO: Inverse colorscale - small amplitude means more disturbed
+\begin{figure}[!hp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_amplitude.png}
   \caption{Regulator characterization}
-  \label{fig:reg-cz-v2}
+  \label{fig:reg-cz-v2-amp}
+\end{figure}
+
+\begin{figure}[!hp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_width.png}
+  \caption{Regulator characterization}
+  \label{fig:reg-cz-v2-width}
 \end{figure}
 
 % Apply a TLP to the models
