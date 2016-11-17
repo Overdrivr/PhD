@@ -215,45 +215,102 @@ Finally, it is found that the output is disturbed at a maximum amplitude of 3V d
 \subsection{Application to the testchip}
 
 % Apply to the teschip
-The new method is applied to the testchip for testing its validity.
-The pre-regulator, bandgap and regulator characterizion are given in Figs. \ref{fig:pre-reg-cz-v2},
+The new method is applied to the same three blocks of the testchip for checking its validity.
+The pre-regulator is characterized first (Figs \ref{fig:pre-reg-cz-v2-amp} and \ref{fig:pre-reg-cz-v2-width}).
 
-\begin{figure}[!hp]
+\begin{figure}[!h]
   \centering
-  \includegraphics[width=0.4\textwidth]{src/4/figures/cz_prereg_v2.pdf}
-  \caption{Pre-regulator characterization}
-  \label{fig:pre-reg-cz-v2}
+  \includegraphics[width=0.95\textwidth]{src/4/figures/vpre_cz_V2_amplitude.png}
+  \caption{Pre-regulator characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
+  \label{fig:pre-reg-cz-v2-amp}
 \end{figure}
 
 \begin{figure}[!hp]
   \centering
+  \includegraphics[width=0.95\textwidth]{src/4/figures/vpre_cz_V2_width.png}
+  \caption{Pre-regulator characterization - $W_{out} = f(V_{in}, W_{in})$}
+  \label{fig:pre-reg-cz-v2-width}
+\end{figure}
+
+% Detail graph - pre-reg amplitude
+Fig. \ref{fig:pre-reg-cz-v2-amp} plots a gradient representing the minimal amplitude of the output signal,
+in function on the input stress characteristics (amplitude and width).
+The characterized block is the pre-regulator.
+It plots the \textbf{minimal} amplitude and not the \textbf{maximal} amplitude because the input stress is negative.
+Therefore, a smaller value on the output means a larger disturbance.
+
+% Analysis
+It can be noticed that the output voltage is mostly dependent on the input voltage, and not on the input pulse width.
+
+% Detail graph - pre-reg width
+Fig. \ref{fig:pre-reg-cz-v2-width} is the second curve obtained by characterizing the pre-regulator.
+It plots a gradient representing the disturbance width of the output, in function on the input voltage.
+The width of the disturbance is calculed by at 90\% of the minimum output amplitude.
+
+% Analysis
+This output width characteristic is quite different from the previous output voltage characteristic.
+Here, the output width depends on both the input amplitude and input width.
+For input voltages mostly above 2V, the output width does not depend on the input width.
+It is exclusively tied to the input voltage.
+Then, below 2V, this behavior becomes reversed. The output width is directly dependent on the input width,
+no matter the input voltage.
+%TODO: Try to explain why
+
+% Summarize
+Both Figs. \ref{fig:pre-reg-cz-v2-amp} and \ref{fig:pre-reg-cz-v2-width} constitute the pre-regulator model.
+
+\begin{figure}[!htb]
+  \centering
   \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_amplitude.png}
-  \caption{Bandgap characterization}
+  \caption{Bandgap characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
   \label{fig:bandgap-cz-v2-amp}
 \end{figure}
 
-% Comment a little
-
-\begin{figure}[!hp]
+\begin{figure}[!htb]
   \centering
   \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_width.png}
-  \caption{Bandgap characterization}
+  \caption{Bandgap characterization - $W_{out} = f(V_{in}, W_{in})$}
   \label{fig:bandgap-cz-v2-width}
 \end{figure}
 
+% Analyse bandgap cz
+The bandgap is also characterized with the exact same approach.
+The output amplitude curve in Fig. \ref{fig:bandgap-cz-v2-amp} has mostly an input-amplitude dependency, except for large voltage disturbances.
+The output width curve in Fig. \ref{fig:bandgap-cz-v2-width} has a clear input voltage and width dependency.
+This means the output is disturbed because of an energy level, not just a signal level.
+
 %TODO: Inverse colorscale - small amplitude means more disturbed
-\begin{figure}[!hp]
+\begin{figure}[!htb]
   \centering
   \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_amplitude.png}
-  \caption{Regulator characterization}
+  \caption{Regulator characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
   \label{fig:reg-cz-v2-amp}
 \end{figure}
 
-\begin{figure}[!hp]
+%TODO: Fix the colorscale
+\begin{figure}[!htb]
   \centering
   \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_width.png}
-  \caption{Regulator characterization}
+  \caption{Regulator characterization - $W_{out} = f(V_{in}, W_{in})$}
   \label{fig:reg-cz-v2-width}
 \end{figure}
+
+% Analyse regulator cz
+Finally, the regulator is also characterized.
+The output amplitude curve in Fig. \ref{fig:reg-cz-v2-amp} has a clear input voltage and width dependency.
+Therefore, the output voltage is disturbed because of an excedent energy on the input.
+A large-amplitude short pulse and a small-amplitude long pulse should the disturb the output almost identically.
+
+The output width curve in Fig. \ref{fig:reg-cz-v2-amp} is the most complex of all to interpretate.
+Both voltage and width impact the output.
+Beyond an input width of 7500ns, the output is suddenly heavily disturbed.
+Just below 7300ns, the curve value is XXXX ns.
+At 7500ns, the output width is now XXXXns.
+This specific area of the curve looks like a clear soft-failure, where the system suddenly goes into reset or safe-mode, and a long procedure to restart it happens.
+
+% Conclude
+%TODO
+Input voltage output voltage no direct relation
+width also plays a role
 
 % Apply a TLP to the models
