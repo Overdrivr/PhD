@@ -14,9 +14,9 @@ The input/outputs in table \ref{selected-pins-for-cz} were selected for applying
 \begin{tabular}{@{}llllll@{}}
 \toprule
 input pin       &  DC value (V) & stress amplitude   &  stress width   &   output      & Fail criteria \\ \midrule
-vbat            &  12V          & -1V to -10V        &  1ns to 1000ns  &   vclamp9     & < 0V             \\
+vbatt           &  12V          & -1V to -10V        &  1ns to 1000ns  &   vclamp9     & < 0V             \\
 vclamp9         &  9V           & -1V to -15V        &  1ns to 1000ns  &   vref1p0     & < 1.25 V         \\
-v1p0            &  1.0V         & -0.5 to -10V       &  1ns to 1000ns  &   v2p5        & < 2.1 V          \\
+vref1p0         &  1.0V         & -0.5 to -10V       &  1ns to 1000ns  &   v2p5        & < 2.1 V          \\
 \bottomrule
 \end{tabular}
 \caption{Selected pins for characterization and characterization limits}
@@ -149,6 +149,7 @@ The model predicted 2300 ns.
 At the first block's output, there is a factor of 2 between model and reference simulation.
 
 %TODO: To replace with one extracted with perfect sources
+%TODO: Fix scale (us instead of ns)
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/total_simulation_30V_1u.png}
