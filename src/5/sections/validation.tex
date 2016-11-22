@@ -1,1 +1,68 @@
 \section{Validation of the TLP-HMM}
+
+\subsection{Model validation}
+
+The response of the generator is tested in conditions as close as possible to the ISO 10605 standard [3].
+Basically, the generator is connected to a 2 load, itself connected to a 12GHz (10 ps/sample point) oscilloscope with a 50 input impedance.
+The setup (Fig. 10) is identical to the target measurement setup defined in [2][3] in terms of impedance.
+
+%TODO: Fig injection setup
+
+The only difference is that the system is entirely connected through coaxial cables.
+The resulting waveform is given in Figure 11. The simulation is also provided for comparison.
+Measured currents at 30ns and 60ns are within the 30\% tolerance of the standard (see Table 1).
+The measured peak current is a bit lower (110 mA short of minimum margin), but this is very easily corrected on the TLP by adding a small positive offset on the charging voltage.
+
+%TODO: Fig waveform comparison
+
+%TODO: Table margins
+
+there is a clear difference from the simulation in the measured signal from 40 ns.
+This comes from the shaping filter, and the inductances in particular.
+Their frequency behavior is not as good as expected and having four inductances in parallel has increased this issue.
+Indeed, in the shaping filter configuration, the parasitic capacitances of inductors are in parallel.
+Thus, they add together, leading to a degraded frequency behavior.
+For the next iteration of the shaping filter, a single RF inductor should be used instead.
+The shaping filter model can be corrected by connecting in parallel a total parasitic capacitance of 2nF in series with a 15 parasitic resistor (Fig. 12).
+The glitch visible at approximately 120 ns is due to the absorber, because of two different parasitic devices.
+At the beginning of the TLP pulse, the parasitic capacitance between signal and ground (estimated to 20 pF in simulation) is charged.
+Its sudden discharge at the end of the TLP pulse causes the short voltage/current increase observed at 120 ns.
+Then, the parasitic series inductance of the three 2.2nF capacitors and the 50 resistor (Fig. 13) are responsible afterward for the small oscillation observed between 120 ns to 150 ns.
+
+%TODO: Fig parasitics shaping filter
+
+%TODO: Fig parasitics absorber
+
+This issue should be fixed in the next iteration of the absorber by building the absorber on a dedicated PCB with 50  lines.
+Guarantying matching along the path should eliminate this effect
+
+%TODO: Fig new waveform comparison
+
+The measurement/simulation comparison Fig. 14 takes into account all the parasitic devices in the circuit (inductors frequency behavior and absorber parasitic capacitance), leading to a much better correlation.
+
+Afterwards, resistive loads of 2 10 and 0 are tested
+The first two loads are simply constituted of several resistors in parallel.
+The oscilloscope input impedance is used for the 50  load.
+In this case, reflections are eliminated by the matched load and the waveform is less disturbed.
+
+For 2 and 10, the measurements (Fig. 16 & 17) are quite noisy because of reflections.
+Despite that, it is interesting to observe that overall the amplitudes match well.
+The differences come mostly from parasitic devices not taken into account in those simulation.
+
+%TODO: Waveforms 2ohm, 10ohm, 50ohms
+
+
+\subsection{Comparison with an ESD Gun}
+%TODO: Make a structural review of this section
+
+Destroying ESD protections is actually a well known an common method for correlating stress generators (TODO: Find a reference).
+
+Different ESD protections are tested until breakdown.
+The goal is see if a mathematical relation can be established between failures levels found with each generator.
+
+The test procedure is standard and consists in monitoring the leakage current after each new pulse.
+Failure levels are compared for TLP, TLP-HMM and HMM.
+Five samples are tested for each structure with each generator to ensure that the failure levels do not have large variations in failure levels. This number of samples is still quite low, but is considered sufficient for this study.
+The results are summarized in Table 4.
+
+%TODO: Table of failures

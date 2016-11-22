@@ -2,7 +2,32 @@
 
 TLP used throughout this document
 Tool of choice for studying behavior at IC level, because very clean, controllable pulses in a shielded environment
-But ultimately, ESD Gun is required to pass specifications
-Problems, etc.
 
-Ultimately, ESD tester that combines flexibility and shielding of TLP + reproduces well-acknowledged Gun waveform.
+But ultimately, ESD Gun is required to pass specifications
+HMM specification [1] IEC 61000-4-2 and ISO 10605 standards [2][3] define the same pulse waveform with different application conditions
+Virtually makes it the most widely used stress pulses in ESD testing and ESD qualification of products.
+Together, these standards cover a very large amount of tested applications from equipment, boards, down to integrated circuit.
+
+TLP can sometime correlate with ESD gun induced failures [REF], but not always
+in some cases, this approach won’t work and no clear correlation can be established [5].
+According to [4], this is particularly the case with 2k ESD gun discharge modules.
+
+[5] demonstrates that some ESD structures in analog high-voltage technology have completely uncorrelated failure levels between TLP and HMM. Failure analysis shows that the failure mechanisms are different.
+These few cases are problematic because then TLP testing cannot be blindly trusted to reproduce an ESD gun issue.
+
+So the original pulse must be employed
+For integrated circuits in particular, this step can be quite challenging
+the pulse waveform is complex and makes to difficult analysis.
+
+
+Ultimately, developped an ESD tester that combines flexibility and shielding of TLP + reproduces well-acknowledged Gun waveform.
+Such approach has been explored successfully in the past by E. Grund [6] and Y. Cao [7].
+%TODO: Comment alternatives
+In [6], a TLP generator is modified by placing an impedance mismatch (resistor) between two coaxial lines.
+On the other side, in [7], a capacitive discharge through a short coaxial cable is employed to generate an HMM-compliant pulse.
+
+The setup described here is a different alternative
+Based on propation delays to shape the pulse [ref to me ?].
+The ultimate goal is to have a drop-in replacement for ESD guns when investigation is required.
+
+%TODO: Speak about disturbances caused by radiated emissions that cannot be reproduced with a shielded generator
