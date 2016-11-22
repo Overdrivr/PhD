@@ -324,18 +324,61 @@ A first comparison is given in Table. \ref{tab:model-v2-vs-sim} for a (100ns, -3
 \begin{tabular}{@{}lllllllll@{}}
            & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
 \toprule
-models     & 92.44 ns      & -2.72 V     & 85 ns       & -1.00 V       & 183 ns      & 2.41 V     \\
-simulation & xx ns         & xx V        & xx ns       & xx V          & xx ns       & xx V
+models     & 92 ns      & -4.41 V        & 85 ns       & -1.40 V       & 185 ns      & 2.41 V     \\
+simulation & 101 ns     & -2.19 V        & 87 ns       & -0.91 V       & 337 ns      & 2.26 V
 \end{tabular}
-\caption{Model application for (100ns, -30V) input stress}
+\caption{Model application for (100ns, -50V) input stress}
 \label{tab:model-v2-vs-sim}
 \end{table}
 
-%TODO: For more values
+\begin{table}[!h]
+\centering
+\begin{tabular}{@{}lllllllll@{}}
+           & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
+\toprule
+models     & 92 ns      & -11.42 V       & 61 ns       & -3.55 V       & 184 ns      & 2.41 V     \\
+simulation & 101 ns     & -4.00 V        & 94 ns       & -2.63 V       & 341 ns      & 2.25 V
+\end{tabular}
+\caption{Model application for (100ns, -200V) input stress}
+\label{tab:model-v2-vs-sim-2}
+\end{table}
 
-%
-Show it still doesn't correlate
-Say it's most likely related to the connection differences between the total simulation and individual blocks.
-Show figure of product architecture
-Show modified product architecture
-If it correlates, conclude the entire study with the final limitations (circuits connection topology versus a linear network)
+\begin{table}[!h]
+\centering
+\begin{tabular}{@{}lllllllll@{}}
+           & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
+\toprule
+models     & 1000 ns      & -11.48 V     & 894 ns       & -3.64 V      & 293 ns      & 2.27 V     \\
+simulation & 1000 ns      & -4.87 V      & 613 ns       & -3.43 V      & 698 ns      & 2.06 V
+\end{tabular}
+\caption{Model application for (1us, -200V) input stress}
+\label{tab:model-v2-vs-sim-3}
+\end{table}
+
+Correlation seems improved compared to first method, especially for predicting the disturbance width.
+However, amplitude is still not great.
+Of all three models, the regulator is the one that seems to be the less accurate.
+To understand those differences, both simulations are compared
+
+%TODO: Show a characterization simu first block wvf versus full simu first block output
+
+%TODO: Interpret simulation comparison
+
+Final sources of error : 90\% limit, that could benefit from a 10\% limit, and difference between the actual study case and the characterization schematics.
+
+\subsection{Final limitations and conclusion}
+
+% Opening on how to improve the modeling
+Characterization could be improved by using multiple thresholds and obtain width at those multiple thresholds.
+A more accurate model of the output could be derived.
+Ideally, the integral of the output waveform and the model waveform should be compared, and if a too large difference appears, more thresholds should be used.
+
+%TODO: Figure
+
+Ultimately, the goal is to build a simpler representation of the output waveform of a block, composed of square shapes.
+The main advantage of those shape is that they are understood by the block models.
+It could be seen as a mathematical transformation of a time-domain waveform into a square-domain waveform.
+
+% What are the final limits of this method
+How to handle real circuit topology (interconnect mesh) versus the linear one used in the characterization.
+Talk about 1 pin to many pin that is ok, but many pin to 1 is not covered at all by this method
