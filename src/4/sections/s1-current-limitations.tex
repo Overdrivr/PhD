@@ -322,22 +322,41 @@ A first comparison is given in Table. \ref{tab:model-v2-vs-sim} for a (100ns, -3
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
+           & \multicolumn{2}{l}{vclamp9}          & \multicolumn{2}{l}{vref1p0}          & \multicolumn{2}{l}{v2p5}               \\
 \toprule
-models     & 92 ns      & -4.41 V        & 85 ns       & -1.40 V       & 185 ns      & 2.41 V     \\
-simulation & 101 ns     & -2.19 V        & 87 ns       & -0.91 V       & 337 ns      & 2.26 V
+models     & 92 ns  & \textcolor{red!90}{-4.41 V} & 85 ns & \textcolor{red!90}{-1.40 V}  & \textcolor{red!90}{185 ns} & \textcolor{blue!90}{2.41 V} \\
+simulation & 101 ns & -2.19 V                     & 87 ns & -0.91 V                      & 337 ns      & 2.26 V
 \end{tabular}
 \caption{Model application for (100ns, -50V) input stress}
 \label{tab:model-v2-vs-sim}
 \end{table}
 
+% What correlates in the first table
+This new characterization method seems to be a major improvement over the first one (described previously in \ref{sec:block-failure-cz}).
+The pre-regulator's output is estimated to be disturbed during 92 ns, with only 9 ns of difference with the reference simulation.
+Similarly, the bandgap's output is estimated to be disturbed during 85 ns, with an error of only 2 ns.
+For these first two blocks, the models seem to predict correctly the disturbance width.
+
+% What does not correlate
+On the other hand, the model does not correlate well with the reference simulation for the regulator's output .
+The disturbance's width is estimated at 185 ns, which is almost half the reference value of 337 ns.
+The disturbance's amplitude obtained with the models is extremely close to the nominal value.
+It would mean that the output should almost not be disturbed.
+In practice, the reference simulation shows that the simulation is disturbed and drops at 2.26 V.
+
+% preliminary conclusion
+As a preliminary conclusion, the models estimate correctly the disturbance's duration.
+The width obtained for the regulator is wrong, but it might be a particular case where the width is not recorded properly.
+The models however require improvements for predicting the disturbed amplitude.
+The models are tested once again against the reference for different input pulses (tables \ref{tab:model-v2-vs-sim-2} and \ref{tab:model-v2-vs-sim-3}).
+
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
+           & \multicolumn{2}{l}{vclamp9}           & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
 \toprule
-models     & 92 ns      & -11.42 V       & 61 ns       & -3.55 V       & 184 ns      & 2.41 V     \\
-simulation & 101 ns     & -4.00 V        & 94 ns       & -2.63 V       & 341 ns      & 2.25 V
+models     & 92 ns  & \textcolor{red!90}{-11.42 V} & 61 ns       & -3.55 V       & \textcolor{red!90}{184 ns} & \textcolor{blue!90}{2.41 V}     \\
+simulation & 101 ns & -4.00 V                      & 94 ns       & -2.63 V       & 341 ns                     & 2.25 V
 \end{tabular}
 \caption{Model application for (100ns, -200V) input stress}
 \label{tab:model-v2-vs-sim-2}
@@ -346,23 +365,34 @@ simulation & 101 ns     & -4.00 V        & 94 ns       & -2.63 V       & 341 ns 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9} & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
+           & \multicolumn{2}{l}{vclamp9}            & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
 \toprule
-models     & 1000 ns      & -11.48 V     & 894 ns       & -3.64 V      & 293 ns      & 2.27 V     \\
-simulation & 1000 ns      & -4.87 V      & 613 ns       & -3.43 V      & 698 ns      & 2.06 V
+models     & 1000 ns & \textcolor{red!90}{-11.48 V} & 894 ns       & -3.64 V      & \textcolor{red!90}{293 ns}  & 2.27 V     \\
+simulation & 1000 ns & -4.87 V                      & 613 ns       & -3.43 V      & 698 ns                      & 2.06 V
 \end{tabular}
 \caption{Model application for (1us, -200V) input stress}
 \label{tab:model-v2-vs-sim-3}
 \end{table}
 
-Correlation seems improved compared to first method, especially for predicting the disturbance width.
-However, amplitude is still not great.
-Of all three models, the regulator is the one that seems to be the less accurate.
-To understand those differences, both simulations are compared
+% What is correlating, what is not
+The width is well predicted for the pre-regulator (\textit{vclamp9}) and bandgap (\textit{vref1p0}) models.
+There is an issue however with the regulator's model, that underestimates the simulated duration on \textit{v2p5}.
+On the other hand, the amplitude is not estimated correctly.
+
+% Look at v2p5 for explaining differences
+Overall, the regulator model is the less accurate one.
+To understand those differences, the reference simulation waveform is compared to the model's waveform.
+The reference simulation is run with a (100 ns, -200V) pulse injected on \textit{vbatt}.
+It should result in a (94 ns, -2.63 V) disturbance on the input of the regulator. NOPE!
+The model's simulation is run by a injecting the same (94 ns, -2.63 V) pulse on the regulator's input.
+This pair of values is obtained from table \ref{tab:model-v2-vs-sim-2}.
 
 %TODO: Show a characterization simu first block wvf versus full simu first block output
 
 %TODO: Interpret simulation comparison
+
+Input waveform is not modeled properly. Much wider than expected.
+Pulse width seems to have the largest impact on the regulator than pulse amplitude
 
 Final sources of error : 90\% limit, that could benefit from a 10\% limit, and difference between the actual study case and the characterization schematics.
 
