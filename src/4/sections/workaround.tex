@@ -52,8 +52,56 @@ Finally, it is found that the output is disturbed at a maximum amplitude of 3V d
 
 \subsection{Application to the testchip}
 
-% Apply to the teschip
-The new method is applied to the same three blocks of the testchip for checking its validity.
+% What's the global idea, hypothesis here
+Hypothesis is for operating ESD simulations, the entire top-level circuit is not required
+The behavior of the block could be reproduced with a decent accuracy
+in the condition that it is correctly biased
+And that the rectangular pulse injected on the input matches rather closely the ESD waveform in terms of width and amplitude
+Under those conditions the output should vary similarly between full simulation and light, single-block simulation
+
+% How this hypothesis will be tested
+Preliminary verification
+Comparison of the total simulation and individual simulations used for characterization
+
+
+
+%TODO: Fig Total simulation
+%TODO: Fig indiv simulations
+
+First simulation
+Inject same TLP stress for both the reference and individual simulation, on vbatt pin.
+Both input waveform match, and so does output.
+Just used a 1Mohm resistor on the output
+%TODO: COmment about : We could study the impact of this value, like previously.
+
+Second simulation
+Thanks to the previous simulation, the vclamp9 net is modeled by a 800 ns ~ -1V rectangular waveform.
+We apply this rectangular pulse to the next block input, and still compare with the reference simulation.
+Waveforms are not identical, but the maximum amplitude and width are globally the same.
+The method is repeated on the next block
+
+Third sim
+The v1p0 signal, output of block 2 and input of block 3 is modeled by a (2us, 0V) rectangular waveform.
+This waveform is applied to block 3.
+Both output waveforms are quite close.
+Difference of max amplitude is about X V
+Width difference is ~ a few tens of ns ?
+
+So far the method seems to work.
+In this study case, it was proven that chaining individual simulations can reproduce the waveform of the final output very closely to the real and complete simulation.
+
+Important result
+It means that modularity could indeed by achieved for an ESD bottom-up characterization method
+
+Now that the simulation have shown it could be doable, the challenge is to extract the appropriate informations to build the models
+(pulse width, pulse amplitude).
+
+This way, for each input-output relation, we could associate an input(pulse width, pulse amplitude) to an output(pulse width, pulse amplitude), for a wide range of values.
+
+The models are build using the individual simulations
+A set of (pulse width, pulse amplitude), and for each couple of values, the more appropriate (output width, output amplitude) is selected (TODO: describe how somewhere)
+
+%TODO: Review next
 The pre-regulator is characterized first (Figs \ref{fig:pre-reg-cz-v2-amp} and \ref{fig:pre-reg-cz-v2-width}).
 
 \begin{figure}[!h]
