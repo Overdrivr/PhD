@@ -1,48 +1,28 @@
 \subsection{Proposed workaround}
 
-%BIG TODO
-% Need to rework this section, by following more closely the characterization process
-% 1. quick summary of the previous method (btw the description here of the first method is quite good, and should be moved in s1-block-cz)
-% 2. simulation per-block gives plenty of input/output waveforms
-% 3. For each sim, simplify both input and output waveforms by square signals
-% 5. Put all pairs of values into a lookup table
-% 4. Define the rule for simplifying the waveforms
-
-% What's the plan to fix that crap
-As identified earlier, a single failure criteria for modeling the output waveform is the main cause of error.
-A modification to the characterization method is proposed.
+%
+In the first proposed approach, blocks are characterized using a failure criteria on the output.
+If the output goes beyond this criteria, the failure duration is recorded.
+The characterization is done with a large range of input amplitude and duration.
+This yiels a large 2D table that associates to an input amplitude and input duration, an output duration.
+This table is a part of the block model.
+The output amplitude must also be modeled to be able to predict the output waveform from the input waveform.
+Since the characterization is performed with a fixed failure criteria, almost all information regarding the output amplitude is lost.
+The only remaining data is whether the criteria was violated or not.
+It was supposed earlier that this limitation is the main source of error.
 
 % What is kept in the method, What is modified
-The characterization is still performed per-block, by injecting variable width and amplitude pulses on the input, and characterizing the output.
-%TODO:Comment both figures somewhere
-\begin{figure}[!h]
-  \centering
-  \includegraphics{src/4/figures/principle_transfert_function.pdf}
-  \caption{First modelling method}
-  \label{fig:principle-transfert-func}
-\end{figure}
+A modification of the characterization method is proposed.
+The failure criteria on the output is removed.
+Instead, the extreme output amplitude value is recorded in addition to the duration.
+The block model now contains two 2D tables instead of one.
+The first table still associates an output duration to an input width/amplitude.
+The second and new table associates an output amplitude to an input width/amplitude.
 
-However, the failure criteria on the output is removed.
-Instead, two values are recorded, the maximum amplitude and duration of the output disturbance.
-The goal is to replace each input and output disturbance waveform by a rectangular waveform model.
-
-In the first modeling method, the block model represents a transfert function F (Eq. \ref{eq-method-cz-1}) that models the duration of the disturbance on the output. The disturbance amplitude is constant, equal to the failure criteria.
-
-\begin{empheq}[left=\empheqlbrace]{align}
-\label{eq-method-cz-1}
-& V_{out} = V_{fail} \\
-& W_{out} = F(V_{in}, W_{in})
-\end{empheq}
-
-In the new approach, the block model still returns a duration-amplitude pair, but the output amplitude is not a fixed value anymore (Eq. \ref{eq-method-cz-2}).
-The model contains two functions, $F_{W}$ and $F_{V}$.
-$F_{W}$ returns the disturbance's length for $(V_{in}, W_{in})$, while $F_{V}$ returns the disturbance's amplitude for the same inputs.
-
-\begin{empheq}[left=\empheqlbrace]{align}
-\label{eq-method-cz-2}
-& W_{out} = F_{W}(V_{in}, W_{in}) \\
-& V_{out} = F_{V}(V_{in}, W_{in})
-\end{empheq}
+Fig. \ref{fig:principle-transfert-func-v2} summarizes the new model.
+Function $F_{W}$ uses the first table mentioned previously.
+It returns for an arbitrary input amplitude and width the closest output width found in the table.
+Function $F_{V}$ is identical, except it is using the second table, and returns the closest output amplitude.
 
 \begin{figure}[!h]
   \centering
@@ -51,15 +31,90 @@ $F_{W}$ returns the disturbance's length for $(V_{in}, W_{in})$, while $F_{V}$ r
   \label{fig:principle-transfert-func-v2}
 \end{figure}
 
-% What are the functions
-Both functions $F_{W}$ and $F_{V}$ are implemented as lookup tables.
-The first lookup table for $F_{W}$ that associates to $V_{in}$ and $W_{in}$, an output width $W_{out}$.
-The second lookup table for $F_{W}$ that associates to $V_{in}$ and $W_{in}$, an output amplitude $V_{out}$.
+% What's the global idea, hypothesis here
+The method described here relies on the hypothesis that the entire top-level circuit is not required for ESD simulations.
+The behavior of the block could be reproduced with a decent accuracy in the condition that it is correctly biased and loaded.
+Under those conditions the output is supposed to vary similarly between a full simulation and a light, single-block simulation.
+Of course, to obtain the response of multiple blocks, models must be connected or chained together.
+Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process.
 
-% How to select a proper width and amplitude
-At this point the main challenge is to find the right rule to extract $V_{in}$ and $W_{in}$ from the input waveform, and $V_{out}$ and $W_{out}$ from the output.
+\begin{figure}[!hp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/4/figures/full_method_overview_v2.pdf}
+  \caption{Overview of improved bottom-up method - example with two blocks}
+  \label{fig:full-method-v2}
+\end{figure}
+
+\subsubsection{Preliminary application}
+% First run the reference sim
+To test this new approach, a few simulations are run.
+A first reference simulation is performed first.
+It contains the complete schematic, composed of the three blocks of our study case.
+An electrical disturbance is injected on the first input $V_{batt}$.
+The final output $V_{2p5}$, and intermediate nets $V_{clamp9}$ and $V_{1p0}$ are observed and disturbance properties on those nets recorded.
+
+%TODO: Schema setups
+
+% Then do the same thing but with the individual models
+Afterwards, each block is simulated separately in its own testbench.
+The first block is stressed with the same pulse than the reference simulation.
+Its output waveform is compared with the reference in Fig. \ref{fig:sim-compare-block1}.
+Both curves (blue and green) look rather similar, in terms of maximum amplitude, duration and overall shape.
+The maximum amplitude is estimated at -1.5 V and the duration at 880 ns.
+The red curve represents the waveform injected on the second block and configured using these two values.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block1.png}
+  \caption{$V_{clamp9}$ waveform}
+  \label{fig:sim-compare-block1}
+\end{figure}
+
+% Second block output
+On the second block output, the blue and green waveforms exhibit more differences (Fig. \ref{fig:sim-compare-block2}).
+The green waveform has a longer slope than the reference.
+However, both waveforms are still quite close in terms of maximum amplitude and duration.
+This is an interesting results, because it shows that blocks can be simulated individually for ESD waveforms, without loosing too much accuracy.
+This is great for simulation speed and modularity.
+Once again, the red curve represents the waveform injected on the third block.
+It is a simplified waveform derived from the blue and green curves, with a width of 2 \textmugreek{}s and an amplitude of 0V.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block2.png}
+  \caption{$V_{1p0}$ waveform}
+  \label{fig:sim-compare-block2}
+\end{figure}
+
+% Third output
+On the third and final block output (Fig. \ref{fig:sim-compare-block3}), both waveforms are very similar.
+The difference in terms of maximum amplitude can be explained by an offset between both curves a $t=0$.
+The reference curve is delayed in comparison of the individual simulation, but otherwise both curves match.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block3.png}
+  \caption{$V_{2p5}$ waveform}
+  \label{fig:sim-compare-block3}
+\end{figure}
+
+% Conclusion, it works for this case
+In conclusion, for this specific study-case, simulating the models isolately produced the same results than the reference simulation, for estimating degradation of functionality.
+The consequence is that block models extracted from variable amplitude/width characterization should work properly, since it is mathematically equivalent to the simulations that were performed in this section (block models can be seen as pre-computed simulations).
+
+The next section discusses how to automate the extraction of a width and amplitude from a waveform, in order to simplify it.
+
+\subsubsection{Automating model extraction}
+
+% What is the challenge regarding the extraction of the models
+In the simulations described earlier, a single width and maximum amplitude per waveform were extracted manually.
+However, the waveforms are not square at all, and an width and amplitude cannot always be extracted easily.
+The challenge is to find the right rule for simplifying them into a rectangular waveform, and extracting the two parameters.
+This applies to the input waveform, and the output waveform.
+
+% First approach with a 90% amplitude
 Initially, the rules were to set $V$ equal to the maximum value of the waveform (input or output), and $W$ the width of the pulse at 90\% of $V$.
-The concept is illustrated in case \textit{A} in Fig. \ref{fig:impact-single-failure-criteria}.
+The concept is illustrated in Fig. \ref{fig:impact-single-failure-criteria} with a few example curves.
 
 \begin{figure}[!h]
   \centering
@@ -69,326 +124,55 @@ The concept is illustrated in case \textit{A} in Fig. \ref{fig:impact-single-fai
 \end{figure}
 
 % Problems with the 90% threshold
+In case \textit{A}, the waveform can be simplified easily into a rectangular pulse.
 However, this 90\% threshold does not work reliably with cases \textit{B} and \textit{C}.
 
+% Explain case B
 Case \textit{B} is often observed during the injection of an electrostatic discharge.
 The \gls{esd} signal is superimposed on top of a slow signal variation.
 In that case, the waveform exhibits a very short, high amplitude peak, followed by slower smaller-amplitude variation.
 The width of the pulse is much shorter than the original curve, leading the model to be very inaccurate.
 
+% Explain case C
 Case \textit{C} is observed on nets with high capacitive coupling to ground.
 Those signals are not directly disturbed by the \gls{esd}, but the block that drives them can go into reset.
 In this situation, the nets slowly decreases then, once functionnality resumes, the nets goes back to its nominal value.
 With the 90\% threshold, a large area of the disturbed waveform is missing in the model, making it very inaccurate.
 
+% What is the consequence
 In both those cases, the 90\% threshold leads to underestimating the total disturbance width.
 The modeled waveform has a much smaller duration and area than the original one.
-Overall, it was observed that the area of the model should be close to the actual waveform for the models to work.
-
-%TODO
-In itself, the value of 90\% is not problem
-50\% not good either
+Overall, it was observed that the model and original waveform areas should be close for the models to work.
 
 % The relative threshold is not good enough, a smarter technique is required
 Instead of focusing on the peak amplitude, a smarter method is required.
-A method is proposed in sec. XXX.
-For evaluating if the entire process could be functionnal, done manually
+Ideally, it needs to extract a width and amplitude that would result in the same area than the original waveform, while looking as similar as possible.
 
-% Smarter way to build the model
-Find features of the waveforms
-Feature detection using amplitude distribution
-
-% Overview of the complete process
-Similarly to XXX, models are chained together to deduce the robustness of a complete function.
-Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process using these two curves per model.
-
-\begin{figure}[!hp]
-  \centering
-  \includegraphics{src/4/figures/full_method_overview_v2.pdf}
-  \caption{Overview of improved bottom-up method - example with two blocks}
-  \label{fig:full-method-v2}
-\end{figure}
-
-% Explanation of the complete process
-After each block is characterized, a \gls{tlp} stress is applied to the first model.
-In this example, the pulse has an amplitude of 50V ($in_{amplitude}$) and a width of 100ns ($in_{width}$).
-The first curve indicates the output is disturbed with a maximum amplitude of 12V ($out_{amplitude}$).
-The second curve indicates the output is disturbed during 350ns ($out_{width}$).
-These two values can now be applied to the model of block B with the same process.
-Finally, it is found that the output is disturbed at a maximum amplitude of 3V during 4000ns.
-
-\subsection{Application to the testchip}
-
-% What's the global idea, hypothesis here
-Hypothesis is for operating ESD simulations, the entire top-level circuit is not required
-The behavior of the block could be reproduced with a decent accuracy
-in the condition that it is correctly biased
-And that the rectangular pulse injected on the input matches rather closely the ESD waveform in terms of width and amplitude
-Under those conditions the output should vary similarly between full simulation and light, single-block simulation
-
-% How this hypothesis will be tested
-Preliminary verification
-Comparison of the total simulation and individual simulations used for characterization
-
-
-
-%TODO: Fig Total simulation
-%TODO: Fig indiv simulations
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block1.png}
-  \caption{???}
-  \label{fig:sim-compare-block1}
-\end{figure}
-
-First simulation
-Inject same TLP stress for both the reference and individual simulation, on vbatt pin.
-Both input waveform match, and so does output.
-Just used a 1Mohm resistor on the output
-%TODO: COmment about : We could study the impact of this value, like previously.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block2.png}
-  \caption{???}
-  \label{fig:sim-compare-block2}
-\end{figure}
-
-Second simulation
-Thanks to the previous simulation, the vclamp9 net is modeled by a 800 ns ~ -1V rectangular waveform.
-We apply this rectangular pulse to the next block input, and still compare with the reference simulation.
-Waveforms are not identical, but the maximum amplitude and width are globally the same.
-The method is repeated on the next block
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block3.png}
-  \caption{???}
-  \label{fig:sim-compare-block3}
-\end{figure}
-
-Third sim
-The v1p0 signal, output of block 2 and input of block 3 is modeled by a (2us, 0V) rectangular waveform.
-This waveform is applied to block 3.
-Both output waveforms are quite close.
-Difference of max amplitude is about X V
-Width difference is ~ a few tens of ns ?
-
-%TODO: Rewrite next
-So far the method seems to work.
-In this study case, it was proven that chaining individual simulations can reproduce the waveform of the final output very closely to the real and complete simulation.
-
-Important result
-It means that modularity could indeed by achieved for an ESD bottom-up characterization method
-
-Now that the simulation have shown it could be doable, the challenge is to extract the appropriate informations to build the models
-(pulse width, pulse amplitude).
-
-This way, for each input-output relation, we could associate an input(pulse width, pulse amplitude) to an output(pulse width, pulse amplitude), for a wide range of values.
-
-The models are build using the individual simulations
-A set of (pulse width, pulse amplitude), and for each couple of values, the more appropriate (output width, output amplitude) is selected (TODO: describe how somewhere)
-
-%TODO: Review next
-The pre-regulator is characterized first (Figs \ref{fig:pre-reg-cz-v2-amp} and \ref{fig:pre-reg-cz-v2-width}).
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/vpre_cz_V2_amplitude.png}
-  \caption{Pre-regulator characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
-  \label{fig:pre-reg-cz-v2-amp}
-\end{figure}
-
-\begin{figure}[!hp]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/vpre_cz_V2_width.png}
-  \caption{Pre-regulator characterization - $W_{out} = f(V_{in}, W_{in})$}
-  \label{fig:pre-reg-cz-v2-width}
-\end{figure}
-
-% Detail graph - pre-reg amplitude
-Fig. \ref{fig:pre-reg-cz-v2-amp} plots a gradient representing the minimal amplitude of the output signal,
-in function on the input stress characteristics (amplitude and width).
-The characterized block is the pre-regulator.
-It plots the \textbf{minimal} amplitude and not the \textbf{maximal} amplitude because the input stress is negative.
-Therefore, a smaller value on the output means a larger disturbance.
-
-% Analysis
-It can be noticed that the output voltage is mostly dependent on the input voltage, and not on the input pulse width.
-
-% Detail graph - pre-reg width
-Fig. \ref{fig:pre-reg-cz-v2-width} is the second curve obtained by characterizing the pre-regulator.
-It plots a gradient representing the disturbance width of the output, in function on the input voltage.
-The width of the disturbance is calculed by at 90\% of the minimum output amplitude.
-
-% Analysis
-This output width characteristic is quite different from the previous output voltage characteristic.
-Here, the output width depends on both the input amplitude and input width.
-For input voltages mostly above 2V, the output width does not depend on the input width.
-It is exclusively tied to the input voltage.
-Then, below 2V, this behavior becomes reversed. The output width is directly dependent on the input width,
-no matter the input voltage.
-%TODO: Try to explain why
-
-% Summarize
-Both Figs. \ref{fig:pre-reg-cz-v2-amp} and \ref{fig:pre-reg-cz-v2-width} constitute the pre-regulator model.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_amplitude.png}
-  \caption{Bandgap characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
-  \label{fig:bandgap-cz-v2-amp}
-\end{figure}
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/bandgap_cz_V2_width.png}
-  \caption{Bandgap characterization - $W_{out} = f(V_{in}, W_{in})$}
-  \label{fig:bandgap-cz-v2-width}
-\end{figure}
-
-% Analyse bandgap cz
-The bandgap is also characterized with the exact same approach.
-The output amplitude curve in Fig. \ref{fig:bandgap-cz-v2-amp} has mostly an input-amplitude dependency, except for large voltage disturbances.
-The output width curve in Fig. \ref{fig:bandgap-cz-v2-width} has a clear input voltage and width dependency.
-This means the output is disturbed because of an energy level, not just a signal level.
-
-%TODO: Inverse colorscale - small amplitude means more disturbed
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_amplitude.png}
-  \caption{Regulator characterization - $min(V_{out}) = f(V_{in}, W_{in})$}
-  \label{fig:reg-cz-v2-amp}
-\end{figure}
-
-%TODO: Fix the colorscale
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/4/figures/regulator_cz_V2_width.png}
-  \caption{Regulator characterization - $W_{out} = f(V_{in}, W_{in})$}
-  \label{fig:reg-cz-v2-width}
-\end{figure}
-
-% Analyse regulator cz
-Finally, the regulator is also characterized.
-The output amplitude curve in Fig. \ref{fig:reg-cz-v2-amp} has a clear input voltage and width dependency.
-Therefore, the output voltage is disturbed because of an excedent energy on the input.
-A large-amplitude short pulse and a small-amplitude long pulse should the disturb the output almost identically.
-
-The output width curve in Fig. \ref{fig:reg-cz-v2-amp} is the most complex of all to interpretate.
-Both voltage and width impact the output.
-Beyond an input width of 7500ns, the output is suddenly heavily disturbed.
-Just below 7300ns, the curve value is XXXX ns.
-At 7500ns, the output width is now XXXXns.
-This specific area of the curve looks like a clear soft-failure, where the system suddenly goes into reset or safe-mode, and a long procedure to restart it happens.
-
-% Conclusion ?
 %TODO
-Input voltage output voltage no direct relation
-width also plays a role
+A feature detection method using amplitude distribution could be performed to identify key amplitudes in the waveforms.
 
-% Apply a TLP to the models
-These models are now used to predict a failure on the final block output when injecting a \gls{tlp} stress on the first input.
-A program was written to automate this process.
-Before comparing the models
+\subsection{Limitations, conclusion and follow-up work}
 
-The results obtained with the models are compared to a full transistor-level simulation given in Fig. \ref{fig:reference_simu_v2}.
+% Sum up what was done
+Laid ground principles for an operating ESD block modeling method.
+Started from W&B method, based on a pass/fail failure criteria.
+Method was improved to fit better analog functions modeling.
+Main concept is to simplify waveforms to turn them into a rectangular shape.
+Then, simple characterization tables can represent the impact of any block on a waveform.
+First tests are quite successfull.
+On a single study-case, it was shown that this method works for predicting the failure of an output given an input stress.
 
-REF Simulation
-
-A first comparison is given in Table. \ref{tab:model-v2-vs-sim} for a (100ns, -30V) input stress.
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9}          & \multicolumn{2}{l}{vref1p0}          & \multicolumn{2}{l}{v2p5}               \\
-\toprule
-models     & 92 ns  & \textcolor{red!90}{-4.51 V} & 85 ns & \textcolor{red!90}{-3.55 V}  & \textcolor{red!90}{185 ns} & \textcolor{blue!90}{2.41 V} \\
-simulation & 101 ns & -2.19 V                     & 87 ns & -0.91 V                      & 337 ns      & 2.26 V
-\end{tabular}
-\caption{Model application for (100ns, -50V) input stress}
-\label{tab:model-v2-vs-sim}
-\end{table}
-
-% What correlates in the first table
-This new characterization method seems to be a major improvement over the first one (described previously in \ref{sec:block-failure-cz}).
-The pre-regulator's output is estimated to be disturbed during 92 ns, with only 9 ns of difference with the reference simulation.
-Similarly, the bandgap's output is estimated to be disturbed during 85 ns, with an error of only 2 ns.
-For these first two blocks, the models seem to predict correctly the disturbance width.
-
-% What does not correlate
-On the other hand, the model does not correlate well with the reference simulation for the regulator's output .
-The disturbance's width is estimated at 185 ns, which is almost half the reference value of 337 ns.
-The disturbance's amplitude obtained with the models is extremely close to the nominal value.
-It would mean that the output should almost not be disturbed.
-In practice, the reference simulation shows that the simulation is disturbed and drops at 2.26 V.
-
-% preliminary conclusion
-As a preliminary conclusion, the models estimate correctly the disturbance's duration.
-The width obtained for the regulator is wrong, but it might be a particular case where the width is not recorded properly.
-The models however require improvements for predicting the disturbed amplitude.
-The models are tested once again against the reference for different input pulses (tables \ref{tab:model-v2-vs-sim-2} and \ref{tab:model-v2-vs-sim-3}).
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9}           & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
-\toprule
-models     & 92 ns  & \textcolor{red!90}{-11.42 V} & 61 ns       & -3.55 V       & \textcolor{red!90}{184 ns} & \textcolor{blue!90}{2.41 V}     \\
-simulation & 101 ns & -4.00 V                      & 94 ns       & -2.63 V       & 341 ns                     & 2.25 V
-\end{tabular}
-\caption{Model application for (100ns, -200V) input stress}
-\label{tab:model-v2-vs-sim-2}
-\end{table}
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lllllllll@{}}
-           & \multicolumn{2}{l}{vclamp9}            & \multicolumn{2}{l}{vref1p0} & \multicolumn{2}{l}{v2p5} \\
-\toprule
-models     & 1000 ns & \textcolor{red!90}{-11.48 V} & 894 ns       & -3.64 V      & \textcolor{red!90}{293 ns}  & 2.27 V     \\
-simulation & 1000 ns & -4.87 V                      & 613 ns       & -3.43 V      & 698 ns                      & 2.06 V
-\end{tabular}
-\caption{Model application for (1us, -200V) input stress}
-\label{tab:model-v2-vs-sim-3}
-\end{table}
-
-% What is correlating, what is not
-The width is well predicted for the pre-regulator (\textit{vclamp9}) and bandgap (\textit{vref1p0}) models.
-There is an issue however with the regulator's model, that underestimates the simulated duration on \textit{v2p5}.
-Also, amplitude are not estimated correctly in general.
-
-% Look at v2p5 for explaining differences
-Overall, the regulator model is the less accurate one.
-To understand those differences, the reference simulation waveform is compared to the model's waveform.
-The reference simulation is run with a (100 ns, -200V) pulse injected on \textit{vbatt}.
-It should result in a (94 ns, -2.63 V) disturbance on the input of the regulator. NOPE!
-The model's simulation is run by a injecting the same (94 ns, -2.63 V) pulse on the regulator's input.
-This pair of values is obtained from table \ref{tab:model-v2-vs-sim-2}.
-
-%TODO: Show a characterization simu first block wvf versus full simu first block output
-
-%TODO: Interpret simulation comparison
-
-Input waveform is not modeled properly. Much wider than expected.
-Pulse width seems to have the largest impact on the regulator than pulse amplitude
-
-Final sources of error : 90\% limit, that could benefit from a 10\% limit, and difference between the actual study case and the characterization schematics.
-
-\subsection{Final limitations and conclusion}
-
-% Opening on how to improve the modeling
-Characterization could be improved by using multiple thresholds and obtain width at those multiple thresholds.
-A more accurate model of the output could be derived.
-Ideally, the integral of the output waveform and the model waveform should be compared, and if a too large difference appears, more thresholds should be used.
-
-%TODO: Figure
-
+%TODO: Review
 Ultimately, the goal is to build a simpler representation of the output waveform of a block, composed of square shapes.
 The main advantage of those shape is that they are understood by the block models.
 It could be seen as a mathematical transformation of a time-domain waveform into a square-domain waveform.
 
-% What are the final limits of this method
+% Limitations
 How to handle real circuit topology (interconnect mesh) versus the linear one used in the characterization.
 Talk about 1 pin to many pin that is ok, but many pin to 1 is not covered at all by this method
+Talk about ESAAS, electrical simulations as a service, as an alternative to black-box block models
+
+% Conclusion
+
+% Follow up work
+Make more study cases, validate on more circuits and blocks
