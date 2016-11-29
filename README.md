@@ -176,6 +176,15 @@ Append a `{}` afterward to get a trailing space afterward. Example:
 \textOmega{} foo
 ```
 
+### Equations
+
+```
+\begin{equation}
+a = b + c
+```
+
+* Resources for formatting ?
+
 ### External tools
 #### Viewing pdf files
 
