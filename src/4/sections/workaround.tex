@@ -4,7 +4,7 @@
 In the first proposed approach, blocks are characterized using a failure criteria on the output.
 If the output goes beyond this criteria, the failure duration is recorded.
 The characterization is done with a large range of input amplitude and duration.
-This yiels a large 2D table that associates to an input amplitude and input duration, an output duration.
+This yields a 2D table that associates to an input amplitude and input duration an output duration.
 This table is a part of the block model.
 The output amplitude must also be modeled to be able to predict the output waveform from the input waveform.
 Since the characterization is performed with a fixed failure criteria, almost all information regarding the output amplitude is lost.
@@ -12,15 +12,16 @@ The only remaining data is whether the criteria was violated or not.
 It was supposed earlier that this limitation is the main source of error.
 
 % What is kept in the method, What is modified
-A modification of the characterization method is proposed.
+A modification to the characterization method is proposed.
 The failure criteria on the output is removed.
 Instead, the extreme output amplitude value is recorded in addition to the duration.
 The block model now contains two 2D tables instead of one.
-The first table still associates an output duration to an input width/amplitude.
-The second and new table associates an output amplitude to an input width/amplitude.
+The first table still associates an \textbf{output duration} to an input width/amplitude.
+The second and new table associates an \textbf{output amplitude} to an input width/amplitude.
 
+% Tables
 Fig. \ref{fig:principle-transfert-func-v2} summarizes the new model.
-Function $F_{W}$ uses the first table mentioned previously.
+Function $F_{W}$ uses the first table mentioned previously, as a \gls{lookup-table}.
 It returns for an arbitrary input amplitude and width the closest output width found in the table.
 Function $F_{V}$ is identical, except it is using the second table, and returns the closest output amplitude.
 
@@ -31,13 +32,12 @@ Function $F_{V}$ is identical, except it is using the second table, and returns 
   \label{fig:principle-transfert-func-v2}
 \end{figure}
 
-% What's the global idea, hypothesis here
-The method described here relies on the hypothesis that the entire top-level circuit is not required for ESD simulations.
-The behavior of the block could be reproduced with a decent accuracy in the condition that it is correctly biased and loaded.
-Under those conditions the output is supposed to vary similarly between a full simulation and a light, single-block simulation.
-Of course, to obtain the response of multiple blocks, models must be connected or chained together.
-Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process.
+To obtain the response of multiple blocks, models are still or chained together.
+Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process for a 2-block setup.
+Each block is characterized, generating the two tables mentionned earlier.
+Then, using both tables, an input stress of 50V 100ns becomes a 12V 350ns disturbance after the first block, and a 3V 4000 ns after the second block.
 
+%TODO: Replace the plots in the figure by tables, delimiter better block models
 \begin{figure}[!hp]
   \centering
   \includegraphics[width=0.7\textwidth]{src/4/figures/full_method_overview_v2.pdf}
@@ -45,23 +45,34 @@ Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaini
   \label{fig:full-method-v2}
 \end{figure}
 
+% What's the global idea, hypothesis here
+The method described here relies on the hypothesis that the entire top-level circuit is not required for ESD simulations.
+The behavior of the block could be reproduced with a decent accuracy in the condition that it is correctly biased and loaded, and exposed to a somehow similar input disturbance.
+Under those conditions the output is supposed to be disturbed similarly between a full simulation and a single-block simulation.
+
 \subsubsection{Preliminary application}
 % First run the reference sim
-To test this new approach, a few simulations are run.
-A first reference simulation is performed first.
+To test this hypothesis, a few simulations are run.
+The testbenches are given in Fig. \ref{fig:hypothesis-setup}.
+A reference simulation is performed first.
 It contains the complete schematic, composed of the three blocks of our study case.
 An electrical disturbance is injected on the first input $V_{batt}$.
 The final output $V_{2p5}$, and intermediate nets $V_{clamp9}$ and $V_{1p0}$ are observed and disturbance properties on those nets recorded.
 
-%TODO: Schema setups
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.98\textwidth]{src/4/figures/hypothesis_testing_setup.pdf}
+  \caption{Testbenches used for characterization and hypothesis testing}
+  \label{fig:hypothesis-setup}
+\end{figure}
 
 % Then do the same thing but with the individual models
-Afterwards, each block is simulated separately in its own testbench.
-The first block is stressed with the same pulse than the reference simulation.
+Afterwards, each block is simulated separately in its own individual testbench.
+The pre-regulator is stressed with the same pulse than the reference simulation.
 Its output waveform is compared with the reference in Fig. \ref{fig:sim-compare-block1}.
 Both curves (blue and green) look rather similar, in terms of maximum amplitude, duration and overall shape.
 The maximum amplitude is estimated at -1.5 V and the duration at 880 ns.
-The red curve represents the waveform injected on the second block and configured using these two values.
+The red curve represents the waveform injected on the second block and configured from these two values.
 
 \begin{figure}[!h]
   \centering
@@ -74,7 +85,7 @@ The red curve represents the waveform injected on the second block and configure
 On the second block output, the blue and green waveforms exhibit more differences (Fig. \ref{fig:sim-compare-block2}).
 The green waveform has a longer slope than the reference.
 However, both waveforms are still quite close in terms of maximum amplitude and duration.
-This is an interesting results, because it shows that blocks can be simulated individually for ESD waveforms, without loosing too much accuracy.
+This is an interesting result, because it shows that \textbf{blocks can be simulated individually} for \gls{esd} simulations, without loosing too much accuracy.
 This is great for simulation speed and modularity.
 Once again, the red curve represents the waveform injected on the third block.
 It is a simplified waveform derived from the blue and green curves, with a width of 2 \textmugreek{}s and an amplitude of 0V.
@@ -88,7 +99,7 @@ It is a simplified waveform derived from the blue and green curves, with a width
 
 % Third output
 On the third and final block output (Fig. \ref{fig:sim-compare-block3}), both waveforms are very similar.
-The difference in terms of maximum amplitude can be explained by an offset between both curves a $t=0$.
+The difference of maximum amplitude can be explained by an offset between both curves at $t=0$.
 The reference curve is delayed in comparison of the individual simulation, but otherwise both curves match.
 
 \begin{figure}[!h]
@@ -99,18 +110,20 @@ The reference curve is delayed in comparison of the individual simulation, but o
 \end{figure}
 
 % Conclusion, it works for this case
-In conclusion, for this specific study-case, simulating the models isolately produced the same results than the reference simulation, for estimating degradation of functionality.
-The consequence is that block models extracted from variable amplitude/width characterization should work properly, since it is mathematically equivalent to the simulations that were performed in this section (block models can be seen as pre-computed simulations).
-
-The next section discusses how to automate the extraction of a width and amplitude from a waveform, in order to simplify it.
+In conclusion, for this specific study-case, the initial hypothesis was correct.
+Simulating the models isolately produced the same results than the reference simulation, for estimating degradation of functionality.
+As a consequence, block models extracted from variable amplitude/width characterization should work properly, since it is mathematically equivalent to the simulations that were performed in this section.
+block models are simply pre-computed simulations with results stored in \gls{lookup-table}s.
+% Transition
+The next section discusses how to automate the extraction of a width and amplitude from a waveform, in order to build the two lookup tables from a characterization efficiently.
 
 \subsubsection{Automating model extraction}
 
 % What is the challenge regarding the extraction of the models
 In the simulations described earlier, a single width and maximum amplitude per waveform were extracted manually.
-However, the waveforms are not square at all, and an width and amplitude cannot always be extracted easily.
+However, waveforms are never perfectly squared, and an width and amplitude cannot always be extracted easily.
 The challenge is to find the right rule for simplifying them into a rectangular waveform, and extracting the two parameters.
-This applies to the input waveform, and the output waveform.
+This applies to the input waveform and the output waveform during the characterization of a block.
 
 % First approach with a 90% amplitude
 Initially, the rules were to set $V$ equal to the maximum value of the waveform (input or output), and $W$ the width of the pulse at 90\% of $V$.
@@ -154,25 +167,23 @@ A feature detection method using amplitude distribution could be performed to id
 \subsection{Limitations, conclusion and follow-up work}
 
 % Sum up what was done
-Laid ground principles for an operating ESD block modeling method.
-Started from W&B method, based on a pass/fail failure criteria.
-Method was improved to fit better analog functions modeling.
-Main concept is to simplify waveforms to turn them into a rectangular shape.
-Then, simple characterization tables can represent the impact of any block on a waveform.
-First tests are quite successfull.
+In this section, principles were detailed for a block modeling method, targeting powered-on circuits exposed to disturbances.
+It initially started off a Wunsch & Bell method, which is based on a pass/fail failure criteria and targets hard-failure of electronic devices.
+The method was improved to fit better the modeling of analog functions, symbolized by an input, and output and a transfer function.
+The main modifications was to remove the use of a failure criteria, and record the severity of a disturbance through its duration and maximum amplitude.
+For this purpose, waveforms observed on the inputs and outpus were simplified as rectangular shapes.
+Then, lookup tables store the transient response of the characterized block against a wide range of input disturbance configurations.
 On a single study-case, it was shown that this method works for predicting the failure of an output given an input stress.
 
-%TODO: Review
-Ultimately, the goal is to build a simpler representation of the output waveform of a block, composed of square shapes.
-The main advantage of those shape is that they are understood by the block models.
-It could be seen as a mathematical transformation of a time-domain waveform into a square-domain waveform.
-
 % Limitations
-How to handle real circuit topology (interconnect mesh) versus the linear one used in the characterization.
-Talk about 1 pin to many pin that is ok, but many pin to 1 is not covered at all by this method
-Talk about ESAAS, electrical simulations as a service, as an alternative to black-box block models
+Some limitations must be overcomed before this method can be applied to a larger scale.
+So far, only very linear circuit topologies were considered.
+A single input net and ouput net was studied per block.
+It is one-to-one relation.
+In reality, the relations are closer to many-to-one or many-to-many.
+A single input will impact multiple outputs when disturbed.
+Inputs do not have isolated impact, multiple inputs will affect the same group of outputs when they get stressed.
 
-% Conclusion
+Also, more study cases are required to verify further the hypothesis under which ESD simulations at silicon-level can be performed using exclusively rectangular pulses, to disturb blocks in isolated testbenched.
 
-% Follow up work
-Make more study cases, validate on more circuits and blocks
+Section XX details a potential solution called electrical-simulations-as-a-service, acting as a drop-in replacement for tables models and black-box models, that could solve this multiple-pin complexity issue.
