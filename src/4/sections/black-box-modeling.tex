@@ -1,13 +1,19 @@
 \section{Black box modeling approach}
 
 % Difference with bottom-up, not the same application, not the same goal
-The black-box modeling method works similarly to the bottom-up modeling approach.
-It studies the relationship and transfer function between the input and the output of a silicon function.
-Unlike the bottom-up method, the model is only build for external inputs and outputs.
-It is not meant to be chained with other similar models, using a special chaining method.
-Instead, it targets board-level circuit simulations.
-The motivation behind this model is related to the \gls{seed} methodology (TODO: REFERENCE).
-The goal is to provide a black box model that is fast to simulate and can be distributed without disclosing sensitive intellectual property.
+The black-box modeling method relies on the same core principles than the bottom-up modeling approach.
+It studies the relationship and transfert function between the input and the output of a silicon function.
+Unlike the bottom-up method though, the model is only built \textbf{for external input and output pins}.
+It is not meant to be chained with other models, using a special chaining method.
+Instead, it targets electrical, board-level circuit simulations.
+Basically, the black box model is intented to act as a drop-in replacement for the complete \gls{ic} circuit, for board-level simulations.
+
+% What is the motivation
+%TODO: Reference for SEED
+The purpose is also different from the bottom-up approach.
+The goal is not to detect issues at silicon-level early before manufacturing, but to let customers using the \gls{ic} in a \gls{pcb} to detect issues with the board that could result in silicon-functions failure.
+The \gls{seed} methodology recommends to design systems in a smart fashion for making them robust during operation, which requires a collaboration between board-level and silicon-level protective measures.
+Ultimately, the goal is to provide a black box model that is \textbf{fast to simulate} and can be \textbf{distributed without disclosing sensitive intellectual property}.
 
 % introduction, failure relation between input and output
 The main benefit of this model is to abstract the internal silicon complexity.
@@ -17,17 +23,16 @@ After setting the failure criteria, the approach is to inject rectangular pulses
 
 % access to the signals
 Since the characterized nets are external pins, they are physically accessible.
-Where the bottom-up method was done in simulation, the black box models can be derived from actual measurements.
-Overall, the aim of the black-box model is make abstractions of the inner complexity of the chip.
+Thus, the black box models can be derived from actual measurements.
 
 \subsection{Characterization}
 
 % How is the characterization conducted
 Once again, a variable width/variable amplitude rectangular pulses are applied on an input pin.
-The output pin is then observed to detect at which (width, amplitude) it is going out of specification.
+The output pin is then observed to detect for which input parameters it is going out of specification.
 
 % What is characterized
-This characterization is performed on the testchip, on the complete pre-regulator/bandgap/regulator function.
+This characterization is performed on the testchip, on the complete regulation function.
 The characterization pulses are injected on the $V_{batt}$ input.
 The output pin is $V_{2p5}$, the regulated supply.
 It is supposed to deliver a 2.5V regulated supply.
@@ -39,7 +44,7 @@ It corresponds to a level below which digital cells powered by this supply will 
 %TODO: WAVEFORM CURRENT VBAT AND TLP BEFORE INJECTION CAPACITOR ?
 
 % Detail the characterization
-The characterization curve is given in Fig. \ref{fig:cz-black-box}.
+The characterization table is plotted in Fig. \ref{fig:cz-black-box}.
 X-axis is the pulse width, and y-axis is the minimal stress amplitude that caused a failure on the output.
 
 \begin{figure}[!h]
@@ -50,7 +55,6 @@ X-axis is the pulse width, and y-axis is the minimal stress amplitude that cause
 \end{figure}
 
 % What to do with that
-The characterization curve is interesting in itself.
 %TODO: We that below this value the function is in fail, etc
 However, the motivation for this model is to replace the transistor-level schematic inside a SPICE simulation at board-level.
 Given a pulse width and an amplitude on $V_{batt}$, the model can estimate the disturbance amplitude and width on $V_{2p5}$.
