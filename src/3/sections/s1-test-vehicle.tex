@@ -121,17 +121,13 @@ By increasing the deglitching time, smaller RC-filters could be used.
 
 % Latch
 Finally, the latch stores the overvoltage flag.
-By default, the latch is reset at `0`.
-Its copy input `D` is connected to the supply.
+By default, the latch is reset at $t=0$.
+Its copy input $D$ is connected to the supply.
 If the hysteresis buffer triggers high, the enable pin triggers a copy in the latch.
-The output `Q` will copy the value from the input `D`, storing a logical high in the latch.
+The output $Q$ copies the value from the $D$, storing a logical high in the latch.
 
 % Origin of reference voltages
-%TODO: DETAIL
-The reference voltages for these comparators come from the protected supply.
-Or DACs ?
-
-%TODO: Designs of other blocks ?
+The reference voltages for these comparators come from either fixed-values set by the protected supply, or \gls{dac} that can be reconfigured through the communication system.
 
 \subsection{Communication system}
 \label{sec:comm-system-testchip}

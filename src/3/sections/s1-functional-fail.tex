@@ -2,7 +2,6 @@
 \label{sec:failure-case-study}
 
 %TODO: Speak about impact (or no) of positive stress. Say that only neg stress causes a restart
-
 % What is the failure
 The failure is observed on the V\textsubscript{2p5} output pin (Fig. \ref{fig:meas-reset-v2p5}).
 It affects the behavior of the entire system, because this net powers many other functions in the system.
@@ -12,11 +11,10 @@ This input is a realistic entry point for \gls{esd} in the integrated circuit, b
 The disturbance on the output V\textsubscript{2p5} is much longer (30 \textmu{}s) than on the input V\textsubscript{batt} (100 ns).
 It seems the negative stress is triggering a reset of the regulator.
 
-%TODO: MEASUREMENT of the output during failure
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/3/figures/measure_v2p5.png}
-  \caption{Measurement of V\textsubscript{2p5} after a negative stress}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5_measure.png}
+  \caption{Measurement of V\textsubscript{2p5} after a -450V 100ns negative stress}
   \label{fig:meas-reset-v2p5}
 \end{figure}
 
@@ -31,43 +29,49 @@ As a consequence, the function is not available, or at least not considered vali
 % How is the test conducted
 To generate the negative stress, a \gls{tlp} generator is employed.
 The simulations use the \gls{tlp} model described previously in section \ref{sec:tlp-modeling}).
-The injection is performed with DPI pattern (ref?).
-Basically, the stress and DC supply are isolated from one another with a capacitor-inductor network.
-The injection setup is given in Fig. \ref{fig:sim-setup-reset}.
+%TODO: reference for DPI
+The injection is performed with a \gls{bias-tee}, similarly to the DPI standard.
+The stress generator and DC supply are isolated from one another with a capacitor-inductor network (Fig. \ref{fig:injection-setup-dpi}).
 
-%TODO: Injection setup with injection pattern
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/3/figures/injection_setup_simulations.png}
-  \caption{Simulation setup to reproduce the reset}
-  \label{fig:sim-setup-reset}
+  \includegraphics{src/3/figures/injection_setup_dpi.pdf}
+  \caption{Injection setup to superimpose a stress on a DC voltage}
+  \label{fig:injection-setup-dpi}
 \end{figure}
 
-% Are the simulations accurate
-%TODO: Detail more
-In a first step, it is checked if the reset is reproduced correctly by simulation.
-V\textsubscript{batt} and V\textsubscript{2p5} simulations are compared with measurements in Fig. \ref{fig:wvf-vbatt} and Fig. \ref{fig:wvf-v2p5}.
-Both curves correlate well, and the regulator restart is correctly reproduced in simulation.
-These results tend to indicate that the simulations can be trusted for this study case.
 
-% TODO: MEASUREMENT vs SIMULATION
+% Compare sim and meas for Vbatt
+The simulation of V\textsubscript{batt} is compared with a measurement in Fig. \ref{fig:wvf-vbatt}.
+During the discharge, V\textsubscript{batt} has a larger amplitude in simulation, and reaches a more negative voltage.
+The positive overshoot after the pulse is correctly reproduced, although it dampens slower in the simulation.
+Overall, the accuracy is rather satisfying.
+
+% Compare sim and meas for V2p5
+Fig. \ref{fig:wvf-v2p5} provides the same comparison for V\textsubscript{2p5}.
+The reset is clearly visible on both curves.
+The restart happens almost at the same time in both waveforms, about 32\textmu{}s after the stress was injected.
+Right after the \gls{esd} injection, the disturbance amplitude is a bit larger in simulation.
+But overall, the accuracy is satisfying.
+Both comparisons tend to indicate that simulations can be trusted to reproduce the failure in this study case.
+
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/vbatt.png}
-  \caption{Simulation versus measurement for V\textsubscript{batt}}
+  \includegraphics[width=0.95\textwidth]{src/3/figures/vbatt.png}
+  \caption{Measurement and simulation for V\textsubscript{batt}}
   \label{fig:wvf-vbatt}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5.png}
-  \caption{Simulation versus measurement for V\textsubscript{2p5}}
+  \caption{Measurement and simulation of the functional failure on V\textsubscript{2p5}}
   \label{fig:wvf-v2p5}
 \end{figure}
 
 % Now use the simulation for analysis
-Since the simulation correctly reproduces the external input and output waveforms, it is used to observe the intermediate nets.
-The simulation is run with a rectangular pulse of -100V amplitude and 100 ns width.
+Simulations are employed to observe the intermediate nets, that are hard to access and measure physically.
+In the first simulation, a rectangular pulse of -100V amplitude and 100 ns width in injected once again on V\textsubscript{batt}.
 The waveform for output V\textsubscript{clamp9} of the pre-regulator is given in Fig. \ref{fig:wvf-vclamp9}.
 At 54 \textmugreek{}s,  V\textsubscript{clamp9} is disturbed by the negative stress, in two phases.
 The first phase is 100 ns wide, and corresponds to the direct exposure to the stress.
@@ -78,14 +82,14 @@ Overall, V\textsubscript{clamp9} is disturbed for 750 ns.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/vclamp9.png}
+  \includegraphics[width=0.95\textwidth]{src/3/figures/vclamp9.png}
   \caption{Simulated waveform of the V\textsubscript{clamp9} internal net}
   \label{fig:wvf-vclamp9}
 \end{figure}
 
 % Next net, bandgap input
-V\textsubscript{clamp9} is used as input for powering the bandgap reference.
-In turn, the bandgap is expected to be disturbed as well.
+V\textsubscript{clamp9} is the output of the pre-regulator, and is a power-supply input for the bandgap reference.
+The bandgap is expected to be disturbed because of the variation on V\textsubscript{clamp9}.
 The observation of the 1.0V bandgap reference V\textsubscript{ref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
 The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 
@@ -108,16 +112,11 @@ In the third block (regulator), it reached 30 \textmugreek{}s.
 Each time, there is an aggravation of the failure.
 
 % Talk about failure in cascade
-To conclude, it appears there is a failure in cascade of the regulation function.
-When the disturbance propagates through a block, it is amplified and becomes more severe.
+It appears there is a failure in cascade of the regulation function.
+When the disturbance propagates through a block, it is somehow amplified and becomes more severe.
 Ultimately, a function that takes a lot of time to recover (soft-start) is hit, causing a full system restart.
 
-%TODO: This section will need a lot of more detail + references to support the argument
-The next part of this research work is focused on acquiring measurement data on silicon, to confirm the simulations.
-Also, this study case remains simple to understand, but fixing the issue is difficult.
-It must be ensured that a circuit correction for \gls{esd} does not affect normal operation.
-In practice this can be difficult, because both can have opposite requirements.
-There are also many situations where the failure cause is not so obvious, and calls for advanced investigation methods.
-
-For these purposes a testchip is designed in next section \ref{sec:test-vehicle-desc}.
-Modeling methods are explored in section \ref{sec:bottom-up-modeling} as a way to understand better these issues.
+% Transition
+The next part of this research work is focused on developping measurement methods to acquire data on silicon, to confirm the simulations.
+A testchip is designed to test new measurement and observation methods in section \ref{sec:test-vehicle-desc}.
+Modeling methods are explored in section \ref{sec:bottom-up-modeling} as a way to understand and predict these functional issues.
