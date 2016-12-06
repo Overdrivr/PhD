@@ -14,61 +14,24 @@ Each board is powered with its own isolated battery, to avoid conducted stress p
 The communication between the two is achieved with several optical fibers.
 This type of setup was successfully employed in [TODO: REF Alain] to measure \gls{spi} registers before and after electro-static discharges were applied on a product.
 
-%TODO: System architecture
-%TODO: Picture
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/3/figures/boards_architecture.pdf}
+  \caption{System architecture}
+  \label{fig:system-board-architecture}
+\end{figure}
 
-\subsubsection{Master board}
+%TODO: Picture?
 
-% Architecture
-The master board is actually just a shield for the microcontroller board Kinetis KL25Z.
+% Master board
+The master board is mostly a shield for the Kinetis KL25Z microcontroller.
 It provides pin-compatible headers with the KL25Z, an isolated and regulated supply, and the devices required for optical communication.
-The architecture is given in Fig. \ref{fig:master-board-architecture}
+The architecture is given in Fig. \ref{fig:system-board-architecture}.
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/3/figures/master_board_architecture.pdf}
-  \caption{Master board architecture}
-  \label{fig:master-board-architecture}
-\end{figure}
-
-%TODO: Picture
-
-\subsubsection{Slave board}
+% Slabe board
 The slave board provides two isolated and regulated supplies and devices required for the testchip and the optical communication.
-The architecture is given in Fig. \ref{fig:slave-board-architecture}
+The architecture is also given in Fig. \ref{fig:system-board-architecture}.
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/3/figures/slave_board_architecture.pdf}
-  \caption{Slave board architecture}
-  \label{fig:slave-board-architecture}
-\end{figure}
-
-%TODO: Picture
-
-\subsubsection{Optical fiber communication}
-
+% Optical comm
 The optical communication enables an electrically-isolated communication between the master board and slave board.
 This is done to ensure that no conducted discharge will propagate through the communication channel and protect the master board and host computer.
-
-% IO Spec - Pin connections
-%TODO
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Slave port      &  Master port      &  function       \\ \midrule
--               &  -                &  -              \\
--               &  -                &  -              \\
--               &  -                &  -              \\
--               &  -                &  -              \\
--               &  -                &  -              \\
-\bottomrule
-\end{tabular}
-\caption{Port definition for optical communication}
-\label{tab:port definition}
-\end{table}
-
-
-% Opto-coupler references
-%TODO
