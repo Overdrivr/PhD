@@ -70,7 +70,7 @@ Monitored and reference inputs are just inversed on the undervoltage detector.
 The first block in this detector is the comparator.
 It is designed with a two-stage operational amplifier with an output buffer (see Fig. \ref{fig:comparator-design}).
 This topology is well suited for high-gain, open-loop comparators.
-This comparator provides a very high output impedance, to ensure the monitored net is not disturbed.
+This comparator provides a very high input impedance, to ensure the monitored net is not disturbed.
 A high-gain is useful for limiting the comparator's offset.
 The performance of the comparator is given in table \ref{tab:comparator-performance}.
 The critical factors are the high to low delay, to detect very fast transients, and the offset, to ensure detection accuracy is good.
@@ -256,7 +256,7 @@ Signals in green (\textit{en\_in} and \textit{clk}) must be provided externally.
 Signals in blue are internal control signals, to help the cells determine if to who belongs the data on the bus.
 The signals in red (\textit{ser\_out}) are the data output, set on each individual output bit.
 Ultimately, the reading-cell performs a serial to parallel conversion.
-The serial data is set on \textit{ser\_in}, and the parallel outputs are \textit{bit0},\textit{bit1}, etc. 
+The serial data is set on \textit{ser\_in}, and the parallel outputs are \textit{bit0},\textit{bit1}, etc.
 
 \subsubsection{Register map}
 
