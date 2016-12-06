@@ -166,14 +166,13 @@ Each time a cell receives the enable signal, it will perform its duty, wait for 
 
 % Explain behavior
 The read cell is constituted of a tri-state buffer and a D-latch (see Fig. \ref{fig:read-cell-design}).
-The output of the tri-state buffer is set in high-impedance when the \textit{x} input is LOW.
+The output of the tri-state buffer is set in high-impedance when the \textit{x} input is low.
 This action releases the communication bus for other read cells and is the default state.
 
-% Explain time-response
-When the \textit{en} input goes HIGH, the output of the latch switches high at the next clock cycle.
-During one clock cycle, the \textit{x} sign is HIGH and the \textit{flag} is written on the reading \textit{bus}.
-At the next clock cycle, the \textit{en} signal is set low (by the previous cell).
-The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively releasing the bus.
+% Chaining
+Multiple cells can be connected serially in a chain-fashion.
+Increasing the total register size is simply done by adding more cells to the chain.
+This is convenient for testchip developments that have limited design resources.
 
 \begin{figure}[!h]
   \centering
@@ -182,18 +181,28 @@ The latch copies the LOW value, and the \textit{x} signal goes LOW, effectively 
   \label{fig:read-cell-design}
 \end{figure}
 
-%TODO: Add chronogram
+% Describe the chronogram
+Fig. \ref{fig:read-cell-curve} shows the simulated behavior of a chain of 8 reading cells.
+Signals in green (\textit{en\_in} and \textit{clk}) must be provided externally, by a microcontroller for instance.
+Signals in blue are internal control signals, to help the cells determine if they have the right to write on the bus.
+The signal in red (\textit{ser\_out}) is the data output, read by an external microcontroller.
+
+% Explain time-response
+The reading sequence is initiated by setting \textit{en\_in} high.
+When \textit{en\_in} is set high, the output of the first latch (\textit{en\_out\_1}) switches high at the next clock cycle.
+This means the first cell has the permission to write on the bus.
+During one clock cycle, the \textit{flag} is written on \textit{ser\_out}.
+At the next clock cycle, the enable signal is propagated to the next cell.
+The first cell no longer has the permission to write to the bus.
+The second cell writes to the bus, during a single clock cycle.
+The process is naturally repeated by the system, until the enable has been propagated to the last cell (\textit{en\_out\_8}) and all serial data was written.
+
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/3/figures/curve_read_cell.pdf}
+  \includegraphics[width=0.95\textwidth]{src/3/figures/curve_read_cell.png}
   \caption{Chronogram for the read cell}
   \label{fig:read-cell-curve}
 \end{figure}
-
-% Chaining
-Multiple cells can be connected in a chain.
-Increasing the total register size is simply done by adding more cells to the chain.
-This is convenient for testchip developments that have limited design resources.
 
 \subsubsection{Write cell}
 
@@ -210,21 +219,13 @@ Basically, this cell sets on the \textit{output} the value on the bus when its e
   \label{fig:write-cell-design}
 \end{figure}
 
-%TODO: Add chronogram
-\begin{figure}[!h]
-  \centering
-  \includegraphics{src/3/figures/curve_write_cell.pdf}
-  \caption{Chronogram for the write cell}
-  \label{fig:write-cell-curve}
-\end{figure}
-
 % Detail devices
+The truth table of this latch is given in table \ref{tab:d-latch-scan-truth}.
 D1 is a synchronous D-latch.
 The output Q copies the input D on rising clock edges.
 D2 is a synchronous D-latch with scan.
 The output Q copies the data input D on rising clock edges, storing a value.
 When the scan enable \textit{se} input is HIGH, the data input D copies the value of the scan data input (\textit{SDI}), effectively changing the stored value.
-The truth table of this latch is given in table \ref{tab:d-latch-scan-truth}.
 
 \begin{table}[!h]
 \centering
@@ -241,6 +242,21 @@ D  &  SDI  &  SE  &  CLK  &  Q \\ \midrule
 \caption{D-latch with scan truth-table}
 \label{tab:d-latch-scan-truth}
 \end{table}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/3/figures/curve_write_cell.png}
+  \caption{Chronogram for the write cell}
+  \label{fig:write-cell-curve}
+\end{figure}
+
+% Describe the chronogram
+Fig. \ref{fig:write-cell-curve} shows the simulated behavior of a chain of 8 writing cells.
+Signals in green (\textit{en\_in} and \textit{clk}) must be provided externally.
+Signals in blue are internal control signals, to help the cells determine if to who belongs the data on the bus.
+The signals in red (\textit{ser\_out}) are the data output, set on each individual output bit.
+Ultimately, the reading-cell performs a serial to parallel conversion.
+The serial data is set on \textit{ser\_in}, and the parallel outputs are \textit{bit0},\textit{bit1}, etc. 
 
 \subsubsection{Register map}
 
@@ -276,7 +292,6 @@ This kind of integrated loop was originally designed and studied in \cite{AlainS
   \caption{Near-field current sensor layout}
   \label{fig:near-field-current-sensor-layout}
 \end{figure}
-
 
 % How is it designed and how is it used
 On silicon, three levels of metal are used to build the sensor.
