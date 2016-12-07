@@ -1,68 +1,99 @@
 \section{Principle of operation of the TLP-HMM}
 
-composed of two modules that plug directly onto a standard TLP.
-These modules are simply referred hereafter as “absorber” and “shaping filter” (Fig. 3).
-The principle is to re-route a part of an incoming TLP pulse into the ground.
-The remaining current injected on a 2ohm calibration resistor (same as ESD gun cal) claims the same waveform.
+% Principle of operation
+Later in this document, the new generator is referred as TLP-HMM.
+The TLP-HMM requires two additional modules to be connected at each extremity of a classic 100ns \gls{tlp}.
+These modules are simply referred hereafter as the \textit{absorber} and the \textit{shaping filter} (Fig. \ref{fig:tlp_hmm_architecture}).
+The principle of the TLP-HMM is to re-route a part of an incoming rectangular pulse into the ground.
+The remaining current is injected on a 2\textOmega{} calibration resistor, resulting in the same waveform than HMM standards.
+The role of each module is detailed in the following sections.
 
-%TODO: SCHEMA
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/5/figures/beges_tlp_hmm.pdf}
+  \caption{TLP-HMM architecture}
+  \label{fig:tlp_hmm_architecture}
+\end{figure}
 
-\subsection{Role of the shaping filter}
+\subsection{Shaping filter}
 
-Role of the shaping filter ?
-Details of the shaping filter
-a capacitor C is separated from the main propagation path by a small transmission line (t).
-The inductor L can be neglected in this first part of the analysis, as it behaves as an open circuit at the beginning of the pulse.
-The short line introduces a delay t between the main line and the RLC elements.
-When a TLP pulse is injected on the main line, it reaches point A at t=0 and the voltage at A rises from 0V.
-The capacitor is still “not visible” from A and does not see the TLP rising edge yet.
-At t=t, the pulse has reached the capacitor which is initially discharged and starts charging.
-This change in voltage and current in the capacitor branch at t=t is not visible immediately from point A until it propagates back.
-Point A keeps rising with the TLP impulse.
-At t = 2t, the reflection from the capacitor reaches A, whose potential falls almost immediately.
-This results in the generation of the short first section.
-The peak width of approximately 2t on the pulse going to the load.
-The last element to be explained is the resistor R.
-It introduces an offset voltage as soon as the capacitor C starts charging.
-This offset is used to tune the voltage and (under 1  the current I(t) upwards or downwards at t =2t.
-After 2t, point A follows the charging capacitor voltage.
-If the resistor R and inductor L were not connected along with the capacitor, the charge would continue until TLP voltage is reached (with reflections from the short cable neglected).
-This is where the inductor L connected in parallel plays a part.
-At t = 0, the inductor is an open circuit and conducts approximately no current.
-Slowly the current through the inductor increases, and at t= t1, it is enough to cancel the capacitor charging current.
-At this moment, the capacitor voltage increases has stopped and the capacitor starts to discharge through the inductor.
-Ultimately, the inductor draws all the current and brings the voltage and current on the main line back to 0.
-The result of this combined action after 2t of the capacitor and the inductor leads to the generation of the second part of the pulse.
+% Role of the shaping filter
+The shaping filter deviates a part of the incoming rectangular pulse into the ground (coaxial shielding).
+It is constituted of five different elements, an RLC network, a delay cable and an injection resistor.
+The capacitor C is separated from the main propagation path by a small transmission line of delay \textDelta{}t.
+The inductor L is neglected in this first part of the analysis.
+It behaves as an open circuit at the beginning of the pulse.
+The short coaxial cable creates a delay \textDelta{}t between the main line and the RLC network.
+The injection resistor R\textsubscript{S} serves to increase the output impedance, in order to get closer to the behavior of an actual HMM generator.
 
-\subsection{Role of the absorber}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/5/figures/example_tlp_hmm.pdf}
+  \caption{TLP-HMM architecture}
+  \label{fig:shaping_filter_example}
+\end{figure}
 
-Role of the absorber
+% Behavior of the filter - C
+An example case is given to detail the behavior of the generator, with a focus on the shaping filter.
+In phase 1 (Fig. \ref{fig:shaping_filter_example}) a \gls{tlp} is injected on the main line.
+It reaches point A at $t=0$ and the voltage at A rises from 0 V.
+The capacitor is still not visible from A and does not see the TLP rising edge yet.
+At $t=\Delta t$, the pulse reaches the capacitor, which begins to charge.
+This change in voltage and current in the capacitor branch is not visible immediately from point A until it propagates back.
+Point A keeps rising with the TLP impulse until $t=2\Delta t$.
+At this moment, potential at point A falls almost immediately to 0V, because the capacitor is drawing all the current, and its potential is low.
+This results in the generation of the first peak.
+The peak width is approximately $2\Delta t$.
 
-\subsection{Shaping filter design}
+% Behavior of L
+In phase 2, the capacitor keeps charging, the potential at point A rises and the current drawn by the capacitor decreases.
+Slowly, the inductor L connected in parallel starts drawing some current.
+At some point between phase 2 and 3, the inductor current becomes equal to the capacitor current, and the capacitor ceases to charge.
+The capacitor starts discharging through the inductor.
+During phase 3, the inductor draws all the current and brings the voltage at A down to 0V.
+The result of this combined action generates the characteristic slow slope of the HMM waveform.
 
-The exact schematic of the shaping filter is given Fig. .
+% Behavior of R
+The resistor R creates an voltage offset at $t=2\Delta t$.
+It is used to match better the standardized waveform, which also has a superior to zero value after the first peak.
+
+% Tuning the peak width
+The peak width can be tuned by increasing or decreasing the length of the delay cable $t=\Delta t$.
+The peak width is approximately equal to $t=2\Delta t$.
+
+% Tuning the peak risetime
+The peak risetime is enforced by the \gls{tlp} risetime filter.
+A 1ns risetime filter provides the correct risetime to be compliant with the standards.
+Several risetime filters implementations suitable for TLP generators have been described in TODO REF 9 10.
+
+% Introduce the design
+The exact schematic of the shaping filter is given in Fig. \ref{fig:shaping_filter_schematic}.
 Capacitances are distributed to reduce parasitic inductances.
 The inductances have also been distributed to increase the maximum total current that can be absorbed.
-The PCB (Fig. ) has a ground plane, and the central line is 50 matched.
+The PCB (Fig. \ref{pic:shaping_filter_assembled}) has a ground plane, and the central line is 50\textOmega{} matched.
 Overall, its dimensions must be kept as small as possible to reduce the impact of delays.
 
-%TODO: Fig schematic
-%TODO: Picture
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/5/figures/shaping_filter_schematic.pdf}
+  \caption{shaping-filter schematic}
+  \label{fig:shaping_filter_schematic}
+\end{figure}
 
-In Figure , the delay cable (t) can be seen on the left.
-As described in II.1, this cable must induce a delay half of the final pulse risetime.
-To be compliant, the rise time of the pulse must be comprised between 700ps and 1ns.
-Thus, the delay t must be comprised between 350ps and 500ps to have a clean peak.
-In practice, a slightly longer cable ensures the maximum (and desired) peak voltage is reached.
-The pulse rise time is fixed directly by the TLP rise time, which can be enforced accurately with a rise time filter [9][10].
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/5/figures/filter.jpg}
+  \caption{assembled shaping-filter}
+  \label{pic:shaping_filter_assembled}
+\end{figure}
 
-%TODO: Figure impact delay
+%TODO: Figure impact delay ?
+% Compared to the TLP risetime, a shorter delay for the shaping filter’s cable will reduce the amplitude of the peak while a longer delay will let the TLP reach its maximum voltage and generate a short flat region. The impact of different t values on the peak is presented on Fig 7. The TLP charging voltage is identical for each curve and the load is 2 calibration load defined in IEC 61000-4-2). A 2ns rise time filter is employed here for accentuating the interaction between the risetime of the pulse and the delay of the cable. In the final system, a 1ns risetime filter is used instead to comply with the HMM specification.
+%The red curve in Fig. 7 corresponds to the shortest cable. The peak amplitude never reaches the maximum voltage. The blue curve corresponds to the optimal length. The peak reaches the maximum voltage and falls immediately. The green curve corresponds to the longest cable. The delay is long enough that the load sees a TLP step for 10ns before the voltage falls down.
 
-Compared to the TLP risetime, a shorter delay for the shaping filter’s cable will reduce the amplitude of the peak while a longer delay will let the TLP reach its maximum voltage and generate a short flat region. The impact of different t values on the peak is presented on Fig 7. The TLP charging voltage is identical for each curve and the load is 2 calibration load defined in IEC 61000-4-2). A 2ns rise time filter is employed here for accentuating the interaction between the risetime of the pulse and the delay of the cable. In the final system, a 1ns risetime filter is used instead to comply with the HMM specification.
-The red curve in Fig. 7 corresponds to the shortest cable. The peak amplitude never reaches the maximum voltage. The blue curve corresponds to the optimal length. The peak reaches the maximum voltage and falls immediately. The green curve corresponds to the longest cable. The delay is long enough that the load sees a TLP step for 10ns before the voltage falls down.
-The last element playing a part in the pulse shaping is the series resistor RS (Fig. 3) of value 8 . With this resistor, it is easier to match the required ratio between the peak current and the 30 ns current.
+\subsection{Absorber}
 
-\subsection{Absorber design}
+Role of the absorber
 
 The schematic of the absorber is given Fig. 8.
 It is constituted of a 50 resistor, in series with 6.6 nF.
