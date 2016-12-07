@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="152.14922mm"
+   height="26.703064mm"
+   viewBox="0 0 539.11145 94.617157"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="example_tlp_hmm.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5337"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="scale(-0.6,-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path5339" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4883"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="scale(-0.6,-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path4885" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker6120"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path6122" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path4326"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="252.81575"
+     inkscape:cy="37.644948"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     fit-margin-top="1"
+     fit-margin-right="4"
+     fit-margin-bottom="1"
+     fit-margin-left="4"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:object-nodes="true"
+     showguides="false"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-global="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4164"
+       originx="72.757234"
+       originy="-12.804345" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-393.4811,-120.08583)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 485.82165,132.50734 26.24999,0 c 1.42429,0 7.08334,3.33334 7.08334,10.00001 0,6.66667 -5.24239,10 -6.66667,10 l -26.24999,0"
+       id="path7136"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cczcc"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path7140"
+       d="m 594.5717,132.50734 41.24998,0 m 0.41667,20.00001 -41.24998,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <ellipse
+       ry="9.999999"
+       rx="6.6666665"
+       cy="142.50749"
+       cx="594.57166"
+       id="ellipse7142"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       sodipodi:nodetypes="zzzzz"
+       inkscape:connector-curvature="0"
+       id="path7146"
+       d="m 594.57165,141.67401 c 0.3929,0 0.8334,0.4405 0.8334,0.83333 0,0.39284 -0.4405,0.83334 -0.8334,0.83334 -0.3928,0 -0.8333,-0.4405 -0.8333,-0.83334 0,-0.39283 0.4405,-0.83333 0.8333,-0.83333 z"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="407.28812"
+       y="147.00563"
+       id="text7158"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         sodipodi:role="line"
+         id="tspan7160"
+         x="407.28812"
+         y="147.00563">from TLP</tspan></text>
+    <circle
+       r="3.000128"
+       cy="142.50749"
+       cx="571.23834"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="circle7162"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="m 461.23832,142.50735 45.00001,0"
+       id="path7164"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text7166"
+       y="146.96291"
+       x="647.55853"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         y="146.96291"
+         x="647.55853"
+         id="tspan7168"
+         sodipodi:role="line">to load</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path7170"
+       d="m 609.23245,142.50735 32.0059,0"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4883)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.23076928;stroke-miterlimit:4;stroke-dasharray:none"
+       x="530.90839"
+       y="202.95775"
+       id="text7174"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         sodipodi:role="line"
+         id="tspan7176"
+         x="530.90839"
+         y="202.95775">Δt ns</tspan></text>
+    <path
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 496.23833,197.50734 15,0 0,-30 -13.33331,0 c 0,0 0.62342,-3.33333 -3.33337,-3.33333 -3.95684,0 -3.33334,3.33333 -3.33334,3.33333 0,0 0.62349,-3.33333 -3.33333,-3.33333 -3.9568,0 -3.33333,3.33333 -3.33333,3.33333 0,0 0.62346,-3.33333 -3.33333,-3.33333 -3.95683,0 -3.33334,3.33333 -3.33334,3.33333 0,0 0.62349,-3.33333 -3.33333,-3.33333 -3.9568,0 -3.33333,3.33333 -3.33333,3.33333 l -25.00001,0"
+       id="path7134"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccczczczczcc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 551.65501,192.50734 -19.58331,0 c -1.42429,0 -7.08335,-3.33334 -7.08335,-10 0,-6.66667 5.2424,-10 6.66668,-10 l 19.58331,0"
+       id="path7150"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cczcc" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.00000024;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse7152"
+       transform="scale(-1,-1)"
+       cx="-551.65503"
+       cy="-182.50735"
+       rx="6.6666665"
+       ry="10" />
+    <path
+       sodipodi:nodetypes="ccc"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 551.65506,182.50734 19.58328,-5e-5 0,-39.99995"
+       id="path7154"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 551.65506,183.34068 c -0.3929,0 -0.8334,-0.4405 -0.8334,-0.83333 0,-0.39284 0.4405,-0.83334 0.8334,-0.83334 0.3928,0 0.8333,0.4405 0.8333,0.83334 0,0.39283 -0.4405,0.83333 -0.8333,0.83333 z"
+       id="path7156"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="zzzzz" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 476.65499,197.50729 15,0"
+       id="path7182"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 495.65501,207.5073 0,-20.0004"
+       id="path7184-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 491.65499,187.5069 0,20.0004"
+       id="path7186-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <g
+       id="g7188"
+       transform="matrix(0,1,-1,0,1044.0161,-72.492736)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"
+       style="stroke-width:1.00000012;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7190"
+         d="m 257.5011,597.36136 24.99786,0"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 260.00089,597.36136 2.49974,5"
+         id="path7192"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:connector-curvature="0"
+         id="path7194"
+         d="m 265.00042,597.36136 2.49974,5"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 270,597.36136 2.49974,5"
+         id="path7196"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:connector-curvature="0"
+         id="path7198"
+         d="m 274.99958,597.36136 2.49975,5"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 279.99917,597.36136 2.49974,5"
+         id="path7200"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       style="stroke-width:1.00000012;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       transform="matrix(0,1,-1,0,1044.0161,-102.49275)"
+       id="g7204">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 257.5011,597.36136 24.99786,0"
+         id="path7206"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7208"
+         d="m 260.00089,597.36136 2.49974,5"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <path
+         sodipodi:nodetypes="cc"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 265.00042,597.36136 2.49974,5"
+         id="path7210"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7212"
+         d="m 270,597.36136 2.49974,5"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <path
+         sodipodi:nodetypes="cc"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 274.99958,597.36136 2.49975,5"
+         id="path7214-0"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7216"
+         d="m 279.99917,597.36136 2.49974,5"
+         style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+    </g>
+    <g
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       style="stroke-width:3.23741031;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0.3088889,0,0,0.3088889,201.74381,172.06654)"
+       id="g7252">
+      <rect
+         y="72.36216"
+         x="819.99994"
+         height="20.000021"
+         width="70.000084"
+         id="rect7254"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.23741031;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7256"
+         d="m 792.87779,82.36218 27.12221,0"
+         style="fill:none;stroke:#000000;stroke-width:3.23741031;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.23741031;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 890,82.36218 40,0"
+         id="path7258"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       sodipodi:linespacing="125%"
+       id="text7260"
+       y="211.06203"
+       x="460.26178"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="211.06203"
+         x="460.26178"
+         id="tspan7262"
+         sodipodi:role="line">R</tspan></text>
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       sodipodi:linespacing="125%"
+       id="text7264"
+       y="211.06203"
+       x="500.87335"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="211.06203"
+         x="500.87335"
+         id="tspan7266"
+         sodipodi:role="line">C</tspan></text>
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       sodipodi:linespacing="125%"
+       id="text7268"
+       y="181.06203"
+       x="483.25739"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="181.06203"
+         x="483.25739"
+         id="tspan7270"
+         sodipodi:role="line">L</tspan></text>
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       sodipodi:linespacing="125%"
+       id="text7292"
+       y="134.2932"
+       x="566.95288"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="134.2932"
+         x="566.95288"
+         id="tspan7294"
+         sodipodi:role="line">A</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 519.15502,142.50734 76.08332,0"
+       id="path7138"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6120)"
+       d="m 511.23832,182.50734 14.00002,0"
+       id="path4843"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5175"
+       d="m 702.40586,197.50734 225.00002,0.12891"
+       style="fill:none;stroke:#000000;stroke-width:0.6703344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5337)"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5181"
+       d="m 707.40586,197.50734 c 0,0 17.63298,-54.83851 20.36583,-54.83851 2.78449,0 0.73386,47.86981 3.46669,46.8385 65.00001,-37 95.00001,-12 186.1675,8.00001"
+       style="fill:none;stroke:#000000;stroke-width:1.08284795px;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cscc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5183"
+       d="m 717.45884,194.59395 0,5.82679"
+       style="fill:none;stroke:#000000;stroke-width:0.97971946px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5185"
+       d="m 727.40588,194.59395 0,5.82679"
+       style="fill:none;stroke:#000000;stroke-width:0.97971946px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5187"
+       d="m 803.41643,194.59395 0,5.82679"
+       style="fill:none;stroke:#000000;stroke-width:0.97971946px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5203"
+       d="m 717.45884,197.63625 73.77955,-41.25137"
+       style="fill:none;stroke:#000000;stroke-width:0.6703344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.06258265, 2.06258265;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.71050292;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.4210059, 1.4210059;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 727.40588,197.50734 0,-55.41923"
+       id="path5315"
+       inkscape:connector-curvature="0" />
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       sodipodi:linespacing="125%"
+       id="text5317"
+       y="208.1382"
+       x="705.901"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.23076928;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         y="208.1382"
+         x="705.901"
+         id="tspan5319"
+         sodipodi:role="line">Δt</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.00000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.23076928;stroke-miterlimit:4;stroke-dasharray:none"
+       x="728.2135"
+       y="208.1382"
+       id="text5321"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         sodipodi:role="line"
+         id="tspan5323"
+         x="728.2135"
+         y="208.1382">2Δt</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="72.949722"
+       y="727.20941"
+       id="text6205"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.35225775,-0.93590303,0.93590303,0.35225775,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan6207"
+         x="72.949722"
+         y="727.20941">TLP risetime</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6209"
+       y="524.52881"
+       x="555.79663"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="matrix(0.86788368,-0.49676747,0.49676747,0.86788368,0,0)"><tspan
+         y="524.52881"
+         x="555.79663"
+         id="tspan6211"
+         sodipodi:role="line">capacitor charge</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="836.23352"
+       y="175.28322"
+       id="text6213"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6215"
+         x="836.23352"
+         y="175.28322">inductor action</tspan></text>
+    <rect
+       style="opacity:1;fill:#67ea66;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6241"
+       width="29.999981"
+       height="5"
+       x="701.23834"
+       y="132.50734" />
+    <rect
+       y="132.50732"
+       x="731.23834"
+       height="5.0000153"
+       width="80.000031"
+       id="rect6243"
+       style="opacity:1;fill:#ff2c2d;fill-opacity:0.77456647;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#44a8e9;fill-opacity:0.69942194;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6245"
+       width="140.00003"
+       height="5.0000153"
+       x="781.23834"
+       y="132.50732" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#30ba2f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="703.58759"
+       y="130.55811"
+       id="text6247"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6249"
+         x="703.58759"
+         y="130.55811">phase 1</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text6251"
+       y="130.55811"
+       x="743.58759"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#ff2c2d;fill-opacity:0.77647059;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="130.55811"
+         x="743.58759"
+         id="tspan6253"
+         sodipodi:role="line">phase 2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000048px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#44a8e9;fill-opacity:0.69803922;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="848.58765"
+       y="130.55811"
+       id="text6255"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6257"
+         x="848.58765"
+         y="130.55811">phase 3</tspan></text>
+  </g>
+</svg>

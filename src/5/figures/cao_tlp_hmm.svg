@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="96.830223mm"
+   height="21.658085mm"
+   viewBox="0 0 343.09925 76.741247"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="cao_tlp_hmm.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5371"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5373" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5147"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5149" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5017"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5019" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4761"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path4763" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker6120"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path6122" />
+    </marker>
+    <marker
+       inkscape:stockid="DotS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6008"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6010"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5366"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5368" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5254"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5256" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5008"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path5010" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInM"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4435"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(-0.4,-0.4)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4899"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart">
+      <path
+         transform="matrix(0.3,0,0,0.3,-0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path4901"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutM"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4444"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.4,0.4)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutS"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4447"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.2,0.2)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4326"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4308"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="DotS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="DotS"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path4293"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4688"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotM">
+      <path
+         transform="matrix(0.4,0,0,0.4,2.96,0.4)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path4690"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="DotL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="DotL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4287"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker8028"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8030"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7212"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7214"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Send"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5866"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="179.56771"
+     inkscape:cy="4.6374071"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     fit-margin-top="1"
+     fit-margin-right="6"
+     fit-margin-bottom="1"
+     fit-margin-left="6"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="true"
+     inkscape:object-nodes="true"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4164"
+       originx="116.15774"
+       originy="-19.379751" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-350.08059,-131.38633)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.57575798;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 451.01947,147.2551 48.00002,0 c 0.7481,0 3.72053,1.75084 3.72053,5.25252 0,3.50169 -2.75357,5.25253 -3.50168,5.25253 l -48.00001,0"
+       id="path9083"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cczcc" />
+    <ellipse
+       ry="5.2525253"
+       rx="3.5016837"
+       cy="152.50763"
+       cx="451.26181"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.57575798;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse9085" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.57575762;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 451.01945,152.0699 c 0.20637,0 0.43774,0.2313 0.43774,0.4377 0,0.2063 -0.23137,0.4377 -0.43774,0.4377 -0.20632,0 -0.4377,-0.2314 -0.4377,-0.4377 0,-0.2064 0.23138,-0.4377 0.4377,-0.4377 z"
+       id="path9087"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="zzzzz"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       sodipodi:linespacing="125%"
+       id="text9089"
+       y="140.55464"
+       x="477.34073"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000191px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan9091"
+         y="140.55464"
+         x="477.34073"
+         sodipodi:role="line">coaxial 1ns</tspan></text>
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:connector-curvature="0"
+       id="path9109"
+       d="m 476.23834,166.50734 0,-9.00001"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#DotS)"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.57575762;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9129"
+       width="50.000011"
+       height="20.000006"
+       x="556.23828"
+       y="142.50732"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       sodipodi:linespacing="125%"
+       id="text9131"
+       y="172.58148"
+       x="581.88177"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000191px;line-height:125%;font-family:roboto;-inkscape-font-specification:roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="172.58148"
+         x="581.88177"
+         id="tspan9133"
+         sodipodi:role="line">1ns risetime</tspan><tspan
+         id="tspan9135"
+         y="181.95648"
+         x="581.88177"
+         sodipodi:role="line">filter</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5254)"
+       d="m 527.23833,152.50733 c 9.66666,5.9e-4 19.33333,2.7e-4 29,2.7e-4"
+       id="path9137"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="ccccccccccc"
+       id="path9497"
+       d="m 441.23832,152.50733 0,20 -5.60808,0 -1.36599,2.61802 -2.732,-5.23603 -2.73199,5.23603 -2.73198,-5.23603 -2.73199,5.23603 -2.73198,-5.23603 -1.36599,2.61801 -3.43806,0"
+       style="font-size:8px;fill:none;stroke:#000000;stroke-width:1.00000024;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5147)"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 544.23833,162.50733 -37.00001,0 0,-18 37.00001,0 z"
+       id="path10473"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <ellipse
+       ry="10.953498"
+       rx="10.889653"
+       cy="177.00786"
+       cx="526.23834"
+       id="path5547"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final-corrected\figure_2.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <g
+       id="g4707"
+       transform="translate(139.43348,-8.9333652)">
+      <path
+         id="path3232"
+         d="m 395.09608,206.49231 -17.17486,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3234"
+         d="m 391.80486,209.4407 -10.59242,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3236"
+         d="m 388.74062,212.3891 -4.46394,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000191px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="521.7688"
+       y="179.94414"
+       id="text11047"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\04-Final-corrected\figure_2.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         sodipodi:role="line"
+         id="tspan11049"
+         x="521.7688"
+         y="179.94414">HV</tspan></text>
+    <g
+       transform="translate(89.433477,-38.933364)"
+       id="g4908">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 395.09608,206.49231 -17.17486,0"
+         id="path4910" />
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 391.80486,209.4407 -10.59242,0"
+         id="path4912" />
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 388.74062,212.3891 -4.46394,0"
+         id="path4914" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5008)"
+       d="m 526.23833,196.50735 0,-9.00001"
+       id="path5006"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <g
+       style="text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0.65049982,0,0,0.65049982,390.56851,-118.6909)"
+       id="g5234"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5236"
+         y="399.68619"
+         x="237.5103"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           y="399.68619"
+           x="237.5103"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+           id="tspan5244">50 Ω switch</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5240"
+         y="391.03293"
+         x="231.52588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans';text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           y="391.03293"
+           x="231.52588"
+           id="tspan5242"
+           sodipodi:role="line"
+           style="font-size:8px;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none" /></text>
+    </g>
+    <path
+       sodipodi:nodetypes="cczcc"
+       inkscape:connector-curvature="0"
+       id="path5886"
+       d="m 620.01949,147.25511 26.00001,0 c 0.7481,0 3.72053,1.75084 3.72053,5.25252 0,3.50169 -2.75357,5.25253 -3.50168,5.25253 l -26,0"
+       style="fill:none;stroke:#000000;stroke-width:1.57575798;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       id="ellipse5888"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.57575798;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       cx="620.26178"
+       cy="152.50763"
+       rx="3.5016837"
+       ry="5.2525253" />
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       sodipodi:nodetypes="zzzzz"
+       inkscape:connector-curvature="0"
+       id="path5890"
+       d="m 620.01947,152.06991 c 0.20637,0 0.43774,0.2313 0.43774,0.4377 0,0.2063 -0.23137,0.4377 -0.43774,0.4377 -0.20632,0 -0.4377,-0.2314 -0.4377,-0.4377 0,-0.2064 0.23138,-0.4377 0.4377,-0.4377 z"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.57575762;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#DotS)"
+       d="m 636.23835,166.50735 0,-9.00001"
+       id="path5892"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <g
+       id="g5894"
+       transform="translate(249.43348,-38.933357)">
+      <path
+         id="path5896"
+         d="m 395.09608,206.49231 -17.17486,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path5898"
+         d="m 391.80486,209.4407 -10.59242,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path5900"
+         d="m 388.74062,212.3891 -4.46394,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:connector-curvature="0"
+       id="path9119"
+       d="m 606.23839,152.5076 13.13131,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.80000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       sodipodi:nodetypes="ccc"
+       id="path6006"
+       d="m 526.23833,158.50733 -10.00001,-6 -13.17002,0"
+       style="font-size:8px;fill:none;stroke:#000000;stroke-width:1.00000024;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker6008)"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 566.23828,147.50733 20,0 10,10"
+       id="path6502"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.80000019;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="m 649.10705,152.5076 13.13131,0"
+       id="path6504"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000191px;line-height:125%;font-family:roboto;-inkscape-font-specification:roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="661.43536"
+       y="163.56361"
+       id="text6518"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         x="661.43536"
+         y="163.56361"
+         id="tspan6522">device</tspan></text>
+    <path
+       sodipodi:nodetypes="ccczczczczccc"
+       inkscape:connector-curvature="0"
+       id="path6020"
+       d="m 381.23832,172.50733 7,0 0,-3 c 0,0 -0.48872,-3.84098 2.57507,-3.84098 3.06382,0 2.58104,3.84098 2.58104,3.84098 0,0 -0.48278,-3.84098 2.58104,-3.84098 3.0638,0 2.58104,3.84098 2.58104,3.84098 0,0 -0.48275,-3.84098 2.58104,-3.84098 3.06382,0 2.58104,3.84098 2.58104,3.84098 0,0 -0.48278,-3.84098 2.58104,-3.84098 3.0638,0 2.93887,3.84098 2.93887,3.84098 l 0,3 6.99982,0"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker4761)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
+    <path
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path6134"
+       d="m 381.23832,166.5697 -10e-6,17.93764"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path6136"
+       d="m 381.23831,197.63578 0,-10.12844"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       inkscape:connector-curvature="0"
+       id="path6138"
+       d="m 387.23832,184.41008 -12,0"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\Abstract\setup.png"
+       inkscape:connector-curvature="0"
+       id="path6140"
+       d="m 375.23832,187.50734 12,0"
+       style="fill:none;stroke:#000000;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="ccccccccccc"
+       id="path9497-2"
+       d="m 451.23832,152.50733 -25,0 -1.36599,2.61802 -2.732,-5.23603 -2.73199,5.23603 -2.73198,-5.23603 -2.73199,5.23603 -2.73198,-5.23603 -1.36599,2.61801 -28.60808,0 0,20"
+       style="font-size:8px;fill:none;stroke:#000000;stroke-width:1.00000024;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <g
+       id="g4603"
+       transform="translate(-5.5665471,-8.8049253)">
+      <path
+         id="path4605"
+         d="m 395.09608,206.49231 -17.17486,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path4607"
+         d="m 391.80486,209.4407 -10.59242,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path4609"
+         d="m 388.74062,212.3891 -4.46394,0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000191px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="633.96893"
+       y="142.19614"
+       id="text4753"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         x="633.96893"
+         y="142.19614"
+         id="tspan4755">coaxial 50Ω</tspan></text>
+    <g
+       style="text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0.65049982,0,0,0.65049982,289.77016,-92.991731)"
+       id="g5287"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\r2_r10_setup.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5289"
+         y="399.68619"
+         x="221.39909"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           y="399.68619"
+           x="221.39909"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+           id="tspan5291">90 Ω</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5293"
+         y="391.03293"
+         x="231.52588"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans';text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           y="391.03293"
+           x="231.52588"
+           id="tspan5295"
+           sodipodi:role="line"
+           style="font-size:8px;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none" /></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         x="221.39909"
+         y="399.68619"
+         id="text5297"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan5299"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.52959824px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+           sodipodi:role="line"
+           x="221.39909"
+           y="399.68619">90 Ω</tspan></text>
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text5321"
+       y="159.0537"
+       x="411.62772"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.20399857px;line-height:125%;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans';text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         y="159.0537"
+         x="411.62772"
+         id="tspan5323"
+         sodipodi:role="line"
+         style="font-size:5.20399857px;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       x="405.53128"
+       y="163.65584"
+       id="text5325"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan5327"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         sodipodi:role="line"
+         x="405.53128"
+         y="163.65584">2 uH</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text5335"
+       y="147.22726"
+       x="427.94199"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         y="147.22726"
+         x="429.80234"
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan5337">300 Ω </tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text5339"
+       y="188.47726"
+       x="411.69199"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         y="188.47726"
+         x="411.69199"
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.50000143px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;stroke-width:1.22982383;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan5341">330 pF</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5371)"
+       d="m 526.23833,158.50733 0,14"
+       id="path5369"
+       inkscape:connector-curvature="0"
+       transform="translate(-4.903163e-6,0)" />
+  </g>
+</svg>
