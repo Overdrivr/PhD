@@ -93,17 +93,27 @@ Overall, its dimensions must be kept as small as possible to reduce the impact o
 
 \subsection{Absorber}
 
-Role of the absorber
+Near the end of the HMM waveform, the inductor is drawing almost all the incoming \gls{TLP} current.
+After 100ns, the current injected by the TLP into the shaping filter and the \gls{dut} becomes null because the cable is completely discharged.
+However, the current inside the inductor cannot be stopped instantly.
+Without the absorber, the inductor would keep absorbing a non-zero current after the TLP pulse, drawing a negative potential at point A.
+To avoid this phenomenom, the absorber completely filters the TLP falling edge at the end of the pulse.
+This way, the current through the inductor is softly brought back to 0 by the absorber, effectively eliminating the negative voltage issue.
+It also acts as a matched termination for transient events, which is great to eliminate reflections and prevent ringing oscillations.
 
-The schematic of the absorber is given Fig. 8.
-It is constituted of a 50 resistor, in series with 6.6 nF.
-It acts as a matched termination for transient events, and absorbs any incoming reflections.
+The schematic of the absorber is given Fig. \ref{fig:absorber_schematic} and a picture of the assembled device is given in Fig. \ref{pic:absorber_filter_assembled}.
+The device is constituted of a 50\textOmega{} resistor, in series with a 6.6 nF capacitor.
 
-%TODO: Schematic of absorber
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/5/figures/absorber_schematic.pdf}
+  \caption{absorber schematic}
+  \label{fig:absorber_schematic}
+\end{figure}
 
-Because it is connected to the TLP line but on the opposite side of the load, it will absorb current at the end of the TLP pulse.
-Thus, the pulse reflection of opposite sign will be globally eliminated by this system.
-The picture of the absorber is given Fig. 9.
-It is helpful for understanding a small issue caused by a parasitic capacitance described in Section II.5.
-
-%TODO: Picture
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{src/5/figures/absorber.jpg}
+  \caption{assembled absorber}
+  \label{pic:absorber_filter_assembled}
+\end{figure}
