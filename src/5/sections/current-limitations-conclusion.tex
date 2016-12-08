@@ -1,8 +1,16 @@
 \section{Current limitations and potential improvements}
 
-This generator not only reproduces the waveform on calibration patterns
-It also correlates well with actual testing ESD guns when destroying ESD protections
+Developped a new alternative to TLP-HMM
+Works well, quite robust against ringing oscillations and parasitic disturbances
+This generator reproduces the waveform on calibration patterns
+So far correlates well with actual testing ESD guns when destroying ESD protections
 
-Because of limitations, this tool was not used extensively throughout this study, but an improved model could be interesting.
-
+Needs improvement in terms of manufacturing, and maximum charging voltage
+Limited by HV supply
 Challenges: Use 8kV, 15kV HV supplies, with all implications (HV sustaining cables, switchs, etc).
+New challenges to be solved, such as developping a TLP able to sustain 8kV 15kV charging voltage
+
+Research work on this generator led to interesting discovery
+Possible to make a link between a TLP failure level, on-resistance of ESD protection, and the HMM failure voltage.
+Validated on a set of 10 different ESD protections
+More work to test on a larger set, see if only happens with thermal breakdown
