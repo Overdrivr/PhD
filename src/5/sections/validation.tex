@@ -1,4 +1,4 @@
-\section{Validation of the TLP-HMM}
+\section{Validation of TLP-HMM models and standard compliancy}
 
 \subsection{Model validation}
 
@@ -86,7 +86,7 @@ Guarantying matching along the path should eliminate this ringing oscillation.
 \subsection{Comparison with an ESD Gun}
 
 % Introduce how generators are usually tested against ESD gun
-A generally adopted procedure to compare any ESD generator to another is to destroy ESD protections and compare the failure levels.
+A generally adopted procedure to compare two ESD generator is to destroy ESD protections and compare the failure levels.
 The TLP-HMM is compared to a real standardized HMM generator following this procedure.
 The failure criteria is a sudden increase in the leakage current of the tested ESD protection after a pulse injection.
 
@@ -130,37 +130,52 @@ HMM     (V) & 1250  & 1250  & 1500   & 1500 & 6500 & 5000 & 13000 & 9500 & 20000
 
 \subsection{Correlation between TLP and HMM}
 
+%TODO: Overly simplistic, but does it work ?
 % Correlation method principle orrelation results
-%TODO: Review
-Based on those preliminary results, a correlation method was built between TLP failure levels and HMM failure levels.
-It exploits the fact that the TLP-HMM is at its core a TLP and has a similar behavior to an HMM generator.
-It was published in \cite{my-publi-tlp-hmm}.
-Characterize each generator, and build a Thevenin equivalent circuit with resistor and DC voltage.
-DC voltage is charging voltage (command set on the generator), and resistor is extracted from characterization
-ESD protection is represented by its on-resistance.
-Total equivalent circuit is just a DC source with two resistors in series, and is given in Fig \ref{fig:simple_equivalent_circuit}.
+Based on those preliminary results, a correlation method is built between TLP failure levels and HMM failure levels.
+It exploits the fact that the TLP-HMM is at its core a TLP, yet has a similar behavior to an HMM generator.
+The analysis was published in \cite{my-publi-tlp-hmm}.
+It requires a characterization step for each generator, to extract the most simple equivalent circuit composed of a resistor and a DC voltage source.
+The DC voltage source takes the value defined by the user on the generator before a pulse.
+The resistor is extracted from the characterization.
+Finally, the ESD protection is modeled by its on-resistance.
+The complete equivalent circuit is just a DC source with two resistors in series (Fig \ref{fig:simple_equivalent_circuit}).
 
-%TODO: Equivalent circuit
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{src/5/figures/equivalent_circuit.pdf}
-  \caption{Simple equivalent circuit for the correlation}
+  \includegraphics[width=0.65\textwidth]{src/5/figures/equivalent_circuit.pdf}
+  \caption{Equivalent circuit for failure correlation}
   \label{fig:simple_equivalent_circuit}
 \end{figure}
 
-It is found in the article that for both TLP and HMM, DC source voltage and resistances are different.
-But the failure current found with this method is extremely close for both generators, for each of the 10 tested structures.
-Ultimately, a prediction method is built from this result.
-It requires the TLP failure voltage, and the ESD-on resistance, to predict the HMM failing voltage.
-Both values are easily obtained from a TLP characterization.
+% What is equivalent resistance for each generator
+Different equivalent DC voltages and resistances are found between TLP and HMM.
+The TLP used in the NXP lab has an equivalent output resistance of 83\textOmega{}.
+Interestingly, a 50\textOmega{} value was expected, but it turns out that this particular TLP has a mismatched attenuator in it, increasing slighly its equivalent output resistance.
+A more classic TLP at the LAAS laboratory was also characterized and exhibits an output resistance of about 53\textOmega{}.
+The HMM generator has a much larger output resistance, estimated at about 600 \textOmega{}.
+The TLP-HMM was also characterized, and situates somewhere in the middle with an output resistance of about 300\textOmega{}.
 
-%TODO: Plot of correlation method
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{src/5/figures/correlation_results.png}
-  \caption{TLP-predicted versus HMM-measured failure levels }
-  \label{fig:predicted_vs_measured_levels}
-\end{figure}
+% What is the discovered correlation
+Despite different charging voltages and equivalent resistances, it was discovered that using this extremely simple circuit almost identical failure current I\textsubscript{ESD} were calculated with each generator, for each of the 10 tested structures.
+This result indicates that this simplified circuit could link failure levels between generators.
+To try this hypothesis further, it is attempted to predict the HMM failure levels, directly from TLP results.
+The prediction method requires the TLP failure voltage and the ESD-on resistance, to predict the HMM failing voltage.
+Both values are easily obtained from a TLP characterization.
+Eq. \ref{eq:relation-prediction} provides the formula, directly extracted from the equivalent circuit, to link HMM charging voltage to the TLP failure current.
+In this formula, I\textsubscript{ESD} is measured with the TLP.
+
+\begin{equation}
+V_{HMM} = I_{ESD} * (R_{HMM} + R_{ON})
+\label{eq:relation-prediction}
+\end{equation}
 
 Fig. \ref{fig:predicted_vs_measured_levels} shows the results of this prediction method on the same set of 10 ESD protections.
-Extremely good correlation show that this method could have great potential.
+Good correlation is achieved and indicates this method could effectively be used to establish correlation between ESD generators.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/5/figures/correlation_results.png}
+  \caption{TLP prediction versus HMM measurement of failure levels}
+  \label{fig:predicted_vs_measured_levels}
+\end{figure}
