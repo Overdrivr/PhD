@@ -181,6 +181,7 @@ Append a `{}` afterward to get a trailing space afterward. Example:
 ```
 \begin{equation}
 a = b + c
+\end{equation}
 ```
 
 * Resources for formatting ?
