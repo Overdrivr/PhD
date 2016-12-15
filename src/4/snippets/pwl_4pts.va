@@ -1,0 +1,39 @@
+//Verilog-AMS HDL for "pwl_4pts" "verilogams"
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module iv_curve (A, B);
+  inout A, B;
+  electrical A, B;
+
+  parameter real v0 = -50.0;
+  parameter real i0 = -10.0;
+  parameter real v1 = -4.0;
+  parameter real i1 = -2.0;
+  parameter real v2 = 13;
+  parameter real i2 = 12;
+  parameter real v3 = 50;
+  parameter real i3 = 18;
+  real a1, a2, a3, b1, b2, b3;
+  real curr;
+
+  analog begin
+    a1 = (i1-i0)/(v1-v0);
+    a2 = (i2-i1)/(v2-v1);
+    a3 = (i3-i2)/(v3-v2);
+
+    b1 = i1 - a1 * v1;
+    b2 = i2 - a2 * v2;
+    b3 = i3 - a3 * v3;
+
+    if(V(A,B) > v2)
+      curr = a3 * V(A,B) + b3;
+    else if(V(A,B) > v1)
+      curr = a2 * V(A,B) + b2;
+    else
+      curr = a1 * V(A,B) + b1;
+
+    I(A,B) <+ transition(curr,0,1n,1n);
+  end
+endmodule
