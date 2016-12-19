@@ -3,7 +3,7 @@
 % Difference with bottom-up, not the same application, not the same goal
 The black-box modeling method relies on the same core principles than the bottom-up modeling approach.
 It studies the relationship and transfert function between the input and the output of a silicon function.
-Unlike the bottom-up method though, the model is only built \textbf{for external input and output pins}.
+Unlike the bottom-up method though, the model is only built for external input and output pins.
 It is not meant to be chained with other models, using a special chaining method.
 Instead, it targets electrical, board-level circuit simulations.
 Basically, the black box model is intented to act as a drop-in replacement for the complete \gls{ic} circuit, for board-level simulations.
@@ -13,7 +13,7 @@ Basically, the black box model is intented to act as a drop-in replacement for t
 The purpose is also different from the bottom-up approach.
 The goal is not to detect issues at silicon-level early before manufacturing, but to let customers using the \gls{ic} in a \gls{pcb} to detect issues with the board that could result in silicon-functions failure.
 The \gls{seed} methodology recommends to design systems in a smart fashion for making them robust during operation, which requires a collaboration between board-level and silicon-level protective measures.
-Ultimately, the goal is to provide a black box model that is \textbf{fast to simulate} and can be \textbf{distributed without disclosing sensitive intellectual property}.
+Ultimately, the goal is to provide a black box model that is fast to simulate and can be distributed without disclosing sensitive intellectual property.
 
 % introduction, failure relation between input and output
 The main benefit of this model is to abstract the internal silicon complexity.
@@ -66,18 +66,22 @@ The next section details how to solve this issue.
 
 \subsection{Electrical modeling of inputs and outputs}
 
-Need to model a silicon function, between an input external pin and output external pin.
-Need an electrical model.
-Hypothesis is functions IO can be modeled by their TLP characteristic (quasi-static I(V) response).
+%TODO: Review everything hereafter
+An electrical modelling method for silicon functions is explored.
+Ideally, the model could replace any function's input or output, be extracted and configured easily.
+We formulate the initial hypothesis that \gls{io}s can be modeled by their extracted TLP characteristic, representing their quasi-static I(V) response.
 
-In powered or unpowered conditions ?
-Unpowered conditions is the simplest, because can be done without external components.
-Powered conditions is more challenging, because what to do with external devices ?
+% powered or unpowered conditions ?
+Extracting the \gls{tlp} characteristic can be bone with the device powered or unpowered.
+Unpowered condition is the simplest case, because the characterization can be performed without external components.
+In powered conditions, the characterization is more challenging, because for the device to be functional, external devices can be required.
+Yet they are not wanted in the characterization.
 
-First, compare TLP curves on our regulation function, in powered and unpowered conditions.
-Not interested in nominal functionnality here, just impedances.
-Function does not have to be functionnal, just biased correctly.
-Do not connect external devices.
+% Comparison to decide
+To decide the best approach, \gls{tlp} characterizations are performed on the testchip's regulation function, in powered and unpowered conditions.
+For powered conditions, it is considered that full functionality and performance does not matter, just the equivalent impedance of the input or output.
+As a consequence, the function is biased but external devices are not connected.
+Unpowered and powered characterizations are compared respectively in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
 
 \begin{figure}[!h]
   \centering
@@ -93,35 +97,36 @@ Do not connect external devices.
   \label{fig:tlp-output-cz}
 \end{figure}
 
-For both input and output, large differences between powered and unpowered modes.
+For both input and output ports, large differences are observed between powered and unpowered modes.
 Different amount of current are absorbed by the device in each conditions.
-To be as close as possible as the normal testing conditions, characterization should be done in powered conditions.
+Since the model is intended for powered-on simulations, the characterization in powered conditions is chosen.
 
 % Explain the PWL model
-Second step to build an electrical model of the function
-Create a piecewise linear model of the input, and of the output.
-For this purpose, a generic four-points piecewise linear model was written in Verilog-A (TODO: Ref).
-Configured with 4 four (V\textsubscript{i},I\textsubscript{i}) points.
+The second step of the modelling method is to build an electrically simulatable model of the function.
+A piecewise linear model seems well suited for this situation.
+Specifically, a configurable four-points piecewise linear model is written in Verilog-A (TODO: Ref).
+The model is configured easily with 4 four (V\textsubscript{i},I\textsubscript{i}) coordinates.
 
 \lstset{style=veriloga-style}
-\lstinputlisting[caption=Piecewise-linear 4 points model, float, linerange={1-21}, firstnumber=1]{src/4/snippets/pwl_4pts.va}
+\lstinputlisting[caption=Piecewise-linear 4 points model, float, linerange={1-39}, firstnumber=1]{src/4/snippets/pwl_4pts.va}
 
 % Comment the model
-Convergence can be difficult to achieve
-Must ensure that the PWL is continuous
-Also, curves are extracted for a wide range of voltages.
-However, it is an integrated function and not an ESD protection.
-Thus, any part of the curve beyond the upstream ESD protection triggering-voltage is useless, since voltage will never reach this area.
-Also, any part of the curve beyond the Safe-Operating Area (TODO: gloss) of the function is also useless.
-Device will be destroyed beyond this limit, in which case we are not interested in functional failures anymore.
-Finally, it was observed that rather than trying to fit properly the entire curve with the PWL, it is very important to fit the curve near the nominal voltage.
-In our case, between -10V and 40V.
-
+For this kind of model to work, a few rules of thumbs must be followed.
+First, convergence can be difficult to achieve if the piecewise-linear curve is not continuous at order 0.
+Electrically speaking, it would be equivalent to very abruptly switching the value of a resistor for instance.
+%TODO: SOA gloss
+For our particular case, I(V) curves are extracted for a wide range of voltages.
+However, integrated function are being characterized and not ESD protections.
+Any part of the curve above Safe-Operating Areas is irrelevant for this functional model, since beyond it the function is destroyed.
+Therefore, it is important to fit the curve inside and near the nominal operating area.
+For the input, the model should be accurate between -10V and 40V.
+%TODO: Speak about resistance value near 0V versus matching overall curve shape
 
 % Validate the model with TLP
-Compare full-transistor simulation (nominal + esd) with the input model.
-After issues described previously were solved, good agreement is achieved between model and complete circuit, at -10V, 20V and 40V TLP amplitude.
-%TODO: Comment waveforms
+The verilog-a model is first tested against the complete schematic for the function's input.
+After issues described previously were solved, good agreement is achieved between model and complete circuit.
+This was verified at -10V, 20V and 40V TLP amplitude (Fig. \ref{fig:compare-model-simu-m10}, Fig. \ref{fig:compare-model-simu-20}, Fig. \ref{fig:compare-model-simu-40}).
+The model is considered mostly valid for the input.
 
 \begin{figure}[!h]
   \centering
@@ -144,8 +149,31 @@ After issues described previously were solved, good agreement is achieved betwee
   \label{fig:compare-model-simu-40}
 \end{figure}
 
-%TODO: Move as opening ?
-Also, need to validate with a varying waveform
+% Check the output
+The same test is performed for the function's output model.
+The situation is more complex in this case.
+The output model must perform three tasks.
+First, offer an output impedance close the the one of the real function.
+Second, provide a DC value, here corresponding to the regulated 2.5V.
+Lastly, reproduce the function reset where the output voltage falls down then restarts.
+A first output model is envisionned (Fig. \ref{fig:first-output-model}).
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/4/figures/first_output_model.png}
+  \caption{First proposal for modeling function output}
+  \label{fig:first-output-model}
+\end{figure}
+
+% Is this first model working
+Preliminary and extended tests show that this configuration is not working.
+Ultimately, the I(V) curve Verilog-A model is a voltage-controlled current source.
+When the model is combined with the external devices, several issues arise.
+%TODO: Fig
+Fig. X shows such a configuration.
+
+
+
 
 \subsection{Combining failure and electrical models}
 
@@ -198,3 +226,5 @@ First, the input is simulated, then analyzed to extract the width and amplitude 
 This data is then used to configure the output failure source pulse.
 The model must be improved in order for the output to react in real-time to the disturbance of the input.
 Ultimately, this calls for a Verilog-A model of the failure for instance, plus most likely an improved characterization method able to extract and describe this real-time behavior.
+
+%TODO: need to validate with a varying waveform
