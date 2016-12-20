@@ -1,22 +1,65 @@
 \section{Functionnal block checks}
 
-In this section, another bottom-up method is proposed.
-Like detailed previously, bottom-up methods are interesting for the intrisic modularity and reusability they offer.
+% High level view of the new method
+This section details a design method to detect functionnal failures early during the \gls{asic} design phase.
+It is a bottom-up method like the one described in \ref{sec:bottom-up-modeling}.
+However, the proposed method focuses on the signals inside the block itself, and not at its boundaries.
 
-In section 4.2, a block-failure modeling approach was detailed.
-Mainly, it focused on modeling the failure of a block as a time and amplitude criteria on an input.
-By going beyond the criteria, a failure was detected, and the output was considered at fault.
-This fault was propagated then further in the system, to the input of the next block.
-The main issue with this approach is the strong coupling between blocks.
-To check that an input did not violate its failure criteria, you needed to know information about its surrounding blocks.
+% Core principle
+This method is loosely inspired from automated testing in the programming field, and electronics verification field.
+The concept is to include inside any block schematic special cells (Fig. \ref{fig:ex-special-cells}), whose function is to raise a flag when certain conditions are met.
+Basically, each cell performs a check.
+The most simple check is asserting that a given net never crosses a given amplitude threshold.
+If the condition is met, a flag is raised and timestamped.
+The checking cells do not impact the electrical simulation.
 
-In this section, the method is also bottom-up but we focus instead on the signals inside the block itself, and not at its boundaries.
-The idea is to write a set of rules or assertions on a few signals inside the block.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/4/figures/special_cells_concept.pdf}
+  \caption{Example schematic with special checking cells}
+  \label{fig:ex-special-cells}
+\end{figure}
+
+% Interest for ESD simulations
+Powered-on \gls{asic} simulations can be difficult to investigate because of the scale factor.
+At silicon-level, the ESD is injected through an external connection at the top-level.
+\gls{asic} are very dense and complex devices, with multiple levels of hierarchy.
+When a functionnal-failure appears, it propagates through that hierarchy, vertically (from top-level down to transistor-level) and horizontally (between blocks).
+Except for a few obvious cases, this makes the investigation hard to perform.
+Especially, there can be multiple places where the failure could be fixed.
+In this context, knowing immediately which blocks raised flags, at which time and for how long is a precious information.
+
+% Knowing which flags were raised
+Knowing which blocks have raised flags shows where the ESD had an impact.
+This information might seem obvious, but for a human being it is a very time-consuming to inspect most nets manually.
+
+% Knowing when a flag starts
+Furthermore, it was indicated that flags should be timestamped.
+More specifically, the beginning and the end timestamps should be recorded.
+The beginning of the flag indicates which block goes into failure first.
+Sorting the beginning timestamps by ascending order indicates which block went into failure first, and in which order they were all impacted.
+More concisely, the propagation of the disturbance through the complete system can be described with just this information.
+
+% Knowing how long a flag was raised
+%TODO: Continue
+Finally, the duration of a flag provides a degree of severity of the flag.
+Any flag that is a thousand times shorter than the original \gls{ESD} discharge indicates a very minor fault.
+On the contrary, any flag that lasted larger than the discharge should indicate a very severe disturbance.
+
+% Combined value of all this information
+Combined together, smart decisions about where to fix the issues
+Which block seem the most ESD sensitive
+
+% How to write those flags
+
+
+ this approach has many
+
 When those rules are violated, we know the block is in a faulty state.
 
 This approach offers two main advantages compared to the section 4.2 method.
 
-First, the rules are written logically based on the design of the block, and not arbitrarily defined.
+First, the rules are written logicaly based on the design of the block, and not arbitrarily defined.
 If for instance a net is the gate command of a current mirror, a few criteria can be derived logically.
 For the current mirror to function properly, at least 1 gate voltage is required for biasing.
 Going below this voltage, the current mirror will not perform its copy anymore.
@@ -38,17 +81,6 @@ In any project/IC the block will be used, the rules will apply.
 
 TALK ABOUT VIRTUAL TEST. DIFFERENCE IS VIRTUAL TEST IS INTERESTED IN INTER-BLOCK RELATIONSHIP ?
 
-\subsection{Objective}
-
-The objective of writing these assertions is to handle easily the inherent scale factor and complexity of an IC.
-When performing simulations in soft-failure investigations, it became clear that the system, even with a few blocks,
-was too complex to be analysed manually.
-The amount of nets to check in order to ensure a block is operating normally is quite important.
-Most blocks can have multiple current mirror, bias structures, etc. that can be in various states.
-
-Automated checks help solve this issue, by enabling monitoring of a large amount of nets.
-For the automated check to be useful, it needs to be performed in any simulation.
-The following subsection details potential application of this technique, and how it should be setup to prove useful.
 
 \subsection{Applicability and integration}
 
