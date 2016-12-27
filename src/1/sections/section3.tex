@@ -1,7 +1,8 @@
 \section{State of the art in ESD testing}
+\label{sec:state-art-esd-testing}
 
-To ensure proper operation once in the field, hardware is tested against \gls{esd} using different test methods and standards.
-The goal for each method is to reproduce a particular \gls{esd} waveform in lab conditions.
+Electronic hardware robustness is tested against electrostatic discharges using different test methods and standards.
+Each method reproduces a specific discharge event \gls{esd} in laboratory conditions.
 In this chapter, we will introduce most relevant \gls{esd} generators, which will be useful later on for modeling them accurately.
 
 In ESD testing, distinction is often made between so-called system-level level tests and \gls{ic} level tests.
@@ -9,8 +10,6 @@ The first kind reproduces \gls{esd} events that a system deployed in the field m
 happening during \gls{ic} manufactoring.
 
 System-level tests involve higher voltage and current amplitudes, and are more harmful for electronic devices than \gls{ic} level tests.
-EXTERNAL DEVICES FOR PROTECTING ?
-ICs now have to sustain SYSTEM level tests
 
 \subsection{Transmission Line Pulsing (TLP)}
 
@@ -20,7 +19,7 @@ The cable is charged by a high-voltage power supply then discharged into a load 
 
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/1/figures/tlp_concept.pdf}
+  \includegraphics[width=\textwidth]{src/1/figures/tlp_concept.pdf}
   \caption{Minimal example of a \gls{tlp} system}
   \label{tlp_concept}
 \end{figure}
@@ -69,7 +68,7 @@ The latter defines additional pulse waveforms to cover a wider range of ESD even
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iso10605_waveform.pdf}
-  \caption{All waveforms defined in ISO 10605 standard on a 2\textOmega\ resistive load}
+  \caption{Waveforms defined in ISO 10605 standard on a 2\textOmega{} resistive load}
   \label{iso_pulse}
 \end{figure}
 

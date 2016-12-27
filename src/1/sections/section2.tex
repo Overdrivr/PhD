@@ -1,45 +1,109 @@
 \section{Research problem}
-\subsection{Impact of ESD on electronic devices}
+\subsection{Impact of electrostatic discharges on electronic devices}
 
-Hardware failure, at equipment level, at silicon level (gate oxide breakdown, short, etc)
-Software failure
+%TODO: Detail failure mechanisms
+%TODO: Pictures + References
 
-\subsection{Identification and modeling of design weaknesses against ESD}
+% Hardware failure
+Because of the high amplitude and high power involved, electrostatic discharges can destroy electronic devices.
+Hardware failures occur at any level in an electronic system.
+At the silicon level, active electronic devices such as transistors are extremely sensitive and \gls{io} require extensive protection to reroute the \gls{esd} outside the chip before it reaches them.
+There are many failure mechanisms that can destroy a circuit.
+% Gate oxyde breakdown
+Very high $dV/dt$ can cause a gate oxyde breakdown.
+In this event a transistor gate that normally acts as an insulator gets fused and becomes a short-circuit, effectively killing the transistor's functionnality.
+% Thermal breakdown
+Thermal breakdown is another common failure mechanism.
+This event usually happens when a long discharge induces a very localized temperature increase, until the meltdown temperature is reached.
+At this point some part of the device is fused, becomes a short or open-circuit and the device is no longer working.
+% Others
+%TODO: metal track fusing ?
+Hardware failures can also occur at the equipment or board level.
+Usually, they will involve the destruction of some discrete devices (TODO: Mouais bof) that make the board no longer working.
 
-Core question
+% Functional failure
+Multiple recent trends for electronic devices in the automotive field.
+Increase of the amount of electronic devices in cars
+Size reduction of integrated circuits and technologies
+Electronic devices have increasing responsabilities with handling of critical functions, regarding our safety.
+These trends represent a big challenge for ensuring operating safety
+ESD push the challenge further
+In some cases for extremely critical functions, functionnality must never be lost, even in the event of an ESD
+
+% Types of soft failures
+Several levels of disturbance when an ESD disrupts a functionnality
+Disturbance for the duration of the ESD, immediate recovery.
+Complex electronic circuits perform a restart when certains conditions are not met, sufficient supply voltages for instance.
+Goal is reset the product that is in a faulty state into a clean state.
+ESD can trigger those safety mechanisms, causing a full system restart.
+This is the second level of severity, because this behavior is not necessarily wanted.
+Third level of severity, the system gets frozen because of the ESD.
+It requires a user-intervention to recover.
+For a car, this user intervention can take the form of turning the key to shut the engine.
+Finally, the system can be put into a non-recoverable state.
+Usually due to hardware failures.
+
+% Define terminology
+%TODO: soft-failure, functional failure, operating ESD
+
+% What is the challenge
+Because those functionnal failures represent a risk, they must be taken care of during the design phase of an electronic system.
+The research conducted and presented in this document aims to develop new tools and techniques for studying and predicting soft-failures.
 
 \subsection{Research approach}
 
-The category of systems we are dealing with here are purely hierarchical.
-The final failure signature may be located at the silicon-level of an integrated circuit.
-This IC is part of an electronic equipment, itself part of a multitude of devices connected together,
-that are in charge of several functionnalities of a vehicle.
+% Presentation of the structure of the research/document
+The litterature is studied in section \ref{sec:state-art-esd-testing} to identify the current state of the art in operating \gls{esd}.
+This preliminary work highlights how functional failures appear and how they impact electronic devices.
+It is demonstrated that currently integrated circuits are studied as black-box objects for studying functionnal failures.
+Stresses are injected on external inputs while external outputs are monitored for failures.
+So far there does not seem to be any silicon-level studies.
 
-SCHEMA
+% What is presented in this document ? Investigation and detection methods
+In this research work, the goal is to push this study further.
+Study failures propagating inside the integrated circuit.
+Several methods are proposed for detecting potential weaknesses early.
+Each of them is evaluated against a study-case that has a few well-known weaknesses.
 
-ESD (vehicle level) -> communication bus, power line -> electronic equipment ->
-PCB -> Integrated circuit -> FAILURE -> propagates back, with consequences up to vehicle level
+% Fix and correction of design is outside scope of this document
+Question of fixing potential weaknesses is rather outside the scope of this document.
+At silicon-level, designers are completely able to fix the issues given that the appropriate information are provided.
+Fixing issues may also require changing the architecture, in that case the analysis is more interesting.
+Overall, this study is more focused on understanding how failures appear, propagate and can be detected, rather than fixing them.
 
-*SIMULATION*
+% First part of the study : understand what reaches the IC
+The first challenge for understanding soft-failures at silicon-level is to determine which part of an \gls{ESD} actually reaches the integrated circuit.
+Multiple devices, connectors, propagation media between the injection point and the integrated circuit
+Each element can absorb a part of the discharge current or change the discharge waveform.
 
-It is important to estimate properly the amount of stress a particular integrated circuits will be exposed to.
-Appropriate models need to be derived for running electrical simulations at the system level (everything up to the integrated circuit pins).
+% Use simulations as investigation tool
+Electrical simulators are used in this document as the main investigation tool.
+For simulations to be accurate, appropriate models need to be derived
+Building models that work in DC conditions and for ESD events is not straightforward
 Those models need to comply with the timescales, voltage and current dynamics, frequency behaviors, etc, encountered during electrostatic discharges.
+Section \ref{sec:esd-modeling} details a modeling method that enables accurate simulations.
 
-This system level modeling methodology is the first step in this research work.
+% ESD (vehicle level) -> communication bus, power line -> electronic equipment -> PCB -> Integrated circuit -> FAILURE -> propagates back, with consequences up to vehicle level
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/hierarchical_system.pdf}
+  \caption{Typical case of a hierarchical electronic system}
+  \label{fig:ex-electronic-system}
+\end{figure}
 
-Once we are able to estimate which amount of stress is actually injected inside the IC, the objective is to estimate how the current propagates at the silicon-level.
-Typically, at silicium level, a part of the ESD can be absorbed by ESD protections, or injected inside the substrate through parasitic coupling, etc.
+% Second step is to study what happens inside the IC
+The disturbance and the amount of the ESD stress at the input of an integrated circuit can be estimated.
+The next step is to study how the current propagates at the silicon-level.
+It is necessary to estimate the accuracy of the existing integrated device models when employed in \gls{esd} simulations.
+Standard simulations omit some parasitic devices such as metal track resistance and parasitic couplings.
+The impact of those devices on the electrostatic simulation needs to be identified as well.
+To validate the models and simulations, measurement data must to be obtained.
+Particular measurement methods are required, because physical access to nets inside an integrated circuit is not always possible.
 
-In this second part, it will be necessary to estimate the accuracy of the existing device models at silicium level, provided by technology foundries.
-Missing elements, such as layout resistance, parasitic couplings, etc, will need to be identified in order to try to achieve accurate ESD simulations at ESD level.
-To validate the methodology, measurement data will need to be gathered at silicium level, which will require particular methods to be obtained.
+% Third step is investigating soft fails
+%TODO
+The investigation focuses on the behavior of the integrated circuit when exposed to an electrical disturbance.
 
-Once done, both simulation methodology at system and silicium level will constitute a first tool for soft-failure investigation.
-
-*INVESTIGATION*
-
-The investigation focuses on the behavior of the integrated circuit and tries to answer the following.
 How a 100 ns electrical event can disturb an integrated circuit to the point where the entire system is no longer fullfilling its job for a notable period of time ?
 
 For this investigation, there is a clear relationship between the duration of the ESD and the duration where the function is no longer in specification.
@@ -48,10 +112,3 @@ However, (litterature ?), this short event can cause functions to shut down in c
 How to predict this behavior, and what options can be used to avoid ?
 
 Real-cases will be detailed to understand this problem.
-
-*MODELING*
-
-The multi-level characteristic of the studied system will also call for simplified IC models.
-Given today's circuit simulator performance in terms of speed and convergence, it is unrealistic to hope to achieve full system simulation.
-Simplified IC models will either target higher-order modeling of functions performed by the IC, or modeling in terms of IO (input/output impedance).
-A failure model that will raise an error during simulation given some conditions are met will also probably be required.
