@@ -9,15 +9,30 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="375.26657mm"
-   height="141.95476mm"
-   viewBox="0 0 1329.6847 502.9893"
+   width="1274.1027mm"
+   height="228.28026mm"
+   viewBox="0 0 4514.537 808.86706"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="iso10605_waveform.svg">
   <defs
      id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4227"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
     <marker
        inkscape:stockid="Arrow1Sstart"
        orient="auto"
@@ -96,9 +111,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="647.33943"
-     inkscape:cy="388.1111"
+     inkscape:zoom="0.12374369"
+     inkscape:cx="5069.3361"
+     inkscape:cy="653.76939"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -107,16 +122,16 @@
      fit-margin-right="5"
      fit-margin-bottom="5"
      fit-margin-left="5"
-     inkscape:window-width="1920"
-     inkscape:window-height="1058"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid4284"
-       originx="152.51842"
-       originy="-531.695" />
+       originx="67.720105"
+       originy="-403.84072" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -134,139 +149,29 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(152.51842,-17.677907)">
+     transform="translate(67.720108,160.34557)">
     <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="m 4420,438.43362 -4465.000001,0"
+       id="path4221"
        inkscape:connector-curvature="0"
-       id="path4288"
-       d="m -20,132.3622 0,355"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:9, 3;stroke-dashoffset:0;stroke-opacity:1"
        sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-mid:none;marker-end:url(#Arrow1Mend)"
-       d="m -80,44.944511 0,407.417689 1160,0"
-       id="path5104"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:35px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-399.93335"
-       y="-108.21008"
-       id="text5106"
-       sodipodi:linespacing="125%"
-       transform="matrix(0,-1,1,0,0,0)"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5108"
-         x="-399.93335"
-         y="-108.21008">CURRENT (A)</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -90.00001,132.3622 20.000007,0"
-       id="path5110"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text5112"
-       y="492.93262"
-       x="379.44446"
-       style="font-style:normal;font-weight:normal;font-size:35px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         y="492.93262"
-         x="379.44446"
-         id="tspan5114"
-         sodipodi:role="line">TIME (ns)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-107.87892"
-       y="462.97778"
-       id="text5116"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5118"
-         x="-107.87892"
-         y="462.97778">0</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 960.00001,432.3622 0,40"
-       id="path5120"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="931.3526"
-       y="502.49658"
-       id="text5122"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5124"
-         x="931.3526"
-         y="502.49658">100</tspan></text>
-    <text
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       sodipodi:linespacing="125%"
-       id="text5128"
-       y="123.42092"
-       x="-70.975586"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         y="123.42092"
-         x="-70.975586"
-         id="tspan5130"
-         sodipodi:role="line">3.75 A/kV</tspan></text>
-    <text
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="14.249764"
-       y="486.28696"
-       id="text5132"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan5134"
-         x="14.249764"
-         y="486.28696">700 ps to 1 ns</tspan></text>
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        inkscape:connector-curvature="0"
        id="path5150"
-       d="m -43.378803,455.7052 24.2729,-323.4422 c 0,0 26.2956,173.5345 30.341,176.7933 4.0455,3.2589 20.2273,18.7385 20.2273,18.7385 l 24.2728,-8.1472 c 0,0 40.4547,-35.8475 50.568403,-38.2916 84.65049,-18.7256 143.32149,6.4392 228.56889,29.3298 123.6198,44.4283 247.9693,66.7494 376.22854,92.0629 l 190.13698,25.2562 c 0,0 138.24079,10.0778 148.35449,10.0778"
-       style="fill:none;stroke:#7900ff;stroke-width:3.17706108;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       sodipodi:nodetypes="ccsccccccc" />
+       d="m -45.000001,437.36219 25,-575 c 0,0 27.189698,443.43531 31.235098,446.69411 17.988303,19.22979 20.624288,18.60525 44.5001,10.5913 0,0 40.4547,-35.8475 50.568403,-38.2916 C 210,242.36219 209.08789,429.98191 540,438.0827"
+       style="fill:none;stroke:#ff2b81;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cccccc" />
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       sodipodi:nodetypes="ccccccc"
-       style="fill:none;stroke:#eb00ff;stroke-width:3.17706108;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -42.818203,455.7052 24.2729,-323.4422 c 0,0 26.2956,173.5344 30.341,176.7933 15.3857,17.3388 24.3234,17.7168 44.5001,10.5913 C 177.25939,202.6278 306.46479,237.7773 457.00769,259.9897 l 205.4213,35.4352 c 180.51402,28.2514 221.49742,35.8113 389.95441,59.1946"
+       sodipodi:nodetypes="cccccc"
+       style="fill:none;stroke:#ff7700;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -45.000001,437.36219 25,-575 c 0,0 27.750298,443.43521 31.795698,446.69411 15.3857,17.3388 24.3234,17.7168 44.5001,10.5913 C 177.25939,202.6278 306.46479,237.7773 457.00769,259.9897 998.57316,362.32699 1174.4443,362.96446 1720,432.36219"
        id="path5152"
        inkscape:connector-curvature="0" />
     <text
@@ -275,211 +180,153 @@
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        sodipodi:linespacing="125%"
        id="text5154"
-       y="111.18069"
-       x="776.78192"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#7900ff;fill-opacity:1;stroke:none"
+       y="614.03778"
+       x="353.1474"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        xml:space="preserve"><tspan
-         y="111.18069"
-         x="776.78192"
+         y="614.03778"
+         x="353.1474"
          id="tspan5156"
-         sodipodi:role="line">150 pF/330 ohms</tspan></text>
+         sodipodi:role="line">150 pF - 330 Ω</tspan></text>
     <text
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#eb00ff;fill-opacity:1;stroke:none"
-       x="779.99988"
-       y="155.25249"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1544.7932"
+       y="618.10962"
        id="text5158"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5160"
-         x="779.99988"
-         y="155.25249">330 pF/330 ohms</tspan></text>
-    <path
-       sodipodi:nodetypes="ccccccc"
-       style="fill:none;stroke:#ff001c;stroke-width:3.17706108;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -43.378803,455.7052 24.2729,-323.4422 c 0,0 26.2956,263.4381 30.341,266.6969 17.9883,19.2298 20.6243,18.6053 44.5001,10.5913 0,0 40.4547,-35.8475 50.568403,-38.2916 40.91539,-10.1473 67.28299,-8.6188 107.20489,-3.2589 351.7118,19.663 496.24473,34.8452 837.09411,49.8789"
-       id="path5162"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:9, 3;stroke-dashoffset:0;stroke-opacity:1"
-       d="m -40,277.3622 0,210"
-       id="path4286"
-       inkscape:connector-curvature="0"
-       transform="translate(0,4.7244096e-6)" />
+         x="1544.7932"
+         y="618.10962">330 pF - 330 Ω</tspan></text>
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        inkscape:connector-curvature="0"
        id="path5164"
-       d="m -43.378803,455.7052 24.2729,-323.4422 c 0,0 26.2956,263.4381 30.341,266.6969 17.9883,19.2298 20.6243,18.6053 44.5001,10.5913 0,0 40.4547,-35.8475 50.568403,-38.2916 40.91539,-10.1473 25.95789,-10.22 110.23539,-10.33 560.56432,21.6084 485.35709,18.3449 834.06361,28.3786"
-       style="fill:none;stroke:#1ccf00;stroke-width:3.17700005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       sodipodi:nodetypes="ccccccc" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#ff001c;fill-opacity:1;stroke:none"
-       x="1058.2144"
-       y="429.86206"
-       id="text5166"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5168"
-         x="1058.2144"
-         y="429.86206">600 ns</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#1ccf00;fill-opacity:1;stroke:none"
-       x="1057.5001"
-       y="396.64771"
-       id="text5170"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5172"
-         x="1057.5001"
-         y="396.64771">900 ns</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text5174"
-       y="365.33301"
-       x="1057.5001"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#eb00ff;fill-opacity:1;stroke:none"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         y="365.33301"
-         x="1057.5001"
-         id="tspan5176"
-         sodipodi:role="line">300 ns</tspan></text>
-    <path
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       style="fill:#eb00ff;fill-opacity:1;stroke:none"
-       d="m 590.71429,271.6479 c -4.714,0 -10,5.286 -10,10 0,4.714 5.286,10 10,10 4.714,0 10,-5.286 10,-10 0,-4.714 -5.286,-10 -10,-10 z"
-       id="path5140"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="zzzzz" />
-    <path
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       sodipodi:nodetypes="zzzzz"
-       inkscape:connector-curvature="0"
-       id="path5138"
-       d="m 314.28569,293.7908 c -4.714,0 -10,5.286 -10,10 0,4.714 5.286,10 10,10 4.714,0 10,-5.286 10,-10 0,-4.714 -5.286,-10 -10,-10 z"
-       style="fill:#7900ff;fill-opacity:1;stroke:none" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#7900ff;fill-opacity:1;stroke:none"
-       x="209.63901"
-       y="327.60919"
-       id="text5178"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan5180"
-         x="209.63901"
-         y="327.60919">30 ns</tspan></text>
-    <text
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       sodipodi:linespacing="125%"
-       id="text5182"
-       y="273.32364"
-       x="612.49609"
-       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#eb00ff;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         y="273.32364"
-         x="612.49609"
-         id="tspan5184"
-         sodipodi:role="line">65 ns</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Sstart);marker-end:none"
-       d="m 329.10799,290.8854 99.4126,-77.2408"
-       id="path5186"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path5188"
-       d="m 568.39369,268.7426 -132.0159,-55.098"
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Sstart);marker-end:none" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text5190"
-       y="205.93385"
-       x="388.57141"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         y="205.93385"
-         x="388.57141"
-         id="tspan5192"
-         sodipodi:role="line">2 A/kV</tspan></text>
+       d="m -45.000001,437.36219 25,-575 c 0,0 27.189698,533.33891 31.235098,536.59771 28.764902,73.40229 48.764902,-86.59771 205.303893,-96.59771 560.56432,21.6084 3639.75451,124.9663 3988.46101,135"
+       style="fill:none;stroke:#a100cf;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="ccccc" />
     <text
        sodipodi:linespacing="125%"
        id="text5194"
-       y="193.79068"
-       x="781.07129"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#1ccf00;fill-opacity:1;stroke:none"
+       y="614.71338"
+       x="4005.3101"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        xml:space="preserve"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
-         y="193.79068"
-         x="781.07129"
+         y="614.71338"
+         x="4005.3101"
          id="tspan5196"
-         sodipodi:role="line">330 pF/2 kohms</tspan></text>
+         sodipodi:role="line">330 pF - 2 kΩ</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5198"
-       y="231.29065"
-       x="778.21423"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Sans;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#ff001c;fill-opacity:1;stroke:none"
+       y="611.00018"
+       x="2824.7832"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        xml:space="preserve"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
-         y="231.29065"
-         x="778.21423"
+         y="611.00018"
+         x="2824.7832"
          id="tspan5200"
-         sodipodi:role="line">150 pF/2 kohms</tspan></text>
+         sodipodi:role="line">150 pF - 2 kΩ</tspan></text>
     <path
+       sodipodi:nodetypes="ccccc"
+       style="fill:none;stroke:#00bacf;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98823529"
+       d="m -45.000001,437.36219 25,-575 c 0,0 27.189698,533.33891 31.235098,536.59771 28.764902,73.40229 48.764902,-86.59771 205.303893,-96.59771 560.56432,21.6084 2434.75451,124.9663 2783.46101,135"
+       id="path4683"
        inkscape:connector-curvature="0"
-       id="path4290"
-       d="m -45,477.3622 -25,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Sstart)"
-       sodipodi:nodetypes="cc" />
-    <path
-       sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Sstart)"
-       d="m -15,477.3622 25,0"
-       id="path4292"
-       inkscape:connector-curvature="0" />
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4685"
+       y="540.48859"
+       x="427.48242"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:75px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         y="540.48859"
+         x="427.48242"
+         id="tspan4687"
+         sodipodi:role="line">100 ns</tspan></text>
+    <circle
+       style="opacity:1;fill:#6785be;fill-opacity:1;stroke:#ff2b81;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4693"
+       cx="540"
+       cy="437.36221"
+       r="10" />
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:75px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1614.6252"
+       y="540.48859"
+       id="text4695"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4697"
+         x="1614.6252"
+         y="540.48859">300 ns</tspan></text>
+    <circle
+       r="10"
+       cy="437.36221"
+       cx="1727.1428"
+       id="circle4699"
+       style="opacity:1;fill:#6785be;fill-opacity:1;stroke:#ff7700;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4701"
+       y="540.48859"
+       x="2891.458"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:75px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         y="540.48859"
+         x="2891.458"
+         id="tspan4703"
+         sodipodi:role="line">600 ns</tspan></text>
+    <circle
+       style="opacity:1;fill:#6785be;fill-opacity:1;stroke:#00bacf;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98823529"
+       id="circle4705"
+       cx="3003.9756"
+       cy="437.36221"
+       r="10" />
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\03 ISO 10605.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:75px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="4082.8865"
+       y="540.48859"
+       id="text4707"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4709"
+         x="4082.8865"
+         y="540.48859">900 ns</tspan></text>
+    <circle
+       r="10"
+       cy="437.36221"
+       cx="4195.4043"
+       id="circle4711"
+       style="opacity:1;fill:#6785be;fill-opacity:1;stroke:#a100cf;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>
