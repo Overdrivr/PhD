@@ -1,28 +1,105 @@
 \section{State of the art in silicon-level operating ESD investigation}
 
-Section 3 gave a good integration to how ESD events are generated in laboratories.
-Going further, we are interested in how those events propagate inside electronic equipment, reach \gls{IC} and cause them to malfunction.
-Ultimately, the goal is to establish an analysis method and predict early that an \gls{IC} will be weak against \gls{esd}.
-So far, a few studies in the litterature have described test methods and modeling approaches to debug the behavior of
-integrated circuits in operation when they are exposed to \gls{esd}.
+% Transition ?
+Section \ref{sec:state-art-esd-testing}
+Introduction to generation of ESD events in laboratories.
 
-Define soft-failure ?
+% Recall problematic
+How those events propagate inside electronic equipment, reach \gls{IC} and cause them to malfunction.
 
-
-\subsection{Test generators for operating ESD investigation}
-
-TLP is clearly the most widely used ESD generator
-VF-TLP
-DPI - IEC 62215
-IEC 61000-4-2
+How to analyze and predict early that an \gls{IC} in operation has weaknesses against \gls{esd}.
+This section, review of the litterature
+Study cases
+Observation methods
+Modeling approaches to debug the behavior of integrated circuits in operation when they are exposed to \gls{esd}.
 
 \subsection{Observation methods for failure detection and localisation}
 
 EMMI
-Near-field scan ?
+Near-field scan
 
-\subsection{Modeling methods of soft-failures for Integrated Circuits}
+\subsection{Study cases}
 
-IBIS
-Spice
-etc.
+%TODO
+Two soft-failure cases in \cite{systemLevelESDIC}.
+%TODO: Describe cases
+EMission Microscopy (EMMI) technique is employed to locate the part of the die causing for the soft-failure.
+The chip is debugged and successful solutions are set in place to increase soft-robustness of the chip.
+
+%TODO
+One failure case in \cite{LacrampeTransientImmunity}
+inject a disturbance on the power rail of a digital IC
+accurately the voltage variations on the input and output.
+Injection on the IC in operation is performed by a 1 nF capacitor similarly to DPI standard.
+
+%TODO: What is the failure signature, provided fix, conclusions
+Soft-failures on a SDRAM memory in operation \cite{SDRAMCase}.
+
+%TODO:
+Generation of soft-failures on a camera communication bus with different severities \cite{softFailSubsystem}.
+Identify what element on the bus is causing an error, between the sensor or the application processor
+Approach tested for localizing soft-failure is detection of significant variation in the emission spectrum of each component.
+Emission spectrum and map is recorded with near-field magnetic scanner
+Technique turned out inconclusive
+
+Study of soft-failures on an LCD display \cite{softFailLCD}.
+Stressing of the device is done with an IEC 61000-4-2 generator
+Unsuccessful in identifying the root cause of error
+Near-field scanning employed to identify which trace of the LCD's flex connector metal track is the most sensitive to disturbances
+Unsuccessful because of the lack of spatial resolution of the probe
+Repeated again with capacitively coupled TLP on each individual metal track but unconclusive results again.
+
+%TODO: re-read article
+Search of ESD propagation paths responsible for soft-failures on a mobile phone \cite{softFailMobile}.
+Metallic paths are assumed to be main propagation paths
+RC-networks used as countermeasures to protect physical inputs and outputs, like buttons, LCD inputs, connectors, etc.
+IEC 61000-4-2 is used as stress source.
+
+\subsection{Particular test methods}
+
+%
+Undersized TEM (TODO: GLOSS) cell for more compact and higher electrical fields \cite{SDRAMCase}
+Filtered TLP similar to IEC 61000-4-2 \cite{iec61000-4-2} as stress generator for the TEM cell.
+
+%
+Near-field scanner as a very local stress injection system
+Combined with a VF-TLP in \cite{NearFieldInjectionFabrice}.
+Possible to map quantitatively and with good resolution ESD susceptibility of a board
+
+%
+Near-field scanner is also used in \cite{NearFieldInjectionBis} to identify metal tracks connected to ESD sensitive \gls{ic} inputs or outputs on a \gls{pcb}.
+
+
+\subsection{Modeling methods of soft-failures for integrated circuits}
+
+%
+Mixed mode ESD simulations \cite{mixedModeESDSims}.
+
+%
+SEED methodology ? in \cite{usb2ESDProtection}.
+Interactions between external devices leading to soft-failures and how to fix them ?
+
+% TODO: What is the goal ?
+3D EM simulation \cite{LacrampeTransientImmunity} at silicon level, with the integrated circuit layout.
+Deduce capacitive couplings between Vdd and Vss rails
+Model by equivalent impedance
+Method is complex and long to simulate ? but was proven to work effectively to model parasitic couplings.
+Alternative to parasitic device extraction directly from layout.
+IBIS package data was employed to model the package by an RLC equivalent
+
+%
+Modelling of a TLP stress generator in \cite{LacrampeTransientImmunity} using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
+
+% TODO: Interest of the EM simulation ?
+Electromagnetic fullwave simulations are conducted in \cite{softFailMobile}.
+System-level components are simulated, such as PCB, metallic casing and battery back.
+
+% Modelling of IC input pin from a TLP characterization
+Proven in \cite{usb2ESDProtection} that a TLP characterization I(V) curve of an IC pin can be used to model it for a (signal ?) kind of input.
+
+% IBIS is not enough for modelling an IC pin for ESD simulations
+Input Output Buffer Information Specification (IBIS) \cite{ibis-spec} is a method for digital circuits providing the I/V characteristic of an IC without disclosing any circuit or process information.
+IBIS provides a behavioral modeling technique for digital circuits for performing signal integrity simulation.
+The idea is to characterize and distribute information about the package, buffers and protection diodes (not ESD protections), not the IC core.
+It is demonstrated in \cite{ibisImprovementFabrice} that for EMC and ESD simulations the model is not sufficient.
+It is not defined for fast impulses and high injection.
