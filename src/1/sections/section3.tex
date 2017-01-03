@@ -26,7 +26,7 @@ The cable is charged by a high-voltage power supply then discharged into a load 
 
 The charge is performed through a high value resistor to keep the current small and avoid generating oscillations on the cable.
 
-TLP systems constitute very well-controlled test generators, because the pulse is generated inside a shielded and isolated environment.
+TLP systems constitute very well-controlled test generators where the pulse is generated inside a shielded and isolated environment.
 Characteristic impedance can be controlled up to the load.
 Those features allow for extremely clean and repeatable pulse waveforms.
 Main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}
@@ -46,23 +46,31 @@ measured inside the generator are direct image of the ones accross and through t
 \gls{tlp} are extensively used for characterizing the response of ESD protections \cite{TLPforESDProtectionCz}
 or testing the response of systems and devices against a clean and well repeatable pulse \cite{TLPthroubleshooting, LacrampeTransientImmunity}.
 
+%TODO: Detail more quasi-static characterization ?
+%TODO: Example snapback/no snapback I(V) curve ?
+
 \subsection{ESD Gun (IEC 61000-4-2 / ISO 10605)}
-The system-level ESD Gun aims at reproducing the discharge of a human body through an electronic device.
+
+% What is the goal of this test
+The system-level \gls{esd} gun reproduces the discharge of a human body through an electronic device.
 This test is used extensively for the qualification of products.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-2_waveform.pdf}
-  \caption{Main characteristics of an IEC 61000-4-2 pulse on a 2\textOmega\ resistive load}
+  \caption{Main properties of an IEC 61000-4-2 pulse on a 2\textOmega\ resistive load}
   \label{iec_pulse}
 \end{figure}
 
-The generation of the ESD pulse is done by an resistor-capacitor discharge network, however, the RC network alone does not suffice to reproduce the waveform given \ref{iec_pulse}.
+% How is the pulse generated
+The generation of the ESD pulse is done by an resistor-capacitor discharge network.
+The RC network alone though does not suffice to reproduce the waveform given in Fig. \ref{iec_pulse}.
 Parasitic devices play an important part in shaping the waveform.
 
+% Where does this standard applies
 Two standards define the construction and waveform requirements for this ESD generator, but with different fields of application.
-
-IEC 61000-4-2\cite{iec61000-4-2} standard targets consumer electronics, while ISO 10605\cite{iso10605} standard is intented for automotive equipment.
+IEC 61000-4-2\cite{iec61000-4-2} standard targets consumer electronics.
+ISO 10605\cite{iso10605} standard is intented for automotive equipment.
 The latter defines additional pulse waveforms to cover a wider range of ESD events (See fig \ref{iso_pulse}).
 
 \begin{figure}[!h]
@@ -72,28 +80,95 @@ The latter defines additional pulse waveforms to cover a wider range of ESD even
   \label{iso_pulse}
 \end{figure}
 
-
 \subsection{ISO 7637-2}
+
+% Where does this standard applies
 ISO 7637-2\cite{iso7637-2} is an automotive standard for testing immunity of electronic devices against transient electrical disturbances.
 It is mostly targeting disturbances applied on supply lines.
-This standard gathers many different pulses. Pulse 2A and 3B are in the ESD timescale.
+This standard defines several waveforms.
+Among them, pulses 2A and 3B are the closest to an electrostatic discharge.
 
+% Pulse 2A - What is the goal of this pulse
 Pulse 2A simulates the sudden disconnection of a load placed in parallel with the \gls{dut}.
+In a car, it reproduces the switching of devices separated by long inductive wiring harnesses.
+When a load is abruptly switched off, the parasitic inductance of the wiring harness opposes to the sudden interruption of current.
+Instead of flowing through the load, the current is maintained and reported onto the \gls{dut} which can be damaged or disturbed in the process.
+These events can be quite harmful with peak voltages above 50V during 50\textmu{}s.
+This pulse can be an interesting testing waveform in the context of this entire document.
+The characteristics of pulse 2A are given in fig. \ref{fig:iso_2a_pulse}.
 
-SCHEMA
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/1/figures/iso7637-2-2a.pdf}
+  \caption{Waveform 2A defined in ISO 7637-2 standard on a 2\textOmega{} resistive load}
+  \label{fig:iso_2a_pulse}
+\end{figure}
 
-The parasitic inductance of the wiring harness is opposing to this interruption of current.
-Instead of flowing through the load, this extra transient current is reported on the \gls{dut} which can be damaged or disturbed in the process.
+% How is the pulse generated
+ISO 7637-2 compliant stress generators are often implemented with R-C discharge networks.
+It is the easiest way to produce the standardized waveform on a 2\textOmega{} resistor.
+By construction, it is not the best way to reproduce the inductive behavior of the wiring harness.
+However, it is a common method in the \gls{esd} field to define pulses on simple loads to make the testing and investigation more approachable.
 
-The characteristics of pulse 2A are given in fig. X
+% Pulse 3B - What is the goal of this pulse
+Pulse 3B also simulates the result of a switching process on a wiring harness, causing negative spikes on a \gls{dut}.
+Its waveform is given in fig. \ref{fig:iso_2b_pulse}.
+Compared to pulse 2a, this waveform has a shorter duration and risetime and a higher amplitude.
+Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\textOmega{} load.
 
-PULSE 2A waveform
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/1/figures/iso7637-2-3b.pdf}
+  \caption{Waveform 3B defined in ISO 7637-2 standard on a 50\textOmega{} resistive load}
+  \label{fig:iso_2b_pulse}
+\end{figure}
 
-On the other side, pulse 3B simulates the result of a switching process with a wiring harness.
-The waveform is similar to pulse 2a, but with a shorter duration and risetime and higher amplitude.
+% How is the pulse generated
+The standard does not specify how this pulse must be generated.
+It is supposed to be generated with a resistor-capacitor discharge network.
 
-PULSE 3A waveform
+\subsection{IEC 61000-4-4}
 
-\subsection{Burst test (IEC 61000-4-4)}
+% Where does this standard applies - scope
+The IEC 61000-4-4 standard \cite{iec61000-4-4}, also called burst test, defines a fast transient burst waveform for \gls{esd} testing.
+It tests the immunity of electronic devices to repetitive fast transients on supply, signal and control ports.
 
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{src/2/figures/tlp_iec.png}
+% What is the pulse
+The defined waveform is a double exponential pulse \ref{fig:iec_4_4_pulse}.
+It is defined for a 50\textOmega{} load.
+Pulse period
+Burst duration and period
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/iec61000-4-4_waveform.pdf}
+  \caption{IEC 61000-4-4 waveform on a 50\textOmega{} resistive load}
+  \label{fig:iec_4_4_pulse}
+\end{figure}
+
+% How is the pulse generated
+The standard defines a generator circuit diagram
+Output is coaxial, great for radiated immunity of the test setup
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/iec61000-4-4_diagram.pdf}
+  \caption{IEC 61000-4-4 generator circuit diagram}
+  \label{fig:iec_4_4_generator}
+\end{figure}
+
+% Injection method - capacitive coupling clamp
+Capacitive coupling clamp
+interesting device to capacitively couple an ESD on a (potentially DC powered line) with high repeatability
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/iec61000-4-4_clamp.pdf}
+  \caption{IEC 61000-4-4 capacitive coupling clamp}
+  \label{fig:iec_4_4_clamp}
+\end{figure}
+
+\subsection{IEC 62215 standard}
+
+Also commonly called DPI
+%TODO
