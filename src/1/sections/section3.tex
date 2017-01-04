@@ -170,5 +170,29 @@ interesting device to capacitively couple an ESD on a (potentially DC powered li
 
 \subsection{IEC 62215 standard}
 
-Also commonly called DPI
-%TODO
+% Where does this standard applies - scope
+The IEC 62215 standard \cite{iec62215} defines a method for measuring the immunity of an integrated circuit to conducted electrical transient disturbances.
+This standard specifically targets testing of integrated circuits in operation, and as such is extremely relevant for this document.
+In itself, the standard does not define a new test waveform.
+It specifies to employ waveforms in ISO 7637-2 \cite{iso7637-2} for automotive devices and IEC 61000-4-4 \cite{iec61000-4-4} or IEC 61000-4-5 for industrial and consumer applications.
+It focuses on understanding interactions between a conducted disturbance and performance degradation induced in integrated circuits.
+The test method is quite similar to the \gls{dpi} defined in IEC 62132-4 \cite{iec62132-4}.
+The DPI standard focuses on frequency domain immunity, while this standard tests time-domain immunity.
+
+% How is the pulse generated
+Disturbances are applied to the \gls{ic} pins via a coupling network.
+A typical pin injection setup is given in Fig. \ref{fig:iec62215_setup}.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/iec62215_setup.pdf}
+  \caption{Typical injection setup via a coupling network - utiliser fig 3}
+  \label{fig:iec62215_setup}
+\end{figure}
+
+% Talk about immunity classes
+Beyond test setup and waveforms, the standard defines immunity classes to categorize the behavior of integrated circuits exposed to disturbances during normal operation.
+Classes range from A to E, with A describing the most robust devices in terms of functionnality.
+In class A\textsupbscript{IC}, the \gls{ic} performs within the defined tolerances during and after exposure to disturbance.
+In class D\textsupbscript{IC}, at least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself, requiring an external intervention such as power reset.
+In class E\textsupbscript{IC}, at least one monitored function does not perform within the defined tolerances after exposure and can not be returned to proper operation.
