@@ -56,6 +56,9 @@ Most cables and PCB traces, although of very different construction, usually beh
 
 A transmission line is defined by two key parameters, a \gls{Zc} and a propagation delay.
 
+\begin{equation}
+Z_{c} = \sqrt{L/C}
+\end{equation}
 
 For a purely lossless transmission line, the characteristic impedance is purely real.
 In practice, truly lossless cables do not exist.
@@ -68,14 +71,18 @@ The value for this unit element can be computed trivially from the characteristi
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/distributed_line_model.pdf}
-  \caption{Electrical distributed model of a lossless transmission line}
+  \includegraphics[width=\textwidth]{src/1/figures/lc_ladder.pdf}
+  \caption{Electrical distributed LC ladder model of a lossless transmission line}
   \label{fig:dis-line-model}
 \end{figure}
 
-EQUATION RLC vs Zc
+\begin{equation}
+\delta t = \sqrt{L.C}
+\end{equation}
 
-A single element generates a delay DT, much smaller than the delay of the cable.
+Each LC element induces a propagation delay \textdelta{}t, related to the element's unitary inductance and capacitance.
+The individual delays add up to form the complete cable propagation delay.
+much smaller than the delay of the cable.
 To model the entire cable, many instances of this element are connected in series.
 There is a tradoff to make between the delay of the unit element and the total amount of unit elements required to model the cable.
 
@@ -95,12 +102,24 @@ Compared to the classic RLC distributed model, the behavioral model has infinite
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/behavioral_line_model.pdf}
+  \includegraphics[width=\textwidth]{src/1/figures/behavioral_line_model.pdf}
   \caption{Electrical behavioral model of a lossless transmission line}
   \label{fig:beh-line-model}
 \end{figure}
 
-EQUATIONS
+Two equations to describe the behavior of the voltage-controlled voltage sources.
+
+\begin{equation}
+V_{C1}(t) = V_{2}(t - \Delta t) + Z_{C}.I_{2}(t - \Delta t)
+\end{equation}
+
+\begin{equation}
+V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
+\end{equation}
+
+where Z\textsubscript{C} characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
+Equation describes a forward travelling wave combined with a backward travelling wave
+
 
 The equations illustrate relations between incident and reflected waves, and voltage and current ratio.
 
@@ -145,8 +164,8 @@ HF models for inductors, resistors and capacitors are given Fig. \ref{fig:rlc-es
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/rlc_esd_models.pdf}
-  \caption{High-frequency (a few GHz) models for resistor, capacitor and inductor}
+  \includegraphics[width=\textwidth]{src/1/figures/rlc_models.pdf}
+  \caption{High-frequency (a few GHz) models for resistor, capacitor and inductor devices}
   \label{fig:rlc-esd-models}
 \end{figure}
 
