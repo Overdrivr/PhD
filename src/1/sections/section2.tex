@@ -7,7 +7,7 @@
 %TODO: Detail more from article
 Because of high voltage, current and power levels involved, electrostatic discharges can destroy electronic devices.
 Semiconductor devices are particularly sensitive to electrostatic discharges \cite{impactESDsemiconductors}.
-Inputs and outputs require extensive protection to reroute the \gls{esd} current outside the chip before it reaches the core circuit.
+Inputs and outputs require \gls{esd} protections to route the discharge current outside the chip before it reaches the core circuit.
 When the protection fails to work, the device usually gets destroyed and different failure signatures can be observed.
 Failures may also occur at the board or equipment level of an electronic system.
 
@@ -92,31 +92,32 @@ Electrical simulators constitute the main investigation tool of this study.
 For \gls{esd} simulations to be accurate, appropriate models need to be derived.
 Building models that work both in static conditions and for very fast, very short and very strong electrical stresses is not straightforward.
 Those models need to comply with the timescales, amplitudes and frequencies encountered during electrostatic discharges.
-Section \ref{sec:esd-modeling} details a modeling method that lays the basis to achieve accurate simulations.
+Chapter \ref{sec:esd-modeling} details a modeling method that lays the basis to achieve accurate simulations.
 
-% ESD (vehicle level) -> communication bus, power line -> electronic equipment -> PCB -> Integrated circuit -> FAILURE -> propagates back, with consequences up to vehicle level
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/hierarchical_system.pdf}
-  \caption{Typical case of a hierarchical electronic system}
-  \label{fig:ex-electronic-system}
-\end{figure}
+% Second step is to study and measure what happens inside the IC
+An \gls{esd} induced failure case of an integrated is studied in the next chapter \ref{sec:study-real-product}.
+In a first phase, measurement data is obtained at the board level and the failure is explained.
+Simulations are run to understand how the failure appears, and more specifically how a short electrical event can disturb an integrated circuit for a long period of time.
+In a second phase, the integrated function is placed onto a custom testchip.
+It embarks specific structures to obtain measurement data on electrical nets that are not physically accessible.
+All these measurements are performed for the purpose of estimating the accuracy of integrated circuit \gls{esd} simulations.
+There are two main potential sources of error that are checked.
+Silicon technology device models are not designed to function for extremely fast transient transient disturbances.
+Also, standard simulations do not take parasitic devices into account, such as metal track resistances and parasitic couplings.
+Measurement data is confronted to simulations in order to verify the validity of models.
 
-% Second step is to study what happens inside the IC
-Assuming that the waveform at the input of an integrated circuit can be estimated, the next step is to study how the disturbance propagates at the silicon-level.
-It is necessary to estimate the accuracy of the silicon technology device models when employed in \gls{esd} simulations.
-Standard simulations do not take parasitic devices into account, such as metal track resistances and parasitic couplings.
-The impact of those devices on the electrostatic simulation must be studied.
-To validate models and simulations, measurement data must to be obtained.
-Particular measurement methods are also required, because physical access to nets inside an integrated circuit is not always possible.
+%
+Analysis of the issue is performed manually, by trial and error, searching inside the design why the function is failing.
+It is a complex and time-consuming process.
+Also, this approach is almost exclusively possible when searching for a particular weakness.
+The core research of this work focuses on new analysis methods proposed in chapter \ref{sec:methods-operating-esd-analysis}.
 
-% Third step is investigating soft fails
-%TODO: next
-After soft-fails were quantified and propagation studied
-The investigation focuses on the behavior of the integrated circuit when exposed to an electrical disturbance.
-How a 100 ns electrical event can disturb an integrated circuit to the point where the entire system is no longer fullfilling its job for a notable period of time ?
-For this investigation, there is a clear relationship between the duration of the ESD and the duration where the function is no longer in specification.
-In itself, an ESD is an extremely short even, almost always to the point where it negligible compare to the time constants of the studied system.
-However, (litterature ?), this short event can cause functions to shut down in cascade, leading to an effective multiplication of the disturbance duration.
-How to predict this behavior, and what options can be used to avoid ?
-Real-cases will be detailed to understand this problem.
+%
+Some part of the research work also focused towards \gls{esd} testers.
+System-level \gls{esd} guns \cite{iec61000-4-2, iso10605} constitute a major testing and qualification tool, but bring too much complexity during silicon-level investigation.
+To overcome this issue, a new stress generator based on a \gls{tlp} is proposed in chapter \ref{sec:tlp-hmm}.
+It produces the same compliant waveform than those standards, but with some interesting advantages.
+It is not a drop-in replacement but can be interesting as an investigation tool.
+
+%
+Final conclusions and potential following work are detailed in chapter \ref{sec:final-conclusion}.
