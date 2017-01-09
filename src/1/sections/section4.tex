@@ -1,58 +1,65 @@
 \section{State of the art in silicon-level operating ESD investigation}
 
-% Transition ?
-Section \ref{sec:state-art-esd-testing}
-Introduction to generation of ESD events in laboratories.
-
-% Recall problematic
-How those events propagate inside electronic equipment, reach \gls{ic} and cause them to malfunction.
-
-How to analyze and predict early that an \gls{ic} in operation has weaknesses against \gls{esd}.
-This section, review of the litterature
-Study cases
-Observation methods
-Modeling approaches to debug the behavior of integrated circuits in operation when they are exposed to \gls{esd}.
-
-\subsection{Observation methods for failure detection and localisation}
-
-\subsubsection{Emmission Microscopy (EMMI)}
-%TODO: References
-\gls{emmi}
-
-\subsubsection{Near-field scanner}
-%TODO: References
-Near-field scan
+Section \ref{sec:state-art-esd-testing} introduced major \gls{esd} standards used in laboratories to test and qualify electronic products.
+Sometimes, discharges propagate inside electronic equipments, reach the integrated circuits and cause them to malfunction.
+It is essential to detect early functionnal weaknesses against \gls{esd}.
+This section reviews the litterature on the current state of the art on operating \gls{esd} analysis.
+Study cases, observation methods and modeling approaches are presented.
+Ultimately, the goal is to debug efficiently the behavior of integrated circuits in operation when they are exposed to \gls{esd}.
 
 \subsection{Study cases}
 
-%TODO
-Two soft-failure cases in \cite{systemLevelESDIC}.
-%TODO: Describe cases
-\gls{emmi} technique is employed to locate the part of the die causing for the soft-failure.
-The chip is debugged and successful solutions are set in place to increase soft-robustness of the chip.
+% Case 1 - NXP bandgap + substrate coupling
+The case of an alternator's regulator \gls{ic} is presented in \cite{softfailEMCIC}.
+where a product is investigated and designed for high immunity against electromagnetic disturbances.
+The failure signature is a loss of the regulated voltage.
+It was proven that the disturbance was coupling through the substrate on a current mirror inside the bandgap.
+During the disturbance, bandgap voltage was shifting from its nominal value, causing a full system restart.
+A design fix was proposed by filtering at the appropriate spot inside the design to avoid the amplification of the disturbance.
+%TODO: Investigation method ?
 
-%TODO
-One failure case in \cite{LacrampeTransientImmunity}
-inject a disturbance on the power rail of a digital IC
-accurately the voltage variations on the input and output.
-Injection on the IC in operation is performed by a 1 nF capacitor similarly to DPI standard.
+% Case 2 - CESAME IC - paper Vrignon + Ben dhia
+Another failure case is presented in \cite{LacrampeTransientImmunity}.
+Very-fast \gls{tlp} is injected on an 0.18 \textmu{}m CMOS technology (1.8 V supply voltage) chip.
+The chip contains 6 instances on the same logic core, differing by their power-rails architecture.
+The injection on the power rail is performed by a 1 nF capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
+% What is the failure signature
+An output signal of the logic core is monitored.
+The susceptibility criteria is the amplitude crossing a 20\% threshold from the established logic level.
+Above this threshold, the core is supposed to no longer work reliably.
+It is proven that modelling the output buffer of the core logic can reproduce with less than 20\% error the waveform on the output.
+It is less accurate than a full-netlist simulation, but faster to simulate.
+VHDL-AMS and SPICE modelling are performed in this analysis.
 
-%TODO: What is the failure signature, provided fix, conclusions
-Soft-failures on a SDRAM memory in operation \cite{SDRAMCase}.
+% Case 3 - failures on an SDRAM
+%TODO: Read reference articles in this article
+In \cite{SDRAMCase}, soft-failures are studied on a SDRAM memory in operation.
+The injection setup consists in a modified \gls{tem} cell with a reduced septum height for increased field strenghts.
+The SDRAM chip is mounted on a board.
+Data is written and read on the memory by \gls{fpga}.
+Differences between incoming and outgoing data signifies a functional failure of the memory.
+Only the memory is exposed to the disturbance, the rest of the board's devices are located outside of the \gls{tem} cell, on the other side of the board.
+The main defect of this method is to only provide a global failure level.
+It does not allow to identify which particular net or pin is the most sensitive to disturbances.
+
+In \cite{softFailSubsystem}, electrostatic discharges cause errors on two different camera communication buses.
+Events of different severities are observed, depending on the discharge parameters.
+It is attempted to determine whether the sensor or the application processor is causing the error.
+The magnetic emission map is recorded with a near-field magnetic scanner to try to observe local variations in the emission spectrum because of the degradation of functionnality.
+It was envisionned that soft-failure can induce significant variations in the emission spectrum of a disturbed component, and thus those variations could help localize them.
+In this particular case, the root cause of failures could not be determined.
 
 %TODO:
-Generation of soft-failures on a camera communication bus with different severities \cite{softFailSubsystem}.
-Identify what element on the bus is causing an error, between the sensor or the application processor
-Approach tested for localizing soft-failure is detection of significant variation in the emission spectrum of each component.
-Emission spectrum and map is recorded with near-field magnetic scanner
-Technique turned out inconclusive
-
-Study of soft-failures on an LCD display \cite{softFailLCD}.
-Stressing of the device is done with an IEC 61000-4-2 generator
-Unsuccessful in identifying the root cause of error
-Near-field scanning employed to identify which trace of the LCD's flex connector metal track is the most sensitive to disturbances
-Unsuccessful because of the lack of spatial resolution of the probe
-Repeated again with capacitively coupled TLP on each individual metal track but unconclusive results again.
+An LCD display is studied in \cite{softFailLCD}.
+The device is tested with an IEC 61000-4-2 \cite{iec61000-4-2} generator, and errors are observed due to the discharge.
+Non-destrutive problems
+stripes on the display, optical parameter changes and blacklighting malfunction
+System-level testing too complex for identifying root cause.
+A near-field scan was performed to identify which trace of the LCD's flex connector has the highest sensitivity to disturbances.
+This second approach was not successful either because of the lack of spatial resolution of the probe.
+Finally, the individual track stressing was repeated with a capacitively-coupled \gls{tlp} on each individual metal track.
+However, results were once more unconclusive and no metal trace could categorically be identified as more sensitive than the others.
+Conclusion is call for IC level soft-error models.
 
 %TODO: re-read article
 Search of ESD propagation paths responsible for soft-failures on a mobile phone \cite{softFailMobile}.
@@ -60,7 +67,25 @@ Metallic paths are assumed to be main propagation paths
 RC-networks used as countermeasures to protect physical inputs and outputs, like buttons, LCD inputs, connectors, etc.
 IEC 61000-4-2 is used as stress source.
 
+\subsection{Observation methods for failure detection and localisation}
+
+\subsubsection{Emmission Microscopy (EMMI)}
+%TODO: References
+\gls{emmi}
+
+%
+EMMI is presented in \cite{softfailEMMI} as a successful analysis method for debugging and locating a functional failure on an integrated circuit.
+\gls{emmi} is employed to locate the part of the die causing for the soft-failure.
+
+\subsubsection{Near-field scanner}
+%TODO: References
+Near-field scan
+
+
 \subsection{Particular test methods}
+
+In the litterature, some particular test methods have been presented.
+This section gathers a few of them that are relevant for powered-on \gls{esd} testing.
 
 %
 Undersized \gls{tem} cell for more compact and higher electrical fields \cite{SDRAMCase}
