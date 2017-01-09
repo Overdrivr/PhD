@@ -13,9 +13,11 @@ System-level tests involve higher voltage and current amplitudes, and are more h
 
 \subsection{Transmission Line Pulsing (TLP)}
 
-\gls{tlp} generators generate a fast rectangular pulse \ref{tlp_concept}.
-The pulse is produced by the discharge of a coaxial cable.
+% tlp concept
+\gls{tlp} generators generate a fast rectangular pulse.
+The pulse is produced by the discharge of a coaxial cable (Fig. \ref{tlp_concept}).
 The cable is charged by a high-voltage power supply then discharged into a load by switching a relay.
+The charge is performed through a high value resistor to keep the current small and avoid oscillations on the cable.
 
 \begin{figure}[!h]
   \centering
@@ -24,8 +26,7 @@ The cable is charged by a high-voltage power supply then discharged into a load 
   \label{tlp_concept}
 \end{figure}
 
-The charge is performed through a high value resistor to keep the current small and avoid oscillations on the cable.
-
+% advantages of tlp systems
 TLP systems constitute very well-controlled test generators where the pulse is generated inside a shielded and isolated environment.
 Characteristic impedance can be controlled up to the load.
 Those features allow for extremely clean and repeatable pulse waveforms.
@@ -38,6 +39,7 @@ The main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}
   \label{tlp_pulse}
 \end{figure}
 
+% principle of tlp for i(v) curve extraction
 Using time-domain reflectometry, it is possible to reconstitute the current and voltage waveforms inside the load,
 from measured current and voltage inside the \gls{tlp} \cite{TLP}.
 The superposition of the incident and reflected pulses during the discharge show that the voltage and current
@@ -193,7 +195,3 @@ Classes range from A to E, with A describing the most robust devices in terms of
 In class A\textsupbscript{IC}, the \gls{ic} performs within the defined tolerances during and after exposure to disturbance.
 In class D\textsupbscript{IC}, at least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself, requiring an external intervention such as power reset.
 In class E\textsupbscript{IC}, at least one monitored function does not perform within the defined tolerances after exposure and can not be returned to proper operation.
-
-\subsection{Charged Device Model (CDM)}
-
-To be done.
