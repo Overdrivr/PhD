@@ -10,7 +10,8 @@ module.exports = function (grunt) {
         src: 'main.tex',
         options: {
           outputDirectory: 'dist/',
-          jobname: 'phd'
+          jobname: 'phd',
+          shellEscape: true
         }
       },
       bib: {

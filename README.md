@@ -33,7 +33,9 @@ npm install -g grunt-cli
 grunt latex
 ```
 
-Also install [Perl interpreter](https://www.perl.org/get.html) (required for generating the glossary)
+Also install [Perl interpreter](https://www.perl.org/get.html) (required for generating the glossary).
+For code highlighting with `minted`, you will need Python 2.6+ and the `pygments` package installed.
+
 
 ## Generate
 

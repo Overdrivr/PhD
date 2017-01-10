@@ -15,7 +15,7 @@
 \usepackage{wrapfig}  % In-line Pictures
 \usepackage{verbatim} % Code
 \usepackage{moreverb} % Encoding
-\usepackage{listings} % Code
+\usepackage{minted} % Code
 \usepackage{color}    % Highlight
 \usepackage{xcolor}   % Color text
 \usepackage{textgreek}% Greek language
@@ -70,7 +70,7 @@
 \tableofcontents
 
 % Code highlighting styles
-\input{src/styles.tex}
+%\input{src/styles.tex}
 
 % Chapter files listing
 \input{src/1/main.tex}
@@ -88,12 +88,13 @@
 % Bibliography
 \bibliographystyle{unsrt}
 \bibliography{../src/refs}
-
 \printindex
+
+% List of code snippets
+\listoflistings
+
 % Glossary
 \setglossarystyle{altlist}
 \printglossaries
-
-
 
 \end{document}
