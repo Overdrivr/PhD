@@ -150,7 +150,7 @@ The generator's output is a coaxial plug to prevent radiated emission during the
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/iec61000-4-4_diagram.pdf}
+  \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-4_diagram.pdf}
   \caption{IEC 61000-4-4 generator circuit diagram}
   \label{fig:iec_4_4_generator}
 \end{figure}
@@ -162,7 +162,7 @@ The device works by placing two large metallic plates in parallel, injecting the
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/iec61000-4-4_clamp.pdf}
+  \includegraphics[width=0.8\textwidth]{src/1/figures/iec61000-4-4_clamp.png}
   \caption{IEC 61000-4-4 capacitive coupling clamp}
   \label{fig:iec_4_4_clamp}
 \end{figure}
@@ -184,14 +184,14 @@ A typical pin injection setup is given in Fig. \ref{fig:iec62215_setup}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/iec62215_setup.pdf}
-  \caption{Typical injection setup via a coupling network - utiliser fig 3}
+  \includegraphics[width=0.9\textwidth]{src/1/figures/iec62215_setup.png}
+  \caption{Typical injection setup via a coupling network}
   \label{fig:iec62215_setup}
 \end{figure}
 
 % Talk about immunity classes
 Beyond test setup and waveforms, the standard defines immunity classes to categorize the behavior of integrated circuits exposed to disturbances during normal operation.
 Classes range from A to E, with A describing the most robust devices in terms of functionnality.
-In class A\textsupbscript{IC}, the \gls{ic} performs within the defined tolerances during and after exposure to disturbance.
-In class D\textsupbscript{IC}, at least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself, requiring an external intervention such as power reset.
-In class E\textsupbscript{IC}, at least one monitored function does not perform within the defined tolerances after exposure and can not be returned to proper operation.
+In class A\textsubscript{IC}, the \gls{ic} performs within the defined tolerances during and after exposure to disturbance.
+In class D\textsubscript{IC}, at least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself, requiring an external intervention such as power reset.
+In class E\textsubscript{IC}, at least one monitored function does not perform within the defined tolerances after exposure and can not be returned to proper operation.
