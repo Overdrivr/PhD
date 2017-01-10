@@ -3,153 +3,191 @@
 
 % Simulations are a key tool
 Among all investigations and analysis methods, simulations are extremely important for understanding the impact of \gls{esd}s on integrated circuits.
-Physical access to nets is extremely difficult in the actual chip
-In simulation, any net can be instantly probed and its waveform displayed.
+Physical access to signals and nets is extremely difficult in the actual chip, while in simulation it is straightforward.
+Like testing and measurement methods, simulations are another valuable tool for \gls{esd} analysis.
 
 % But require a lot of preliminary effort
 However, \gls{esd} simulations are far from trivial
-For operating ESD, need electrical device models that work in normal operating conditions and in electrostatic domain of fast transients, highly non-linear and varying signals.
+For operating ESD, need electrical device models that work in normal operating conditions and in electrostatic domain of fast transients, highly non-linear and rapidly changing signals.
 To build trust on the simulation results, models must be validated against measurement data, and in many different test conditions.
 
 % Hierarchical level
-Electronic systems are by nature hierarchical things
-Large scale devices such as test generators impact small scale devices like integrated circuits, themselves composed on transistors and other electron devices.
-For \gls{esd}, the question of the appropriate scale for performing the modelling is raised.
-Compromise between the accuracy of models, the amount of effort and time for performing the modelling, simulation time
-Accuracy at transistor-level is hardly possible, and is not necessarily required.
-Different methods are probably required for different scale.
+Electronic systems are by nature hierarchical systems.
+Large scale devices like test generators interact with small scale devices like integrated circuits, themselves composed of transistors and other integrated devices.
+For \gls{esd} simulations, it is not always obvious a what scale the modelling effort must be made.
+There is always a compromise between the model accuracy, modelling time and effort, and simulation speed.
 
 % Which level is targeted here
-Focus in the first time on the system level.
-Is considered a system any macro-scale device, such as an \gls{esd} generator or a lab equipment like a DC supply.
 In this chapter, a methodology for building electrical models of systems and electrical setups is proposed.
-Some presented concepts also apply at the board level, for quick modelling of \gls{pcb} metal tracks.
+Some concepts also apply at the board level.
 
 % Main concept
 A modular approach is adopted.
+At the system level, \gls{esd} generator and lab equipments must modeled.
 Electronic systems and test setups are very often composed of a limited set of standard and common devices.
 Equipments are made for example of DC sources, discrete passive devices, relays.
 Equipments are connected together with the use of wires, twisted wire pairs, coaxial cables, etc.
 The goal is to build a library of those discrete devices.
-Each model of the library is qualified independently with measurements, which is easy to accomplish because the complexity is low and measurements can be easily acquired.
-Later on, the architecture or the electrical circuit of a system serves as a blueprint to connect \gls{esd} models from the library together in order to obtain a complete and accurate model of the system.
+Each model of the library is qualified independently with measurements.
+At the system level, physical access to most electrical nets of a circuit is easy, simplifying measurement and verification of the models.
+Later on, the architecture or the electrical circuit of a system serves as a blueprint for modelling it.
+It is assembled by connecting models from the library together.
 
 % Limits in voltage/time
-%TODO: Mouais, a revoir
-The methodology applies for models with the aim to perform transient simulations from normal operating timescale down the nanosecond timescale, and with voltage and current levels well above normal operating conditions.
+Models described hereafter target two kinds of simulation
+DC or normal operation transient simulations
+\gls{esd} simulations, with accuracy near the nanosecond and voltage or current levels well above normal operating conditions.
+At such short timespan, and with the usual dimensions of \gls{esd} test equipment and \gls{pcb}, electrical propagation effects are no longer negligible.
+% TODO Non-linear behavior ?
 
-% Structure of the next section ?
-Discrete devices
-Application
 
-\subsection{Lossless transmission line}
+\subsection{Transmission line}
 
-\gls{esd} events generally last a few hundred nanoseconds.
+% Cables and delays identified as important for esd sims - because of similar order of magnitude
+Among all devices used in \gls{esd} test setups, cables were found critical for modelling and simulation.
+In a standard 50\textOmega{} coaxial cable, it is common to find propagation delays in the range of 5 ns/m.
+Cable lengths in laboratories usually measure between tens of centimers to one or two meters.
+Thus, it is common to find delays in the order of 1 ns to 10 ns.
+On the other hand, electrostatic discharges last a few hundred 100 ns.
+Both values are near the same order of magnitude, which justifies why cables and delays in general should be taken into account in fast transient simulations.
 
-Any element that introduces a delay in the same order of magnitude (down to the nanosecond) can impact the waveforms.
-Delays and propagation phenomena in general can obviously offset a waveform in time,
-but also cause ringing oscillations with a period directly proportionnal to the delay.
+% Also consider not just the delay but the oscillations
+Beyond simply adding a delay and offsetting a signal in time, delays can also be involved in ringing oscillations if the circuit contains impedance mismatches.
+In this situation, delay belows the nanosecond can have a strong impact on waveforms.
+Delays of this order of magnitude are commonly found in \gls{pcb} metal tracks.
+Beyond coaxial cables and \gls{pcb} traces, any element that generates a significant delay should be modelled.
 
-Delays can be generated by cables and metal tracks, such as coaxial cables, twisted wires, wires over ground \gls{pcb} traces and so on.
+% How to model delays ? with lossless TL
+Cables, metal traces and wires in different configurations were all found to behave as transmission lines.
+More specifically, for frequencies below a GHz, most cables and tracks can be modelled as lossless transmission lines.
 
-Most cables and PCB traces, although of very different construction, usually behave as lossless transmission lines and can be modeled as such.
-
-A transmission line is defined by two key parameters, a \gls{Zc} and a propagation delay.
+% What is a transmission line ?
+A transmission line is an electrical propagation media.
+Physically, it can be seen as a succession of infinitely small unit elements.
+Each element is modeled by an inductance, a capacitance and sometimes a leakage resistance or conductance.
+A transmission line can also be defined by a characteristic impedance Z\textsubscript{c} and a propagation delay \textDelta{}t.
+A \gls{Zc} is the ratio of the amplitudes of voltage and current of a single wave propagating along the line.
+Equation \ref{eq:characteristic-impedance} relates the characteristic impedance to the unit line inductance \textdelta{}L and capacitance \textdelta{}C.
 
 \begin{equation}
-Z_{c} = \sqrt{L/C}
+Z_{c} = \sqrt{\delta L/ \delta C}
+\label{eq:characteristic-impedance}
 \end{equation}
 
-For a purely lossless transmission line, the characteristic impedance is purely real.
-In practice, truly lossless cables do not exist.
-However, most coaxial cables exihibit very low losses below frequencies of a couple GHz, which is sufficient during ESD simulations to consider them lossless.
+% Lossless is an approximation
+In practice, truly lossless cables do not exist but below a few GHz the lossless approximation is valid.
+A lossless line exhibits a purely real characteristic impedance.
 
+\subsubsection{Distributed model}
 % Distributed model
-Physically, a transmission line is a distributed capacitance an inductance.
-It can be modeled in a discrete manner, as a sum of unitary RLC elements.
-The value for this unit element can be computed trivially from the characteristic impedance \gls{Zc}.
+The most popular line model is based on a distributed capacitance and inductance.
+The model is a series of unit LC elements as illustrated in Fig. \ref{fig:dis-line-model}.
+The value for this unit element can be computed from the characteristic impedance \gls{Zc} with Eq. \ref{eq:characteristic-impedance}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.7\textwidth]{src/1/figures/lc_ladder.pdf}
+  \includegraphics[width=0.7\textwidth]{src/2/figures/lc_ladder.pdf}
   \caption{Electrical distributed LC ladder model of a lossless transmission line}
   \label{fig:dis-line-model}
 \end{figure}
 
 \begin{equation}
-\delta t = \sqrt{L.C}
+\delta t = \sqrt{\delta L.\delta C}
+\label{eq:unit-delay}
 \end{equation}
 
-Each LC element induces a propagation delay \textdelta{}t, related to the element's unitary inductance and capacitance.
-The individual delays add up to form the complete cable propagation delay.
-much smaller than the delay of the cable.
-To model the entire cable, many instances of this element are connected in series.
-There is a tradoff to make between the delay of the unit element and the total amount of unit elements required to model the cable.
+% A string of unit elements form the total model
+Each element induces a propagation delay \textdelta{}t, whose values can be computed from the unit inductance and capacitance with Eq. \ref{eq:unit-delay}.
+In a string of connected unit elements, the individual delays add up.
+With enough elements, the delay and behavior of the complete cable is reproduced.
 
-A small delay makes the cable model more accurate, however, more elements are required for the total cable, which results in longer simulation times.
-On the other hand, a larger delay will limit the accuracy of the simulation by reducing the bandwidth of the model, which is not desirable either.
+% Tradeoff between amount of elements and
+During modelling, it is tempting to take large values for \textdelta{}L and \textdelta{}C, to get a large unit delay.
+Doing so reduces the amount of unit elements, and speeds up the simulation.
+However, there is a tradoff between the delay of the unit element and the accuracy of the simulation.
+A smaller unit delay increases accuracy of the model at large frequencies, but more elements are required for the total cable, resulting in longer simulation times.
+On the other hand, a larger unit delay reduces the bandwidth of the model, which may be unsuitable for accuracy, even if simulation times are improved.
 
-The main advantage for the distributed model is its ability to support lossy transmission lines (to check if this is true for a TL that has variable losses at low freqs).
-
-The main disavantage is that it does not scales well with longer delays.
+% Perks and disavantages
+The distributed model supports easily lossy transmission lines by adding a unit resistance or conductance between signal and ground, or in series with the signal.
+On the other hand, this model does not scale well as cables get longer.
 To keep the same bandwidth with a longer cable, the only solution is to increase the element count, resulting in longer simulation time.
+Also, this model will always be bandwidth limited, otherwise it would require an infinite amount of infinitely small elements.
+
+\subsubsection{Behavioral model}
 
 % Behavioral model
-A behavioral model can describe efficiently and with great accuracy the behavior of most lossless transmission lines.
 %TODO: Reference to article
-The electrical model is constituted of two voltage-controlled voltage sources and two resistors.
-Compared to the classic RLC distributed model, the behavioral model has infinite bandwith, and constant complexity (compared to RLC where the amount of elements increases with the required bandwidth).
+A behavioral model is an excellent alternative to the distributed model.
+It can describe efficiently and with great accuracy the behavior of most lossless transmission lines.
+The model is constituted of two voltage-controlled voltage sources and two resistors (Fig. \ref{fig:beh-line-model}).
+Compared to the distributed model, the behavioral model has by design an infinite bandwith, and is extremely fast to simulate.
+It also is constant in complexity, because the simulation time is independant of the cable's delay or required bandwidth
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/1/figures/behavioral_line_model.pdf}
+  \includegraphics[width=\textwidth]{src/2/figures/behavioral_line_model.pdf}
   \caption{Electrical behavioral model of a lossless transmission line}
   \label{fig:beh-line-model}
 \end{figure}
 
-Two equations to describe the behavior of the voltage-controlled voltage sources.
+Equations \ref{eq:beh-line-1} and \ref{eq:beh-line-2} describe the behavior of the voltage-controlled voltage sources.
 
 \begin{equation}
 V_{C1}(t) = V_{2}(t - \Delta t) + Z_{C}.I_{2}(t - \Delta t)
+\label{eq:beh-line-1}
 \end{equation}
 
 \begin{equation}
 V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
+\label{eq:beh-line-2}
 \end{equation}
 
-where Z\textsubscript{C} characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
-Equation describes a forward travelling wave combined with a backward travelling wave
+% Explain the equations
+Z\textsubscript{C} is the characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
+Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward travelling wave and a backward travelling wave.
+An example implementation in VHDL-AMS is provided hereafter.
 
+\inputminted[frame=single,label={VHDL-AMS transmission line model}]{VHDL}{src/2/snippets/tline.vhdl}
 
-The equations illustrate relations between incident and reflected waves, and voltage and current ratio.
+\subsubsection{Comparison}
 
-Implementation in VHDL-AMS
+% Compare both models to know which one is preferrable
+Simulations are ran to compare both models.
+The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of 1 ps into a load through the modelled transmission line.
+Different load values are employed to observe the performance and accuracy of each model.
+The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
+Both values correspond to the cable usually employed in a transmission line pulsing generator and are thus very realistic.
 
-%TODO: Code
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/line_test_setup.pdf}
+  \caption{Line model validation testbench}
+  \label{fig:lines-testbench}
+\end{figure}
 
-% Conclusion
+Overall, the behavioral model outperforms the distributed model for representing a perfect transmission line.
+It reproduces exactly the 1ps risetime on the load in all configurations (Fig. \ref{fig:lines-simulations}).
+The distributed model is either not as accurate or much slower to simulate.
+% TODO: Simulation times
 
-To determine which model performs best, a few simulations are compared.
-The test setup consist of a square pulse voltage source, with a risetime of 1 ps, a transmission line, and an unmatched termination at 25 ohms.
+%TODO: Etoffer cette validation
 
-The RLC model with different settings is compared to the behavioral model.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/line_test_setup.pdf}
+  \caption{Models comparison in simulation}
+  \label{fig:lines-simulations}
+\end{figure}
 
-cable 10ns, 50ns ?
-
-- Config accurate
-- Config fast
-- Config lossy ?
-
-Overall, the behavioral model outperforms the distributed model.
-It is much more accurate (because not inherently limited in bandwith) and extremely fast to simulate.
-
-The main reason for using the distributed model is to take losses into account, which is rather rare in practice.
+In conclusion, the behavioral model should be preferred wherever possible.
+The distributed model should be used in cases where losses must be taken into account, which is rather rare in practice.
 
 \subsection{Passive devices}
 
+%TODO next
 Non linear behavior in high-regime and high-frequency conditions \cite{capa-esd-cz}.
 
-%TODO
 For frequencies/bandwidth higher than the MHz, frequency behavior of  passive devices starts show up.
 A simple rule of thumb for linking bandwidth (frequency domain) and signal rise time (time domain) is given by the following equation:
 
