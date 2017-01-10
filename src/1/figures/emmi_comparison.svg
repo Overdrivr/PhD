@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="252.23611mm"
+   height="110.30282mm"
+   viewBox="0 0 893.75001 390.83675"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="emmi_comparison.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="514.12597"
+     inkscape:cy="187.58881"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     fit-margin-bottom="0"
+     fit-margin-top="2"
+     fit-margin-left="0"
+     fit-margin-right="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4158"
+       originx="46.875001"
+       originy="-427.49998" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(46.875,-234.02545)">
+    <image
+       sodipodi:absref="C:\Users\B48923\Documents\GitHub\phd\src\1\figures\emmi_pass.jpg"
+       xlink:href="emmi_pass.jpg"
+       width="436.875"
+       height="350.625"
+       preserveAspectRatio="none"
+       id="image4144"
+       x="-46.875"
+       y="272.36221" />
+    <image
+       sodipodi:absref="C:\Users\B48923\Documents\GitHub\phd\src\1\figures\emmi_fail.png"
+       xlink:href="emmi_fail.png"
+       width="436.875"
+       height="352.5"
+       preserveAspectRatio="none"
+       id="image4155"
+       x="410"
+       y="272.36221" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="106.56344"
+       y="260.11841"
+       id="text4160"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4162"
+         x="106.56344"
+         y="260.11841">Reference</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4164"
+       y="260.11841"
+       x="618.04724"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="260.11841"
+         x="618.04724"
+         id="tspan4166"
+         sodipodi:role="line">Fail</tspan></text>
+  </g>
+</svg>
