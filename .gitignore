@@ -44,3 +44,6 @@ dist
 
 #IPython notebook files
 .ipynb_checkpoints
+
+# minted package work folder
+_minted-phd
