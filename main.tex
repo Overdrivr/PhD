@@ -10,14 +10,13 @@
 
 % Main modules
 \usepackage{url}      % URL
-\usepackage{hyperref} % Links
 \usepackage{graphicx} % Pictures
 \usepackage{wrapfig}  % In-line Pictures
 \usepackage{verbatim} % Code
-\usepackage{moreverb} % Encoding
+%\usepackage{moreverb} % Encoding
 %\usepackage{listing}
 \usepackage{minted}   % Code
-\usepackage{color}    % Highlight
+%\usepackage{color}    % Highlight
 \usepackage{xcolor}   % Color text
 \usepackage{textgreek}% Greek language
 \usepackage{booktabs} % Tables
@@ -26,16 +25,20 @@
 \usepackage[toc,page]{appendix} % For managing appendix sections cleanly
 \usepackage{algpseudocode} % For displaying pseudo-code
 \usepackage{amsmath,empheq} % Math equations
+\usepackage[nomain,acronym,xindy,toc]{glossaries}
+\usepackage{makeidx}  % index support
+\usepackage[ED=GEET-Elec, Ets=UT3]{tlsflyleaf} % Document cover
+\usepackage{caption}     % float env with page breaks
+\usepackage{hyperref}    % Links
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
 
 % Glossary
-\usepackage[nomain,acronym,xindy,toc]{glossaries}
 \loadglsentries{./src/glos}
 \makeglossaries
-\usepackage{makeidx}
 \makeindex
 
 % Front page
-\usepackage[ED=GEET-Elec, Ets=UT3]{tlsflyleaf}
 
 % Meta-data
 \title{Development of analysis and prediction methods for operating ESD robustness}
