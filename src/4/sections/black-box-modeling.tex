@@ -104,11 +104,15 @@ Since the model is intended for powered-on simulations, the characterization in 
 % Explain the PWL model
 The second step of the modelling method is to build an electrically simulatable model of the function.
 A piecewise linear model seems well suited for this situation.
-Specifically, a configurable four-points piecewise linear model is written in Verilog-A.
-It is given hereafter for reference.
+Specifically, a configurable four-points piecewise linear model is written in Verilog-A (see Listing \ref{lst:pwl-4pts}).
 The model is configured easily with 4 four (V\textsubscript{i},I\textsubscript{i}) coordinates.
 
-\inputminted[frame=single,label={Piecewise-linear 4 points model}]{verilog}{src/4/snippets/pwl_4pts.va}
+\begin{code}
+\inputminted[frame=single]{verilog}{src/4/snippets/pwl_4pts.va}
+\label{lst:pwl-4pts}
+\caption{Piecewise linear 4-points Verilog-A model}
+\end{code}
+
 
 % Comment the model
 For this kind of model to work, a few rules of thumbs must be followed.
