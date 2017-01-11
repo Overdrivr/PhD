@@ -188,6 +188,18 @@ a = b + c
 
 * Resources for formatting ?
 
+### Code snippets
+
+Code files can be included inside the document with the following snippet
+
+```
+\begin{code}
+\inputminted[frame=single]{VHDL}{path/to/code.c}
+\label{lst:label}
+\caption{My foo code}
+\end{code}
+```
+
 ### External tools
 #### Viewing pdf files
 
