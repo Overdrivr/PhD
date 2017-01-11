@@ -146,9 +146,14 @@ V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
 % Explain the equations
 Z\textsubscript{C} is the characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
 Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward travelling wave and a backward travelling wave.
-An example implementation in VHDL-AMS is provided hereafter.
+An example implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 
-\inputminted[frame=single,label={VHDL-AMS transmission line model}]{VHDL}{src/2/snippets/tline.vhdl}
+\begin{code}
+\inputminted[frame=single]{VHDL}{src/2/snippets/tline.vhdl}
+\label{lst:tline}
+\caption{Transmission line behavioral VHDL-AMS model}
+\end{code}
+
 
 \subsubsection{Comparison}
 
@@ -185,30 +190,60 @@ The distributed model should be used in cases where losses must be taken into ac
 
 \subsection{Passive devices}
 
-%TODO next
-Non linear behavior in high-regime and high-frequency conditions \cite{capa-esd-cz}.
+% Limitations of passive devices
+Properties of passive devices such as capacitors, resistors and inductors change in particular electrical conditions \cite{capa-esd-cz}.
+For large transient amplitudes above nominal range and high-frequencies, their nominal values easily vary by an order of magnitude.
+At frequencies above a few MHz, the parasitic devices play an important role and make the device ineffective at some point.
+For instance, capacitors exhibit an inductive behavior for sufficiently large frequencies.
 
-For frequencies/bandwidth higher than the MHz, frequency behavior of  passive devices starts show up.
-A simple rule of thumb for linking bandwidth (frequency domain) and signal rise time (time domain) is given by the following equation:
+% In what frequency range are ESD active, and are those limitations in effect
+Electrostatic discharges have been characterized in the frequency domain in \cite{fft-esd}.
+It concerns air discharges and non-shielded discharges that radiate heavily.
+The spectrum of the IEC 61000-4-2 standard \cite{iec61000-4-2} was recorded.
+It is shown that the majority of the frequency content is below 1GHz, with important magnitudes until tens of MHz.
+Like indicated previously, this is the frequency range where parasitic behavior is important.
+Therefore for \gls{esd} simulations, passive devices require models that take those parasitic devices into account.
 
-BW = 0.35 / risetime
-
-For nanosecond risetimes (usual value for TLPs), the occupied bandwidth is over 350 MHz, well beyond the 1MHz limit.
-In theory, with such fast risetimes, passive devices should all have a frequency-dependant model in order to well reproduce spikes and peaks in the simulations.
-
-However, in practice, it was found that only devices directly in parallel of measurement probes or IC inputs needed a frequency dependant model.
-This is especially true for decoupling capacitors, which usually have both of these two properties.
-HF models for inductors, resistors and capacitors are given Fig. \ref{fig:rlc-esd-models}.
+% Not all device need parasitic device modelling
+In practice, it was found that only some passive devices in a system have a notable impact on the waveform at high-frequencies.
+For others, using a regular electrical model is sufficient.
+Decoupling capacitors were noticed to require parasitic device modelling.
+Since they are connected between a voltage reference (supply voltage) and a reference (ground), they have a strong impact on the disturbance waveforms that an \gls{ic} pin is exposed to.
+Passive device models working at frequencies below 1GHz are given in Fig. \ref{fig:rlc-esd-models} for inductors, resistors and capacitors.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/rlc_models.pdf}
-  \caption{High-frequency (a few GHz) models for resistor, capacitor and inductor devices}
+  \caption{High-frequency (< 1GHz) models for resistor, capacitor and inductor}
   \label{fig:rlc-esd-models}
 \end{figure}
 
-Those HF models can be very quickly and easily parameterized.
-Values to use can be extracted with an impedance meter capable of measuring impedances to at least 100 MHz.
+% How to tune those models
+Those models are easily parameterized.
+Values can be extracted with an impedance meter capable of measuring impedances to at least 100 MHz.
+Fig. \ref{fig:frequency-response-capa} displays the magnitude and phase versus frequency of a 6.8 nF \gls{smd} capacitor.
+The capacitor exhibits a perfect behavior up to 45MHz.
+The slope of the curve below 45 MHz is directly related to the capacitor value (see Equation \ref{eq:capacitor-impedance}).
+Below 45 MHz, the phase has a value of $-90$ degrees, corresponding to the theory.
+
+%TODO: Check this equation
+\begin{equation}
+\delta M/ \delta f = C. \omega = 2.\omega .C.f
+\label{eq:capacitor-impedance}
+\end{equation}
+
+% What are the parasitic devices in this curve
+At the resonant frequency, the capacitor is equivalent to a non-ideal short-circuit, basically a low-value resistor.
+This resistor, also called \gls{esr}, is both a parasitic device and the series resistance in the high-frequency model presented earlier.
+Beyond 45 MHz, the capacitor behaves as an inductor.
+The phase shift is the one of an inductor at $+90$ degrees.
+This second slope is determined by the parasitic inductor value (see equation \ref{eq:inductor-impedance}).
+In conclusion, the values for parasitic inductor and resistor can be computed very easily from a measurement.
+
+\begin{equation}
+\delta M/ \delta f =  -L.\omega = -2.\omega .L.f
+\label{eq:inductor-impedance}
+\end{equation}
 
 \begin{figure}[!h]
   \centering
@@ -217,31 +252,38 @@ Values to use can be extracted with an impedance meter capable of measuring impe
   \label{fig:frequency-response-capa}
 \end{figure}
 
-Fig. \ref{fig:frequency-response-capa} displays the module versus frequency curve for a 6.8 nF CMS capacitor.
-Until 45 MHz, the capacitor exhibits a perfect behavior.
-At this resonant frequency it behaves as a very low-valued resistor (also called Equivalent Series Resistor or ESR), which is the series resistance in the HF model.
-Over 45 MHz, the capacitor behaves as an inductor.
-The slope of the curve before 45 MHz is determined by the capacitor value and is given by C\textomega{} or 2\textomega{}Cf.
-It shows a phase of -90 degrees.
-After 45 MHz, it is determined by the parasitic inductor value and given by -L\textomega{} or -2\textomega{}Lf, with a phase of +90 degrees.
-With these two formulas, values for parasitic inductor and capacitor can be computed very easily from a measurement.
-Once done, the parasitic resistor value is simply the module’s value (converted to ohms from dB) at the resonant frequency.
-
-The same method applies for a real inductor or resistor.
-In the case of capacitors, for a given package, first observations tend to show few variations for the parasitic inductance, even with capacitors of different values.
-Thus the parasitic inductance seems mostly related to the package, with values between 1nH and 5nH.
-This is especially true for CMS packages.
-If confirmed, this observation means that there is no need to characterize every single passive device, but instead it is possible to take a parasitic model corresponding to the package.
+% Impact of dimensions on parasitic values
+%TODO: Quote fabien ? Or find reference
+In the case of capacitors, for a given package, first observations tend to show few variations for the parasitic inductance, even with capacitors of different values and sizes.
+The parasitic inductance seems mostly related to the kind of package, and measured values are between 1nH and 5nH.
+This observation tends to indicate that there is no need to characterize every single passive device.
+Instead, a global parasitic model per package should suffice.
 
 % Non-linear high power behavior
+%TODO: Quote fabien
 %TODO: Find articles that show non-linear behavior
-The other point to consider is variations of the main nominal rating of the passive device when exposed to significantly high levels of injection. Multi-layers ceramic capacitors (MLCC) seem mostly concerned about this phenomenon \cite{capa-esd-cz}, where the capacitance decreases at high voltages.
-Not happening with X7R capacitors ?
+So far, only the frequency-related behavior was detailed.
+For high power and amplitudes, most passive devices also suffer of nominal ratings variations.
+\gls{mlcc} are concerned about this phenomenon \cite{capa-esd-cz}, where the capacitance decreases at high voltages.
+On the contrary, capacitors built with the X7R technology are much most resilient in high regime conditions and exhibit little variations.
+
+% Conclusion
+%TODO
 
 \subsection{Other devices}
-%TODO: Diodes ?
-%TODO: Common mode choke ?
-% etc
+
+%TODO: A etoffer
+
+% Diodes
+Diodes and \gls{tvs} are frequently studied devices in the \gls{esd} field \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
+Multiple modelling methods exist, such as behavioral and compact models.
+Most studies target silicon-level devices, but a few also interested in board-level active device modelling.
+
+% Common mode choke
+Common mode choke are frequently encountered in electronic systems to protect inputs and supplies in particular \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
+Unlike regular RC-network filtering, chokes isolate from common mode disturbances where both signal and ground reference voltages shift.
+Chokes are frequently used for reducing emmission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
+
 
 \subsection{Propagation phenomena}
 
