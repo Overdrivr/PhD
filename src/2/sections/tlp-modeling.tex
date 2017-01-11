@@ -1,26 +1,45 @@
 \section{Application to a real TLP generator}
 \label{sec:tlp-modeling}
 
-The methodology described in section \ref{sec:esd-modeling} was applied and validated on the actual TLP bench at NXP laboratory in Toulouse.
-The modeling was validated by injecting at different levels on different loads.
+The methodology described in section \ref{sec:esd-modeling} is applied to the \gls{tlp} bench at NXP laboratory in Toulouse.
+The model is validated by comparing simulations with measurements of current and voltage waveforms at different charging voltages and on different loads.
 The complete model is detailed Fig. \ref{fig:complete-tlp-model}.
-
-%TODO: Detail complete model a lot
+A few elements in it are specific to the simulation, but overall most of them physically exist.
+Initially, the relay is left open.
+The 50 ns coaxial cable on the left is charged by the high voltage\gls{dc} supply.
+The 10 M\textOmega resistor serves two purposes.
+It ensures that the cable charges slowly to avoid oscillations.
+Also, it isolates the high voltage supply from the discharge when it is triggered.
+The two $1 fF$ capacitors placed at each end of the discharge cable help the simulator to set a charging voltage as initial condition.
+After the relay, a 50\textOmega resistor can be found, that was used as poor-man's attenuator.
+Despite having a value of 50\textOmega like the coaxial cables, this resistor creates an impedance mismatch that strongly impacts the waveforms.
+A current probe is found immediately after the attenuator.
+A voltage probe is connected
+Current and voltage probe locations are important to align the waveforms.
+Because of the delays, waveforms are shifted in time compared to one another.
+Between the two probes, a few short transmission lines are found.
+They correspond to short coaxial cablse inside the testbench.
+Finally, two discharge paths are possible inside the generator depending on the configuration of the switch on the output.
+The direct path is on the bottom, and the top path provides a series resistance to limit the discharge current.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/complete_nxp_tlp_model.pdf}
+  \includegraphics[width=\textwidth]{src/2/figures/complete_nxp_tlp_model.pdf}
   \caption{Complete model of NXP laboratory's TLP generator}
   \label{fig:complete-tlp-model}
 \end{figure}
 
-Simulation versus measurement curves for each different load will be given at 3.5 A (500 V TLP charging voltage).
+%TODO: next
+% TODO: is it correct the value
+Simulation and measurement curves for each load are given at 3.5 A, corresponding to a 500 V TLP charging voltage and a XXX\textOmega load.
 Curves at 75 mA (10 V) and 7.5 A (1000 V) will be given in annex ?
-The setup is identical for each simulation/measurement and is given Fig. \ref{fig:setup-cz-tlp-model}.
+
+% What conditions for the characterization setup
+The setup is identical for each simulation and measurement and is given Fig. \ref{fig:setup-cz-tlp-model}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_characterization_setup.pdf}
+  \includegraphics[width=\textwidth]{src/2/figures/tlp_characterization_setup.pdf}
   \caption{Characterization setup of the TLP}
   \label{fig:setup-cz-tlp-model}
 \end{figure}
@@ -32,14 +51,14 @@ The ratio of Vtlp/Itlp between 40 ns to 100 ns is equal to the load resistance 2
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_25ohm_voltage.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_25ohm_voltage.png}
   \caption{Voltage measurement versus simulation - XX V charging voltage on XX\textOmega{}}
   \label{fig:comparison-tlp-1-v}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_25ohm_current.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_25ohm_current.png}
   \caption{Current measurement versus simulation - XX V charging voltage on XX\textOmega{}}
   \label{fig:comparison-tlp-1-i}
 \end{figure}
@@ -51,14 +70,14 @@ The same issue with probe clamping happens now with both voltage and current at 
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_short_voltage.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_short_voltage.png}
   \caption{Voltage measurement versus simulation - XX V charging voltage on a short circuit}
   \label{fig:comparison-tlp-short-v}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_short_current.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_short_current.png}
   \caption{Current measurement versus simulation - XX V charging voltage on a short circuit}
   \label{fig:comparison-tlp-short-i}
 \end{figure}
@@ -75,7 +94,7 @@ Since it is simply a measurement error it is not modeled.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_open_voltage.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_open_voltage.png}
   \caption{Voltage measurement versus simulation - XX V charging voltage on open circuit}
   \label{fig:comparison-tlp-1-v}
 \end{figure}
