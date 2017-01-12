@@ -44,45 +44,31 @@ The setup is identical for each simulation and measurement and is given Fig. \re
   \label{fig:setup-cz-tlp-model}
 \end{figure}
 
-First comparison in Fig. \ref{fig:comparison-tlp-1-v} and \ref{fig:comparison-tlp-1-i}.
+First comparison in Fig. \ref{fig:comparison-tlp-load}.
 A 25\textOmega{} resistor allows validating the model with voltage across the load and current flowing through it.
 The correlation is good and so far the model is rather accurate.
 The ratio of Vtlp/Itlp between 40 ns to 100 ns is equal to the load resistance 25\textOmega{}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_25ohm_voltage.png}
-  \caption{Voltage measurement versus simulation - XX V charging voltage on XX\textOmega{}}
-  \label{fig:comparison-tlp-1-v}
+  \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_R25_500V.png}
+  \caption{Voltage and current waveforms comparison - 500 V charging voltage on 25\textOmega{}}
+  \label{fig:comparison-tlp-load}
 \end{figure}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_25ohm_current.png}
-  \caption{Current measurement versus simulation - XX V charging voltage on XX\textOmega{}}
-  \label{fig:comparison-tlp-1-i}
-\end{figure}
-
-Same comparison is performed on a short circuit in Fig. \ref{fig:comparison-tlp-short-v} and Fig. \ref{fig:comparison-tlp-short-i}.
+Same comparison is performed on a short circuit in Fig. \ref{fig:comparison-tlp-short}.
 The goal is to test the extreme conditions where the model is going to be used.
 As expected the voltage is null and the current is close to the maximum 10A supplied by the TLP (500 V through 50\textOmega{}).
 The same issue with probe clamping happens now with both voltage and current at exactly -100V and -5A.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_short_voltage.png}
-  \caption{Voltage measurement versus simulation - XX V charging voltage on a short circuit}
-  \label{fig:comparison-tlp-short-v}
+  \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_short_500V.png}
+  \caption{Voltage and current waveforms comparison - 500 V charging voltage on a short circuit}
+  \label{fig:comparison-tlp-short}
 \end{figure}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_short_current.png}
-  \caption{Current measurement versus simulation - XX V charging voltage on a short circuit}
-  \label{fig:comparison-tlp-short-i}
-\end{figure}
-
-Finally, the process is repeated on an open circuit in Fig. X and Fig. X
+Finally, the process is repeated on an open circuit in Fig. \ref{fig:comparison-tlp-open}.
 
 After 50 ns, voltage and current are stable.
 The voltage is 250V which corresponds to half the TLP charging voltage, and the current is close to 0A.
@@ -94,20 +80,13 @@ Since it is simply a measurement error it is not modeled.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/tlp_comparison_open_voltage.png}
-  \caption{Voltage measurement versus simulation - XX V charging voltage on open circuit}
-  \label{fig:comparison-tlp-1-v}
+  \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_open_500V.png}
+  \caption{Voltage and current waveforms comparison - 500 V charging voltage on open circuit}
+  \label{fig:comparison-tlp-open}
 \end{figure}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_open_current.png}
-  \caption{Current measurement versus simulation - XX V charging voltage on open circuit}
-  \label{fig:comparison-tlp-1-i}
-\end{figure}
-
-Finally, only resistive loads were tested
-Using a capacitor as load allows validating the model with non-purely real impedance.
+So far, only resistive loads were tested
+Using a capacitor as load allows validating the model with non-purely real impedance \ref{fig:comparison-tlp-capa}.
 Between 40 ns and 100 ns, voltage and current are not stable because the capacitor is too big to be fully charged at half the TLP charging voltage.
 Because the TLP is closer to a current source than a voltage source, the capacitor is charged up at almost constant current, and its voltage rises linearly.
 The slope of this linear curve is directly related to the capacitor value.
@@ -115,16 +94,9 @@ By extrapolation it is possible to measure the capacitor value from the TLP curv
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_capa_voltage.png}
-  \caption{Voltage measurement versus simulation - XX V charging voltage on a 4nF capacitor}
-  \label{fig:comparison-tlp-capa-v}
-\end{figure}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_comparison_capa_current.png}
-  \caption{Current measurement versus simulation - XX V charging voltage on 4nF capacitor}
-  \label{fig:comparison-tlp-capa-i}
+  \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_1nF_500V.png}
+  \caption{Voltage and current waveforms comparison - 500 V charging voltage on a 1nF capacitor}
+  \label{fig:comparison-tlp-capa}
 \end{figure}
 
 More simulations were run to ensure the model performs correctly at different charging voltages, etc
