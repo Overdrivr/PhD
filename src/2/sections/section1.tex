@@ -43,6 +43,8 @@ At such short timespan, and with the usual dimensions of \gls{esd} test equipmen
 
 \subsection{Transmission line}
 
+%TODO: Emphasize that a good line model is essential given how often the TLP is used for analysis in the ESD field
+
 % Cables and delays identified as important for esd sims - because of similar order of magnitude
 Among all devices used in \gls{esd} test setups, cables were found critical for modelling and simulation.
 In a standard 50\textOmega{} coaxial cable, it is common to find propagation delays in the range of 5 ns/m.
@@ -70,7 +72,7 @@ A \gls{Zc} is the ratio of the amplitudes of voltage and current of a single wav
 Equation \ref{eq:characteristic-impedance} relates the characteristic impedance to the unit line inductance \textdelta{}L and capacitance \textdelta{}C.
 
 \begin{equation}
-Z_{c} = \sqrt{\delta L/ \delta C}
+Z_{c} = \sqrt{\frac{\delta L}{\delta C}}
 \label{eq:characteristic-impedance}
 \end{equation}
 
@@ -107,6 +109,20 @@ Doing so reduces the amount of unit elements, and speeds up the simulation.
 However, there is a tradoff between the delay of the unit element and the accuracy of the simulation.
 A smaller unit delay increases accuracy of the model at large frequencies, but more elements are required for the total cable, resulting in longer simulation times.
 On the other hand, a larger unit delay reduces the bandwidth of the model, which may be unsuitable for accuracy, even if simulation times are improved.
+
+% How to calculate the unit values ?
+%TODO
+Resolving equation system \ref{eq:characteristic-impedance} and \ref{eq:unit-delay}.
+
+\begin{equation}
+L = \frac{Z_{C}.\delta t }{N}}
+\label{eq:unit-inductance}
+\end{equation}
+
+\begin{equation}
+C = \frac{\delta t}{N.Z_{C}}}
+\label{eq:unit-capacitance}
+\end{equation}
 
 % Perks and disavantages
 The distributed model supports easily lossy transmission lines by adding a unit resistance or conductance between signal and ground, or in series with the signal.
@@ -164,9 +180,11 @@ Different load values are employed to observe the performance and accuracy of ea
 The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
 Both values correspond to the cable usually employed in a transmission line pulsing generator and are thus very realistic.
 
+%TODO: Simulation with 10
+
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/line_test_setup.pdf}
+  \includegraphics[width=0.8\textwidth]{src/2/figures/tline_validation_setup.pdf}
   \caption{Line model validation testbench}
   \label{fig:lines-testbench}
 \end{figure}
@@ -174,16 +192,37 @@ Both values correspond to the cable usually employed in a transmission line puls
 Overall, the behavioral model outperforms the distributed model for representing a perfect transmission line.
 It reproduces exactly the 1ps risetime on the load in all configurations (Fig. \ref{fig:lines-simulations}).
 The distributed model is either not as accurate or much slower to simulate.
-% TODO: Simulation times
 
-%TODO: Etoffer cette validation
+\begin{table}[!h]
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+amount N         &  10           & 100        &  1000      &   10000    \\ \midrule
+simulation time  &  15 ms        & 170 ms     &  7.5 s     &   135 s    \\
+increase ratio   &  -            & x10        &  x44       &   x18      \\
+\bottomrule
+\end{tabular}
+\caption{Impact of the amount of unit elements on the simulation times}
+\label{tab:tline-impact-simulation-time}
+\end{table}
+
+For good accuracy, individual delay must be 2 or 10 times smaller than the shortest rise time.
+Also, simulators with variable timestep have trouble reproducing appropriately oscillating events with good accuracy for the period.
+So with the LC line, the waveform is mostly noise or assimilated to it.
+Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation time and data output size.
+
+For a 100ns TLP with 100ps risetime, individual delay is 10ps.
+N = 100e- / 10e-12 = 1e4 elements which is rather huge and will increase simulation time.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/line_test_setup.pdf}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/tline_models_comparison.pdf}
   \caption{Models comparison in simulation}
   \label{fig:lines-simulations}
 \end{figure}
+
+Even 10000 elements are not enough for obtaining a clean risetime.
+
 
 In conclusion, the behavioral model should be preferred wherever possible.
 The distributed model should be used in cases where losses must be taken into account, which is rather rare in practice.
