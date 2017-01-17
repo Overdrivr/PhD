@@ -1,0 +1,110 @@
+\section{General introduction}
+
+% Trends of the electronic field is size reduction
+Electronic circuits become more miniaturized year after year.
+There are many economical or practical reasons behind this trend.
+Size reduction of integrated circuits lowers manufacturing cost per chip thanks to the increased volume.
+Decreasing the weight of an embedded automotive system diminishes fuel and energy consumption.
+Miniaturization also offers increased performance and capabilities.
+More functions can be packed in the same volume.
+
+% How is size reduced
+For integrated circuits, this trend is accomplished by decreasing integrated technology size.
+An integrated technology defines the dimensions and shapes of fundamental electronic bricks.
+Those bricks consist in different types of transistors, resistors and capacitors.
+The size of a technology is the smallest dimension for the smallest transistor gate, denoted \textlambda.
+The value of \textlamda is essential and determines the size, power consumption, switching speed, performance and many other characteristics of the complete chip.
+Until recently, Moore's law successfully predicted that technology dimensions will be reduced by a factor of two every 18 months.
+As a side effect, miniaturization results in more fragile and less robust circuits.
+%TODO detail more this
+The maximum tolerated levels decrease with the technology size.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/densification_integrated_functions.pdf}
+  \caption{Increase of ECUs amount in a vehicle}
+  \label{fig:ecus-increase}
+\end{figure}
+
+% Another trend in automotive - more electronic functions
+Nowadays, new major features are developped in the automotive field.
+The development of assisted or fully autonomous driving is seeing tremendous progress.
+Autonomous vehicles take decisions and perform critical actions such as braking or steering the wheel.
+Thoses features are implemented for safety purposes and put very high requirements on the operating safety of electronic modules.
+Similarly, electric cars raise new challenges for safety, such as battery monitoring and control.
+Those features require more computing power, more sensing capabilities and more data to exchange.
+To support it, the amount of \gls{ecu}s and electronic modules is growing quickly in the automotive field.
+Communication buses are shared by multiple systems, such as the CAN or LIN bus.
+New standards and specifications are written to support higher bandwidths.
+%TODO: Reference + complete
+The CAN bus with Flexible Data rate (CAN-FD) is a good illustration.
+Also means more sensitive to noise and disturbances.
+
+% Another trend is reduced power consumptions
+Another consequence of those trends is the rise of the vehicle's power consumption.
+At the integrated circuit level, the main solution so far is to lower supply voltages.
+With the smallest integrated technologies, it is common now to find supply voltages below 1V.
+As a consequence, the noise margins become very small, making the circuits far more sensitive to electrical disturbances.
+
+% Harsh environment in the automotive field
+%TODO
+On the other hand, the automotive field is a harsh environment for electronic devices.
+Equipements are exposed to a wide range of mechanical, electrical and thermal stresses.
+A running engine generates plenty of vibrations and mechanical stress.
+Wear out electrical contacts, solder joints and connections.
+It generates heat and thermal stress.
+A vehicle can be exposed to large temperature variations during its lifetime.
+Stress thermiques, vibrations, electriques, charges et decharges
+definir ce qu'est un ESD EFT
+
+% Architecture systemes automobiles
+%TODO
+A vehicle is constituted by a multitude of electronic modules, interconnected with cables.
+This architecture is very challenging for robust against electrical disturbances
+local ground reference potential differences, couplings between cables, cables and interference, etc.
+SHowed that longer cables result in increased exposure to electrostatic discharges
+Discuter article de renault pour les cables.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/car_architecture.pdf}
+  \caption{Architecture of electronic systems in a vehicle}
+  \label{fig:car-architecture}
+\end{figure}
+
+% Fiabilite vis a vis des ESD
+%TODO
+So far, the current context is more electronics, complex systems, intrisically more fragile, and with more responsabilities.
+It is obvious that all kinds of failures must preemptively be studied and predicted.
+Definir hard failure, soft failure
+Types de defaillance systeme, composant
+
+% Recherche orientee jusqu'a la defaillance hardware
+%TODO
+
+% Comment predire ces defaillances fonctionnelles
+%TODO
+Recherche sur le fonctionnel a ses debuts
+Beaucoup d'etudes au niveau systeme (mettre references de HDR fabrice)
+Au niveau composant pas de methodes, peu d'etudes.
+
+Recently, a new family of failures motivated new research work.
+Those new failures are due to the multiple and recent trends for electronic devices, and in the automotive field.
+In the last years, the amount of embedded electronic devices in vehicles has widely increased.
+In parallel, the size reduction of semiconductor devices and technologies has continued, leading to reduced dimensions, reduced supply voltages and increased \gls{esd} sensitivity.
+Finally, the development of smarter and autonomous vehicles are giving electronic devices more responsabilities in regard of our safety.
+Now, they are commonly responsible for critical functions, such as airbag and braking control, and assisted or autonomous driving.
+In this context, electronic devices are required to perform as expected with absolute reliability and without unpredictible behavior that could lead to castrophic consequences.
+In particular, the functional robustness of this kind of devices must be guaranteed even in the event of an electrostatic discharge.
+
+% Methodologies pour la conception - quel est le flot de design actuel
+%TODO
+Differents acteurs
+Outils, simulateurs, etc
+Comment on concoit un circuit
+Actuellement, pas moyen de predire qu'un stress va generer un defaut fonctionnel
+approche hierarchique, bottom up, top down
+
+% Presentation des chapitres
+%TODO
+Chap 1 detaille ca, 2 detaille ceci, etc
