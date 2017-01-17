@@ -309,7 +309,7 @@ On the contrary, capacitors built with the X7R technology are much most resilien
 % Conclusion
 %TODO
 
-\subsection{Other devices}
+\subsection{Diode}
 
 %TODO: A etoffer
 
@@ -318,25 +318,40 @@ Diodes and \gls{tvs} are frequently studied devices in the \gls{esd} field \cite
 Multiple modelling methods exist, such as behavioral and compact models.
 Most studies target silicon-level devices, but a few also interested in board-level active device modelling.
 
+\subsection{Common mode choke}
+
 % Common mode choke
 Common mode choke are frequently encountered in electronic systems to protect inputs and supplies in particular \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
 Unlike regular RC-network filtering, chokes isolate from common mode disturbances where both signal and ground reference voltages shift.
 Chokes are frequently used for reducing emmission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
 
 
-\subsection{Propagation phenomena}
+\subsection{Modeling techniques}
 
+% Assembling models is one step, but need to be cautious on the results
+The modeling method consists in connecting together models of devices that physically exist.
+To reach good agreement between simulation and measurement, some phenomena must also be taken into account.
+They can strongly impact waveforms.
+In particular, propagation and reflection phenomena play a key role at the nanosecond timescale with macro-scale systems.
+They are completely ignored in standard time-domain electrical simulations and analysis, because the time constants involved are much shorter than the typical timescale.
+For instance, a combination of a propagation delay with reflected wave sometimes leads to dampened oscillations with a period in the range of a few nanoseconds that last for tens of nanoseconds.
+In comparison, most analog functions in the automotive field have time constants above tens of microseconds, that is to say 5 orders of magnitude longer.
+In those simulations, nanosecond scale event can be purely and simply ignored.
+However, in \gls{esd} simulations, nanosecond scale event are important because the waveforms last for the same order of magnitude.
+%TODO : Speak about the relation between the propagation delay time constants involved in regard of the dimensions of the system
+
+% Propagation phemenon
 %TODO
-Sometimes important to take into account for the modelling and assembling of models
-
-Propagation and reflection are the two main phenomena occurring at the nanosecond timescale that are ignored in standard time-domain electrical simulations.
-
 Propagation is a phenomenon that always occurs but is negligible over a few tens microseconds.
 Below that timescale it must be taken into account because it has a major impact on the waveforms.
 This is due to the fact that observation times are in the same range than electrical wave propagation times.
 
+% Reflection phenomenon
+%TODO
 Reflection happens when an electrical wave propagates and reaches a point where two propagation media are mismatched (two coaxial cables of different characteristic impedance for example).
 
+% Combined impact
+%TODO
 These two effects and in combination can impact waveform in some specific scenario
 
 % Measurement artifact
