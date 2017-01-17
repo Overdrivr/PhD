@@ -2,7 +2,7 @@
 
 % Trends of the electronic field is size reduction
 Electronic circuits become more miniaturized year after year.
-There are many economical or practical reasons behind this trend.
+There are many economical or practical reasons supporting this trend.
 Size reduction of integrated circuits lowers manufacturing cost per chip thanks to the increased volume.
 Decreasing the weight of an embedded automotive system diminishes fuel and energy consumption.
 Miniaturization also offers increased performance and capabilities.
@@ -10,14 +10,11 @@ More functions can be packed in the same volume.
 
 % How is size reduced
 For integrated circuits, this trend is accomplished by decreasing integrated technology size.
-An integrated technology defines the dimensions and shapes of fundamental electronic bricks.
-Those bricks consist in different types of transistors, resistors and capacitors.
-The size of a technology is the smallest dimension for the smallest transistor gate, denoted \textlambda.
+An integrated technology is the definition of the dimensions and shapes of several fundamental electronic bricks.
+Those bricks are basically different types of transistors, resistors and capacitors.
+The size of a technology is the smallest dimension for the smallest transistor gate, called \textlambda.
 The value of \textlamda is essential and determines the size, power consumption, switching speed, performance and many other characteristics of the complete chip.
 Until recently, Moore's law successfully predicted that technology dimensions will be reduced by a factor of two every 18 months.
-As a side effect, miniaturization results in more fragile and less robust circuits.
-%TODO detail more this
-The maximum tolerated levels decrease with the technology size.
 
 \begin{figure}[!h]
   \centering
@@ -26,6 +23,11 @@ The maximum tolerated levels decrease with the technology size.
   \label{fig:ecus-increase}
 \end{figure}
 
+% Side effects of size reduction
+As a side effect, miniaturization results in more fragile and less robust circuits.
+The maximum voltage and current levels are lowered.
+Above those limits, devices become degraded or destroyed.
+
 % Another trend in automotive - more electronic functions
 Nowadays, new major features are developped in the automotive field.
 The development of assisted or fully autonomous driving is seeing tremendous progress.
@@ -33,37 +35,52 @@ Autonomous vehicles take decisions and perform critical actions such as braking 
 Thoses features are implemented for safety purposes and put very high requirements on the operating safety of electronic modules.
 Similarly, electric cars raise new challenges for safety, such as battery monitoring and control.
 Those features require more computing power, more sensing capabilities and more data to exchange.
-To support it, the amount of \gls{ecu}s and electronic modules is growing quickly in the automotive field.
-Communication buses are shared by multiple systems, such as the CAN or LIN bus.
-New standards and specifications are written to support higher bandwidths.
-%TODO: Reference + complete
-The CAN bus with Flexible Data rate (CAN-FD) is a good illustration.
-Also means more sensitive to noise and disturbances.
+The amount of \gls{ecu}s and electronic modules is growing quickly.
+Communication buses like CAN \gls{can} \cite{CAN} or LIN \gls{lin} \cite{LIN} are shared by multiple systems and new standards and specifications are written to support higher bandwidths.
+The CAN bus with Flexible Data rate (CAN-FD) \cite{CAN-FD} is proposed to support higher data rate.
+The consequence is less options for filtering strategies and higher sensitivity to noise and disturbances.
 
 % Another trend is reduced power consumptions
-Another consequence of those trends is the rise of the vehicle's power consumption.
+Logically, electrical power consumption has largely increased in vehicles.
+Solutions are progressively set up to reduce it.
 At the integrated circuit level, the main solution so far is to lower supply voltages.
-With the smallest integrated technologies, it is common now to find supply voltages below 1V.
-As a consequence, the noise margins become very small, making the circuits far more sensitive to electrical disturbances.
+With the smallest integrated technologies, it is now common to find supply voltages below 1V.
+Noise margins become very small, resulting in circuits far more sensitive to electrical disturbances.
 
 % Harsh environment in the automotive field
-%TODO
-On the other hand, the automotive field is a harsh environment for electronic devices.
-Equipements are exposed to a wide range of mechanical, electrical and thermal stresses.
+The automotive field is also an harsh environment for electronic devices.
+Equipements are exposed to a wide range of stresses.
 A running engine generates plenty of vibrations and mechanical stress.
-Wear out electrical contacts, solder joints and connections.
-It generates heat and thermal stress.
-A vehicle can be exposed to large temperature variations during its lifetime.
-Stress thermiques, vibrations, electriques, charges et decharges
-definir ce qu'est un ESD EFT
+A lot of heat and thermal cycling is produced when the engine is on, and a vehicle is exposed to large temperature variations during its lifetime.
+Electrical contacts, solder joints and connections suffer from these stresses, and must be designed to withstand them.
+Electronic system are also exposed to a wide range of electrical stresses especially in the automotive field.
+One of the main electrical stresses a device can be exposed to is the \gls{esd}.
+
+% What is an ESD
+An electrostatic discharge is the sudden flow of electricity between two objects of different charge.
+It is the result of a local accumulation of electrostatic potential.
+When large enough potential difference is reached, a very rapid and violent discharge occurs.
+It is common to record amplitudes in the range of thousands of volts and tens of amperes.
+A study by Renault \cite{Renault-esd} demonstrated that electronic devices are exposed about 10000 times to \gls{esd}s during their lifetime.
+The discharges amplitude forms a gaussian curve, where most of the discharge are near 4kV, with a few events much above that.
+\gls{esd} are a very serious threat for electronic systems.
 
 % Architecture systemes automobiles
-%TODO
-A vehicle is constituted by a multitude of electronic modules, interconnected with cables.
-This architecture is very challenging for robust against electrical disturbances
-local ground reference potential differences, couplings between cables, cables and interference, etc.
-SHowed that longer cables result in increased exposure to electrostatic discharges
-Discuter article de renault pour les cables.
+In terms of architecture, a vehicle is constituted by a multitude of electronic modules, interconnected with cables.
+This architecture raises some challenges for guaranting robustness against electrical disturbances.
+A car is connected to the earth's ground through the tires, which is equivalent to a thick layer of insulating material.
+Interconnected electronic systems need to share a good ground reference for them to communicate and work properly.
+This function is assumed by the car's metallic body.
+In \gls{dc} and at low frequencies, this reference is quite good because the vehicle's body is a very large chunck of metal.
+Electrostatic discharges are high frequency events, with significant frequency content up to a gigahertz.
+In this frequency range, the ground is not a good reference anymore and cables behave as large inductances.
+As a result, electronic modules do not share a good reference anymore, are disturbed and fail to function properly.
+For electrostatic discharges and \gls{emc} in general, cables are an important issue.
+\cite{Renault-esd} showed that longer cables inside a vehicle (trucks) result in increased exposure to electrostatic discharges.
+%TODO: Discuter article un peu plus
+Inside a car, cables are not shielded and make great antennas that can both receive and emit radiated interferences.
+Couplings between cables propagate interferences between interconnect domains.
+Overall, the architecture of a vehicle is complex and sensitive to electrical disturbances.
 
 \begin{figure}[!h]
   \centering
@@ -73,38 +90,53 @@ Discuter article de renault pour les cables.
 \end{figure}
 
 % Fiabilite vis a vis des ESD
-%TODO
-So far, the current context is more electronics, complex systems, intrisically more fragile, and with more responsabilities.
-It is obvious that all kinds of failures must preemptively be studied and predicted.
-Definir hard failure, soft failure
-Types de defaillance systeme, composant
-
-% Recherche orientee jusqu'a la defaillance hardware
-%TODO
+In summary, the amount of electronic devices is increasing and in the same time are more sensitive.
+Systems are complex to study and analyse, have more responsabilities in regards of our safety, and the surrounding environment is very harsh for electronic devices.
+It is obvious that studying and predicting all kinds of failures is important.
+In the \gls{esd} field, there are two kinds of failures to consider.
+The hardware failure, or hard-failure, is when an electronic device is permanently damaged.
+There can be multiple signatures, such as important variation of intrisic properties or complete destruction.
+Semiconductor devices are particularly sensitive to electrostatic discharges \cite{impactESDsemiconductors} and require specific protection.
+Motivated by the new requirements for operating safety, a new class of failures started to be studied.
+Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
+In this scenario, different levels of severity can be identified depending on the impact of the failure on the rest of the system.
+Functionnal failures raise new kind of challenges for the analysis, and in particular with the scale factor.
+A functionnal failure may happen because a few transistors inside a chip were disturbed, but the consequences can be visible much higher in the hierarchy and at a much larger scale.
+In regard of those challenges, new analysis and predictions methods are required against soft-failures caused by electrostatic discharges.
 
 % Comment predire ces defaillances fonctionnelles
-%TODO
-Recherche sur le fonctionnel a ses debuts
-Beaucoup d'etudes au niveau systeme (mettre references de HDR fabrice)
-Au niveau composant pas de methodes, peu d'etudes.
+First research on the topic of functional failure was published by F. Caignet and N. Lacrampe in 2007 \cite{}.
+After a few years, the industry widely acknowledged the problem, reinforced by the current automotive trends.
+A large amount of research at the system level was published in EOS/ESD symposia 2012 \cite{} and 2013 \cite{}.
+The draft standard IEC 62433-6 aims to provide a base framework for soft-failures analysis and prediction.
+So far, the litterature is focused on system-level analysis.
+There is currently no real work at the component level or studies performed inside the design of an integrated circuit.
+This PhD explored the topic and tries to provide some new leads for future research.
 
-Recently, a new family of failures motivated new research work.
-Those new failures are due to the multiple and recent trends for electronic devices, and in the automotive field.
-In the last years, the amount of embedded electronic devices in vehicles has widely increased.
-In parallel, the size reduction of semiconductor devices and technologies has continued, leading to reduced dimensions, reduced supply voltages and increased \gls{esd} sensitivity.
-Finally, the development of smarter and autonomous vehicles are giving electronic devices more responsabilities in regard of our safety.
-Now, they are commonly responsible for critical functions, such as airbag and braking control, and assisted or autonomous driving.
-In this context, electronic devices are required to perform as expected with absolute reliability and without unpredictible behavior that could lead to castrophic consequences.
-In particular, the functional robustness of this kind of devices must be guaranteed even in the event of an electrostatic discharge.
-
-% Methodologies pour la conception - quel est le flot de design actuel
-%TODO
-Differents acteurs
-Outils, simulateurs, etc
-Comment on concoit un circuit
-Actuellement, pas moyen de predire qu'un stress va generer un defaut fonctionnel
-approche hierarchique, bottom up, top down
+% Conception methods
+Beyond studying failures inside integrated circuits, it is important to keep in mind how chips are designed and developped.
+This is important to propose solutions that are actually implementable.
+This entire process from the specification to the manufacturing of a product is called the design flow.
+During this process, there are many teams and people involved.
+Modeling team creates electrical model of technology components.
+Design team assembles component together to create integrated functions that conform to the specification.
+Layout team translates the symbolic view of electrical netlists into the series of masks and layers required by manufacturing.
+The laboratory tests manufactured parts and runs investigations in case of failures.
+The \gls{esd} and \gls{emc} team has the particularity to interact will all teams because issues and solutions can be found in any step of the design flow.
+Overall, the integrated circuits are designed hierarchically and the flow is a bottom-up process.
+Fundamental bricks are assembled together in rising complexity to create the required functions.
+The main source of delay in this process is the long delay for the feedback due to the manufacturing.
+Designs are put on silicon but the parts are tested only after manufacturing, which can occur several months later.
+To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
+This is why any simulation tool able to predict early any kind of failure (and functionnal failures among them) is very valuable for silicon design companies.
 
 % Presentation des chapitres
-%TODO
-Chap 1 detaille ca, 2 detaille ceci, etc
+Chapter \ref{chap:1} details how electrostatic discharge physically appear, how to reproduce them in laboratory conditions and studies the most recent work in the litterature on functional failure.
+Chapter \ref{chap:2} presents a modeling method for simulating \gls{esd} waveforms up to the integrated circuit inputs. It relies on developping a model library of common electrical elements found in \gls{esd} testing environment.
+A case of soft-failure in an integrated circuit is explained in chapter \ref{chap:3}.
+Analysis of the failure led to the development of a testchip, to put on silicon the same failing function but with a more convenient environment for measurements and investigation.
+Research work was also done to start the development of new tools based on electrical simulations to understand and predict functional failures.
+This work is compiled in chapter \ref{sec:methods-operating-esd-analysis}.
+Finally, a new test generator was developed to overcome some issues found when debugging silicon-level failures caused by system level \gls{esd} testers.
+The principle of operation and architecture of the generator is described in chapter \ref{sec:tlp-hmm}.
+The conclusion summarizes the work achieved during the PhD, highlights the most notable discoveries, and identifies follow-up work and research topics that could be worth pursuing.
