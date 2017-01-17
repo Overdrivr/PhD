@@ -1,4 +1,4 @@
-\section{State of the art in ESD testing}
+\section{State of the art on ESD testing}
 \label{sec:state-art-esd-testing}
 
 Electronic hardware robustness is tested against electrostatic discharges using different test methods and standards.
@@ -23,9 +23,8 @@ It was extensively studied the PhD thesis of N. Monnereau \cite{phd-monnereau} a
 
 % Concept
 \gls{tlp} systems produce a fast rectangular pulse, through the discharge of a coaxial cable (Fig. \ref{tlp_concept}).
-The cable is charged by a high-voltage power supply then discharged into a load by switching a relay.
+When the voltage of the cable reaches the desired amplitude, a relay can be switched to trigger the discharge.
 The charge is performed through a high value resistor to keep the current small and avoid oscillations on the cable.
-When the voltage charge of the cable reaches the desired amplitude, the relay is switched to trigger the discharge.
 The coaxial cable has usually a characteristic impedance of 50\textOmega{} and a length of 10 metres, corresponding to a 100ns propagation delay.
 
 \begin{figure}[!h]
@@ -54,9 +53,12 @@ They do not pollute the system with reflected waves.
   \label{tlp_pulse}
 \end{figure}
 
+\gls{tlp} generators can also be employed as a measurement tool.
+\gls{tlp} use Time-Domain Reflectometry (TDR) or more standard techniques for measuring electrical properties.
+
 % Principle of tlp for i(v) curve extraction
 %TODO: Find TLP TDR reference, and non TDR TLP ref
-Time-Domain Reflectometry is a measurement technique with a wide range of applications.
+Time-domain reflectometry is a measurement technique with a wide range of applications.
 Some TLP generators rely on this technique to determine electrical properties of a device by observing reflected waveforms.
 In this configuration, voltage and current measured at the output of the generator are equal to voltage and current waveforms inside the load.
 This is due to the superposition of the incident and reflected pulses during the discharge.
@@ -111,7 +113,7 @@ With this method, it is possible analyse and calculate the impedance of all elem
 \subsection{ESD Gun (IEC 61000-4-2 / ISO 10605)}
 
 % What is the goal of this test
-IEC 61000-4-2\cite{iec61000-4-2} and ISO 10605\cite{iso10605} standards define a system-level test waveform and test generator to reproduce the discharge of a human body through an electronic device.
+IEC 61000-4-2 \cite{iec61000-4-2} and ISO 10605 \cite{iso10605} standards define a system-level test waveform and test generator to reproduce the discharge of a human body through an electronic device.
 This test is used very extensively for the qualification of products.
 
 \begin{figure}[!h]
@@ -125,6 +127,14 @@ This test is used very extensively for the qualification of products.
 The generation of the ESD pulse is done by a resistor-capacitor discharge network.
 The RC network alone though does not suffice to reproduce the waveform given in Fig. \ref{iec_pulse}.
 Parasitic devices play an important part in shaping the waveform.
+
+%TODO: Comment
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/gun_model.pdf}
+  \caption{ESD Gun model}
+  \label{fig:ed-gun-model}
+\end{figure}
 
 % Where does this standard applies
 Each standard defines the construction and waveform requirements for this ESD generator, but with different fields of application.
