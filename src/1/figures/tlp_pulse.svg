@@ -157,16 +157,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="311.53889"
-     inkscape:cy="189.91592"
+     inkscape:zoom="0.7"
+     inkscape:cx="323.729"
+     inkscape:cy="256.02063"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:object-nodes="true"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      fit-margin-top="2"
@@ -189,7 +189,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -202,7 +202,7 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
        x="670.50031"
-       y="639.51398"
+       y="623.02625"
        id="text3112"
        sodipodi:linespacing="125%"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\01 - etat art stress - avril 2014\allures\01 TLP.png"
@@ -210,7 +210,7 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="670.50031"
-         y="639.51398"
+         y="623.02625"
          id="tspan3165">1ns → 100 ns → 1000 ns</tspan></text>
     <text
        xml:space="preserve"
@@ -285,7 +285,7 @@
          sodipodi:role="line"
          id="tspan4782"
          x="135.46295"
-         y="514.85406">50ps → 30ns</tspan></text>
+         y="514.85406">50ps → 10ns</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
        d="m 910,442.36218 0,120"
