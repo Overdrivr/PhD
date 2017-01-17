@@ -13,11 +13,20 @@ System-level tests involve higher voltage and current amplitudes, and are more h
 
 \subsection{Transmission Line Pulsing (TLP)}
 
-% tlp concept
-\gls{tlp} generators generate a fast rectangular pulse.
-The pulse is produced by the discharge of a coaxial cable (Fig. \ref{tlp_concept}).
+% History of TLP
+The transmission line pulsing generator is an extremely popular tool in the \gls{esd} field.
+Over the years, it was employed in a variety of applications, from characterization of devices \cite{TLPforESDProtectionCz, TLPthroubleshooting}, investigation of failures \cite{tlp-application-1, tlp-application-2} and correlation of failure levels with other generators \cite{correlation-system-level-esd-tlp}.
+It is a versatile tool, that was often modified to adress larger testing conditions \cite{tlp-power} or non-rectangular pulse waveforms \cite{tlp-based-hmm, my-publi-tlp-hmm}.
+The technique was invented by T. Maloney and N. Nakamura \cite{TLP}.
+It is in the process of standardization as part of ANSI/ESD STM 5.5.1-2016 \cite{tlp-standard} through the effort of the ESD Association (ESDA) \cite{esda}.
+It was extensively studied the PhD thesis of N. Monnereau \cite{phd-monnereau} and N. Lacrampe \cite{phd-lacrampe}.
+
+% Concept
+\gls{tlp} systems produce a fast rectangular pulse, through the discharge of a coaxial cable (Fig. \ref{tlp_concept}).
 The cable is charged by a high-voltage power supply then discharged into a load by switching a relay.
 The charge is performed through a high value resistor to keep the current small and avoid oscillations on the cable.
+When the voltage charge of the cable reaches the desired amplitude, the relay is switched to trigger the discharge.
+The coaxial cable has usually a characteristic impedance of 50\textOmega{} and a length of 10 metres, corresponding to a 100ns propagation delay.
 
 \begin{figure}[!h]
   \centering
@@ -26,11 +35,17 @@ The charge is performed through a high value resistor to keep the current small 
   \label{tlp_concept}
 \end{figure}
 
-% advantages of tlp systems
+% Characteristics of tlp systems
 TLP systems constitute very well-controlled test generators where the pulse is generated inside a shielded and isolated environment.
-Characteristic impedance can be controlled up to the load.
-Those features allow for extremely clean and repeatable pulse waveforms.
-The main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}
+The characteristic impedance of 50\textOmega{} can be controlled up to the load.
+Those features allow for extremely clean and repeatable pulse waveforms without reflections.
+The main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}.
+The waveform parameters are completely controlled and easily tunable.
+The charging voltage is set by the high-voltage source.
+The pulse width can be increased or decreased by changing the length of the coaxial cable.
+The risetime can be enforced with a 50\textOmega{} matched risetime filter \cite{cao-risetime-filter, gaussian-lpf}.
+Unlike most filters, they are specifically designed to work by absorption and not by reflection.
+They do not pollute the system with reflected waves.
 
 \begin{figure}[!h]
   \centering
@@ -39,22 +54,64 @@ The main characteristics of a TLP waveform are given in figure \ref{tlp_pulse}
   \label{tlp_pulse}
 \end{figure}
 
-% principle of tlp for i(v) curve extraction
-Using time-domain reflectometry, it is possible to reconstitute the current and voltage waveforms inside the load,
-from measured current and voltage inside the \gls{tlp} \cite{TLP}.
-The superposition of the incident and reflected pulses during the discharge show that the voltage and current
-measured inside the generator are direct image of the ones accross and through the load.
+% Principle of tlp for i(v) curve extraction
+%TODO: Find TLP TDR reference, and non TDR TLP ref
+Time-Domain Reflectometry is a measurement technique with a wide range of applications.
+Some TLP generators rely on this technique to determine electrical properties of a device by observing reflected waveforms.
+In this configuration, voltage and current measured at the output of the generator are equal to voltage and current waveforms inside the load.
+This is due to the superposition of the incident and reflected pulses during the discharge.
+Analysis and demonstration is done in \cite{phd-monnereau}.
+Other setups involve measurements directly at the load level.
 
-\gls{tlp} are extensively used for characterizing the response of ESD protections \cite{TLPforESDProtectionCz}
+% Explanation of a typical esd protection respon
+Fig. \ref{fig:typical-tlp-response} provides an example of a typical waveform observed during injection on an \gls{esd} protection.
+The recording is done in a time-domain reflectometry configuration, where voltage and current are measured at the ouput of the generator and not at the load.
+Voltage and current waveforms usually exhibit two steps.
+The first one corresponds to the impedance of the connection cable that relies the \gls{tlp} to the load (see Fig. \ref{tlp_concept}).
+The second step is the response of the tested load.
+By averaging each waveform during a few tens of nanosecond, the current and voltage value of the load can be sampled.
+The sampled values are associated to a given charging voltage.
+The process is usually very reproducible.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_response.pdf}
+  \caption{TLP V(t) and I(t) example}
+  \label{fig:typical-tlp-response}
+\end{figure}
+
+% Main application of TLP is IV characterization
+A very popular application is the extraction of a quasi-static I(V) characterization of ESD protections \cite{TLPforESDProtectionCz}.
+It represents the current versus voltage response of a device, in dynamic regime.
+Much higher than static I(V)
+Non monotonous response
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/tlp_iv_curve.pdf}
+  \caption{TLP-extracted I(V) characteristic example}
+  \label{fig:iv-curve-extraction}
+\end{figure}
+
+The I(V) curve is extracted point after point, by increasing the charging voltage after each pulse (Fig. \ref{fig:iv-curve-extraction}).
+Each point corresponds a voltage and current measured on the transient waveform.
+Snapback waveforms are very often observed, that cannot be measured with static I(V).
+%TODO: Detail more quasi-static characterization
+
+% Another application is the characterization of the robustness
 or testing the response of systems and devices against a clean and well repeatable pulse \cite{TLPthroubleshooting, LacrampeTransientImmunity}.
 
-%TODO: Detail more quasi-static characterization ?
-%TODO: Example snapback/no snapback I(V) curve ?
+A popular variation of the TLP is the very fast TLP (vf-TLP), initially designed by H. Gieser \cite{vf-tlp} to reproduce gate oxyde breakdown.
+It is a TLP with a shorter pulse width (10 ns).
+
+Grund applied the principle of Time-Domain Reflectometry to vf-TLP in \cite{vf-tlp-tdr}.
+With this method, it is possible analyse and calculate the impedance of all elements between the generator and the load.
+
 
 \subsection{ESD Gun (IEC 61000-4-2 / ISO 10605)}
 
 % What is the goal of this test
-IEC 61000-4-2 and ISO 10605 standards define a system-level test waveform and test generator to reproduce the discharge of a human body through an electronic device.
+IEC 61000-4-2\cite{iec61000-4-2} and ISO 10605\cite{iso10605} standards define a system-level test waveform and test generator to reproduce the discharge of a human body through an electronic device.
 This test is used very extensively for the qualification of products.
 
 \begin{figure}[!h]
