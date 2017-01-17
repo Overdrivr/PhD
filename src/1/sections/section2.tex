@@ -1,12 +1,12 @@
-\section{Research problem}
-\subsection{Impact of electrostatic discharges on electronic devices}
+%\section{Research problem}
+\subsection{Impact of ESD on electronic devices}
 
 %TODO: Pictures + References
 
 % Hardware failure - how does it happen
 %TODO: Detail more from article
 Because of high voltage, current and power levels involved, electrostatic discharges can destroy electronic devices.
-Semiconductor devices are particularly sensitive to electrostatic discharges \cite{impactESDsemiconductors}.
+
 Inputs and outputs require \gls{esd} protections to route the discharge current outside the chip before it reaches the core circuit.
 When the protection fails to work, the device usually gets destroyed and different failure signatures can be observed.
 Failures may also occur at the board or equipment level of an electronic system.
@@ -28,15 +28,6 @@ This failure signature is called a thermal breakdown.
 Hardware failures can also occur at the equipment or board level.
 Usually, they will involve the destruction of some discrete devices that make the board no longer working.
 
-% Functional failure
-Recently, a new family of failures motivated new research work.
-Those new failures are due to the multiple and recent trends for electronic devices, and in the automotive field.
-In the last years, the amount of embedded electronic devices in vehicles has widely increased.
-In parallel, the size reduction of semiconductor devices and technologies has continued, leading to reduced dimensions, reduced supply voltages and increased \gls{esd} sensitivity.
-Finally, the development of smarter and autonomous vehicles are giving electronic devices more responsabilities in regard of our safety.
-Now, they are commonly responsible for critical functions, such as airbag and braking control, and assisted or autonomous driving.
-In this context, electronic devices are required to perform as expected with absolute reliability and without unpredictible behavior that could lead to castrophic consequences.
-In particular, the functional robustness of this kind of devices must be guaranteed even in the event of an electrostatic discharge.
 
 % Types of soft failures
 Diverse consequences can be observed when a device is disturbed in its functionnality by an \gls{esd}.
@@ -54,16 +45,22 @@ User intervention can take the form of turning the key to shut down and restart 
 Finally, \gls{esd} can put a system into a non-recoverable state because of a hardware failure.
 This last level is not considered for functional robustness analysis.
 
-% Define terminology
-%TODO: soft-failure, functional failure, operating ESD
-
 % What is the challenge
 In the given context, functional failures represent a risk just as important as hardware failures.
 To limit risks and costs inherents to upgrading a device after it was deployed in the field, these failures must be taken care of as early as possible.
 Ideally, the robustness of an electronic product should be studied, characterized or simulated during its design phase.
 The research conducted and presented in this document aims to develop new tools and techniques for studying and predicting functional failures.
 
-\subsection{Research approach}
+\subsection{ESD protection}
+
+What is an ESD protection
+%TODO: Example snapback/no snapback I(V) curve
+I(V) curves
+Integrated or discrete
+Modelling is presented in chapter X
+
+\subsection{Vrac}
+
 
 % Presentation of the structure of the research/document
 The litterature is studied in section \ref{sec:state-art-esd-testing} to identify the current state of the art in powered \gls{esd}.
