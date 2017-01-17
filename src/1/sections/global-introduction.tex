@@ -36,8 +36,8 @@ Thoses features are implemented for safety purposes and put very high requiremen
 Similarly, electric cars raise new challenges for safety, such as battery monitoring and control.
 Those features require more computing power, more sensing capabilities and more data to exchange.
 The amount of \gls{ecu}s and electronic modules is growing quickly.
-Communication buses like CAN \gls{can} \cite{CAN} or LIN \gls{lin} \cite{LIN} are shared by multiple systems and new standards and specifications are written to support higher bandwidths.
-The CAN bus with Flexible Data rate (CAN-FD) \cite{CAN-FD} is proposed to support higher data rate.
+Communication buses like the \gls{can} \cite{CAN} or \gls{lin} \cite{LIN} are shared by multiple systems and new standards and specifications are written to support higher bandwidths.
+The CAN bus with Flexible Data rate (CAN-FD) is proposed to support higher data rate.
 The consequence is less options for filtering strategies and higher sensitivity to noise and disturbances.
 
 % Another trend is reduced power consumptions
@@ -61,8 +61,7 @@ An electrostatic discharge is the sudden flow of electricity between two objects
 It is the result of a local accumulation of electrostatic potential.
 When large enough potential difference is reached, a very rapid and violent discharge occurs.
 It is common to record amplitudes in the range of thousands of volts and tens of amperes.
-A study by Renault \cite{Renault-esd} demonstrated that electronic devices are exposed about 10000 times to \gls{esd}s during their lifetime.
-The discharges amplitude forms a gaussian curve, where most of the discharge are near 4kV, with a few events much above that.
+A study by Renault \cite{Renault-esd} estimates that electronic devices are exposed 10000 times to \gls{esd}s during their lifetime.
 \gls{esd} are a very serious threat for electronic systems.
 
 % Architecture systemes automobiles
@@ -76,8 +75,6 @@ Electrostatic discharges are high frequency events, with significant frequency c
 In this frequency range, the ground is not a good reference anymore and cables behave as large inductances.
 As a result, electronic modules do not share a good reference anymore, are disturbed and fail to function properly.
 For electrostatic discharges and \gls{emc} in general, cables are an important issue.
-\cite{Renault-esd} showed that longer cables inside a vehicle (trucks) result in increased exposure to electrostatic discharges.
-%TODO: Discuter article un peu plus
 Inside a car, cables are not shielded and make great antennas that can both receive and emit radiated interferences.
 Couplings between cables propagate interferences between interconnect domains.
 Overall, the architecture of a vehicle is complex and sensitive to electrical disturbances.
