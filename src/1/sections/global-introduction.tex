@@ -128,12 +128,45 @@ To gain time to market and be competitive, it is essential to reduce to a bare m
 This is why any simulation tool able to predict early any kind of failure (and functionnal failures among them) is very valuable for silicon design companies.
 
 % Presentation des chapitres
+%TODO
+%
 Chapter \ref{chap:1} details how electrostatic discharge physically appear, how to reproduce them in laboratory conditions and studies the most recent work in the litterature on functional failure.
-Chapter \ref{chap:2} presents a modeling method for simulating \gls{esd} waveforms up to the integrated circuit inputs. It relies on developping a model library of common electrical elements found in \gls{esd} testing environment.
+This preliminary work highlights how functional failures appear and how they impact electronic devices.
+It is demonstrated that so far integrated circuits are studied as black-box objects for studying functionnal failures.
+Stresses are injected on external inputs while external outputs are monitored for failures.
+The amount of silicon-level studies and research remains small.
+%
+Chapter \ref{chap:2} presents a modeling method for simulating \gls{esd} waveforms up to the integrated circuit inputs.
+The first challenge for understanding soft-failures at silicon-level is to determine what fraction of an incoming \gls{esd} actually reaches the integrated circuit.
+Between the injection point of a disturbance in a system and the disturbed integrated circuit, many devices will be connected such as connectors, passive and active devices, metal traces.
+Each element interacts with the discharge, can absorb a part of its current or change the waveform.
+For this purpose, a model library of common electrical elements found in \gls{esd} testing environment is detailed.
+%
 A case of soft-failure in an integrated circuit is explained in chapter \ref{chap:3}.
+In a first phase, measurement data is obtained at the board level and the failure is explained.
+Simulations are run to understand how the failure appears, and more specifically how a short electrical event can disturb an integrated circuit for a long period of time.
+In a second phase, the integrated function is placed onto a custom testchip.
+It embarks specific structures to obtain measurement data on electrical nets that are not physically accessible.
+All these measurements are performed for the purpose of estimating the accuracy of integrated circuit \gls{esd} simulations.
+There are two main potential sources of error that are checked.
+Silicon technology device models are not designed to function for extremely fast transient transient disturbances.
+Also, standard simulations do not take parasitic devices into account, such as metal track resistances and parasitic couplings.
+Measurement data is confronted to simulations in order to verify the validity of models.
 Analysis of the failure led to the development of a testchip, to put on silicon the same failing function but with a more convenient environment for measurements and investigation.
+%
+Analysis of the issue is performed manually, by trial and error, searching inside the design why the function is failing.
+It is a complex and time-consuming process.
+Also, this approach is almost exclusively possible when searching for a particular weakness.
 Research work was also done to start the development of new tools based on electrical simulations to understand and predict functional failures.
-This work is compiled in chapter \ref{sec:methods-operating-esd-analysis}.
+The core research of this work focuses on new analysis methods proposed in chapter \ref{sec:methods-operating-esd-analysis}.
+%
 Finally, a new test generator was developed to overcome some issues found when debugging silicon-level failures caused by system level \gls{esd} testers.
 The principle of operation and architecture of the generator is described in chapter \ref{sec:tlp-hmm}.
 The conclusion summarizes the work achieved during the PhD, highlights the most notable discoveries, and identifies follow-up work and research topics that could be worth pursuing.
+Some part of the research work also focused towards \gls{esd} testers.
+System-level \gls{esd} guns \cite{iec61000-4-2, iso10605} constitute a major testing and qualification tool, but bring too much complexity during silicon-level investigation.
+To overcome this issue, a new stress generator based on a \gls{tlp} is proposed in chapter \ref{sec:tlp-hmm}.
+It produces the same compliant waveform than those standards, but with some interesting advantages.
+It is not a drop-in replacement but can be interesting as an investigation tool.
+%
+Final conclusions and potential following work are detailed in chapter \ref{sec:final-conclusion}.
