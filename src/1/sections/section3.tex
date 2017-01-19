@@ -133,7 +133,6 @@ Quasi-static $I(V)$ curves are particularly useful for characterization of ESD p
   \label{fig:iv-curve-extraction}
 \end{figure}
 
-%TODO
 % How are I(V) curves extracted
 The $I(V)$ curve is extracted point after point.
 Each point corresponds a voltage and current measured by averaging the transient waveforms during the second step.
@@ -146,6 +145,8 @@ An example is provided in Fig. \ref{fig:iv-curve-extraction}.
 Snapbacks are observed for devices with at least two different states of operation.
 In the off-state, it acts as a high-value resistance and current increases very slowly when voltage gets higher.
 When the device turns on, its resistance drops abruptly and becomes very small.
+Currents suddenly increases and voltage falls.
+This transistion corresponds to the discontinuity visible on the curve.
 
 % Another application is the characterization of the robustness
 TLPs are also commonly used for testing the robustness of systems and devices \cite{TLPthroubleshooting, LacrampeTransientImmunity}.
@@ -204,16 +205,11 @@ Voltage levels can reach 15kV peak with 30A of current.
   \label{iec_pulse}
 \end{figure}
 
-% Talk about HMM
-%TODO
-There is an IC level equivalent, same waveform, smaller levels, different configuration
-
 % How is the pulse generated
 The generation of the ESD pulse is done by a resistor-capacitor discharge network.
 The RC network alone though does not suffice to reproduce the waveform. given in .
 Parasitic devices play an important part in shaping the waveform.
 Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model (TODO: Ref) that helps understand the impact of parasitic devices.
-
 
 %TODO: Comment
 \begin{figure}[!h]
@@ -235,6 +231,13 @@ The latter defines additional pulse waveforms to cover a wider range of ESD even
   \caption{Waveforms defined in ISO 10605 standard on a 2\textOmega{} resistive load}
   \label{iso_pulse}
 \end{figure}
+
+% Talk about HMM
+IEC 61000-4-2 \cite{iec61000-4-2} and ISO 10605 \cite{iso10605} are system-level standards, targeting equipment testing and qualification.
+The \gls{hmm} \cite{hmm} specification aims to adapt those system-level standards for integrated circuits testing.
+The pulse waveform remains identical, but a few modifications concerning the injection setup are proposed.
+Most notably, the ground return of the gun is connected directly to the ground of the device, rather than the Earth.
+The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
 
 %TODO: Annex F ISO 10605
 
