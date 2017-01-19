@@ -15,18 +15,20 @@ Those bricks are basically different types of transistors, resistors and capacit
 The size of a technology is the smallest dimension for the smallest transistor gate, called \textlambda.
 The value of \textlamda is essential and determines the size, power consumption, switching speed, performance and many other characteristics of the complete chip.
 Until recently, Moore's law successfully predicted that technology dimensions will be reduced by a factor of two every 18 months.
+The automotive world follows this trend as well, using 16nm technology nodes \cite{evolution_technologies} that are normally employed for less demanding applications.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/densification_integrated_functions.pdf}
-  \caption{Increase of ECUs amount in a vehicle}
-  \label{fig:ecus-increase}
+  \includegraphics[width=\textwidth]{src/1/figures/technology_evolution.pdf}
+  \caption{Recent evolution of NXP's automotive technology nodes \cite{evolution_technologies}}
+  \label{fig:nxp-techno-increase}
 \end{figure}
 
 % Side effects of size reduction
 As a side effect, miniaturization results in more fragile and less robust circuits.
-The maximum voltage and current levels are lowered.
+The maximum tolerated voltage and current levels are lowered.
 Above those limits, devices become degraded or destroyed.
+The silicon area required for protecting the devices becomes a larger fraction of the complete chip area \cite{evolution_technologies}.
 
 % Another trend in automotive - more electronic functions
 Nowadays, new major features are developped in the automotive field.
@@ -81,8 +83,8 @@ Overall, the architecture of a vehicle is complex and sensitive to electrical di
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/car_architecture.pdf}
-  \caption{Architecture of electronic systems in a vehicle}
+  \includegraphics[width=0.7\textwidth]{src/1/figures/systemintegration_01_uv-data.jpg}
+  \caption{Architecture of electronic systems in a vehicle \cite{car-architecture}}
   \label{fig:car-architecture}
 \end{figure}
 
@@ -92,7 +94,7 @@ Systems are complex to study and analyse, have more responsabilities in regards 
 It is obvious that studying and predicting all kinds of failures is important.
 In the \gls{esd} field, there are two kinds of failures to consider.
 The hardware failure, or hard-failure, is when an electronic device is permanently damaged.
-There can be multiple signatures, such as important variation of intrisic properties or complete destruction.
+There can be multiple signatures, such as apparition of minor defects, important variation of intrisic properties or complete destruction (see Fig. \ref{fig:esd-failures}).
 Semiconductor devices are particularly sensitive to electrostatic discharges \cite{impactESDsemiconductors} and require specific protection.
 Motivated by the new requirements for operating safety, a new class of failures started to be studied.
 Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
@@ -100,6 +102,13 @@ In this scenario, different levels of severity can be identified depending on th
 Functionnal failures raise new kind of challenges for the analysis, and in particular with the scale factor.
 A functionnal failure may happen because a few transistors inside a chip were disturbed, but the consequences can be visible much higher in the hierarchy and at a much larger scale.
 In regard of those challenges, new analysis and predictions methods are required against soft-failures caused by electrostatic discharges.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{src/1/figures/esd_failures.jpg}
+  \caption{Different kinds of ESD-induced failures}
+  \label{fig:esd-failures}
+\end{figure}
 
 % Comment predire ces defaillances fonctionnelles
 First research on the topic of functional failure was published by F. Caignet and N. Lacrampe in 2007 \cite{}.
@@ -126,6 +135,13 @@ The main source of delay in this process is the long delay for the feedback due 
 Designs are put on silicon but the parts are tested only after manufacturing, which can occur several months later.
 To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
 This is why any simulation tool able to predict early any kind of failure (and functionnal failures among them) is very valuable for silicon design companies.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/overview_flow.pdf}
+  \caption{Highly simplified integrated circuit design flow - specification, symbolic view, layout, silicon}
+  \label{fig:ic-design-flow}
+\end{figure}
 
 % Presentation des chapitres
 %TODO
