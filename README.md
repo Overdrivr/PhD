@@ -183,6 +183,7 @@ Append a `{}` afterward to get a trailing space afterward. Example:
 ```
 \begin{equation}
 a = b + c
+\label{eq:foobar}
 \end{equation}
 ```
 
