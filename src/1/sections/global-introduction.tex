@@ -57,11 +57,15 @@ A lot of heat and thermal cycling is produced when the engine is on, and a vehic
 Electrical contacts, solder joints and connections suffer from these stresses, and must be designed to withstand them.
 Electronic system are also exposed to a wide range of electrical stresses especially in the automotive field.
 One of the main electrical stresses a device can be exposed to is the \gls{esd}.
+Robustness of integrated circuits against those discharges is the core topic of this document.
+There are other forms of electrical stresses in a car.
+When the engine is turned on for instance, the battery voltage can drop very low because of the amount of current drawn by the ignition.
+This voltage drop can affect electronic systems and damage them.
 
 % What is an ESD
 An electrostatic discharge is the sudden flow of electricity between two objects of different charge.
 It is the result of a local accumulation of electrostatic potential.
-When large enough potential difference is reached, a very rapid and violent discharge occurs.
+When a large enough potential difference is reached, a very rapid and violent discharge occurs.
 It is common to record amplitudes in the range of thousands of volts and tens of amperes.
 A study by Renault \cite{Renault-esd} estimates that electronic devices are exposed 10000 times to \gls{esd}s during their lifetime.
 \gls{esd} are a very serious threat for electronic systems.
@@ -89,7 +93,7 @@ Overall, the architecture of a vehicle is complex and sensitive to electrical di
 \end{figure}
 
 % Fiabilite vis a vis des ESD
-In summary, the amount of electronic devices is increasing and in the same time are more sensitive.
+In summary, the amount of electronic devices is increasing and in the same time they become more sensitive.
 Systems are complex to study and analyse, have more responsabilities in regards of our safety, and the surrounding environment is very harsh for electronic devices.
 It is obvious that studying and predicting all kinds of failures is important.
 In the \gls{esd} field, there are two kinds of failures to consider.
@@ -99,6 +103,9 @@ Semiconductor devices are particularly sensitive to electrostatic discharges \ci
 Motivated by the new requirements for operating safety, a new class of failures started to be studied.
 Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
 In this scenario, different levels of severity can be identified depending on the impact of the failure on the rest of the system.
+In the best case, an \gls{ecu} is momentarily disturbed by a discharge but recovers immediately without noticeable impact.
+In a more severe scenario, some minor functionnalities such as entertainment systems are frozen, requiring an user intervention to recover, in the form of restarting the vehicle for instance.
+The same kind of issue with airbags or assisted braking would be considered a lot more severe when user safety can no longer be guaranteed.
 Functionnal failures raise new kind of challenges for the analysis, and in particular with the scale factor.
 A functionnal failure may happen because a few transistors inside a chip were disturbed, but the consequences can be visible much higher in the hierarchy and at a much larger scale.
 In regard of those challenges, new analysis and predictions methods are required against soft-failures caused by electrostatic discharges.
@@ -109,6 +116,8 @@ In regard of those challenges, new analysis and predictions methods are required
   \caption{Different kinds of ESD-induced failures}
   \label{fig:esd-failures}
 \end{figure}
+
+%TODO: Explain the cost of fixing an issue early vs lately ?
 
 % Comment predire ces defaillances fonctionnelles
 First research on the topic of functional failure was published by F. Caignet and N. Lacrampe in 2007 \cite{}.
@@ -144,7 +153,6 @@ This is why any simulation tool able to predict early any kind of failure (and f
 \end{figure}
 
 % Presentation des chapitres
-%TODO
 %
 Chapter \ref{chap:1} details how electrostatic discharge physically appear, how to reproduce them in laboratory conditions and studies the most recent work in the litterature on functional failure.
 This preliminary work highlights how functional failures appear and how they impact electronic devices.
