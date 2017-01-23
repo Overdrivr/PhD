@@ -4,22 +4,58 @@
 % What is an ESD, its key properties
 An electrostatic discharge (ESD) is the result of the accumulation of electrostatic potential.
 It is a very sudden current flow that propagates through metallic or non-metallic materials, electrical systems and sometimes even through the air.
-They are very short electrical events, involving large currents and extremely high voltages.
-They usually last a few hundred nanoseconds, with currents in the range of tens of amperes and voltage levels of several thousand volts.
+It is a very short electrical event, involving large currents and extremely high voltages.
+\gls{ESD} have durations in the range of a few hundred nanoseconds.
+Currents can reach tens of amperes and voltage levels several thousand of volts.
 The total discharge energy is small, somewhere near the milli-Joule (mJ).
 The power on the other hand is extremely high because the waveforms are changing extremely rapidly.
 
 % What generates an ESD
 Objects can accumulate electrostatic potential by tribocharging or electrostatic induction.
-In the case of tribocharging, two objects are put into contact then separated.
-The separation rips off charges from one another, causing one object to be positively charged and the other negatively.
-%TODO: Depends on material properties - see table from ESD
-Electrostatic induction works differently but the outcome is similar.
+In the case of tribocharging, electrons are transferred from one object the other when they are put into contact then separated.
+One object becomes positively charged and the other negatively.
+Which object gains electrons depends on the kind of material constituting each object.
+Nature of common materials in that regard is given in Table \ref{tab:chargin-sign-table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+↑ Positive & Rabbit fur     \\
+           & Glass          \\
+           & Mica           \\
+           & Human Hair     \\
+           & Nylon          \\
+           & Wool           \\
+           & Fur            \\
+           & Lead           \\
+           & Silk           \\
+           & Aluminum       \\ \midrule
+           & Paper          \\
+           & Cotton         \\
+           & Steel          \\
+           & Wood           \\
+           & Amber          \\
+           & Sealing Wax    \\
+           & Nickel, copper brass, silver \\
+           & Gold, platinum \\
+           & Sulfur         \\
+           & Acetate rayon  \\
+           & Polyester      \\
+           & Celluloid      \\
+           & Silicon        \\
+↓ Negative & Teflon         \\
+\bottomrule
+\end{tabular}
+\caption{Typical Triboelectric Series (Credit: ESDA \cite{esda-triboseries})}
+\label{tab:chargin-sign-table}
+\end{table}
+
+% Field induction
+Field induction, also called electrostatic induction, works differently but also results in accumulation of electrostatic potential.
 When a piece of material is placed inside an electric field, positive and negative charges of the material become spatially separated, at a macroscopic scale.
 If the object is temporarily grounded in one point, charges near that location are evacuated, in majority positive or negative.
-Similarly to tribocharging, electrostatic induction causes the material looses its electrical neutrality.
-For both phenomena, an electrostatic discharge happens when the potential difference between two near objects has become sufficiently large.
-Both items are forced to return to electrical neutrality.
+Similarly to tribocharging, electrostatic induction causes the material to loose its electrical neutrality.
 
 % How are they generated in the automotive field - Triboelectrification between tires and road surface
 Tribocharging happens constantly when a vehicle is in motion \cite{generationESDautomotive}.
