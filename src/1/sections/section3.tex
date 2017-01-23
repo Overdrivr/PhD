@@ -2,7 +2,7 @@
 \label{sec:state-art-esd-testing}
 
 Electronic hardware robustness is tested against electrostatic discharges using different test methods and standards.
-Each method reproduces a specific discharge event \gls{esd} in laboratory conditions.
+Each method reproduces a specific discharge event in laboratory conditions.
 In this chapter, relevant \gls{esd} generators for this research work are detailed.
 
 In ESD testing, a distinction is often made between so-called system-level level tests and \gls{ic} level tests.
@@ -175,13 +175,13 @@ Standards and other techniques dedicated to this task are described hereafter.
 
 % What is the goal of this test
 IEC 61000-4-2 \cite{iec61000-4-2} and ISO 10605 \cite{iso10605} standards define a system-level test waveform and test generator to reproduce the discharge of a human body through an electronic device.
-This test is used very extensively for the qualification of products.
+This test is used very extensively for qualification of products.
 Fig. \ref{fig:picture-esd-gun} provides a picture of an \gls{esd} gun.
-The gun is composed of a metallic discharge tip to inject the discharge.
+The gun is composed of a metallic discharge tip to inject the pulse.
 The ground return is a long metallic ribbon a couple of meters long.
 Depending on the test configuration, it is connected to the product ground or the earth.
-Its shape can impact a lot test results and failure levels.
-Historically, ESD gun were famous for lacking some reproducibility on test results \cite{hmm-uncertainty}, for all reasons described previously.
+Its shape impacts a lot recorded failure levels.
+Historically, ESD gun were famous for lacking some reproducibility on test results \cite{hmm-uncertainty}.
 They have largely improved since then although radiated emissions and shape of the ground return still remain a very large factor of variation and uncertainty \cite{gun-rf-uncertainty}.
 
 \begin{figure}[!h]
@@ -192,11 +192,12 @@ They have largely improved since then although radiated emissions and shape of t
 \end{figure}
 
 % Explain the waveform
+%TODO: Why 2 ohms ?
 Fig. \ref{iec_pulse} presents the main properties of the generated stress.
 The standard defines this waveform for a 2\textOmega{} load.
-The pulse starts by a fast peak with a $1ns$ risetime approximately.
-It is followed by a slower slope of smaller amplitude but longer duration.
-Voltage levels can reach 15kV peak with 30A of current.
+The pulse starts by a fast peak with a $1ns$ risetime.
+It is followed by a slower slope of smaller amplitude but longer duration of about $200ns$.
+Voltage levels can reach 15kV peak and 30A of current.
 
 \begin{figure}[!h]
   \centering
@@ -206,12 +207,14 @@ Voltage levels can reach 15kV peak with 30A of current.
 \end{figure}
 
 % How is the pulse generated
-The generation of the ESD pulse is done by a resistor-capacitor discharge network.
-The RC network alone though does not suffice to reproduce the waveform. given in .
+The generation of the ESD pulse is done with a 330\textOmega resistor and 150 pF capacitor discharge network.
+The RC network alone though does not suffice to reproduce the waveform.
 Parasitic devices play an important part in shaping the waveform.
-Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model (TODO: Ref) that helps understand the impact of parasitic devices.
+Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model that helps understand the impact of parasitic devices.
+This model was originally written by Chiu \cite{phd-chiu} and is referenced in the PhD thesis of N. Monnereau \cite{phd-monnereau}.
+It adds an R\textsubscript{g}L\textsubscript{g}C\textsubscript{g} network to model the ground return.
+A parasitic capacitance C\textsubscript{i} and series inductance L\textsubscript{i} model imperfections in the direct injection path.
 
-%TODO: Comment
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.3\textwidth]{src/1/figures/gun_model.pdf}
@@ -219,11 +222,19 @@ Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model (TODO: Re
   \label{fig:esd-gun-model}
 \end{figure}
 
-% Where does this standard applies
-Each standard defines the construction and waveform requirements for this ESD generator, but with different fields of application.
+% Talk about application fields
+IEC 61000-4-2 \cite{iec61000-4-2} and ISO 10605 \cite{iso10605} are system-level standards, targeting different fields of application.
 IEC 61000-4-2\cite{iec61000-4-2} standard targets consumer electronics.
-ISO 10605\cite{iso10605} standard is intented for automotive equipment.
-The latter defines additional pulse waveforms to cover a wider range of ESD events (See fig \ref{iso_pulse}).
+ISO 10605\cite{iso10605} standard is intended for automotive equipment.
+It defines additional pulse waveforms to cover a wider range of ESD events (See fig \ref{iso_pulse}).
+Each pulse is generated with a different discharge network.
+Instead of the usual 150pF - 330\textOmega{} values, all combinations with 330pF and 2k\textOmega{} are also possible.
+% Talk about HMM
+Finally, there is the \gls{hmm} \cite{hmm} specification.
+It aims to adapt those system-level standards for component-level testing.
+The pulse waveform remains identical, but a few modifications concerning the injection setup are proposed.
+Most notably, the ground return of the gun is connected directly to the ground of the device, rather than the Earth.
+The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
 
 \begin{figure}[!h]
   \centering
@@ -232,25 +243,18 @@ The latter defines additional pulse waveforms to cover a wider range of ESD even
   \label{iso_pulse}
 \end{figure}
 
-% Talk about HMM
-IEC 61000-4-2 \cite{iec61000-4-2} and ISO 10605 \cite{iso10605} are system-level standards, targeting equipment testing and qualification.
-The \gls{hmm} \cite{hmm} specification aims to adapt those system-level standards for integrated circuits testing.
-The pulse waveform remains identical, but a few modifications concerning the injection setup are proposed.
-Most notably, the ground return of the gun is connected directly to the ground of the device, rather than the Earth.
-The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
-
 %TODO: Annex F ISO 10605
 
 \subsection{ISO 7637-2}
 
 % Where does this standard applies
 ISO 7637-2\cite{iso7637-2} is an automotive standard for testing immunity of electronic devices against transient electrical disturbances.
-It is mostly targeting disturbances applied on supply lines.
+It reproduces disturbances applied on supply lines, when the battery of a car is disconnected for instance.
 This standard defines several waveforms.
 Among them, pulses 2A and 3B are the closest to an electrostatic discharge.
 
 % Pulse 2A - What is the goal of this pulse
-Pulse 2A simulates the sudden disconnection of a load placed in parallel with the \gls{dut}.
+Pulse 2A simulates the sudden disconnection of a load placed in parallel with the device under test.
 In a car, it reproduces the switching of devices separated by inductive wiring harnesses.
 When a load is abruptly switched off, the inductance opposes to the sudden interruption of current.
 Instead of flowing through the load, the current is maintained and reported onto the \gls{dut} which can be damaged or disturbed in the process.
@@ -283,6 +287,11 @@ Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\t
   \caption{Waveform 3B defined in ISO 7637-2 standard on a 50\textOmega{} resistive load}
   \label{fig:iso_2b_pulse}
 \end{figure}
+
+%
+A few papers \cite{is-iso7637-real, iso7637-2-new-automotive-reqs, robustness-esd-iso7637} studied the impact of those waveforms on integrated ESD protections.
+Automotive equipment manufacturer are required to qualify products against ISO 7637-2.
+Therefore, it is relevant to test functional robustness of devices against it.
 
 \subsection{IEC 61000-4-4}
 
