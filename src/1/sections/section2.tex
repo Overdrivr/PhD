@@ -119,9 +119,10 @@ The most common solution, presented in the next section, is the \gls{esd} protec
 \subsection{ESD protection}
 
 % Principle of operation
-\gls{esd} protections deviate discharge current before it reaches sensitive circuitry and clamp input voltages to avoid crossing the maximum tolerated levels.
+\gls{esd} protections deviate discharge current before it reaches sensitive circuitry.
+By offering a low impedance to ground, they clamp input voltages to avoid crossing the maximum accepted levels.
 Fig. \ref{fig:esd-protection-strategy} gives a simple example of \gls{esd} protection strategy.
-Current is routed into the ground before reaching the core-circuitry.
+Current is routed into the ground before reaching the core circuitry.
 Protections have very low on-resistance, usually in the order of a few ohms.
 Even with a few amperes of current, voltage remains low.
 \gls{esd} protections can absorb significant amounts of current for very short periods of time, but they are not designed to sustain DC currents.
@@ -134,32 +135,32 @@ Even with a few amperes of current, voltage remains low.
 \end{figure}
 
 % Types of protection
-Inside an electronic circuit, ESD protections are usually found in two different locations.
+Inside an electronic circuit, ESD protections are found in two different locations.
 On-chip protections are integrated directly into silicon.
-External protections are discrete devices connected to the input of an \gls{ic}.
-Historically, on-chip protections were designed to protect integrated circuits against stresses generated during manufacturing.
+External protections are discrete devices connected to inputs or outputs of integrated circuits.
+Historically, on-chip protections were designed for stresses generated during manufacturing.
 They were not aimed to protect against system-level discharges, i.e. discharges happening in the field during the normal product life.
-This task was fullfilled by external protections, such as TVS, diodes, capacitors, filters, etc.
-Over the years, design techniques and simulations tools improved, and more robust integrated protections could be designed.
+This task was fullfilled by external protections, such as transient voltage suppressors, diodes, capacitors, filters.
+Over the years, design techniques and simulations tools have improved, and more robust integrated protections could be designed.
 On the other hand, equipment manufacturer were always looking for means of reducing the \gls{bom} or the cost of electronic systems.
-This lead to a shift of responsabilities for protecting against system-level stresses toward on-chip \gls{esd} protections.
+This led to a shift of responsabilities toward on-chip \gls{esd} protections for handling system-level stresses.
 The shrink of integrated technologies makes this tasks ever more challenging.
 External protections are still very relevant, where an integration solution would occupy too much silicon area, or when very harsh requirements are demanded.
+
+%TODO: These Monnereau : SEED Methodology - Collaboration entre protection interne et externe ?
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.3\textwidth]{src/1/figures/architecture_esd_protections.pdf}
-  \caption{common ESD protections architectures - (a) Diode (b) Thyristor (c) RC-triggered MOS (d) ?}
+  \caption{common ESD protections architectures - (a) Diode (b) Thyristor (c) RC-triggered MOS}
   \label{fig:architecture-esd-protection}
 \end{figure}
 
 % Implementation and common architectures
+%TODO: These monnereau pr etoffer
 ESD protections can be designed in various ways (see Fig. \ref{fig:architecture-esd-protection}).
 Diodes are commonly found.
-They are not necessarily the more compact solution on silicon, but they can protect properly sensitive circuitry.
 Thyristor architectures are frequently used too.
-Below triggering voltage, the structure is completely off and disconnected.
-Above it, the thyristor switches on, absorbs current, and stays on until the discharges is over and the current returns to a small value.
 Thyristors have typical snapback characteristics as shown in Fig. \ref{fig:iv-curve-esd-protection}.
 RC-triggered \gls{mos} are frequently found for protecting low-voltage \gls{io} of \gls{cmos} circuits.
 Basically, it is a power transistor activated during the discharge by a resistor-capacitor network.
@@ -181,19 +182,17 @@ V\textsubscript{t1} refers to the triggering voltage of the protection.
 I\textsubscript{t1} (snapback devices only ?) corresponds the current absorbed by the protection immediately after triggering.
 V\textsubscript{t2} and I\textsubscript{t2} describe the coordinates where the protection is destroyed.
 A sudden increase of the leakage current (Fig. \ref{fig:iv-curve-esd-protection}) is a good indicator of a damaged protection.
-Leakage current is extracted with a DC source, with a compliancy value set very low, usually below the milli-ampere of current.
 
 %TODO: Talk about protection strategies, centralized clamp vs distributed. RC-mos + boost rail to trigger all protections, etc.
 
 % Requirements
-To design a efficient \gls{esd} protection, several constraints and requirements must be fullfilled.
+To design an efficient \gls{esd} protection, several requirements are to be fullfilled.
 In the absence of a discharge, protections must be transparent to the rest of the device.
 The protection must trigger above the operating voltage of the circuitry.
-If an input operates between 0V and 5V, and the protection switches on at 4V, it will trigger during normal operation and be immediately destroyed.
-On the other hand, protections must trigger below the maximum voltage tolerated by the silicon technology.
-If the integrated technology accepts voltages below 50V, and the protection triggers at 60V, the circuit will be destroyed.
-Therefore, they are designed to operate between those two boundaries which delimit the \gls{soa} (see Fig. \ref{fig:soa-esd-protection}).
-For demanding applications, protections must trigger at a given voltage accurately, independently of manufacturing process, layers mismatches and temperature variation.
+For instance, if an input operates between 0V and 5V, and the protection switches on at 4V, it will trigger during normal operation and be immediately destroyed.
+On the other hand, protections must clamp voltage (by absorbing current) before reaching the maximum voltage tolerated by the silicon technology.
+They are designed to operate between those two boundaries which delimit the \gls{soa} (see Fig. \ref{fig:soa-esd-protection}).
+For demanding applications, protections must trigger at a given voltage accurately, independently of manufacturing process, mismatches and temperature variation.
 This reduces the \gls{soa} substantially and makes the design more challenging.
 
 \begin{figure}[!h]
@@ -204,7 +203,7 @@ This reduces the \gls{soa} substantially and makes the design more challenging.
 \end{figure}
 
 % Tools
-To design and validate protections, tools like Centaurus TCAD \cite{TODO} are employed to simulate semiconductor physics.
+To design and validate protections, tools like Synopsys TCAD (Technology Computer Aided Design) \cite{tcad} are employed to simulate semiconductor physics.
 Afterwards, an electrical model is constructed, to verify that the protection and the circuit cooperate as expected.
-Simulation is ran in a \gls{spice} environment, such as Cadence Virtuoso \cite{TODO} or Mentor Graphics SimVision \cite{TODO}.
+Simulation is ran in a \gls{spice} environment.
 Modelling of \gls{esd} protections for \gls{spice} simulations is presented later in chapter \ref{esd-protection-modelling}.
