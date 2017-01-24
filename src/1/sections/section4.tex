@@ -1,40 +1,51 @@
 \section{State of the art on silicon-level investigation}
 
-Section \ref{sec:state-art-esd-testing} introduced major \gls{esd} standards used in laboratories to test and qualify electronic products.
-Sometimes, discharges propagate inside electronic equipments, reach the integrated circuits and cause them to malfunction.
-It is essential to detect early functionnal weaknesses against \gls{esd}.
-This section reviews the litterature on the current state of the art on operating \gls{esd} analysis.
+In previous sections, major \gls{esd} standards used in laboratories were presented.
+The impact of electrostatic discharges on electronic devices has been detailed, highlighting two classes of failures.
+Hard-failures are well known and multiple protection strategies exists, from external devices and ESD protections, to distributed protection architectures and much more.
+Soft-failures are the kind of issue caused by electrical fast transients.
+When discharges propagate inside electronic equipments and reach integrated circuits, they can cause them to malfunction.
+For multiple reasons described in previous sections, it is essential to detect early functionnal weaknesses.
+This section is a review the litterature of the current state of the art on \gls{esd} induced soft-failure analysis.
 Study cases, observation methods and modeling approaches are presented.
-Ultimately, the goal is to debug efficiently the behavior of integrated circuits in operation when they are exposed to \gls{esd}.
 
 \subsection{Case studies}
 
 % Case 1 - NXP bandgap + substrate coupling
-The case of an alternator's regulator \gls{ic} is presented in \cite{softfailEMCIC}.
-where a product is investigated and designed for high immunity against electromagnetic disturbances.
-The failure signature is a loss of the regulated voltage.
-It was proven that the disturbance was coupling through the substrate on a current mirror inside the bandgap.
-During the disturbance, bandgap voltage was shifting from its nominal value, causing a full system restart.
-A design fix was proposed by filtering at the appropriate spot inside the design to avoid the amplification of the disturbance.
-%TODO: Investigation method ?
+K. Abouda details in \cite{softfailEMCIC} a case of soft-failure on an integrated automotive regulator \gls{ic}.
+The failure signature is a loss of the regulated voltage when exposed to \gls{bci} ISO11452-4 \cite{iso11452}.
+The test setup is provided in Fig. \ref{}.
+The product is investigated manually, by searching inside the design for coupling and propagation paths, and performing multiple simulations.
+Eventually, it was proven that a residue of the disturbance was coupling through the substrate on a current mirror inside the bandgap reference.
+During the disturbance, bandgap voltage was shifting from its nominal value.
+After some delay, the bandgap output was reaching an undervoltage threshold, causing the entire system to restart.
+To avoid it, a design fix was proposed by filtering at the appropriate spot inside the design to avoid the amplification of the disturbance.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/bci_setup.pdf}
+  \caption{Bulk Current Injection setup}
+  \label{fig:bci-setup}
+\end{figure}
 
 % Case 2 - CESAME IC - paper Vrignon + Ben dhia
-Another failure case is presented in \cite{LacrampeTransientImmunity}.
-Very-fast \gls{tlp} is injected on an 0.18 \textmu{}m CMOS technology (1.8 V supply voltage) chip.
-The chip contains 6 instances on the same logic core, differing by their power-rails architecture.
-The injection on the power rail is performed by a 1 nF capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
+N. Lacrampe presents another failure case in \cite{LacrampeTransientImmunity}.
+Very-fast \gls{tlp} is injected on an 0.18 \textmu{}m CMOS technology (1.8 V supply voltage) testchip.
+The chip contains 6 instances on the same logic core, differing only by their power-rails architecture.
+The injection on power rails is performed using a \gls{dc} block 1 nF capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
 % What is the failure signature
 An output signal of the logic core is monitored.
 The susceptibility criteria is the amplitude crossing a 20\% threshold from the established logic level.
 Above this threshold, the core is supposed to no longer work reliably.
-It is proven that modelling the output buffer of the core logic can reproduce with less than 20\% error the waveform on the output.
+It is proven that modelling the output buffer of the core logic is enough for reproducing with less than 20\% error the waveform on the output.
 It is less accurate than a full-netlist simulation, but faster to simulate.
-VHDL-AMS and SPICE modelling are performed in this analysis.
+VHDL-AMS and \gls{spice} modelling are performed in this analysis.
 
+%TODO: Pictures
 % Case 3 - failures on an SDRAM
 %TODO: Read reference articles in this article
 In \cite{SDRAMCase}, soft-failures are studied on a SDRAM memory in operation.
-The injection setup consists in a modified \gls{tem} cell with a reduced septum height for increased field strenghts.
+The injection setup consists in a modified \gls{tem} cell \ref{fig:modified-tem-cell} with a reduced septum height for increased field strenghts.
 The SDRAM chip is mounted on a board.
 Data is written and read on the memory by \gls{fpga}.
 Differences between incoming and outgoing data signifies a functional failure of the memory.
@@ -42,7 +53,14 @@ Only the memory is exposed to the disturbance, the rest of the board's devices a
 The main defect of this method is to only provide a global failure level.
 It does not allow to identify which particular net or pin is the most sensitive to disturbances.
 
-In \cite{softFailSubsystem}, electrostatic discharges cause errors on two different camera communication buses.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{src/1/figures/modified_tem_cell.png}
+  \caption{Modified TEM cell from \cite{SDRAMCase}}
+  \label{fig:modified-tem-cell}
+\end{figure}
+
+B. Orr reports in \cite{softFailSubsystem} errors caused by electrostatic discharges on two different camera communication buses.
 Events of different severities are observed, depending on the discharge parameters.
 It is attempted to determine whether the sensor or the application processor is causing the error.
 The magnetic emission map is recorded with a near-field magnetic scanner to try to observe local variations in the emission spectrum because of the degradation of functionnality.
@@ -62,16 +80,49 @@ The conclusion for this paper is that silicon level soft-error models are requir
 An investigation method is presented in \cite{softFailMobile} to search for discharge propagation paths responsible for soft-failures on a mobile phone.
 The IEC 61000-4-2 standard is chosen as testing waveform.
 Metallic parts are assumed to be the main propagation paths.
-To confirm this hypothesis, electromagnetic 3D simulations of the entire phone are ran.
+To confirm this hypothesis, time-domain electromagnetic field 3D simulations of almost the entire phone are ran (see Fig. \ref{fig:mobile-phone-3d-em})
 After the failure location was determined, RC-networks are used as countermeasures to protect physical inputs and outputs, like buttons, LCD inputs and connectors.
 
-%TODO: This article
-Measurements and Analyses of Substrate Noise Waveform in Mixed-Signal IC Environment Makoto Nagata, Associate Member, IEEE, Jin Nagai, Takashi Morie, and Atsushi Iwata, Member, IEEE
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/1/figures/current_distribution_mobile.png}
+  \caption{ESD Current Distribution on Mobile Phone and Backside sub-battery pack at (a) 1.0 ns and (b) 1.8 ns (Credit: \cite{softFailMobile})}
+  \label{fig:mobile-phone-3d-em}
+\end{figure}
 
 %TODO: On-chip oscilloscope
-Equivalent time-sampling
+Equivalent time-sampling is a technique to overcome measurement bandwidth of best actual desktop oscilloscopes
+With a very repeatable measurement, a series of waveforms should all be identical.
+Consists in taking a series of one-shot measurements, all delayed by a few picoseconds.
+Requires as many measurements as the amount of needed points.
+Used in other fields of science, for recording propagation of a laser for instance ?
+Sampler was designed and embedded into a CMOS XXX testchip
+Reference time is the ESD discharge.
+A D-latch is triggered accurately using a fraction of the incoming stress and constitutes the reference signal.
+All measurements are delayed from this reference using a voltage-controlled delay.
 20GHz On-chip Measurement of ESD Waveform for System Level Analysis F. Caignet (1,2), N. Nolhier (1,2), A. Wang (1), N. Mauran (1)
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{src/1/figures/equivalent_sampler_architecture.png}
+  \caption{Equivalent time-sampler architecture from \cite{}}
+  \label{fig:eq-time-sampler-architecture}
+\end{figure}
+
+%TODO: This article
+Appart from direct ESD related papers, papers about noise at silicon level could be interesting
+Case of paper on measurement and analysis of substrate noise in mixed signal ICs.
+Measurement structures are directly integrated into silicon
+Uses a latch comparator \ref{fig:noise-detect-latch-comparator} to detect substrate potential changes
+
+Measurements and Analyses of Substrate Noise Waveform in Mixed-Signal IC Environment Makoto Nagata, Associate Member, IEEE, Jin Nagai, Takashi Morie, and Atsushi Iwata, Member, IEEE
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{src/1/figures/latch_comparator.png}
+  \caption{Latch comparator and timings for substrate noise detection from \cite{}}
+  \label{fig:noise-detect-latch-comparator}
+\end{figure}
 
 \subsection{Observation methods for failure detection and localisation}
 
