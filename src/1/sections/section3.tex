@@ -245,6 +245,26 @@ The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
 
 %TODO: Annex F ISO 10605
 
+ISO 10605 introduces the concept of performance classes for categorizing the robustness of powered-on electronic systems in operation against electrical disturbances.
+Classes are defined from A to E, with A describing systems that are the more immune to the test.
+Class E corresponds to the worst severity, where the electronic device did not survive the test.
+Table \ref{tab:iso-class-a-levels} details the conditions specified for each class.
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l|p{0.8\textwidth}}
+Immunity class  & Definition   \\ \midrule
+A  & All functions of a device or system perform as designed during and after exposure to interference.  \\ \midrule
+B  & All functions of a device/system perform as designed during exposure; however, one or more of them may go beyond the specified tolerance. All functions return automatically to within normal limits after exposure is removed. Memory functions shall remain class A. \\ \midrule
+C  & One or more functions of a device or system do not perform as designed during exposure but return automatically to normal operation after exposure is removed.   \\ \midrule
+D  &  One or more functions of a device or system do not perform as designed during exposure and do not return to normal operation until exposure is removed and the device or system is reset by a simple “operator/use” action.   \\ \midrule
+E   &  One or more functions of a device or system do not perform as designed during and after exposure and cannot be returned to proper operation without repairing or replacing the device or system.  \\
+\bottomrule
+\end{tabular}
+\caption{Electronic systems performance classes from ISO10605}
+\label{tab:iso-class-a-levels}
+\end{table}
+
 \subsection{ISO 7637-2}
 
 % Where does this standard applies
@@ -270,16 +290,11 @@ The characteristics of pulse 2A are given in fig. \ref{fig:iso_2a_pulse}.
 \end{figure}
 
 % How is the pulse generated
-ISO 7637-2 compliant stress generators are often implemented with R-C discharge networks.
-It is the easiest way to produce the standardized waveform on a 2\textOmega{} resistor.
-By construction, it is not the best way to reproduce the inductive behavior of the wiring harness.
-However, it is a common method in the \gls{esd} field to define pulses on simple loads to make the manufacturing, testing and investigation more approachable.
-
-% Pulse 3B - What is the goal of this pulse
-Pulse 3B also simulates the result of a switching process on a wiring harness, causing negative spikes on a \gls{dut}.
-Its waveform is given in fig. \ref{fig:iso_2b_pulse}.
-Compared to pulse 2a, this waveform has a shorter duration and risetime and a higher amplitude.
-Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\textOmega{} load.
+%TODO: Is it 2 ohms ?
+The ISO 7637-2 standard does not enforce how stress generators must be constructed or modelled.
+A compliant generator can be implemented with a resistor-capacitor discharge network.
+However, by tuning both values, it is rather straightforward to produce the standardized waveform on a 2\textOmega{} resistor.
+It should be noted that the behavior of an RC network is quite different from an actual inductive load disconnection, but as long as the generated waveform is correct the generator is considered compliant.
 
 \begin{figure}[!h]
   \centering
@@ -288,19 +303,39 @@ Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\t
   \label{fig:iso_2b_pulse}
 \end{figure}
 
-%
+% Pulse 3B - What is the goal of this pulse
+Pulse 3B simulates the result of a switching process on a wiring harness, causing negative spikes on a \gls{dut}.
+Its waveform is given in fig. \ref{fig:iso_2b_pulse}.
+Compared to pulse 2a, this waveform has a shorter duration and risetime and a higher amplitude.
+Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\textOmega{} load.
+
+% Interest of this standard
 A few papers \cite{is-iso7637-real, iso7637-2-new-automotive-reqs, robustness-esd-iso7637} studied the impact of those waveforms on integrated ESD protections.
-Automotive equipment manufacturer are required to qualify products against ISO 7637-2.
-Therefore, it is relevant to test functional robustness of devices against it.
+Automotive equipment manufacturer are required to qualify products against ISO 7637-2, to guarantee they can survive the vicinity of other electrical modules in the car such as ignition systems.
+Therefore, it is relevant to test functional robustness of devices against this standard.
+
+% Modelling
+The VDA FAT-AK30 working group on simulation of mixed-systems with VHDL-AMS \cite{fat-ak30} has worked on modelling all ISO 7637-2 generators. They have provided open-source models of all pulses defined in the standard, as part of the \textit{vdalib} library \cite{vdalib}.
+For instance, VHDL-AMS model of pulse 3B is provided in Listing \ref{lst:iso-7637-pulse3b}.
+
+\begin{code}
+\inputminted[frame=single,firstline=157,lastline=228]{VHDL}{src/1/snippets/iso_7637_pulse3b.vhd}
+\caption{Open-source VHDL-AMS model of ISO7637 pulse 3b - Copyright VDA/FAT \cite{vdalib-isopulse3b}}
+\label{lst:iso-7637-pulse3b}
+\end{code}
+
 
 \subsection{IEC 61000-4-4}
 
 % Where does this standard applies - scope
-The IEC 61000-4-4 standard \cite{iec61000-4-4}, also called burst test, defines a fast transient burst waveform for \gls{esd} testing.
-It tests the immunity of electronic devices to repetitive fast transients on supply, signal and control ports.
+The IEC 61000-4-4 standard \cite{iec61000-4-4}, also called burst test, defines an electrical fast transient for \gls{esd} testing.
+It defines a test waveform, generator and procedures for assessing susceptibility of electronic devices subjected to transient disturbances such as interruption of inductive loads and relay contact bounce.
+It concerns all kinds of inputs such as supply, signal and control lines.
+This standard applies is not focused on any specific field of application.
 
 % What is the pulse
 The defined waveform is a double exponential pulse \ref{fig:iec_4_4_pulse} with a width of 50ns at 50\% of the peak amplitude.
+Risetime is comprised between 3.5ns and 6.5ns.
 It is defined for a 50\textOmega{} load, with a pulse period of 15ms and a burst period of 300ms.
 
 \begin{figure}[!h]
@@ -311,20 +346,30 @@ It is defined for a 50\textOmega{} load, with a pulse period of 15ms and a burst
 \end{figure}
 
 % How is the pulse generated
-The standard defines a circuit diagram for the generator, based on a resistor-capacitor network and spark-gap (Fig \ref{fig:iec_4_4_generator}).
+The standard defines a circuit diagram for the generator (Fig \ref{fig:iec_4_4_generator}).
+The discharge is produced by a resistor-capacitor R\textsubscript{C}-C\textsubscript{C} network and initiated by a spark-gap.
+A spark-gap consists in two conductive tips separated by a gap.
+When voltage accross the gap becomes superior to the breakdown voltage, a spark appears and resistance of the spark gap suddenly drops, allowing discharge current to flow through.
+In Fig. \ref{fig:iec_4_4_generator}, R\textsubscript{s}, R\textsubscript{m} and C\textsubscript{d} shape the waveform.
+R\textsubscript{s} defines the duration of the pulse, R\textsubscript{m} performs an impedance matching and C\textsubscript{d} act as a \gls{dc} block.
 The generator's output is a coaxial plug to prevent radiated emission during the discharge.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-4_diagram.pdf}
+  \includegraphics[width=0.8\textwidth]{src/1/figures/iec61000-4-4_diagram.pdf}
   \caption{IEC 61000-4-4 generator circuit diagram}
   \label{fig:iec_4_4_generator}
 \end{figure}
 
 % Injection method - capacitive coupling clamp
-This standard defines an injection method for powered lines called a \texit{capacitive coupling clamp} (Fig. \ref{fig:iec_4_4_clamp}).
-This device is very relevant for this research work because injecting \gls{esd} onto powered devices and supplies in particular with good repeatability is rather challenging.
-The device works by placing two large metallic plates in parallel, injecting the discharge on one of the plates and the wires inside a metallic tunnel connected to the other plate.
+A particular injection method for powered lines called a \texit{capacitive coupling clamp} (Fig. \ref{fig:iec_4_4_clamp}) is defined in this standard.
+This injection system is interesting for performing repeatable injection into powered supply lines.
+The clamp is constituted of two large metallic plates.
+The upper plate has the shape of of a tunnel, where the wires receiving go through.
+The discharge is injected in the upper plates.
+The bottom plate is connected to the ground of the discharge generator.
+Thanks to this design, the shape of the wires and the entire setup is well controlled.
+Although originally designed to work with the IEC 61000-4-4 waveform, the capacitive coupling clamp accepts coaxial cables and any kind of stress generator can be employed instead.
 
 \begin{figure}[!h]
   \centering
@@ -337,15 +382,16 @@ The device works by placing two large metallic plates in parallel, injecting the
 
 % Where does this standard applies - scope
 The IEC 62215 standard \cite{iec62215} defines a method for measuring the immunity of an integrated circuit to conducted electrical transient disturbances.
-This standard specifically targets testing of integrated circuits in operation, and as such is extremely relevant for this document.
-In itself, the standard does not define a new test waveform.
-It specifies to employ waveforms in ISO 7637-2 \cite{iso7637-2} for automotive devices and IEC 61000-4-4 \cite{iec61000-4-4} or IEC 61000-4-5 for industrial and consumer applications.
-It focuses on understanding interactions between a conducted disturbance and performance degradation induced in integrated circuits.
-The test method is quite similar to \gls{dpi} defined in IEC 62132-4 \cite{iec62132-4}.
+It specifically targets testing of integrated circuits in operation.
+Instead of specifying test pulses, this standard defines a way to inject stresses suitable for integrated circuits.
+For automotive devices, the standard specifies the use of waveforms from ISO 7637-2 \cite{iso7637-2}.
+IEC 61000-4-4 \cite{iec61000-4-4} or IEC 61000-4-5 are required for industrial and consumer applications.
+Ultimately, the goal is to understand and classify interactions between a conducted disturbance and performance degradation induced in integrated circuits.
+The test method ressembles the \gls{dpi} technique defined in IEC 62132-4 \cite{iec62132-4}.
 The \gls{dpi} standard focuses on frequency domain immunity, while this standard tests time-domain immunity.
 
 % How is the pulse generated
-Disturbances are applied to the \gls{ic} pins via a coupling network.
+Disturbances are applied to the \gls{ic} pins via a coupling network, that isolates the stress generator and the \gls{dc} supply from one another.
 A typical pin injection setup is given in Fig. \ref{fig:iec62215_setup}.
 
 \begin{figure}[!h]
@@ -356,8 +402,26 @@ A typical pin injection setup is given in Fig. \ref{fig:iec62215_setup}.
 \end{figure}
 
 % Talk about immunity classes
-Beyond test setup and waveforms, the standard defines immunity classes to categorize the behavior of integrated circuits exposed to disturbances during normal operation.
-Classes range from A to E, with A describing the most robust devices in terms of functionnality.
-In class A\textsubscript{IC}, the \gls{ic} performs within the defined tolerances during and after exposure to disturbance.
-In class D\textsubscript{IC}, at least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself, requiring an external intervention such as power reset.
-In class E\textsubscript{IC}, at least one monitored function does not perform within the defined tolerances after exposure and can not be returned to proper operation.
+%TODO
+Beyond test setup and waveforms, the standard defines immunity classes (see Table \ref{tab:class-a-levels}) to categorize the behavior of integrated circuits exposed to disturbances.
+It is a direct adaptation of performance classes defined in Annex B of ISO10605 and presented previously in Table \ref{tab:iso-class-a-levels}.
+Classes range from A to E.
+A describes devices that are completely unaffected by the testing procedure and maintain their entire functionnality.
+B describes a short time degration of internal signals. It is not applicable for integrated circuits, where internal signals are most of the time not accessible.
+C is identical to A, with the difference that failures can occur internally inside the chip, as long as they remain internal to the circuit and do not affect the final application.
+Finally, D and E describe actual cases of failure, with E representing a hard-failure.
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l|p{0.8\textwidth}}
+Immunity class  & Definition   \\ \midrule
+A\textsubscript{IC}   & All monitored functions of the IC perform within the defined tolerances during and after exposure to disturbance.      \\ \midrule
+B\textsubscript{IC}   & Short time degradation of on or more monitored signals during exposure to disturbance is not evaluable for IC only. Therefore this classification is not applicable for ICs. \\ \midrule
+C\textsubscript{IC}   & All monitored functions of the IC are within the defined tolerances before and after exposure to disturbance.        \\ \midrule
+D\textsubscript{IC}   &  At least one monitored function of the IC does not perform within the defined tolerances during exposure and does not return to normal operation by itself. The IC returns to normal operation by simple action (e.g. reset).   \\ \midrule
+E\textsubscript{IC}   &  At least one monitored function of the IC does not perform within the defined tolerances after exposure and can not be returned to proper operation.  \\
+\bottomrule
+\end{tabular}
+\caption{IC performance classes from IEC62215}
+\label{tab:class-a-levels}
+\end{table}
