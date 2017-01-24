@@ -90,46 +90,45 @@ After the failure location was determined, RC-networks are used as countermeasur
   \label{fig:mobile-phone-3d-em}
 \end{figure}
 
-%TODO: On-chip oscilloscope
-Equivalent time-sampling is a technique to overcome measurement bandwidth of best actual desktop oscilloscopes
-With a very repeatable measurement, a series of waveforms should all be identical.
-Consists in taking a series of one-shot measurements, all delayed by a few picoseconds.
-Requires as many measurements as the amount of needed points.
-Used in other fields of science, for recording propagation of a laser for instance ?
-Sampler was designed and embedded into a CMOS XXX testchip
-Reference time is the ESD discharge.
-A D-latch is triggered accurately using a fraction of the incoming stress and constitutes the reference signal.
-All measurements are delayed from this reference using a voltage-controlled delay.
-20GHz On-chip Measurement of ESD Waveform for System Level Analysis F. Caignet (1,2), N. Nolhier (1,2), A. Wang (1), N. Mauran (1)
+\subsection{Observation methods}
+
+F. Caignet proposes in \cite{eq-time-sampling} an on-chip measurement technique capable of recording \gls{esd} waveforms with a 20GHz bandwidth.
+It relies on equivalent-time sampling for performing time-domain measurement with a much larger bandwidth that real-time oscilloscopes.
+Equivalent time-sampling works exclusively with repeatable or periodic signals.
+A real-time oscilloscope takes a complete waveform constituted of \textit{N} samples in a single shot.
+On the other hand, a time-equivalent sampler measures waveforms point by point, and require N repetitions of the waveform to acquire the \textit{N} samples.
+The process for acquiring the data is the following.
+A first waveform is shot, and the sampler only records its value at $t=0$.
+A second waveform is shot, and the sampler records the value at $t=\Delta t$.
+At the third waveform, the recording is at $t=2\Delta t$.
+The process is repeated while increasing the sampling delay by \textDelta{}t at each step until enough points were acquired.
+This approach is interesting because it reduces a lot the constraints on the measurement system, while offering a huge bandwidth.
+The main disavantage is that it requires as many measurements as amount of points needed.
+In \cite{eq-time-sampling}, the sampler was designed using a CMOS 65nm technology and embedded into a testchip.
+Architecture is given in Fig. \ref{fig:eq-time-sampler-architecture}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.6\textwidth]{src/1/figures/equivalent_sampler_architecture.png}
-  \caption{Equivalent time-sampler architecture from \cite{}}
+  \includegraphics[width=0.6\textwidth]{src/1/figures/architecture_equivalent_time_sampler.png}
+  \caption{Equivalent time-sampler architecture from \cite{eq-time-sampling}}
   \label{fig:eq-time-sampler-architecture}
 \end{figure}
 
-%TODO: This article
-Appart from direct ESD related papers, papers about noise at silicon level could be interesting
-Case of paper on measurement and analysis of substrate noise in mixed signal ICs.
-Measurement structures are directly integrated into silicon
-Uses a latch comparator \ref{fig:noise-detect-latch-comparator} to detect substrate potential changes
-
-Measurements and Analyses of Substrate Noise Waveform in Mixed-Signal IC Environment Makoto Nagata, Associate Member, IEEE, Jin Nagai, Takashi Morie, and Atsushi Iwata, Member, IEEE
+Other techniques exist in similar fields that could prove useful for ESD investigation.
+M. Nagata details in \cite{substrate-noise-measurement} an on-chip measurement technique in for recording substrate noise waveforms at silicon level.
+Measurement structures are directly integrated into silicon, and using a few synchronisation signals are used to record waveforms of noise inside the susbtrate.
+The architecture of this sensor is a simple latch comparator \ref{fig:noise-detect-latch-comparator}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.6\textwidth]{src/1/figures/latch_comparator.png}
+  \includegraphics[width=\textwidth]{src/1/figures/latch_comparator.pdf}
   \caption{Latch comparator and timings for substrate noise detection from \cite{}}
   \label{fig:noise-detect-latch-comparator}
 \end{figure}
 
-\subsection{Observation methods for failure detection and localisation}
-
-\subsubsection{Optically-isolated communication}
-
-%TODO
-Banc Alain
+%TODO ?
+%\subsubsection{Optically-isolated communication}
+%Banc Alain
 
 \subsubsection{Emmission Microscopy (EMMI)}
 
