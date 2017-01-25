@@ -223,7 +223,7 @@ For a 5mm by 5mm silicon circuit sampled every micrometer, scanning the entire a
 No integrated circuit can sustain such an amount of repeated stressing, and the device will be destroyed before the end of the scan.
 Also, the test time for this brute force approach is going to be very important.
 If the entire process is automated and a delay of 2 seconds is left between each point, the test campaign will still take 1388 hours, approximately 2 months.
-Clearly, smarter sampling strategies to reduce this count or new measurement methods will be required before near-field scanning can be used for silicon-level investigation.
+With smarter sampling strategies or new measurement methods, near-field scanning could be a valuable tool for silicon-level investigation.
 
 % Near-field scan as injection tool
 So far, near-field scan has been presented as a measurement tool, but it can also serve as a localized stress injection system.
@@ -244,43 +244,35 @@ In a similar approach, \gls{esd} sensitive metal tracks and \gls{ic} pins are id
 
 \subsection{Modeling methods of soft-failures for integrated circuits}
 
-%TODO
-Various methods presented in the litterature for ESD modelling
-3D electromagnetic simulations, compact models, behavioral models, physically based models, linear vs non linear, etc have been evaluated.
+In the litterature, various ESD modelling methods can be found.
+They comprise a wide range of techniques such as 3D electromagnetic and semiconductor physics simulations, compact, behavioral, physically-based and non-linear modelling.
+The methods described hereafter could be used for soft-failure investigation.
 
-% TODO
-Mixed mode ESD simulations \cite{mixedModeESDSims}.
-Combination of SPICE and TCAD models in an electrical simulation
-Claims Using physical device models allows a higher accuracy and more realistic simulations than in comparison to when only behavioral SPICE based models are used.
-On-chip and off-chip device interactions
-Powered off and powered on behavior
+M. Scholz details a mixed-mode ESD simulation approach in \cite{mixedModeESDSims}.
+It is a combination of \gls{spice} and \gls{tcad} models, simulated in \gls{spice} environment.
+The author indicates that the combination of physical device models and standard simulations provides higher accuracy and more realistic simulations than behavioral \gls{spice} models.
+Using this complex simulation tool, on-chip and off-chip device interactions are studied, in powered and unpowered conditions.
 
-% TODO
-SEED methodology ? in \cite{usb2ESDProtection}.
-Use TLP extracted I(V) curves to model both external protection and an IC pin.
-Extraction of PCB model from layout.
-Model is S-parameters
-Interactions between all external devices and onchip devices.
-Modelling approach is interesting for soft-failure analysis because it is thorough and enables accurate ESD simulation
-
-% TODO
-3D EM simulation \cite{LacrampeTransientImmunity} at silicon level, with the integrated circuit layout.
-Aim is to predict susceptibility of integrated circuits against ESD
-Deduce capacitive couplings between Vdd and Vss rails from layout + 3D EM simulation using HFSS (Ansoft) software
-Model PCB tracks by distributed RLC
-Model by equivalent impedance
-Alternative to parasitic device extraction directly from layout.
-IBIS package data was employed to model the package by an RLC equivalent
-Modelling of a TLP stress generator using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
-
-% TODO
-Electromagnetic fullwave simulations are conducted in \cite{softFailMobile}.
-System-level components are simulated, such as PCB, metallic casing and battery back.
-3D EM simulations highlighted main discharge paths and helped locate the failure
+In \cite{usb2ESDProtection}, TLP characterizations serves as an I(V) model for both external protections and an \gls{ic} pin.
+The \gls{pcb} S-parameters are extracted from the board layout, using Momentum software (Agilent Technology).
+It is electrically model with lumped R,L,C,G elements.
+The modelling approach proved successful for simulation interactions between external devices and on-chip structures.
+This method is interesting for soft-failure analysis because it is thorough and complete and enables accurate ESD simulation.
 
 % IBIS is not enough for modelling an IC pin for ESD simulations
-Input Output Buffer Information Specification (IBIS) \cite{ibis-spec} is a method for digital circuits providing the I/V characteristic of an IC without disclosing any circuit or process information.
-IBIS provides a behavioral modeling technique for digital circuits for performing signal integrity simulation.
-The idea is to characterize and distribute information about the package, buffers and protection diodes (not ESD protections), not the IC core.
-It is demonstrated in \cite{ibisImprovementFabrice} that for EMC and ESD simulations the model is not sufficient.
-It is not defined for fast impulses and high injection.
+The Input Output Buffer Information Specification (IBIS) \cite{ibis-spec} is a behavioral, black-box model for performing signal integrity simulation on digital circuits.
+It is widespread in the digital \gls{asic} world because it enables accurate simulations without disclosing circuit or process information.
+It was envisionned that IBIS models could also be used or extended for ESD.
+It is demonstrated in \cite{ibisImprovementFabrice} that the model lacks some parameters for EMC and ESD simulations.
+It comprises a current versus voltage characteristic of \gls{io}s, similar to what can be extracted by a TLP, however the IBIS model is not defined for fast impulses and high injection.
+
+N. Lacrampe proposes in \cite{LacrampeTransientImmunity} to perform 3D electromagnetic simulations at silicon level, using the integrated circuit layout, to deduce the amount of capacitive couplings between Vdd and Vss rails.
+The extraction is performed with HFSS software (Ansoft).
+The goal of this analysis is to predict the susceptibility of integrated circuits against electrostatic discharges.
+\gls{pcb} tracks are modeled by a distributed RLC network.
+The package data from the IBIS model \cite{ibis-spec} was used in the simulations.
+Finally, a TLP stress generator is modelled using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
+
+Once again, electromagnetic fullwave simulations are conducted in powered-on ESD analysis in \cite{softFailMobile}.
+System-level components are simulated, such as PCB, metallic casing and battery back.
+3D EM simulations helps to identify the main discharge paths and locate the failure.
