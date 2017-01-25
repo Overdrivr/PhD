@@ -158,7 +158,7 @@ The architecture of an \gls{emmi} system is provided in Fig. \ref{fig:emmi}.
 
 % In ESD field, how was used EMMI
 Originally, the combination of \gls{emmi} with a \gls{tlp} discharge was proposed by T. Maloney and N. Khurana in the original TLP paper \cite{TLP}.
-Afterwads, EMMI was employed for debugging hard-failures of ESD protections in 3D CMOS technologies \cite{kessler2002method} or high-voltage silicon technologies \cite{emmi-tlp} .
+Afterwards, EMMI was employed for debugging hard-failures of ESD protections in 3D CMOS technologies \cite{kessler2002method} or high-voltage silicon technologies \cite{emmi-tlp}.
 In US patent 6469536 \cite{kessler2002method}, Kessler describe a method to synchronize the ESD injection with the shutter of the EMMI.
 Finally, \gls{emmi} is presented in \cite{softfailEMMI} as a successful analysis method for debugging and locating a functional failure on an integrated circuit exposed to \gls{esd}.
 In this last paper, the integrated circuit is powered-on and in normal operation, and the \gls{emmi} helps localizing soft-failures.
@@ -244,32 +244,39 @@ In a similar approach, \gls{esd} sensitive metal tracks and \gls{ic} pins are id
 
 \subsection{Modeling methods of soft-failures for integrated circuits}
 
-A lot of work has been presented in the litterature regarding electromagnetic modeling and simulation.
+%TODO
+Various methods presented in the litterature for ESD modelling
+3D electromagnetic simulations, compact models, behavioral models, physically based models, linear vs non linear, etc have been evaluated.
 
-% TODO: read article again
+% TODO
 Mixed mode ESD simulations \cite{mixedModeESDSims}.
+Combination of SPICE and TCAD models in an electrical simulation
+Claims Using physical device models allows a higher accuracy and more realistic simulations than in comparison to when only behavioral SPICE based models are used.
+On-chip and off-chip device interactions
+Powered off and powered on behavior
 
-% TODO: read article again
+% TODO
 SEED methodology ? in \cite{usb2ESDProtection}.
-Interactions between external devices leading to soft-failures and how to fix them ?
+Use TLP extracted I(V) curves to model both external protection and an IC pin.
+Extraction of PCB model from layout.
+Model is S-parameters
+Interactions between all external devices and onchip devices.
+Modelling approach is interesting for soft-failure analysis because it is thorough and enables accurate ESD simulation
 
-% TODO: What is the goal ?
+% TODO
 3D EM simulation \cite{LacrampeTransientImmunity} at silicon level, with the integrated circuit layout.
-Deduce capacitive couplings between Vdd and Vss rails
+Aim is to predict susceptibility of integrated circuits against ESD
+Deduce capacitive couplings between Vdd and Vss rails from layout + 3D EM simulation using HFSS (Ansoft) software
+Model PCB tracks by distributed RLC
 Model by equivalent impedance
-Method is complex and long to simulate ? but was proven to work effectively to model parasitic couplings.
 Alternative to parasitic device extraction directly from layout.
 IBIS package data was employed to model the package by an RLC equivalent
+Modelling of a TLP stress generator using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
 
-%
-Modelling of a TLP stress generator in \cite{LacrampeTransientImmunity} using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
-
-% TODO: Interest of the EM simulation ?
+% TODO
 Electromagnetic fullwave simulations are conducted in \cite{softFailMobile}.
 System-level components are simulated, such as PCB, metallic casing and battery back.
-
-% Modelling of IC input pin from a TLP characterization
-Proven in \cite{usb2ESDProtection} that a TLP characterization I(V) curve of an IC pin can be used to model it for a (signal ?) kind of input.
+3D EM simulations highlighted main discharge paths and helped locate the failure
 
 % IBIS is not enough for modelling an IC pin for ESD simulations
 Input Output Buffer Information Specification (IBIS) \cite{ibis-spec} is a method for digital circuits providing the I/V characteristic of an IC without disclosing any circuit or process information.
