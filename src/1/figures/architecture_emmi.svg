@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="272.46442mm"
+   width="294.1731mm"
    height="131.35556mm"
-   viewBox="0 0 965.4251 465.43309"
+   viewBox="0 0 1042.3456 465.43309"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -271,8 +271,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70000002"
-     inkscape:cx="468.92903"
-     inkscape:cy="265.56163"
+     inkscape:cx="350.03798"
+     inkscape:cy="214.86974"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -281,17 +281,17 @@
      fit-margin-right="10"
      fit-margin-bottom="5"
      fit-margin-left="10"
-     inkscape:window-width="1920"
-     inkscape:window-height="1018"
-     inkscape:window-x="1912"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="false">
     <inkscape:grid
        type="xygrid"
        id="grid4284"
-       originx="-162.56718"
-       originy="-612.2835" />
+       originx="-85.6467"
+       originy="-612.28352" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -309,7 +309,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-162.56717,25.354326)">
+     transform="translate(-85.646687,25.354326)">
     <rect
        style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:9.6153841;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4207"
@@ -373,17 +373,17 @@
        sodipodi:linespacing="224%"
        id="text6444"
        y="183.94966"
-       x="289.03418"
+       x="243.57732"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:31.25px;line-height:224.00000095%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          y="183.94966"
-         x="289.03418"
+         x="243.57732"
          id="tspan6446"
          sodipodi:role="line">Signals</tspan><tspan
          y="253.94966"
-         x="289.03418"
+         x="243.57732"
          sodipodi:role="line"
-         id="tspan6448">(supply, logic)</tspan></text>
+         id="tspan4286">(supply, logic, esd)</tspan></text>
     <rect
        style="opacity:1;fill:#cacaca;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect6450"
