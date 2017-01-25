@@ -118,7 +118,7 @@ Architecture is given in Fig. \ref{fig:eq-time-sampler-architecture}.
 
 Other techniques exist in similar fields that could prove useful for ESD investigation.
 M. Nagata details in \cite{substrate-noise-measurement} an on-chip measurement technique in for recording substrate noise waveforms at silicon level.
-Injection and measurement structures are directly integrated into a 0.4\textMu{}m CMOS technology test vehicle.
+Injection and measurement structures are directly integrated into a 0.4\textmu{}m CMOS technology test vehicle.
 The injection structures consists in a controllable noise source.
 The amount of logic elements, transition directions and delays can be selected to generate different noise waveforms.
 By coupling, the substrate receives a part of this disturbance.
@@ -177,15 +177,14 @@ The image on the left is the reference image and the one on the right is the sig
 \subsubsection{Near-field scanner}
 
 % Introduce near-field scanner
-Electromagnetic near-field scanner is a system able to measure spatial maps of electric and magnetic field.
-It sweeps an electric or magnetic probe closely above a device to record the emitted field in near-field conditions.
+Electromagnetic near-field scanner measure maps of electric and magnetic field.
+An electric or magnetic probe is swept closely above a device to record the emitted field in near-field conditions.
 Measurements may be carried out in the frequency domain or in the time domain.
-Initially intended for architectural analysis such as floor-planning and power distribution analysis.
-Similarly to \gls{emmi}, the spatial information provided by the recorded map is very useful to locate failures and malfunctions in a device or system.
-A comprehensive and detailed analysis of near-field antennas and measurement technique is done by A.D. Yaghjian in \cite{nfsFirstStudy}.
-More recent work detail the principles, data processing and hardware requirements for building such kind of equipment \cite{planarNFSAntenna, NFSMeasurements, NFScanner}.
-Finally, measurement of electromagnetic emissions with surface scan method is standardized in IEC TS 61967-3:2014 \cite{}.
-
+This tool was initially intended for architectural analysis such as floor-planning and power distribution analysis.
+For ESD, spatial information provided by the recorded map is very useful to locate failures and malfunctions.
+A comprehensive and detailed analysis of near-field antennas is done by A.D. Yaghjian in \cite{nfsFirstStudy}.
+More recent work details the principle of operation, data processing and hardware requirements in \cite{planarNFSAntenna, NFSMeasurements, NFScanner}.
+Finally, measurement of electromagnetic emissions with surface scan method is standardized in IEC TS 61967-3 \cite{iec61967}.
 The architecture of a near-field scanner is given in Fig. \ref{fig:near-field-scanner}.
 
 \begin{figure}[!h]
@@ -196,51 +195,52 @@ The architecture of a near-field scanner is given in Fig. \ref{fig:near-field-sc
 \end{figure}
 
 % Challenges
-Amplitude recorded by the probe depends on many factors, some of them known, others not
-diameter of the loop
-amount of loops of the sensor
-size of the track
-height between track and probe
-Also, in real circuits, multiple tracks located near
-impossible to measure each track independently
-All these factors make knowing absolute values of current or voltage inside a metal track almost impossible.
-However, what is truly interesting is relative values.
-For instance, knowing that H field above this track is ten times greater than above this other track is a precious information
-Indicates where the ESD current propagates.
-
-% Why we are mostly interested in H not E
-%TODO: Talk about direction of probes and field ?
+In a near-field scan, the amplitude recorded by the probe depends on many factors.
+The amplitude measured from the sensor is the result of coupling between the source of emission and the sensor itself.
+In the case of a magnetic sensor constituted of a loop, the size of the loop, the diameter of the wire, the orientation of the loop and the amount of turns all impact strongly the measured waveform.
+Those characteristics can be estimated or measured.
+However, the waveform also depends on other factors harder or impossible to determine.
+For instance, the height between the emission source (usually a metal track) and the probe and the width of the track affect the coupling ratio.
+For realistic integrated circuits, there can be a dense network of metal tracks that all will emit electromagnetic radiations and couple to the sensor.
+It is impossible to measure each track independently.
+Ultimately, determining absolute values of current or voltage inside a particular portion of an integrated circuit is nearly impossible.
+This is why near-field scanners are more interesting for obtaining relative values between different sections of the circuit.
+For instance, knowing that the magnetic field above a given structure is ten times greater than another structure is a precious information for understanding ESD propagation.
 
 % Future work
-So far, NFS used at PCB level
-New trend is to use NFS for IC level measurements
-The probe is moved by a 3 axis machine
-Resolution of those machines can be less than a micrometer.
-However, spatial resolution of the probe depends on the size of the loop and its diameter, and distance between the sensor and the source of EM.
-Usually in the range of 100um for best probes.
-For integrated circuits, this might not me enough to isolate and identify structures.
-Even if probes with a micrometer resolution could be designed, the amount of points to record would be considerable.
-For a 5mm by 5mm silicon circuit for instance sampled every micrometer, scanning the entire area would require 2.5 million pulse injection and recordings.
-Repeated stressing on integrated circuits will most likely result in hard-failure, even for low amplitude ESD, at several orders of magnitude below this amount.
-Also, test time, amount of data to process, etc.
-In this case, the NFS technique as it is cannot be employed.
-It requires at least a smarter sampling strategy to reduce this count.
+So far, near-field scans are performed mostly at the \gls{pcb} level.
+A new trend is to use scanners for integrated circuits.
+In current silicon technologies, transistors are a few micrometers long, and metal tracks without power a few micrometers wide as well.
+This range of dimensions is to compare with the capabilities of current near-field scanners.
+Spatial resolution of a near-field scanner is not bounded by the 3-axis that moves the probe, but by the probe itself.
+3-axis machines can easily be found with a positionnal accurary of a micrometer, less than the typical observable structure dimensions on silicon.
+However, spatial resolution of current near-field probes is more in the range of 100\textmu{}m.
+This value depends mainly on the size of the loop, its diameter and the distance between sensor and source.
+For integrated circuits, this is not sufficient to isolate and identify structures.
+In the future, improvements can be expected on the spatial resolution, but it will raise new kinds of challenges.
+In the case of a probe with a resolution in the range of a 1\textmu{}m, the amount of points to records to build the map becomes huge.
+For a 5mm by 5mm silicon circuit sampled every micrometer, scanning the entire area requires 2.5 million ESD pulse injection and recordings.
+No integrated circuit can sustain such an amount of repeated stressing, and the device will be destroyed before the end of the scan.
+Also, the test time for this brute force approach is going to be very important.
+If the entire process is automated and a delay of 2 seconds is left between each point, the test campaign will still take 1388 hours, approximately 2 months.
+Clearly, smarter sampling strategies to reduce this count or new measurement methods will be required before near-field scanning can be used for silicon-level investigation.
 
 % Near-field scan as injection tool
-Near-field scanner is usually a measurement tool, but it can also serve as a localized stress injection system.
+So far, near-field scan has been presented as a measurement tool, but it can also serve as a localized stress injection system.
 Instead of sensing voltage or current in the near-field probe, a pulse is injected in it.
-In \cite{NearFieldInjectionFabrice}, a near-field scanner is combined with a very fast \gls{tlp} to test local immunity of a device.
-This methods yields an immunity map \ref{fig:near-field-scan-map}, that highlights sensitive areas of a board.
+In \cite{NearFieldInjectionFabrice}, a near-field scanner is combined with a very fast \gls{tlp}.
+A stress is injected, and the device under test is monitored for faults.
+A susceptibility map is obtained \ref{fig:near-field-scan-map}, that highlights the most sensitive areas of a board.
 The paper demonstrates that it is possible to map quantitatively and with good resolution the \gls{esd} susceptibility of a board with this method.
+In a similar approach, \gls{esd} sensitive metal tracks and \gls{ic} pins are identified in \cite{NearFieldInjectionBis} using a near-field scanner as an injection system.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.4\textwidth]{src/1/figures/near_field_scanner_susceptibility_map.pdf}
-  \caption{Susceptibility map of a XXX recorded with surface scan \cite{}}
+  \caption{Susceptibility map of a board recorded with surface scan in injection configuration \cite{}}
   \label{fig:near-field-scan-map}
 \end{figure}
 
-In a similar approach, \gls{esd} sensitive metal tracks and \gls{ic} pins are identified in \cite{NearFieldInjectionBis} with a near-field scanner in the same injection configuration.
 
 \subsection{Modeling methods of soft-failures for integrated circuits}
 
