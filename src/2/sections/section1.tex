@@ -1,90 +1,98 @@
 \section{System-level modeling}
 \label{sec:esd-modeling}
 
-% Simulations are a key tool
-Among all investigations and analysis methods, simulations are extremely important for understanding the impact of \gls{esd}s on integrated circuits.
-Physical access to signals and nets is extremely difficult in the actual chip, while in simulation it is straightforward.
-Like testing and measurement methods, simulations are another valuable tool for \gls{esd} analysis.
+% Context is a competitive environment, where any tool can make a difference
+Electronic design world is highly competitive, especially automotive.
+Vital to design products as fast as possible, with lowest possible costs, while guaranting quality.
+On the other hand, electronics systems are complex to design and are almost never completely fullfill their specification at the first manufacturing round.
+As design progresses and the project moves on in the design cycle, every redesign and modification becomes exponentially more costly.
+For instance, modifying properties of a few transistors inside an integrated circuit during the early design phase comes almost for free.
+A few minutes for a designer to make the changes.
+However, if this change must be done after a first tapeout, then it costs a few minutes to a designer to make the changes, plus modifications of the layout of the product, setup of a new tapeout, tapeout manufacturing cost, a few months of manufacturing time, testing time for the new part.
+To remain competitive, the amount of design-manufacturing phases must be kept to a bare minimum, ideally to a single pass.
+In this context, any tool capable of detecting early issues, enabling to prevent them before manufacturing, is highly valuable.
 
-% But require a lot of preliminary effort
-However, \gls{esd} simulations are far from trivial
-For operating ESD, need electrical device models that work in normal operating conditions and in electrostatic domain of fast transients, highly non-linear and rapidly changing signals.
-To build trust on the simulation results, models must be validated against measurement data, and in many different test conditions.
+%TODO: Schema with design cycle + cost increase at each step
 
-% Hierarchical level
-Electronic systems are by nature hierarchical systems.
-Large scale devices like test generators interact with small scale devices like integrated circuits, themselves composed of transistors and other integrated devices.
-For \gls{esd} simulations, it is not always obvious a what scale the modelling effort must be made.
-There is always a compromise between the model accuracy, modelling time and effort, and simulation speed.
+% Simulations are vital
+Electrical simulations are the corner-stone of modern, computer-aided electronic design.
+They constitute a fundamental tool used massively in integrated circuits and systems development.
+Silicon-manufacturing companies put a lot of effort to develop highly accurate models of their integrated technologies.
+In those environments, accuracy of standard analog simulations is rightfully taken for granted.
+For electrostatic and electromagnetic simulations though, the situation is different.
+By nature, electrostatic discharge are very fast and highly non-linear signals.
+Those events occupy a much larger frequency spectrum than waveforms usally met in standard analog simulations.
+It is essential to verify the accuracy of models and simulations.
+Models must be validated against actual measurement data, and in many different test conditions, including powered and unpowered conditions.
 
-% Which level is targeted here
-In this chapter, a methodology for building electrical models of systems and electrical setups is proposed.
-Some concepts also apply at the board level.
+% Need to simulate from source to input for soft-failure analysis
+In this chapter, a methodology for building electrical ESD models is proposed, in order to simulate waveforms from the ESD source to an integrated circuit pin.
+This is a preliminary step for enabling simulation of soft-failures inside the chip.
+The proposed methodology is modular and offers to reuse models between common devices found in ESD laboratories.
+A typical ESD test setup comprises equipments such as DC sources, oscilloscopes, and stress generators.
+Equipments are connected together with wires, coaxial cables, twisted wire pairs, etc.
+The integrated circuit under test is often soldered onto a printed circuit board.
+\gls{PCB}s usually host multiple kind of discrete devices, such as passive devices, ESD protections, common-mode chokes, relays, etc.
+Components are connected together by metal tracks.
+The goal of the proposed methodology is to build a library of all those elements, from lab equipments down to tiny discrete components.
+Each model of the library will be qualified independently with individual characterization and comparison with its model.
 
-% Main concept
-A modular approach is adopted.
-At the system level, \gls{esd} generator and lab equipments must modeled.
-Electronic systems and test setups are very often composed of a limited set of standard and common devices.
-Equipments are made for example of DC sources, discrete passive devices, relays.
-Equipments are connected together with the use of wires, twisted wire pairs, coaxial cables, etc.
-The goal is to build a library of those discrete devices.
-Each model of the library is qualified independently with measurements.
-At the system level, physical access to most electrical nets of a circuit is easy, simplifying measurement and verification of the models.
-Later on, the architecture or the electrical circuit of a system serves as a blueprint for modelling it.
-It is assembled by connecting models from the library together.
-
-% Limits in voltage/time
-Models described hereafter target two kinds of simulation
-DC or normal operation transient simulations
-\gls{esd} simulations, with accuracy near the nanosecond and voltage or current levels well above normal operating conditions.
-At such short timespan, and with the usual dimensions of \gls{esd} test equipment and \gls{pcb}, electrical propagation effects are no longer negligible.
-% TODO Non-linear behavior ?
-
+% Assemble models together to build the complete thing
+%TODO: Etoffer
+After the library is constructed, models can be connected together to simulate the entire system.
+The topology of the system serves as a blueprint for connecting models.
 
 \subsection{Transmission line}
 
-%TODO: Emphasize that a good line model is essential given how often the TLP is used for analysis in the ESD field
-
 % Cables and delays identified as important for esd sims - because of similar order of magnitude
-Among all devices used in \gls{esd} test setups, cables were found critical for modelling and simulation.
-In a standard 50\textOmega{} coaxial cable, it is common to find propagation delays in the range of 5 ns/m.
-Cable lengths in laboratories usually measure between tens of centimers to one or two meters.
-Thus, it is common to find delays in the order of 1 ns to 10 ns.
-On the other hand, electrostatic discharges last a few hundred 100 ns.
-Both values are near the same order of magnitude, which justifies why cables and delays in general should be taken into account in fast transient simulations.
+Cables are critial elements in any \gls{esd} test setup.
+They introduce significant propagation delays in regard of the duration of an electrostatic discharge.
+A 50\textOmega{} coaxial cable has a propagation ratio of approximately 5 ns/m.
+In a laboratory, it is common to find cables of tens of centimers to a couple of meters long, resulting in delays between 1 ns and 10 ns.
+As a comparison, the scale of an electrostatic discharge is a few hundred nanoseconds.
+Both values are near the same order of magnitude and a large impact from cables on the simulation can logically be expected.
+Cables, microstrip lines, wires and electrical propagation media behave as transmission lines.
+Transmission lines were originally analysed by J. Maxwell, L. Kelvin and O. Heavyside and a huge amount of studies on the topic are available in the litterature \cite{branin-tl-ref, hf-coax,lossy-tl,emc-analysis-tl}.
 
-% Also consider not just the delay but the oscillations
-Beyond simply adding a delay and offsetting a signal in time, delays can also be involved in ringing oscillations if the circuit contains impedance mismatches.
-In this situation, delay belows the nanosecond can have a strong impact on waveforms.
-Delays of this order of magnitude are commonly found in \gls{pcb} metal tracks.
-Beyond coaxial cables and \gls{pcb} traces, any element that generates a significant delay should be modelled.
+% Cables can be a source of oscillations
+Cables can also be a source of ringing oscillations if the circuit contains impedance mismatches, which is often the case.
+Oscillation period is directly related to the cable length.
+In this situation, a delay even less than 1 ns can have a strong impact on waveforms.
+Therefore, coaxial cables, long \gls{pcb} traces and any element that generates a significant delay superior to the nanosecond should be modelled.
 
-% How to model delays ? with lossless TL
-Cables, metal traces and wires in different configurations were all found to behave as transmission lines.
-More specifically, for frequencies below a GHz, most cables and tracks can be modelled as lossless transmission lines.
+% Emphasize that a good line model is essential given how often the TLP is used for analysis in the ESD field
+Transmission line pulsing was used extensively during this study.
+As a remainder, it consists primarily in the discharge of a coaxial cable.
+Thus, proper modelling of coaxial cables is useful in that regard as well.
 
-% What is a transmission line ?
-A transmission line is an electrical propagation media.
-Physically, it can be seen as a succession of infinitely small unit elements.
-Each element is modeled by an inductance, a capacitance and sometimes a leakage resistance or conductance.
-A transmission line can also be defined by a characteristic impedance Z\textsubscript{c} and a propagation delay \textDelta{}t.
-A \gls{Zc} is the ratio of the amplitudes of voltage and current of a single wave propagating along the line.
-Equation \ref{eq:characteristic-impedance} relates the characteristic impedance to the unit line inductance \textdelta{}L and capacitance \textdelta{}C.
+% model delays with lossless TL
+Transmission lines are characterized by their characteristic impedance, supposedly constant on the entire line.
+It is determined by its cross-sectional dimensions and constituting materials.
+For coaxial cables, common characteristic impedances are 50\textOmega{} or 75\textOmega{}.
+This value is equivalent to the resistance that could be measured statically between outer and inner conductors for an \textbf{infinitely long} transmission line.
+All transmission lines are lossy, meaning that some a part of the incoming power traversing it is dissipated.
+In most cases though, losses are very small and negligible, and the line is considered lossless.
+The behavior of the line is also frequency-dependant.
+Losses, characteristic impedance and other properties can change above certain frequencies.
+For frequencies below a GHz, most cables and metal strips can be correctly approximated by a lossless and non frequency-dependant line.
+
+% How is a transmission line mathematically modelled
+Physically, a transmission line can be seens as a succession of infinitely small unit elements.
+Each element is modeled by an inductance \textdelta{}L, a capacitance \textdelta{}C and sometimes a leakage resistance or conductance.
+Those unit values are directly related to the characteristic impedance Z\textsubscript{c} as described in Eq. \ref{eq:characteristic-impedance}.
+\gls{Zc} is the also expressed as the ratio of voltage and current of a single wave propagating along the line.
 
 \begin{equation}
 Z_{c} = \sqrt{\frac{\delta L}{\delta C}}
 \label{eq:characteristic-impedance}
 \end{equation}
 
-% Lossless is an approximation
-In practice, truly lossless cables do not exist but below a few GHz the lossless approximation is valid.
-A lossless line exhibits a purely real characteristic impedance.
-
 \subsubsection{Distributed model}
+
 % Distributed model
-The most popular line model is based on a distributed capacitance and inductance.
-The model is a series of unit LC elements as illustrated in Fig. \ref{fig:dis-line-model}.
-The value for this unit element can be computed from the characteristic impedance \gls{Zc} with Eq. \ref{eq:characteristic-impedance}.
+The most popular line model in the ESD field is based on lumped capacitance and inductance.
+The model is a series of lumped L-C networks as illustrated in Fig. \ref{fig:dis-line-model}.
+Values for the element can be computed from the characteristic impedance \gls{Zc} with Eq. \ref{eq:characteristic-impedance}.
 
 \begin{figure}[!h]
   \centering
@@ -111,8 +119,8 @@ A smaller unit delay increases accuracy of the model at large frequencies, but m
 On the other hand, a larger unit delay reduces the bandwidth of the model, which may be unsuitable for accuracy, even if simulation times are improved.
 
 % How to calculate the unit values ?
-%TODO
-Resolving equation system \ref{eq:characteristic-impedance} and \ref{eq:unit-delay}.
+By resolving the equation system constituted \ref{eq:characteristic-impedance} and \ref{eq:unit-delay}, it is possible to extract formula for L (Eq. \ref{eq:unit-inductance}) and C (Eq. \ref{eq:unit-capacitance}).
+Values depend on the characteristic impedance Z\textsubscript{C}, the total cable delay \textDelta{}t and the amount N of lumped elements in the model.
 
 \begin{equation}
 L = \frac{Z_{C}.\delta t }{N}}
@@ -130,12 +138,11 @@ On the other hand, this model does not scale well as cables get longer.
 To keep the same bandwidth with a longer cable, the only solution is to increase the element count, resulting in longer simulation time.
 Also, this model will always be bandwidth limited, otherwise it would require an infinite amount of infinitely small elements.
 
-\subsubsection{Behavioral model}
+\subsubsection{Two-port network model}
 
 % Behavioral model
-%TODO: Reference to article
-A behavioral model is an excellent alternative to the distributed model.
-It can describe efficiently and with great accuracy the behavior of most lossless transmission lines.
+The two-port network model described by H. Branin \cite{branin-tl-ref} is a much better alternative to the distributed model.
+It can describe efficiently and with great accuracy the behavior of uniform lossless transmission lines.
 The model is constituted of two voltage-controlled voltage sources and two resistors (Fig. \ref{fig:beh-line-model}).
 Compared to the distributed model, the behavioral model has by design an infinite bandwith, and is extremely fast to simulate.
 It also is constant in complexity, because the simulation time is independant of the cable's delay or required bandwidth
@@ -206,30 +213,32 @@ increase ratio   &  -            & x10        &  x44       &   x18      \\
 \end{table}
 
 For good accuracy, individual delay must be 2 or 10 times smaller than the shortest rise time.
-Also, simulators with variable timestep have trouble reproducing appropriately oscillating events with good accuracy for the period.
-So with the LC line, the waveform is mostly noise or assimilated to it.
-Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation time and data output size.
-
-For a 100ns TLP with 100ps risetime, individual delay is 10ps.
-N = 100e- / 10e-12 = 1e4 elements which is rather huge and will increase simulation time.
+Also, simulators with variable timestep have trouble reproducing appropriately oscillating events.
+Simulated period is often wrong compared to what is mathematically expected.
+Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation times.
+To simulate a 100 ns TLP with a 100 ps risetime using the distributed model, it would require unit elements with a of 10ps.
+10000 elements would be required to model the line, which is rather important and increases simulation time.
+And even with 10000 elements, resolution is still to larg to obtain a clean risetime \ref{fig:lines-simulations}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.3\textwidth]{src/2/figures/tline_models_comparison.pdf}
-  \caption{Models comparison in simulation}
+  \caption{Lumped versus two-port models comparison in simulation}
   \label{fig:lines-simulations}
 \end{figure}
 
-Even 10000 elements are not enough for obtaining a clean risetime.
-
-
-In conclusion, the behavioral model should be preferred wherever possible.
-The distributed model should be used in cases where losses must be taken into account, which is rather rare in practice.
+In conclusion, the two-port model should always be preferred over the lumped model.
+This is obviously the approach used for all transmission line modelling presented in this document.
 
 \subsection{Passive devices}
 
+% Passive devices are everywhere
+Discrete passive devices are highly widespread at board level.
+Not a single PCB without discrete on it.
+Not integrated on silicon because most of the time it is cheaper to use external devices instead of consuming large silicon areas to integrate them.
+
 % Limitations of passive devices
-Properties of passive devices such as capacitors, resistors and inductors change in particular electrical conditions \cite{capa-esd-cz}.
+Properties of passive devices such as capacitors, resistors and inductors change in \gls{esd} conditions \cite{capa-esd-cz}.
 For large transient amplitudes above nominal range and high-frequencies, their nominal values easily vary by an order of magnitude.
 At frequencies above a few MHz, the parasitic devices play an important role and make the device ineffective at some point.
 For instance, capacitors exhibit an inductive behavior for sufficiently large frequencies.
