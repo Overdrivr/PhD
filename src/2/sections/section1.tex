@@ -233,22 +233,20 @@ This is obviously the approach used for all transmission line modelling presente
 \subsection{Passive devices}
 
 % Passive devices are everywhere
-Discrete passive devices are highly widespread at board level.
-Not a single PCB without discrete on it.
-Not integrated on silicon because most of the time it is cheaper to use external devices instead of consuming large silicon areas to integrate them.
-
-% Limitations of passive devices
-Properties of passive devices such as capacitors, resistors and inductors change in \gls{esd} conditions \cite{capa-esd-cz}.
-For large transient amplitudes above nominal range and high-frequencies, their nominal values easily vary by an order of magnitude.
-At frequencies above a few MHz, the parasitic devices play an important role and make the device ineffective at some point.
-For instance, capacitors exhibit an inductive behavior for sufficiently large frequencies.
+Discrete passive devices are the most common kind of devices found on \gls{pcb}.
+Capacitors, inductors and resistors logically impact \gls{esd} waveforms.
+Their properties change at high frequencies and high-power levels of electrostatic discharges \cite{capa-esd-cz}.
+Nominal values easily vary by an order of magnitude.
+At frequencies above a few MHz, parasitic devices of any discrete component cause a degradation of performance.
+For sufficently high frequencies, the parasitic device can prevail over the nominal function.
+This is how a capacitor can exhibit a inductive behavior above its resonance frequency.
 
 % In what frequency range are ESD active, and are those limitations in effect
-Electrostatic discharges have been characterized in the frequency domain in \cite{fft-esd}.
-It concerns air discharges and non-shielded discharges that radiate heavily.
-The spectrum of the IEC 61000-4-2 standard \cite{iec61000-4-2} was recorded.
-It is shown that the majority of the frequency content is below 1GHz, with important magnitudes until tens of MHz.
-Like indicated previously, this is the frequency range where parasitic behavior is important.
+The frequency content of an electrostatic discharges was characterized in \cite{fft-esd}.
+The study focused on air discharges and non-shielded discharges that radiate heavily.
+In particular, the spectrum of the IEC 61000-4-2 standard \cite{iec61000-4-2} was recorded.
+It is shown that the majority of the frequency content is below 1GHz, with important magnitude until tens of MHz.
+This corresponds to the frequency range where parasitic behavior becomes important.
 Therefore for \gls{esd} simulations, passive devices require models that take those parasitic devices into account.
 
 % Not all device need parasitic device modelling
@@ -257,10 +255,11 @@ For others, using a regular electrical model is sufficient.
 Decoupling capacitors were noticed to require parasitic device modelling.
 Since they are connected between a voltage reference (supply voltage) and a reference (ground), they have a strong impact on the disturbance waveforms that an \gls{ic} pin is exposed to.
 Passive device models working at frequencies below 1GHz are given in Fig. \ref{fig:rlc-esd-models} for inductors, resistors and capacitors.
+The parasitic devices are represented in orange.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/1/figures/rlc_models.pdf}
+  \includegraphics[width=\textwidth]{src/2/figures/rlc_models.pdf}
   \caption{High-frequency (< 1GHz) models for resistor, capacitor and inductor}
   \label{fig:rlc-esd-models}
 \end{figure}
@@ -268,10 +267,12 @@ Passive device models working at frequencies below 1GHz are given in Fig. \ref{f
 % How to tune those models
 Those models are easily parameterized.
 Values can be extracted with an impedance meter capable of measuring impedances to at least 100 MHz.
+The extraction is performed in small-signal conditions, which can be an issue as will be later detailed.
 Fig. \ref{fig:frequency-response-capa} displays the magnitude and phase versus frequency of a 6.8 nF \gls{smd} capacitor.
 The capacitor exhibits a perfect behavior up to 45MHz.
 The slope of the curve below 45 MHz is directly related to the capacitor value (see Equation \ref{eq:capacitor-impedance}).
 Below 45 MHz, the phase has a value of $-90$ degrees, corresponding to the theory.
+
 
 %TODO: Check this equation
 \begin{equation}
@@ -315,7 +316,8 @@ For high power and amplitudes, most passive devices also suffer of nominal ratin
 On the contrary, capacitors built with the X7R technology are much most resilient in high regime conditions and exhibit little variations.
 
 % Conclusion
-%TODO
+A simple but efficient technique was presented to model discrete passive devices.
+There are still some limitations for capacitors of MLCC technology at high-regime, but otherwise the models remain accurate.
 
 \subsection{ESD protections}
 \label{esd-protection-modelling}
