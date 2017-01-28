@@ -295,46 +295,94 @@ In conclusion, the values for parasitic inductor and resistor can be computed ve
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/capa_hf_response.png}
+  \includegraphics[width=0.3\textwidth]{src/2/figures/capa_hf_response.png}
   \caption{Frequency response of a 6.8nF capacitor}
   \label{fig:frequency-response-capa}
 \end{figure}
 
 % Impact of dimensions on parasitic values
-%TODO: Quote fabien ? Or find reference
-In the case of capacitors, for a given package, first observations tend to show few variations for the parasitic inductance, even with capacitors of different values and sizes.
-The parasitic inductance seems mostly related to the kind of package, and measured values are between 1nH and 5nH.
-This observation tends to indicate that there is no need to characterize every single passive device.
-Instead, a global parasitic model per package should suffice.
+% In the case of capacitors, for a given package, first observations tend to show few variations for the parasitic inductance, even with capacitors of different values and sizes. The parasitic inductance seems mostly related to the kind of package, and measured values are between 1nH and 5nH. This observation tends to indicate that there is no need to characterize every single passive device. Instead, a global parasitic model per package should suffice.
 
 % Non-linear high power behavior
-%TODO: Quote fabien
-%TODO: Find articles that show non-linear behavior
 So far, only the frequency-related behavior was detailed.
 For high power and amplitudes, most passive devices also suffer of nominal ratings variations.
 \gls{mlcc} are concerned about this phenomenon \cite{capa-esd-cz}, where the capacitance decreases at high voltages.
-On the contrary, capacitors built with the X7R technology are much most resilient in high regime conditions and exhibit little variations.
+On the contrary, capacitors built with the X7R technology are much most resilient in high regime conditions and exhibit little variations \cite{fabien-capas}.
 
 % Conclusion
-A simple but efficient technique was presented to model discrete passive devices.
-There are still some limitations for capacitors of MLCC technology at high-regime, but otherwise the models remain accurate.
+Parasitic device modelling for passive devices is a pretty common technique in high-frequency, \gls{emc} and \gls{esd} simulations.
+For \gls{esd}, using parasitic models is not systematically required, but it is an important tool to remember when building a system model.
+There is still room for model improvement, with MLCC capacitors at high-regime regime for instance.
 
 \subsection{ESD protections}
 \label{esd-protection-modelling}
 
-%TODO: A etoffer
+%
+ESD protection is the most extensively studied device in the \gls{esd} field.
+ESD protection designate a class of devices rather than a particular device.
+They can be implemented in multiple ways, with diodes, thryistors, \gls{tvs}, silicon-control rectifiers, etc.
+Overall, ESD protection are devices in high-impedance below a triggering voltage, low-impedance above it and capable of absorbing significant amount of currents temporarily.
+They are modelled in very various ways, overall a distinction is made between physically-based models and behavioral models.
 
-% Diodes
-Diodes and \gls{tvs} are frequently studied devices in the \gls{esd} field \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
-Multiple modelling methods exist, such as behavioral and compact models.
+% Physical modelling
+Physical modelling is often referred as TCAD modelling, for Technology Computer-Aided Design.
+TCAD modelling is performed by ESD designers to evaluate performance and robustness of their devices before manufacturing.
+TCAD devices can be represented as 2D slice or 3D device \ref{fig:esd-protection-tcad-model}.
+In a TCAD model, device model is built by describing the manufacturing process
+Types of manufacturing step (lithography, diffusion, etc)
+Shape of masks
+Then the TCAD program simulates the device manufacturing.
+The model is represented by a mesh, composed of triangle primitives.
+After this step, simulator knows for each triangle the concentration of materials at the area occupied by the triangle.
+2D slices are faster to simulate but fail to reproduce corner effects, where the rectangular shape of a corner creates higher electric fields than the sides, and usually results in a weaker device than expected by 2D.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/esd_protection_tcad_model.png}
+  \caption{2D and 3D mesh representations of ESD protections for TCAD simulation}
+  \label{fig:esd-protection-tcad-model}
+\end{figure}
+
+TCAD model is a possible first step to build a behavioral model of the protection.
+Among other parameters, it enables to extract the I(V) response of the ESD protection.
+Alternative is to use the ESD protection measurement I(V)
+
+% Behavioral modelling
+Behavioral modelling is more widely used for studying the interaction of the protection with a circuit.
+Relies on the I(V) curve extracted from the TCAD or a measurement to build an equivalent model
+It is possible to couple TCAD and SPICE simulations (TODO: ref), but it is faster to simulate a behavioral model than a physically based model.
+Multiple modelling methods exist, such as behavioral and compact models \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
 Most studies target silicon-level devices, but a few also interested in board-level active device modelling.
 
-Behavioral model from laas
-State machine
-convergence issues
-triggering delay not taken into account (reference Fabien's work) ?
+%
+By nature, ESD protections switch from a high-impedance to a low-impedance state.
+In the case of snapback devices, the impedance change is very abrupt, leading to discontinuities of the slope of the I(V) response.
+Also, snapback devices have non-monotonous curves, where multiple values of current can be found for a given voltage, depending on the state of the device.
+With classic \gls{spice} simulations, those events are particularly difficult to model.
+Multiple issues rise, convergence, accuracy
+To overcome those difficulties, modelling languages like VHDL-AMS or Verilog-A are extremely helpful
+They enable to describe models with very useful primitives such as equations formulation, direct support for signal integration and derivative, combined digital and analog solvers for improved convergence, .
+Using VHDL-AMS for modelling ESD protections was proposed by N. Monnereau in \cite{}.
+The original solution proposed to handle snapback devices was to describe their behavior using a state machine.
+To each state of the machine is associated a slope value on the I(V) curve response \ref{fig:esd-protection-state-machine}.
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/iv_state_machine.png}
+  \caption{ESD protection state machine and corresponding I(V) curve}
+  \label{fig:esd-protection-state-machine}
+\end{figure}
 
+A possible implementation in VHDL-AMS is given in Listing \ref{}.
+Active machine state is described with a digital variable Y.
+Initially, it is at the value X.
+When voltage crosses Vt and becomes superior, Y takes the value of xxx.
+At this point, the state machine has switched state, and the protection changes of slope.
+For the protection to return to the off state, the condition is that the current through the protection returns back to a very small value.
+It is generally the physical behavior observed with thyristors for instance, and incidentally helps the simulator to converge and avoid oscillations between the on-state and the off-state.
+
+% Conclusions and future work on ESD protections
+Future improvements target triggering delay and overshoot modelling (reference Fabien's work) ?
 
 \subsection{Common mode filter}
 
@@ -342,9 +390,15 @@ triggering delay not taken into account (reference Fabien's work) ?
 Common mode choke are frequently encountered in electronic systems to protect inputs and supplies in particular \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
 Unlike regular RC-network filtering, chokes isolate from common mode disturbances where both signal and ground reference voltages shift.
 Chokes are frequently used for reducing emmission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
-CMF are modeled for ESD in \cite{usb2ESDProtection}
+CMF are modeled for ESD in \cite{usb2ESDProtection}.
+Fig. \ref{fig:cmf-model} gives an example model.
 
-%TODO: Give electrical model
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/cmc_model.png}
+  \caption{Common mode filter model}
+  \label{fig:cmf-model}
+\end{figure}
 
 quote:
 Common mode filters have the particularity to exhibit
@@ -361,14 +415,32 @@ linear vs non-linear model
 
 \subsection{Ferrite beads}
 
-%TODO: Similar to CMF ?
-%TODO: description and function
+%TODO
+% Description and function
+Ferrite bead is a passive device that suppresses high-frequency contents of a signal.
+Acts as a passive low-pass filter.
+Picture of a choke is provided in \ref{fig:ferrite-bead}.
 
-Ferrite beads are modeled for ESD in  \cite{mixedModeESDSims}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/ferrite_bead.png}
+  \caption{Picture of a ferrite bead}
+  \label{fig:ferrite-bead}
+\end{figure}
 
-%TODO: Give electrical model and picture
+%TODO
+% electrical model
+Ferrite beads are modeled for ESD in \cite{mixedModeESDSims} with...
+An example model is given in \ref{fig:ferrite-model}.
 
-\subsection{Modeling techniques}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/2/figures/ferrite_bead_model.pdf}
+  \caption{Ferrite bead model}
+  \label{fig:ferrite-model}
+\end{figure}
+
+\subsection{Particular modeling techniques}
 
 % Assembling models is one step, but need to be cautious on the results
 The modeling method consists in connecting together models of devices that physically exist.
