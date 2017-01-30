@@ -196,8 +196,8 @@ Code files can be included inside the document with the following snippet
 ```
 \begin{code}
 \inputminted[frame=single]{VHDL}{path/to/code.c}
-\label{lst:label}
 \caption{My foo code}
+\label{lst:label}
 \end{code}
 ```
 
