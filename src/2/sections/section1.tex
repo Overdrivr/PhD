@@ -356,13 +356,13 @@ However, experimented TCAD designers with sufficient know-how are capable of per
 
 % Behavioral modelling
 %TODO: Improve VHDL-AMS description
-Behavioral modelling is widely used for studying the interaction of the protection with a circuit.
-It relies on the I(V) curve extracted from a \gls{tcad} simulation or a \gls{tlp} measurement to build an equivalent model \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
+Behavioral modelling is widely used for studying interactions between the protection and a circuit.
+The I(V) curve extracted from a \gls{tcad} simulation or a \gls{tlp} measurement is reproduced by an equivalent model \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
 By nature, ESD protections switch from a high-impedance to a low-impedance state.
 In the case of snapback devices, the impedance change is very abrupt, leading to discontinuities of the slope of the I(V) curve.
-Also, snapback devices have non-monotonous curves, where multiple values of current can be found for a given voltage, depending on the state of the device.
+Snapback devices have non-monotonous curves, where multiple values of current can be found for a given voltage, depending on the state of the device.
 Large and sudden discontinuities are very challenging for classic \gls{spice} simulations, where convergence issues rise and prevent the simulator to complete.
-To overcome this difficulties, modelling languages like VHDL-AMS or Verilog-A are extremely helpful.
+To overcome those difficulties, modelling languages like VHDL-AMS or Verilog-A are extremely helpful.
 They enable to describe models with very useful primitives such as equation formulation, direct support for signal integration and derivative, combined digital and analog solvers for improved convergence.
 Using VHDL-AMS for modelling ESD protections was proposed by N. Monnereau in \cite{phd-monnereau}.
 The original solution proposed to handle snapback devices was to describe their behavior using a state machine.
@@ -376,7 +376,7 @@ To each state of the machine is associated a slope value on the I(V) curve respo
 \end{figure}
 
 A possible implementation in VHDL-AMS is given in Listing \ref{lst:snapback-device}.
-Active machine state is described with a digital variable called \textit{flag}.
+The active machine state is stored in a digital variable called \textit{flag}.
 Initially, it is at the value 0 representing the off state.
 When voltage becomes superior to the triggering voltage \textit{v\_1}, \textit{flag} takes the value of 1 and the protection turns on.
 For the protection to return to the off state, current flowing through the protection must become smaller than a very low value.
@@ -384,47 +384,48 @@ It is generally the physical behavior observed with thyristors for instance, and
 
 \begin{code}
 \inputminted[frame=single,breaklines=true]{VHDL}{src/2/snippets/beh_snapback.vhd}
-\label{lst:snapback-device}
 \caption{Single snapback behavioral device model}
+\label{lst:snapback-device}
 \end{code}
 
 %TODO
 % Example time-domain simulation
-Can see that first the protection is at the off-state, voltage rises
-Than voltage becomes suddenly smaller, and current increases
-The protection has turned on and absorbs current
+%Can see that first the protection is at the off-state, voltage rises
+%Than voltage becomes suddenly smaller, and current increases
+%The protection has turned on and absorbs current
 
 % Conclusions and future work on ESD protections
-Future improvements target triggering delay and overshoot modelling (reference Fabien's work) ?
+The two main kinds of methods for modelling ESD protections have been presented.
+They enable accurate simulations of interactions between a circuit and a protection.
+Future improvements of these methods could focus on triggering delay and overshoot modelling.
 
 \subsection{Common mode filter}
 
 % Common mode choke
-Common mode choke are frequently encountered in electronic systems to protect inputs and supplies in particular \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
-Unlike regular RC-network filtering, chokes isolate from common mode disturbances where both signal and ground reference voltages shift.
+Common mode chokes (CMC) or common mode filters (CMF) allow differential currents to flow while blocking common-mode currents.
+They are composed of two coils wounded around a single core.
+CMC offer a very low impedance to differential currents, and a large impedance to common-mode currents.
+They are frequently encountered in electronic systems to protect differential inputs and supply inputs \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
+Unlike regular RC-network filtering, CMC isolate from common mode disturbances where both signal and ground voltages shift.
+They are effective to protect differential inputs from common noise while preserving integrity of a differential signal.
 Chokes are frequently used for reducing emmission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
-CMF are modeled for ESD in \cite{usb2ESDProtection}.
-Fig. \ref{fig:cmf-model} gives an example model.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/cmc_model.png}
-  \caption{Common mode filter model}
+  \includegraphics[width=0.8\textwidth]{src/2/figures/cmc.png}
+  \caption{CMF linear model - from \cite{usb2ESDProtection}}
   \label{fig:cmf-model}
 \end{figure}
 
-quote:
-Common mode filters have the particularity to exhibit
-different insertion impedance according to the
-excitation modes (Fig. 10). For differential signals,
-CMF will present a small impedance while a large
-impedance will be presented for common mode
-signals, overall making them effective in a
-differential interface to filter out common noise while
-preserving integrity of the differential signal
-(DP,DM).
-
-linear vs non-linear model
+CMF were studied and modeled for ESD in \cite{usb2ESDProtection}.
+Fig. \ref{fig:cmf-model} gives an example of a linear model.
+L31 and L42 represent the mutual inductance of the CMC.
+C1 and C2 model the parasitic coupling between the two coils, and all the other elements account for parasitic behavior of the coil wires.
+The device is tuned from a small-signal characterization.
+However, electrostatic discharges put devices in highly non-linear behavior.
+It is recommended in \cite{esd-codesign} that ferrite-based devices should be modelled with a non-linear model.
+Thus, L31 and L42 are represented in the model using a non-linear equation.
+Using this method, it is possible to build accurate common-mode filter models suitable for electrostatic discharge simulations.
 
 \subsection{Ferrite beads}
 
