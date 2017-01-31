@@ -1,5 +1,7 @@
-\subsection{On-chip near-field current measurement and postprocessing}
+\section{Near-field sensor post-processing}
 \label{sec:on-chip-near-field-process}
+
+%TODO Introduction to near-field current processing
 
 % Introduction
 In this section, two different methods are described for reconstructing the original current from a near-field magnetic scanner measurement.
@@ -8,7 +10,7 @@ Overall, they differ mostly in the modelisation of the transfer function.
 The original time-domain waveform is obtained by using the measured waveform and the inverse transfer function.
 %TODO: Refs monnereau, review of nfs methods
 
-\subsubsection{Physical concepts}
+\subsection{Physical concepts}
 \label{sec:phys-concepts-nfs}
 
 The sensor is a near-field magnetic current loop.
@@ -49,7 +51,7 @@ and $dA$ is an infinitesimal vector area element of \textSigma{}(t) (magnitude i
 %TODO: eq
 Original current and measured voltage are related by a time-domain derivative ? Only in magnetostatic conditions ?
 
-\subsubsection{Time-domain integration method}
+\subsection{Time-domain integration method}
 
 % Describe the algorithm
 As detailed previously in \ref{sec:phys-concepts-nfs}, the measured voltage is proportional to the time derivative of the original current.
@@ -103,7 +105,7 @@ The time-domain method is simple to compute.
 However, it makes several approximations regarding the sensor's shape and the validity of the applicable physical laws.
 Overall, it assumes that the gain of the sensor is constant for all frequencies, which is not correct either.
 
-\subsubsection{Frequency-domain reconstruction method}
+\subsection{Frequency-domain reconstruction method}
 %TODO: Make a schematic to show the entire algorithm ?
 % Intro
 The frequency domain tries to improve the post-processing by taking the sensor's response into account.
@@ -223,7 +225,7 @@ The resulting waveform is compared to the original and the integration method in
   \label{fig:freq-domain-reconstructed}
 \end{figure}
 
-\subsubsection{Conclusion}
+\subsection{Conclusion}
 
 % Conclusion
 The frequency method is more realistic, because it makes less approximations regarding the physical laws and sensor's geometry.
