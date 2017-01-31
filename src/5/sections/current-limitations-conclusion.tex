@@ -1,21 +1,22 @@
 \subsection{Conclusion, limitations and future improvements}
 
 % Conclusion regarding TLP-HMM
-In this section, a new alternative for generating HMM compliant waveforms was presented.
+In this section, a new alternative for generating HMM compliant waveforms using a TLP was presented.
 The generator works correctly and has proven quite robust against ringing oscillations and parasitic disturbances.
 The generated waveform passes HMM, IEC 61000-4-2 and ISO-10605 requirements.
-It was also proven on a set of 10 ESD protections, the TLP-HMM correlates well with actual ESD guns.
+It was also proven that on a set of 10 ESD protections the TLP-HMM correlates well with actual ESD guns.
 
 % Limitations of the TLP-HMM
 A first TLP-HMM prototype has been constructed.
-It allowed to test and evaluate the device.
+It enabled initial testing and evaluation of the system.
 The design must be improved to reduce the impact of parasitic devices.
 Also, higher charging voltages must be supported for the generator to inject larger amount of currents.
 It is currently not enough to break ESD protections that withstand above 4A of transient current.
 There are many challenges to be solved in order to build a TLP able to charge at 8kV and beyond.
+For instance, the risetime filters are not able to sustain such elevated voltages and customs filters are probably required.
 
 % Correlation method
 The insights gained during this research work led to the development of a correlation method between ESD generators.
 It was discovered that it is possible to link a TLP failure level to an HMM failure voltage, using a preliminary characterization method.
 This approach was validated on a set of 10 different ESD protections with good success so far.
-Future work will involve testing the method on a larger set of ESD protection and studying the triggered failure modes
+Future work will involve testing the method on a larger set of ESD protection and studying the triggered failure modes.

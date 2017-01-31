@@ -4,7 +4,7 @@
 
 The response of the generator is tested in conditions as close as possible to the ISO 10605 standard \cite{iso10605}.
 The generator is connected to a 2\textOmega{} load, itself connected to a 12 GHz (10 ps/sample point) oscilloscope with a 50\textOmega{} input impedance.
-The setup (Fig. \ref{fig:injection_setup_validation}) has the same loading impedance than the standard measurement target \cite{iso10605, iec61000-4-2}.
+The setup (Fig. \ref{fig:injection_setup_validation}) has the same loading impedance than the standard measurement "target" \cite{iso10605, iec61000-4-2}.
 
 \begin{figure}[!h]
   \centering
@@ -41,13 +41,12 @@ peak     & 3.75 \pm 0.375  & 3.26          & 3.52 \\
 % Analyse the curve
 Overall, simulation and measurement correlate quite well.
 There is a small difference for the slopes between 40ns and 150ns.
-Investigation showed this difference comes from the shaping filter, and the inductances in particular.
-Their frequency behavior is not as good as expected.
-Having four inductances in parallel increases further this issue.
-In the current shaping filter configuration, the parasitic capacitance of each inductor are in parallel.
-They add up together, leading to a degraded frequency behavior.
+Investigation showed this difference comes from the shaping filter, and its inductances in particular.
+Their frequency behavior is not as good as expected, and having four inductances in parallel increases further this issue.
+Indeed, in this configuration parasitic capacitance of inductors are connected in parallel.
+They add up together, leading to a large total parasitic value and degraded frequency behavior.
 For the next iteration of the shaping filter, a single RF inductor should be used instead.
-The shaping filter model can be corrected by connecting in parallel a total parasitic capacitance of 2nF in series with a 15\textOmega{} parasitic resistor.
+The shaping filter model can be corrected by connecting in parallel a total parasitic capacitance of 2nF in series with a 15\textOmega{} parasitic resistor, like shown in Fig. \ref{fig:shaping_filter_schematic_parasitics}.
 
 \begin{figure}[!h]
   \centering
@@ -56,7 +55,7 @@ The shaping filter model can be corrected by connecting in parallel a total para
   \label{fig:shaping_filter_schematic_parasitics}
 \end{figure}
 
-The glitch visible at approximately 120 ns is due to the absorber, because of two different parasitic devices.
+In Fig. \ref{fig:tlp_hmm_waveforms}, the glitch visible at approximately 120 ns is due to the absorber, because of two different parasitic devices.
 At the beginning of the TLP pulse, the parasitic capacitance between signal and ground is charged.
 Using the simulation, it is estimated at 20 pF.
 Its sudden discharge at the end of the TLP pulse causes the short voltage and current increase observed at 120 ns.
@@ -86,22 +85,22 @@ Guarantying matching along the path should eliminate this ringing oscillation.
 \subsubsection{Comparison with an ESD Gun}
 
 % Introduce how generators are usually tested against ESD gun
-A generally adopted procedure to compare two ESD generator is to destroy ESD protections and compare the failure levels.
-The TLP-HMM is compared to a real standardized HMM generator following this procedure.
-The failure criteria is a sudden increase in the leakage current of the tested ESD protection after a pulse injection.
+A generally adopted procedure to compare two ESD generators is to destroy ESD protections with each one of them and compare the failure levels.
+Therefore, the TLP-HMM is compared to a real standardized HMM generator following this procedure.
+The failure criteria is a sudden increase in the leakage current of the ESD protection under test after a pulse injection.
 
 % Detail the devices that are going to be tested
 A set of ten different ESD protections, of different size, on-resistance, structure and failure levels are stressed with both generators.
 Five samples are tested for each structure and generator, to ensure the failure levels do not exhibit large variations.
 Table \ref{tab:esd-protections} gives the on-resistance for each tested device.
-%This property is employed later to build a correlation method.
+These values are important later on for building a failure correlation method.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllllllllll@{}}
 \toprule
-Structure                          & A    & B    & C     & D    \\ \midrule
-R\textsubscript{ON} (\textOmega{}) & 6.2  & 2.85 & 9.72  & 13.3 \\
+Structure                          & A    & B    & C     & D    & E   & F   & G   & H   & I   & J   \\ \midrule
+R\textsubscript{ON} (\textOmega{}) & 6.2  & 2.85 & 9.7  & 13.3 & 2.7 & 3.25& 2.4 & 4.7 & 1.7 & 1.85 \\
 \end{tabular}
 \caption{Tested ESD protection set}
 \label{tab:esd-protections}
@@ -112,9 +111,13 @@ Testing results are summarized in Table \ref{tab:esd-protections}.
 Unfortunately, the result set is too small to draw a clear conclusion.
 It was discovered that the TLP-HMM is not able to deliver enough current to break structure E and above.
 The TLP-HMM relies on a regular TLP, whose high-voltage DC supply is limited to 1kV.
-On a true HMM generator, the supply are generally able to reach 15kV charging voltage and beyond.
+On a true HMM generator, high-voltage \gls{dc} supplies are generally able to reach 15kV charging voltage and beyond.
 A TLP rarely requires DC supplies able to reach above 1kV, because the output impedance is lower than HMM.
 For a given charging voltage, a TLP will deliver a much larger amount of current than an HMM generator.
+However, in the TLP-HMM configuration, the equivalent impedance of the generator is higher than the one of a TLP.
+As a result, the injected current is smaller.
+Ultimately, the TLP DC supply fails to charge high enough in order to produce large amounts of current.
+This defect should be fixed in a new version by building a custom TLP with a much more powerful supply.
 
 \begin{table}[!h]
 \centering
@@ -140,6 +143,8 @@ The DC voltage source takes the value defined by the user on the generator befor
 The resistor is extracted from the characterization.
 Finally, the ESD protection is modeled by its on-resistance.
 The complete equivalent circuit is just a DC source with two resistors in series (Fig \ref{fig:simple_equivalent_circuit}).
+The circuit is extremely simple, however it is shown later on that it is sufficient to build a seemingly good correlation method.
+The key part of this approach is to consider the interaction between the on-resistance of the ESD protection and the equivalent resistance of the generator.
 
 \begin{figure}[!h]
   \centering
@@ -156,8 +161,16 @@ A more classic TLP at the LAAS laboratory was also characterized and exhibits an
 The HMM generator has a much larger output resistance, estimated at about 600 \textOmega{}.
 The TLP-HMM was also characterized, and situates somewhere in the middle with an output resistance of about 300\textOmega{}.
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.95\textwidth]{src/5/figures/correlation_results.png}
+  \caption{TLP prediction versus HMM measurement of failure levels}
+  \label{fig:predicted_vs_measured_levels}
+\end{figure}
+
 % What is the discovered correlation
-Despite different charging voltages and equivalent resistances, it was discovered that using this extremely simple circuit almost identical failure current I\textsubscript{ESD} were calculated with each generator, for each of the 10 tested structures.
+Despite different charging voltages and equivalent resistances, using this simple method yields almost identical failure currents between TLP and TLP-HMM.
+I\textsubscript{ESD} (from Fig. \ref{fig:simple_equivalent_circuit}) was calculated with each generator, for each of the 10 tested structures.
 This result indicates that this simplified circuit could link failure levels between generators.
 To try this hypothesis further, it is attempted to predict the HMM failure levels, directly from TLP results.
 The prediction method requires the TLP failure voltage and the ESD-on resistance, to predict the HMM failing voltage.
@@ -170,12 +183,5 @@ V_{HMM} = I_{ESD} * (R_{HMM} + R_{ON})
 \label{eq:relation-prediction}
 \end{equation}
 
-Fig. \ref{fig:predicted_vs_measured_levels} shows the results of this prediction method on the same set of 10 ESD protections.
+Fig. \ref{fig:predicted_vs_measured_levels} shows the results of this prediction method on the set of 10 ESD protections.
 Good correlation is achieved and indicates this method could effectively be used to establish correlation between ESD generators.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.95\textwidth]{src/5/figures/correlation_results.png}
-  \caption{TLP prediction versus HMM measurement of failure levels}
-  \label{fig:predicted_vs_measured_levels}
-\end{figure}

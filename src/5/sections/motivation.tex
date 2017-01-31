@@ -23,10 +23,9 @@ The waveform common to those three standards (Fig. \ref{fig:hmm-waveform}) is vi
 % Main problems with Gun
 By design, the \gls{esd-gun} has certain requirements to generate a realistic \gls{esd} discharge.
 Incidentally, those requirements make investigation harder because the injected waveform and test conditions are less reproducible \cite{hmm-round-robin-study}.
-For instance, injection is performed through a metallic tip of a few centimeters long.
-It reproduces the event of a human body discharging into an electrical device.
-However, the metallic tip radiates heavily during the discharge and up to several gigahertz \cite{system-level-esd-failure-variation}.
-Also, the ground return on the ESD gun is a metallic ribbon a few meters long.
+For instance, injection is performed through a metallic tip a few centimeters long.
+The tip is a large source of electomagnetic radiated noise during the discharge up to several gigahertz \cite{system-level-esd-failure-variation}.
+Also, the ground return is a metallic ribbon a few meters long.
 It models the equivalent ground connection of a human body.
 However, it is also very inductive, and its value changes considerably in function of its shape.
 Finally, for integrated circuits in particular, the ESD gun waveform is a lot more complex than the rectangular TLP shape.
@@ -38,21 +37,24 @@ The discharge propagates entirely inside coaxial cables and does not generate an
 In some few cases, failures can be correlated between a \gls{tlp} and \gls{esd-gun} \cite{correlation-system-level-esd-tlp}.
 However, there is generally no clear link between failures induced by each generator \cite{miscorrelation-esd-hmm}.
 The lack of correlation is proven further in \cite{correlation-system-level-esd-tlp}, with 2k\textOmega{} ESD gun discharge modules.
-cite{correlation-system-level-esd-tlp} demonstrates that some ESD structures in analog high-voltage technology have completely uncorrelated failure levels between TLP and HMM. Failure analysis shows that the failure mechanisms are different.
+\cite{correlation-system-level-esd-tlp} demonstrates that some ESD structures in analog high-voltage technology have completely uncorrelated failure levels between TLP and HMM. Failure analysis shows that the failure mechanisms are different.
 
 % Motivation
-Therefore, the \gls{TLP} cannot be used as a drop-in replacement to \gls{esd} gun for qualification.
+Therefore, \gls{tlp} cannot be used as a drop-in replacement to \gls{esd} gun for qualification.
 A compromise can be found by modifying a \gls{tlp} generator to produce the gun waveform, but in a shielded, well-controlled, and reproducible environment.
 This approach has been explored in the past by E. Grund \cite{iec61000-tlp} and Y. Cao \cite{tlp-based-hmm}.
 
 % Explain Grund setup
 In \cite{iec61000-tlp}, Grund modifies a TLP generator by placing an impedance mismatch between two coaxial lines.
 The architecture of the device is given in Fig. \ref{fig:grund_tlp_hmm}.
-With this setup, the initial peak of the waveform is produced by the 4ns cable.
-The second part of the waveform is produced by the combination of the 30ns cable and the series R\textsubscript{ML} resistor, that lowers the current compared to the first peak.
+With this setup, the initial peak of the waveform is produced by a 4ns cable.
+The second part of the waveform is produced by the combination of the 30ns cable and a large series resistance R\textsubscript{ML}, that lowers the current compared to the first peak.
 A risetime filter connected after the switch enforces a maximum risetime of 700ps to 1ns, to match the value defined in the standards.
-Overall, the generated waveforms is more flat than the standardized waveform.
-It complies to the standards since the required values for risetime, current at 30ns and 60ns are in the standards' tolerance margins.
+Overall, the generated waveforms has less dynamic than the standardized waveform and exhibits two flat steps.
+It is also widely unmatched because of the series resistor.
+It is suspected that this impedance mismatch placed between two delays makes this generator very likely to generate oscillations.
+The mismatch causes travelling waves to bounce back and forth between the load and R\textsubscript{ML}, and this kind of behavior is quite far from an original gun generator.
+It does comply to the standards though since the required values for risetime, current at 30ns and 60ns are comprised in the tolerance margins.
 
 \begin{figure}[!h]
   \centering
@@ -64,8 +66,8 @@ It complies to the standards since the required values for risetime, current at 
 % Explain Cao setup
 The approach proposed by Cao in \cite{tlp-based-hmm} consists in employing a capacitive discharge through a short coaxial cable to generate an HMM-compliant pulse.
 The architecture of the device is given in Fig. \ref{fig:cao_tlp_hmm}.
-The generator cannot be really classified as a \gls{TLP} generator, since the discharge is mostly supported by the RLC network. The 1ns coaxial cable acts as a distributed capacitor to provide the high current of the first peak.
-Overall, the generated waveforms look good on a 50\textOmega{} load.
+The generator cannot be really classified as a \gls{tlp} generator, since the discharge is mostly supported by the RLC network. The 1ns coaxial cable acts as a distributed capacitor to provide the high current of the first peak.
+Overall, the generated waveform look good on a 50\textOmega{} load.
 However, the system is always verified with a 50\textOmegae{} termination.
 It is never tested in mismatched output conditions, with a true pure 2\textOmega{} resistive load as defined in the standard.
 It is suspected that with an impedance mismatch at the output, the system enters in ringing oscillation.
@@ -80,7 +82,7 @@ Ultimately, this generator is probably not compliant with the standard.
 \end{figure}
 
 % What is proposed here is a different architecture for tlp-hmm generator
-In this document, a new setup is proposed.
+In this chapter, a new and different setup is proposed.
 It is based on using propation delays to shape the pulse with high flexibility.
 Compared to those two previous approaches, the design proposed in this document works with a classic 100 ns \gls{tlp}, without requiring internal modifications.
 It will be demonstrated later that the proposed architecture is quite flexible, and can be tuned to match any gun pulse configuration.

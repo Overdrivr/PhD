@@ -4,8 +4,8 @@
 Later in this document, the new generator is referred as TLP-HMM.
 The TLP-HMM requires two additional modules to be connected at each extremity of a classic 100ns \gls{tlp}.
 These modules are simply referred hereafter as the \textit{absorber} and the \textit{shaping filter} (Fig. \ref{fig:tlp_hmm_architecture}).
-The principle of the TLP-HMM is to re-route a part of an incoming rectangular pulse into the ground.
-The remaining current is injected on a 2\textOmega{} calibration resistor, resulting in the same waveform than HMM standards.
+The principle of the TLP-HMM is to re-route parts of an incoming rectangular pulse into the ground.
+The remaining current is injected on a 2\textOmega{} calibration resistor, resulting in the same waveform than expected by the standards.
 The role of each module is detailed in the following sections.
 
 \begin{figure}[!h]
@@ -18,7 +18,7 @@ The role of each module is detailed in the following sections.
 \subsubsection{Shaping filter}
 
 % Role of the shaping filter
-The shaping filter deviates a part of the incoming rectangular pulse into the ground (coaxial shielding).
+The shaping filter (see Fig. \ref{fig:shaping_filter_example}) deviates a part of the incoming rectangular pulse into the grounded coaxial shielding.
 It is constituted of five different elements, an RLC network, a delay cable and an injection resistor.
 The capacitor C is separated from the main propagation path by a small transmission line of delay \textDelta{}t.
 The inductor L is neglected in this first part of the analysis.
@@ -28,14 +28,14 @@ The injection resistor R\textsubscript{S} serves to increase the output impedanc
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/5/figures/example_tlp_hmm.pdf}
-  \caption{TLP-HMM architecture}
+  \includegraphics[width=0.98\textwidth]{src/5/figures/example_tlp_hmm.pdf}
+  \caption{Shaping filter architecture and operation}
   \label{fig:shaping_filter_example}
 \end{figure}
 
 % Behavior of the filter - C
 An example case is given to detail the behavior of the generator, with a focus on the shaping filter.
-In phase 1 (Fig. \ref{fig:shaping_filter_example}) a \gls{tlp} is injected on the main line.
+In phase 1 (graph on the right in Fig. \ref{fig:shaping_filter_example}), a \gls{tlp} is injected on the main line.
 It reaches point A at $t=0$ and the voltage at A rises from 0 V.
 The capacitor is still not visible from A and does not see the TLP rising edge yet.
 At $t=\Delta t$, the pulse reaches the capacitor, which begins to charge.
@@ -64,7 +64,10 @@ The peak width is approximately equal to $t=2\Delta t$.
 % Tuning the peak risetime
 The peak risetime is enforced by the \gls{tlp} risetime filter.
 A 1ns risetime filter provides the correct risetime to be compliant with the standards.
-Several risetime filters implementations suitable for TLP generators have been described in TODO REF 9 10.
+Several risetime filters implementations suitable for TLP generators have been described in \cite{gaussian-lpf,cao-risetime-filter}.
+Matched risetime filters have the particularity to work by absorption, rather than rejection.
+Most filters prevent high-frequency signals to propagate further into a system by reflecting them back.
+Risetime filters on the other hand route high-frequencies into the ground of the system, which leaves the main signal line free of noise.
 
 % Introduce the design
 The exact schematic of the shaping filter is given in Fig. \ref{fig:shaping_filter_schematic}.
@@ -118,7 +121,7 @@ The device is constituted of a 50\textOmega{} resistor, in series with a 6.6 nF 
   \label{pic:absorber_filter_assembled}
 \end{figure}
 
-\subsubsection{Risetime filter}
+%\subsubsection{Risetime filter}
 %TODO: TODO ?
-Custom design to sustain high voltage
-See Presentation 10 from January 2015
+%Custom design to sustain high voltage
+%See Presentation 10 from January 2015
