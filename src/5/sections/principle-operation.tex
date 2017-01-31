@@ -1,4 +1,4 @@
-\section{Principle of operation of the TLP-HMM}
+\subsection{Principle of operation of the TLP-HMM}
 
 % Principle of operation
 Later in this document, the new generator is referred as TLP-HMM.
@@ -15,7 +15,7 @@ The role of each module is detailed in the following sections.
   \label{fig:tlp_hmm_architecture}
 \end{figure}
 
-\subsection{Shaping filter}
+\subsubsection{Shaping filter}
 
 % Role of the shaping filter
 The shaping filter deviates a part of the incoming rectangular pulse into the ground (coaxial shielding).
@@ -91,7 +91,7 @@ Overall, its dimensions must be kept as small as possible to reduce the impact o
 % Compared to the TLP risetime, a shorter delay for the shaping filter’s cable will reduce the amplitude of the peak while a longer delay will let the TLP reach its maximum voltage and generate a short flat region. The impact of different t values on the peak is presented on Fig 7. The TLP charging voltage is identical for each curve and the load is 2 calibration load defined in IEC 61000-4-2). A 2ns rise time filter is employed here for accentuating the interaction between the risetime of the pulse and the delay of the cable. In the final system, a 1ns risetime filter is used instead to comply with the HMM specification.
 %The red curve in Fig. 7 corresponds to the shortest cable. The peak amplitude never reaches the maximum voltage. The blue curve corresponds to the optimal length. The peak reaches the maximum voltage and falls immediately. The green curve corresponds to the longest cable. The delay is long enough that the load sees a TLP step for 10ns before the voltage falls down.
 
-\subsection{Absorber}
+\subsubsection{Absorber}
 
 Near the end of the HMM waveform, the inductor is drawing almost all the incoming \gls{TLP} current.
 After 100ns, the current injected by the TLP into the shaping filter and the \gls{dut} becomes null because the cable is completely discharged.
@@ -118,7 +118,7 @@ The device is constituted of a 50\textOmega{} resistor, in series with a 6.6 nF 
   \label{pic:absorber_filter_assembled}
 \end{figure}
 
-\subsection{Risetime filter}
+\subsubsection{Risetime filter}
 %TODO: TODO ?
 Custom design to sustain high voltage
 See Presentation 10 from January 2015
