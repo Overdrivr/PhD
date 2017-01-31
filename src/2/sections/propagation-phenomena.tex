@@ -1,0 +1,151 @@
+\subsection{Assembling models}
+
+% Making a library of models is not the panacea - experience for assembling them is also required
+So far, only described individual elements that constitute a model library.
+When modelling an entire system, it is unrealistic to expect every single metal track, piece of wire, or parasitic device to be modelled.
+it would take too much time and is impossible to identify them all.
+Also, some of those elements can be ignored because not all of them impact simulations with the same weight.
+
+%
+
+The modeling method consists in connecting together models of devices that physically exist.
+To reach good agreement between simulation and measurement, some phenomena must also be taken into account.
+They can strongly impact waveforms.
+In particular, propagation and reflection phenomena play a key role at the nanosecond timescale with macro-scale systems.
+They are completely ignored in standard time-domain electrical simulations and analysis, because the time constants involved are much shorter than the typical timescale.
+For instance, a combination of a propagation delay with reflected wave sometimes leads to dampened oscillations with a period in the range of a few nanoseconds that last for tens of nanoseconds.
+In comparison, most analog functions in the automotive field have time constants above tens of microseconds, that is to say 5 orders of magnitude longer.
+In those simulations, nanosecond scale event can be purely and simply ignored.
+However, in \gls{esd} simulations, nanosecond scale event are important because the waveforms last for the same order of magnitude.
+%TODO : Speak about the relation between the propagation delay time constants involved in regard of the dimensions of the system
+
+% Propagation phemenon
+%TODO
+Propagation is a phenomenon that always occurs but is negligible over a few tens microseconds.
+Below that timescale it must be taken into account because it has a major impact on the waveforms.
+This is due to the fact that observation times are in the same range than electrical wave propagation times.
+
+% Reflection phenomenon
+%TODO
+Reflection happens when an electrical wave propagates and reaches a point where two propagation media are mismatched (two coaxial cables of different characteristic impedance for example).
+
+% Combined impact
+%TODO
+These two effects and in combination can impact waveform in some specific scenario
+
+% Measurement artifact
+Spike visible on measurements but is just an artifact
+Caused by a delay between an intended measurement point and where the measurement is actually performed
+Delay because of a cable for instance
+Setup given in Fig \ref{fig:setup-measurement-spike}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_measurement_spike.pdf}
+  \caption{Typical setup causing a measurement artifact}
+  \label{fig:setup-measurement-spike}
+\end{figure}
+
+The process that generates this measurement glitch starts with the injection of a fast rectangular pulse.
+The pulse propagates towards point A (step 1).
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_1.pdf}
+  \caption{Spike generation - step 1}
+  \label{fig:spike-step-1}
+\end{figure}
+
+At the moment it reaches A, the capacitor load is not immediately visible.
+It is “hidden” from point A by the short delay.
+Thus, the voltage rises, depending at this point only on the characteristic impedances of the cables.
+A part of the pulse propagates towards the load and a part toward Vout (depending on the impedance ratio) (step 2).
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_2.pdf}
+  \caption{Spike generation - step 2}
+  \label{fig:spike-step-2}
+\end{figure}
+
+The impulse reaches then the load (step 3), and propagates back toward A, settling the voltage at A to
+V – (V – Vload) = Vload (forward travelling wave minus reflected wave from load) (step 3).
+The capacitor is supposed to be charging at constant current, voltage rises following a linear curve.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_3.pdf}
+  \caption{Spike generation - step 3}
+  \label{fig:spike-step-3}
+\end{figure}
+
+Now the voltage at point A is defined by the load.
+However before that, the voltage rose and generated a peak that will hit Vout after a delay.
+This peak preceding the capacitor charge is detailed on figure \ref{fig:spike-step-4}.
+The amplitude is exaggerated for illustration purposes
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_4.pdf}
+  \caption{Spike generation - step 4}
+  \label{fig:spike-step-4}
+\end{figure}
+
+In a more realistic situation, if the short delay is of the same order of magnitude than the pulse risetime, the generated peak will be a non-negligible fraction of the initial pulse amplitude.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_5.pdf}
+  \caption{Measured waveform}
+  \label{fig:spike-step-4}
+\end{figure}
+
+% Unterminated cables
+Because of propagation and reflection phenomena, elements that are normally ignored in standard simulations can no longer be neglected.
+A perfect illustration of this point are cables connected to the circuit on one end, and left floating on the other end (or in high impedance)
+In regular simulations, they can removed entirely.
+With ESD simulations, they will induce oscillations and amplitude changes
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_unconnected_cable.pdf}
+  \caption{Typical setup causing oscillations}
+  \label{fig:setup-unconnected-cable}
+\end{figure}
+
+%TODO: Rewrite completely
+Transient current propagates toward the unconnected end
+Reflects entirely at the high impedance termination
+Comes back inside the circuit, absorbing a part of the initial current and supplying it later on.
+The consequence is an undershoot followed by a delayed overshoot (fig. 15).
+%TODO: Put a waveform ?
+
+\gls{tlp} is a perfect example of an application exploiting an unterminated cable
+
+% Feeding cables
+%TODO: Talk about location of measurement point
+Similarly, all cables on the propagation path (Fig. \ref{fig:setup-feeding-cable}) must not be neglected just because they are matched with the circuit.
+The delay they introduce impacts greatly the waveforms.
+TLP generators always require a cable to connect the load under test to the generator.
+This connection cable plays a role in the final waveform.
+In simulation, if omitted, the waveform is very rectangular and clean (Fig. \ref{fig:comparison-feeding-cable}).
+When the cable is added, the presence of reflections with this delay changes quite a lot the waveform that now has an initial step between 00 and XX ns, with an amplitude corresponding to the TLP charging voltage and not the circuit operating point
+XX ns corresponds exactly to (twice ?) the delay of the feeding coaxial cable.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_feeding_cable.pdf}
+  \caption{Minimal TLP generator with feeding cable and a mismatched load}
+  \label{fig:setup-feeding-cable}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{src/1/figures/comparison_feeding_cable.png}
+  \caption{Simulated waveform with and without feeding cable}
+  \label{fig:comparison-feeding-cable}
+\end{figure}
+
+% Conclusion
+%TODO: Detail
+Beyond these particular examples, the idea is to be cautious about even short delays when assembling models from the library.

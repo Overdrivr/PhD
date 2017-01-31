@@ -324,7 +324,7 @@ There is still room for model improvement, with MLCC capacitors at high-regime r
 %
 ESD protection is the most extensively studied device in the \gls{esd} field.
 ESD protections designate a class of devices rather than a particular electronic component.
-ESD protections can be realized in multiple ways, with diodes, thryistors, \gls{tvs}, silicon-control rectifiers, etc.
+ESD protections can be realized in multiple ways, with diodes, thryistors, \gls{tvs}, silicon-controlled rectifiers, etc.
 Overall, ESD protection are devices in high-impedance below a triggering voltage, low-impedance above it and capable of absorbing significant amount of currents temporarily.
 Overall, there are two kinds of modelling methods with physically-based models and behavioral models.
 
@@ -412,7 +412,7 @@ Chokes are frequently used for reducing emmission in \gls{emc} tests, and increa
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.8\textwidth]{src/2/figures/cmc.png}
+  \includegraphics[width=0.7\textwidth]{src/2/figures/cmc.png}
   \caption{CMF linear model - from \cite{usb2ESDProtection}}
   \label{fig:cmf-model}
 \end{figure}
@@ -431,170 +431,27 @@ Using this method, it is possible to build accurate common-mode filter models su
 
 %TODO
 % Description and function
-Ferrite bead is a passive device that suppresses high-frequency contents of a signal.
-Acts as a passive low-pass filter.
-Picture of a choke is provided in \ref{fig:ferrite-bead}.
+Ferrite bead are passive filtering devices, often found in \lgs{ic} decoupling networks.
+They remove high-frequency noise in supply lines, which is why they are very often met on power cables for consumer equipments such as laptop supplies for instance (see \ref{fig:ferrite-bead}).
+They behave as a second-order low-pass filter.
+In the ESD field, multiple filtering strategies with second and third order filters involving ferrites were studied in \cite{filter-strategies-esd}.
+Some configurations claimed a very positive impact on the latchup immunity of the chip under test.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/ferrite_bead.png}
+  \includegraphics[width=0.7\textwidth]{src/2/figures/ferrite.jpg}
   \caption{Picture of a ferrite bead}
   \label{fig:ferrite-bead}
 \end{figure}
 
-%TODO
-% electrical model
-Ferrite beads are modeled for ESD in \cite{mixedModeESDSims} with...
-An example model is given in \ref{fig:ferrite-model}.
-
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/ferrite_bead_model.pdf}
+  \includegraphics[width=0.6\textwidth]{src/2/figures/ferrite_bead_model.pdf}
   \caption{Ferrite bead model}
   \label{fig:ferrite-model}
 \end{figure}
 
-\subsection{Particular modeling techniques}
-
-% Assembling models is one step, but need to be cautious on the results
-The modeling method consists in connecting together models of devices that physically exist.
-To reach good agreement between simulation and measurement, some phenomena must also be taken into account.
-They can strongly impact waveforms.
-In particular, propagation and reflection phenomena play a key role at the nanosecond timescale with macro-scale systems.
-They are completely ignored in standard time-domain electrical simulations and analysis, because the time constants involved are much shorter than the typical timescale.
-For instance, a combination of a propagation delay with reflected wave sometimes leads to dampened oscillations with a period in the range of a few nanoseconds that last for tens of nanoseconds.
-In comparison, most analog functions in the automotive field have time constants above tens of microseconds, that is to say 5 orders of magnitude longer.
-In those simulations, nanosecond scale event can be purely and simply ignored.
-However, in \gls{esd} simulations, nanosecond scale event are important because the waveforms last for the same order of magnitude.
-%TODO : Speak about the relation between the propagation delay time constants involved in regard of the dimensions of the system
-
-% Propagation phemenon
-%TODO
-Propagation is a phenomenon that always occurs but is negligible over a few tens microseconds.
-Below that timescale it must be taken into account because it has a major impact on the waveforms.
-This is due to the fact that observation times are in the same range than electrical wave propagation times.
-
-% Reflection phenomenon
-%TODO
-Reflection happens when an electrical wave propagates and reaches a point where two propagation media are mismatched (two coaxial cables of different characteristic impedance for example).
-
-% Combined impact
-%TODO
-These two effects and in combination can impact waveform in some specific scenario
-
-% Measurement artifact
-Spike visible on measurements but is just an artifact
-Caused by a delay between an intended measurement point and where the measurement is actually performed
-Delay because of a cable for instance
-Setup given in Fig \ref{fig:setup-measurement-spike}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_measurement_spike.pdf}
-  \caption{Typical setup causing a measurement artifact}
-  \label{fig:setup-measurement-spike}
-\end{figure}
-
-The process that generates this measurement glitch starts with the injection of a fast rectangular pulse.
-The pulse propagates towards point A (step 1).
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_1.pdf}
-  \caption{Spike generation - step 1}
-  \label{fig:spike-step-1}
-\end{figure}
-
-At the moment it reaches A, the capacitor load is not immediately visible.
-It is “hidden” from point A by the short delay.
-Thus, the voltage rises, depending at this point only on the characteristic impedances of the cables.
-A part of the pulse propagates towards the load and a part toward Vout (depending on the impedance ratio) (step 2).
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_2.pdf}
-  \caption{Spike generation - step 2}
-  \label{fig:spike-step-2}
-\end{figure}
-
-The impulse reaches then the load (step 3), and propagates back toward A, settling the voltage at A to
-V – (V – Vload) = Vload (forward travelling wave minus reflected wave from load) (step 3).
-The capacitor is supposed to be charging at constant current, voltage rises following a linear curve.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_3.pdf}
-  \caption{Spike generation - step 3}
-  \label{fig:spike-step-3}
-\end{figure}
-
-Now the voltage at point A is defined by the load.
-However before that, the voltage rose and generated a peak that will hit Vout after a delay.
-This peak preceding the capacitor charge is detailed on figure \ref{fig:spike-step-4}.
-The amplitude is exaggerated for illustration purposes
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_4.pdf}
-  \caption{Spike generation - step 4}
-  \label{fig:spike-step-4}
-\end{figure}
-
-In a more realistic situation, if the short delay is of the same order of magnitude than the pulse risetime, the generated peak will be a non-negligible fraction of the initial pulse amplitude.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/spike_generation_5.pdf}
-  \caption{Measured waveform}
-  \label{fig:spike-step-4}
-\end{figure}
-
-% Unterminated cables
-Because of propagation and reflection phenomena, elements that are normally ignored in standard simulations can no longer be neglected.
-A perfect illustration of this point are cables connected to the circuit on one end, and left floating on the other end (or in high impedance)
-In regular simulations, they can removed entirely.
-With ESD simulations, they will induce oscillations and amplitude changes
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_unconnected_cable.pdf}
-  \caption{Typical setup causing oscillations}
-  \label{fig:setup-unconnected-cable}
-\end{figure}
-
-%TODO: Rewrite completely
-Transient current propagates toward the unconnected end
-Reflects entirely at the high impedance termination
-Comes back inside the circuit, absorbing a part of the initial current and supplying it later on.
-The consequence is an undershoot followed by a delayed overshoot (fig. 15).
-%TODO: Put a waveform ?
-
-\gls{tlp} is a perfect example of an application exploiting an unterminated cable
-
-% Feeding cables
-%TODO: Talk about location of measurement point
-Similarly, all cables on the propagation path (Fig. \ref{fig:setup-feeding-cable}) must not be neglected just because they are matched with the circuit.
-The delay they introduce impacts greatly the waveforms.
-TLP generators always require a cable to connect the load under test to the generator.
-This connection cable plays a role in the final waveform.
-In simulation, if omitted, the waveform is very rectangular and clean (Fig. \ref{fig:comparison-feeding-cable}).
-When the cable is added, the presence of reflections with this delay changes quite a lot the waveform that now has an initial step between 00 and XX ns, with an amplitude corresponding to the TLP charging voltage and not the circuit operating point
-XX ns corresponds exactly to (twice ?) the delay of the feeding coaxial cable.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/setup_feeding_cable.pdf}
-  \caption{Minimal TLP generator with feeding cable and a mismatched load}
-  \label{fig:setup-feeding-cable}
-\end{figure}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/comparison_feeding_cable.png}
-  \caption{Simulated waveform with and without feeding cable}
-  \label{fig:comparison-feeding-cable}
-\end{figure}
-
-% Conclusion
-%TODO: Detail
-Beyond these particular examples, the idea is to be cautious about even short delays when assembling models from the library.
+% electrical model
+Ferrite beads are modeled for ESD in \cite{mixedModeESDSims} with a resistor-capacitor-inductor network given in \ref{fig:ferrite-model}.
+The main coil is represented by an inductance L, a parasitic resistance R\textsubscrip{p} and capacitance C\textsubscript{p} and a series resistance R\textsubscript{s}.
+Those parameters can be extracted using an impedance meter, or by performing an S-parameter characterization.
