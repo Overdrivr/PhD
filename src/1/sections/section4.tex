@@ -175,6 +175,7 @@ The image on the left is the reference image and the one on the right is the sig
 \end{figure}
 
 \subsubsection{Near-field scanner}
+\label{sec:near-field-scan}
 
 % Introduce near-field scanner
 Electromagnetic near-field scanner measure maps of electric and magnetic field.
@@ -183,7 +184,7 @@ Measurements may be carried out in the frequency domain or in the time domain.
 This tool was initially intended for architectural analysis such as floor-planning and power distribution analysis.
 For ESD, spatial information provided by the recorded map is very useful to locate failures and malfunctions.
 A comprehensive and detailed analysis of near-field antennas is done by A.D. Yaghjian in \cite{nfsFirstStudy}.
-More recent work details the principle of operation, data processing and hardware requirements in \cite{planarNFSAntenna, NFSMeasurements, NFScanner}.
+More recent work details the principle of operation, data processing and hardware requirements in \cite{near-field-scan, planarNFSAntenna, NFSMeasurements, NFScanner}.
 Finally, measurement of electromagnetic emissions with surface scan method is standardized in IEC TS 61967-3 \cite{iec61967}.
 The architecture of a near-field scanner is given in Fig. \ref{fig:near-field-scanner}.
 
@@ -193,6 +194,9 @@ The architecture of a near-field scanner is given in Fig. \ref{fig:near-field-sc
   \caption{Architecture of a near-field scanning testbench}
   \label{fig:near-field-scanner}
 \end{figure}
+
+%TODO: Other methods presented in Contribution à l’étude électromagnétique théorique et expérimentale des cartes de circuit imprimé
+% « Mesure des champs électromagnétiques par thermographie infrarouge. Comparaison avec une simulation numérique
 
 % Challenges
 In a near-field scan, the amplitude recorded by the probe depends on many factors.
