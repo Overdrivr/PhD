@@ -1,6 +1,29 @@
 \section{Conclusion}
 
-Basis for a modelling method
-Applied to a common test generator
-Showed that it is not trivial
-etc.
+% First section
+In conclusion of this chapter, several tools have been presented for soft-failure analysis.
+The system-level modeling method is very helpful to create accurate models, in order to simulate waveforms up to an integrated circuit.
+It was a first required step before being able to study the apparition of functionnal failures inside integrated circuits, at the silicon level.
+
+% Second section
+The propagation and reflection mechanisms studied were used later on to create a custom pulse generator.
+This new generator, called TLP-HMM, reproduces the waveform of the HMM specification and IEC 61000-4-2/ISO 10605 standards.
+Combined together, they define the most widely employed pulse in the entire ESD field.
+The TLP-HMM brings several advantages compared to a standard HMM generator.
+Among other things, it offers advanced discharge reproducibility, a fully shielded propagation path and zero radiated emission.
+The current design is a prototype that helped identify improvements to make in future iterations.
+In particular, higher charging capability is required.
+
+% Failure correlation
+To test this generator against actual ESD guns, a set of 10 different ESD protections was stressed and destroyed with a TLP, a TLP-HMM and an HMM generator.
+The comparison of failure levels between all of them led to discover a correlation law using the simplest possible equivalent circuit.
+It relies on calculating the failure current, using the equivalent generator impedance, the ESD protection on-resistance and the charging voltage.
+Then, calculating this failure current for one generator allows to guess the failing charging voltage of any other.
+Charging voltages could be accurately guessed on the entire set of 10 protections.
+
+% Near-field scan
+Finally, two post-processing methods for a near-field on-chip probe were detailed.
+The first method relies on an integration of the measured signal in the time domain.
+The second method processes the signal in the frequency domain, by compensating it with the sensor characterization.
+Accuracy of each method was grossly estimated.
+Future work will involve a better assessment of the accuracy, and improvements to the processing script.
