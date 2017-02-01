@@ -1,68 +1,47 @@
 \section{Near-field sensor post-processing}
 \label{sec:on-chip-near-field-process}
 
-%TODO Introduction to near-field current processing
-
 % Introduction
-In this section, two different methods are described for reconstructing the original current from a near-field magnetic scanner measurement.
-Each method requires a characterization of the sensor, to obtain its transfer function.
-Overall, they differ mostly in the modelisation of the transfer function.
-The original time-domain waveform is obtained by using the measured waveform and the inverse transfer function.
-%TODO: Refs monnereau, review of nfs methods
-
-\subsection{Physical concepts}
-\label{sec:phys-concepts-nfs}
-
-The sensor is a near-field magnetic current loop.
-We are interested in the relation between voltage difference across the sensor and the current value circulating through the track.
-
-% Creation of the magnetic field
-Circulating current in a conductor creates a magnetic field.
-In steady-state conditions (static current), and by approximating the shape of the metal track to an infinitely long wire, Biot-savart law could be employed (Eq. \ref{eq:biot-savart}).
-It states that magnetic field decreases with the square of the distance from a current segment of the track.
-\begin{equation}
-  \label{eq:biot-savart}
-  \overrightarrow{B}(\overrightarrow{r}) = \frac{\mu_{0}}{4\pi}\oint_{C}\frac{I \mathrm{d}\overrightarrow{l} \wedge (\overrightarrow{r} - \overrightarrow{r'}) }{|\overrightarrow{r} - \overrightarrow{r'}|^3}
-\end{equation}
-
-However Biot-Savart works only for magnetostatic approximation ? What is it ?
-Steady state magnetic field.
-General purpose is Jefimenko's equations
-
-% Generation of voltage difference from the magnetic
-The sensor is placed near the monitored metal track.
-The sensor is approximated as a perfect loop in a magnetic field.
-In that case, the Faraday law's of induction gives Eq. \ref{eq:faraday}
-where \textepsilon{} is the electromotrice force (TODO: gloss) and \textPhi{}\textsubscript{B} is given in \ref{eq:phi}.
-
-\begin{equation} \label{eq:faraday}
-  \varepsilon = - \frac{\mathrm{d} \phi _{B}}{\mathrm{d} t}
-\end{equation}
-
-
-\textPhi{}\textsubscript{B} is the magnetic flux through the loop, $B$ is the magnetic field, \textSigma{}(t) is a surface bounded by the closed contour,
-and $dA$ is an infinitesimal vector area element of \textSigma{}(t) (magnitude is the area of the element, direction is orthogonal to the loop surface).
-
-\begin{equation} \label{eq:phi}
-  \phi _{B} = - \iint_{\Sigma(t)} \mathrm{d}A . B(r,t)
-\end{equation}
-
-% Global equation and conclusion
-%TODO: eq
-Original current and measured voltage are related by a time-domain derivative ? Only in magnetostatic conditions ?
+Near-field scan has been presented previously in \ref{sec:near-field-scan}.
+Using this technique it is possible to measure maps of electric or magnetic field above a device.
+While those maps already provide interesting information, to locate sources of RF noise for instance, it is interesting to post-process them in order to get voltages and currents inside the measured circuit.
+In this section, two different methods are described for reconstructing the original current from a near-field magnetic measurement.
+Each method requires a preliminary characterization of the probe.
+Near-field scanners were extensively studied in \cite{near-field-scan, phd-monnereau}.
 
 \subsection{Time-domain integration method}
 
-% Describe the algorithm
-As detailed previously in \ref{sec:phys-concepts-nfs}, the measured voltage is proportional to the time derivative of the original current.
-The time-domain method is based on this property.
-The original current waveform is the integral of the sensor voltage times a scale factor plus an offset.
-The offset and scale factor can be determined experimentally with the calibration.
+% What is the output voltage that is measured
+It is shown in \cite{near-field-scan} that the measured voltage of near-field magnetic probe is proportional to the time derivative of the measured and coupled current.
+In the next part of this analyis, the sensor voltage is denoted V\textsubscript{sensor} and the original current I\textsubscript{TLP}.
+The relationship between the two is expressed by Eq. \ref{eq:nfs-rel1}.
+$G$ is the gain of the sensor.
 
-% Talk about calibration
-The calibration is conducted with the calibration sensor integrated on silicon (\ref{fig:calibration-sensor}).
-A square impulse is injected between pins S1 and S2, and the response is measured with a 2GHz bandwith 10GS/s oscilloscope in differential input between C1 and C2.
-Both the injected current and measured voltage waveforms are recorded.
+\begin{equation}
+V_{sensor}(t) = G.\frac{dI_{TLP}(t)}{dt}
+\label{eq:nfs-rel1}
+\end{equation}
+
+% How to obtain I from V
+By integrating Eq. \ref{eq:nfs-rel1}, it is possible to express I\textsubscript{TLP} as a function of the measured sensor voltage V\textsubscript{sensor}.
+This is expressed in Eq. \ref{eq:nfs-rel2}.
+The offset $A$ is the result of the integration.
+
+\begin{equation}
+I_{TLP}(t) = \frac{1}{G}\int V_{sensor}(t) \mathrm{d}t + A
+\label{eq:nfs-rel2}
+\end{equation}
+
+% How to determine 1/G and A
+Both constants $1/G$ and $A$ are determined experimentally with a preliminary calibration.
+Once calculated, both factors are estimated to remain constant and can be reused in other measurements.
+
+% Talk about calibration setup
+On silicon, one of the sensors is dedicated to the calibration phase.
+The setup is given in Fig. \ref{fig:calibration-sensor}.
+The input of the sensor is represented by ports S1 and S2.
+A square impulse of 1V amplitude generated by a 100ns wide TLP with a risetime of 8ns is injected between the two input pins.
+The response V\textsubscript{sensor} is measured with a 2GHz bandwith 10GS/s oscilloscope in differential input connected between C1 and C2.
 
 \begin{figure}[!h]
   \centering
@@ -71,23 +50,20 @@ Both the injected current and measured voltage waveforms are recorded.
   \label{fig:calibration-sensor}
 \end{figure}
 
-% Integration method
-Afterwards, the measured voltage is integrated with a trapezoidal method.
-Experimentally, the correction factor with the current design was found to be $8.10^8$.
-As a result of the integration, an offset is present.
-The offset is calculated such as $V(t=0) = 0.$
-
-The voltage waveform measured with the sensor is given Fig. \ref{fig:measurement-nfs}.
-The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain-reconstructed}.
+% Explain the measurements
+I\textsubscript{TLP} and V\textsubscript{sensor} waveforms are recorded during calibration (see Fig. \ref{fig:measurement-nfs}).
+The top curve represents the input (I\textsubscript{TLP}) and the bottom curve the output (V\textsubscript{sensor}).
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
+  \includegraphics[width=0.95\textwidth]{src/3/figures/measured_waveform.png}
   \caption{Measured voltage waveform}
   \label{fig:measurement-nfs}
 \end{figure}
 
-%TODO: Comment : Curve is really derivative of a rectangular pulse
+% Integration method
+With those measurements, $1/G$ and $A$ are determined experimentally.
+Both values were estimated at $1/G = 8.10^8$ and $A = -V_{TLP}(t = 0)$ .
 
 \begin{figure}[!h]
   \centering
@@ -97,24 +73,32 @@ The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain
 \end{figure}
 
 % Limitations
-For this particular rectangular pulse, the integration method seems to work well.
-%TODO: test for more dynamic pulse.
+The reconstructed curve is compared to the original in Fig. \ref{fig:time-domain-reconstructed}.
+The main step of 180mA amplitude is properly reconstituted.
+Differences can be seen on the rising and falling edges of the pulse.
+The original curve has a first step of about 10ns wide, with an amplitude of 80mA.
+This step is due to the connection cable between the load and the generator, and is fundamentally a measurement artifact.
+So the difference between the two curves at 10ns and 110ns are expected.
+After 110ns, a large difference is visible on the reflected part.
+In most TLP analysis, the area of interest is during the pulse between 10ns and 110ns.
+Therefore, those discrepancies are ignored, and the reconstitution method is considered accurate enough.
 
 % Defaults to overcome
-The time-domain method is simple to compute.
-However, it makes several approximations regarding the sensor's shape and the validity of the applicable physical laws.
-Overall, it assumes that the gain of the sensor is constant for all frequencies, which is not correct either.
+The time-domain method is simple to compute and produces good results.
+So far, it was tested with a rectangular pulse, and in the future more checks should be done to ensure it works with dynamic signal such as sine waves.
+The time-domain method also makes several approximations regarding the sensor's shape and its behavior.
+It assumes that the gain of the sensor is constant for all frequencies, which is not true.
+The frequency response is provided in the next section.
+It should be noted that the bonding pads are also part of the calibration, but they may limit the sensor performance at high frequency.
 
 \subsection{Frequency-domain reconstruction method}
 %TODO: Make a schematic to show the entire algorithm ?
-% Intro
-The frequency domain tries to improve the post-processing by taking the sensor's response into account.
-More generally, this method applies to all types of sensors.
-After characterization, the frequency response of the sensor is used to recompute the current time-domain waveform from the measured voltage time-domain waveform.
 
-% Characterization
+% Intro & Characterization
+The frequency-domain method post-processes the V\textsubscript{sensor} waveform using the sensor's frequency response.
 The characterization is conducted with the calibration sensor, using a \gls{vna}.
-The calibration setup is given with in Fig. \ref{fig:calibration-sensor-rf}.
+The calibration setup is similar to the time-domain method.
+It is given in Fig. \ref{fig:calibration-sensor-rf}.
 
 \begin{figure}[!h]
   \centering
@@ -124,11 +108,11 @@ The calibration setup is given with in Fig. \ref{fig:calibration-sensor-rf}.
 \end{figure}
 
 % Detail characterization
-The \gls{sparams} measurement of the sensor is given in Fig. \ref{fig:sensor-response}.
-S11 is the reflected power at port 1.
-S21 is the transmitted power between port 1 and port 2.
-In theory, S12 is identical to S21 for symetrical 2-port devices.
-And S22 is the reflected power from the output, which is not relevant for this study.
+The \gls{sparams} measurements of the sensor are given in Fig. \ref{fig:sensor-response}.
+$S11$ is the reflected power at port 1.
+$S21$ is the transmitted power between port 1 and port 2, and $S12$ is the transmitted power between port 2 to 1.
+In theory, $S12$ is identical to $S21$ for symetrical 2-port devices.
+$S22$ is the reflected power from the output, which is not relevant for this study.
 
 \begin{figure}[!h]
   \centering
@@ -137,19 +121,22 @@ And S22 is the reflected power from the output, which is not relevant for this s
   \label{fig:sensor-response}
 \end{figure}
 
+% Analyse the response
+It was suspected previously that the sensor's response is not constant versus frequency.
+The \gls{sparams} measurement confirms it, showing a sensor bandwidth of about 300MHz.
+
 % Talk about S11
 S11 shows a resonance of -43.9 dB at 1.15 GHz.
-At this frequency, the maximum amount of power is transmitted between the metal track (port 1) and the sensor output (port 2).
-As a consequence, the reflected power at port 1 is at its minimum value.
+It corresponds to a frequency where insertion losses become very small.
+However, this peak is not visible on the transmitted coefficient $S12$ or $S21$.
+It probably means that at this frequency, a part of the input power is dissipated by the device, either by the bonding or the sensor itself.
 
 % Talk about S21
-S21 is the only scattering parameter required by the post-processing method.
+S21 is the only scattering parameter used in the post-processing method.
 It represents the transfer function between the input current and the sensed voltage.
 Previously, only the magnitude measurements were displayed in Fig. \ref{fig:sensor-response}.
-However, the post-processing method aims at reconstuting a time-domain waveform, with a step inside the frequency domain.
-With only the magnitude, the phase information is lost, making the reconstruction of the original signal impossible.
-%TODO: Is it required to explain ? Make an example with a square impulse without phase information
 Another \gls{sparams} measurement has been performed, configured to obtain both magnitude and phase information (Fig. \ref{fig:s21-response-complex}).
+Phase information is very helpful to improve the quality of the post-processing, as will be detailed later on.
 
 \begin{figure}[!h]
   \centering
@@ -158,15 +145,18 @@ Another \gls{sparams} measurement has been performed, configured to obtain both 
   \label{fig:s21-response-complex}
 \end{figure}
 
-% Overall
-It was suspected previously that the sensor's response is not constant versus frequency.
-The \gls{sparams} measurement confirms it, and shows that the integration method is neglecting this variation.
-Ideally, the goal is to measure with the largest bandwidth possible.
-The S21 respone is used during post-processing to compensate this variation.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/3/figures/frequency_post_process_flow.pdf}
+  \caption{Post-processing pipeline}
+  \label{fig:postprocess-nfs-pipeline}
+\end{figure}
 
 % The algorithm
-The post-processing methods starts with computing the \gls{fft} of the voltage waveform, storing it in array \textit{fft\_measure}.
-This array has the structure given in Table \ref{tab:complex-fft}.
+The post-processing method is detailled in Fig. \ref{fig:postprocess-nfs-pipeline}.
+The measurement data in the time-domain is converted to the frequency domain using \gls{fft}.
+The ouptut array associates to each frequency point a complex number.
+An example is given in Table \ref{tab:complex-fft}.
 
 \begin{table}[!h]
   \centering
@@ -181,7 +171,9 @@ This array has the structure given in Table \ref{tab:complex-fft}.
   \label{tab:complex-fft}
 \end{table}
 
-On the other hand, the S21 measurement, stored in array \textit{s21\_sensor}, has the structure of Table \ref{tab:sparams}.
+On the other hand, the S21 calibration data associates a phase and magnitude to each frequency point.
+An example is given with Table \ref{tab:sparams}.
+Using Euleur formula (Eq. \ref{eq:to-complex}), magnitude and phase are converted to a complex number.
 
 \begin{table}[!h]
   \centering
@@ -196,27 +188,30 @@ On the other hand, the S21 measurement, stored in array \textit{s21\_sensor}, ha
   \label{tab:sparams}
 \end{table}
 
-The magnitude and phase values must be converted to a complex number.
-This is achieved with Euler formula given in Eq. \ref{eq:to-complex}.
-\textit{s21\_sensor} is converted to an array of complex numbers by applying the formula to each row.
-
 \begin{equation} \label{eq:to-complex}
   S21_{complex} = 10^{\frac{magnitude}{20}} * (\cos(phase) + i*\sin(phase))
 \end{equation}
 
-Ideally at this point, \textit{fft\_measure} must be divided by \textit{s21\_sensor} row-wise to compensate the measurement with the sensor response.
-However, in practice, the frequency points of \textit{s21\_sensor} are not the same as \textit{fft\_measure}.
-One of the arrays must be interpolated to match the frequency points of the others.
-This can be done with a linear interpolation.
+% Interpolation step
+After these two operations, both data are in the frequency domain.
+Before moving forward in the processing, an interpolation step is required.
+Indeed, the frequency points between the measurement and the calibration do not match.
+For the next part of the algorithm, they need to be identical.
+In this case study, a linear interpolation is employed on the measurement data to align it on the characterization.
+It is possible that this kind of interpolation is not ideal.
+The impact of the interpolation on the results has not been studied yet but it should be done in a future work.
 
-Afterwards, Eq. \ref{eq:final-divide} is done for each row.
+% Compensation
+Afterwards, the measurement data is compensated by the characterization data of the sensor.
+This is done by dividing each complex value of the measurement by the complex value of the sensor.
 
-\begin{equation} \label{eq:final-divide}
-  fft_{compensated} = fft_{measured} / S21_{complex}
-\end{equation}
-
-Finally, the inverse FFT of \textit{fft\compensated} is calculated to bring back the waveform into the time-domain.
+% Inverse FFT
+Finally, the inverse \gls{fft} of the compensated data is calculated to bring back the waveform into the time-domain.
 The resulting waveform is compared to the original and the integration method in Fig. \ref{fig:freq-domain-reconstructed}.
+Overall, the results are similar between the time-domain and frequency-domain reconstitutions.
+The frequency domain seems to have more dynamic behavior, because it looks like it is reproducing rising and falling edges better.
+However, they have both large errors after the pulse and fail to reproduce the reflected wave.
+There is a lot of room for improvement for each method, such as increasing the measurement frequency, and using techniques like zero-padding before performing \gls{fft} and taking dissipated power into account.
 
 \begin{figure}[!h]
   \centering
@@ -225,16 +220,18 @@ The resulting waveform is compared to the original and the integration method in
   \label{fig:freq-domain-reconstructed}
 \end{figure}
 
-\subsection{Conclusion}
+\subsection{Conclusion on near-field post-processing}
 
 % Conclusion
-The frequency method is more realistic, because it makes less approximations regarding the physical laws and sensor's geometry.
-Overall, it is the method selected to process the measurement data in section \ref{sec:test-vehicle-testing}
-The remaining sources of error lie in the layout differences between the calibration sensor and the real sensor.
-Also, the bandwidth of the calibration equipment might be too small to reproduce high-frequency events..
+In conclusion, both methods so far produce acceptable results.
+The frequency method is closer to the physical properties of the device.
+Ultimately, it is believed that it should behave better than the time-domain method.
+It is the method chosen for processing measurement data later on in section \ref{sec:test-vehicle-testing}
 
-The integration method can work for short pulses, but accumulates error over time.
+% Follow up work
+As follow-up work, both techniques should be verified with sine-waves and other time varying signals.
+Different integration methods and improvements to the post-processing pipeline should be tested and evaluated.
 
 % Code repository
-Both post-processing methods were implemented in Python language.
+The two post-processing methods were implemented in Python language.
 The code is freely distributed \cite{nfs-repository} as open-source software under the MIT licensing \cite{mit-licensing}.
