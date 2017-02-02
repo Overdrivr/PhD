@@ -211,3 +211,17 @@ It is free, extremely fast, portable, small and is packed with good features.
 
 This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables. Doesn't work very well with large tables, doesn't support tabularx package.
 This [one](http://truben.no/table/) exists too, but has less features (no support for merging cells for instance).
+
+# How did you do that ?
+
+The document was scaffolded with the [Latex Yeoman generator](https://github.com/LeoColomb/generator-latex).
+
+```
+npm install -g yo
+npm install -g generator-latex
+yo latex
+```
+
+Then follow the instructions of the generator.
+I have made some modifications to the `Gruntfile.js` for my own taste.
+Feel free to do the same.
