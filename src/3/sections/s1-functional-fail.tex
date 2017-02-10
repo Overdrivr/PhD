@@ -4,19 +4,11 @@
 %TODO: Speak about impact (or no) of positive stress. Say that only neg stress causes a restart
 % What is the failure
 The failure is observed on the V\textsubscript{2p5} output pin (Fig. \ref{fig:meas-reset-v2p5}).
-It affects the behavior of the entire system, because this net powers many other functions in the system.
-The failure is induced by injecting a large negative-voltage stress on the input V\textsubscript{batt}, when the product is in operation.
-The discharge is superimposed on a DC voltage value.
-This input is a realistic entry point for \gls{esd} in the integrated circuit, because it is exposed at the system level and connected to the battery by a cable.
-The disturbance on the output V\textsubscript{2p5} is much longer (30 \textmu{}s) than on the input V\textsubscript{batt} (100 ns).
-It seems the negative stress is triggering a reset of the regulator.
+It appears when injecting this stress amplitude width etc
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5_measure.png}
-  \caption{Measurement of V\textsubscript{2p5} after a -450V 100ns negative stress}
-  \label{fig:meas-reset-v2p5}
-\end{figure}
+The battery is replaced by the injection + DC system
+
+capacitively coupled TLP + isolated DC supply
 
 % What is the root cause -> reset of regulator, soft-start
 It seems that the negative stress is causing an unwanted \gls{soft-start} sequence in the regulator.
@@ -38,6 +30,19 @@ The stress generator and DC supply are isolated from one another with a capacito
   \includegraphics{src/3/figures/injection_setup_dpi.pdf}
   \caption{Injection setup to superimpose a stress on a DC voltage}
   \label{fig:injection-setup-dpi}
+\end{figure}
+
+Failure It affects the behavior of the entire system, because this net powers many other functions in the system.
+The failure is induced by injecting a large negative-voltage stress on the input V\textsubscript{batt}, when the product is in operation.
+The discharge is superimposed on a DC voltage value.
+This input is a realistic entry point for \gls{esd} in the integrated circuit, because it is exposed at the system level and connected to the battery by a cable.
+The disturbance on the output V\textsubscript{2p5} is much longer (30 \textmu{}s) than on the input V\textsubscript{batt} (100 ns).
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5_measure.png}
+  \caption{Measurement of V\textsubscript{2p5} after a -450V 100ns negative stress}
+  \label{fig:meas-reset-v2p5}
 \end{figure}
 
 

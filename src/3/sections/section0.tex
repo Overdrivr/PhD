@@ -1,5 +1,24 @@
 \section{Study of a real product}
 \label{sec:study-real-product}
 
+% The studied product is an analog regulation function from automotive world
+This chapter details a study case of a real \gls{asic} from the automotive field exposed to \gls{esd} during its normal operation.
+The studied chip performs high-level functions with a few of them rather critical for the car vehicle.
+Tests and analysis are focused on one function in particular, the primary voltage regulation function of the device.
+In the final application, it is powered directly by the car's battery, and starts the entire product.
+It is also a good opportunity to study the behavior of a complex analog function exposed to electrostatic discharges.
+This product was designed at NXP, and complete access to the schematic and layout was made available for this research work.
+The product operation, architecture and application are described in section \ref{sec:product-desc}.
+
+% The chip is used in a lighter configuration where a failure could be identified
+This chip has a recommended application circuit provided by NXP, and a specification.
+They define many requirements to ensure proper operation, such as supply voltage range, current capability, etc.
+Among all those requirements is also defined the minimum constraints for external capacitive decoupling and filtering.
+Those constraints are not required by the functionnality itself, but are needed to ensure good performance against electrical stresses with some decent margin.
+In this research study, the amount of external decoupling and filtering has been reduced intentionally.
+The objective is to reduce the bill of materials of the complete application and thus to diminish the cost for the equipment manufacturer.
+With this lighter configuration, and by running \gls{esd} simulations, it has been possible to discover a functionnal weakness.
+The failure is described in detailed in section \ref{sec:failure-case-study}.
+
 \input{src/3/sections/case-study-product.tex}
 \input{src/3/sections/s1-functional-fail.tex}
