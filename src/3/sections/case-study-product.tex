@@ -1,92 +1,74 @@
 \subsection{Product description}
 \label{sec:product-desc}
 
-% What kind of product
-An automotive \gls{asic} is tested to highlight a practical case of functional failure.
-The studied chip performs several high-level and critical functions for the car vehicle.
-
-% What kind of failure
-The failure was discovered by reducing the amount of external devices around the \gls{asic}.
-The goal is to check if the \gls{esd} robustness of the chip is impacted.
-
-With the normal configuration, the failure \textbf{never} happens, up to the maximum testing limit.
-Failures happen only with the lowered configuration.
-As a side note, the lowered configuration is relevant because the \gls{bom} of the system is smaller, and manufacturing costs are reduced.
+In the tests, the integrated circuit is exposed to discharges while it is in normal operation.
+The goal here is to identify functionnal failures and not hard-failures.
+To operate correctly, the chip requires external components and cannot be tested in standalone.
+The architecture of a typical application containing the chip, its external devices, and interaction with other modules is given in Fig. \ref{fig:system_architecture}.
+In this application, the system is powered by the battery to the left.
+The battery and the electronic module are connected with wires and cables.
+Those cables constitute the most likely entry point for electrostatic discharges.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/architecture_system.pdf}
+  \includegraphics[width=\textwidth]{src/3/figures/architecture_system.pdf}
   \caption{Overview of the system architecture}
   \label{fig:system_architecture}
 \end{figure}
 
-% Difference of configs
-The input used during the tests to inject the \gls{esd} inside the system is the battery supply connection (Fig. \ref{fig:system_architecture}).
-The normal configuration uses strong differential and common-mode filtering on this input.
-This technique very effectively deviates the stress current into a ground before it even has a chance to reach the chip under test.
-In the lowered configuration, only a reduced differential filtering is present on the input.
+Inside the electronic module (in blue), the \gls{asic} can be found (in red) along with decoupling capacitors for signals V\textsubscript{batt} and V\textsubscript{2p5}, and filtering devices.
+The Common Mode Filter (CMF) and Pi filter are the two main devices being removed in the lighter configuration.
 
-% What is being tested
-Inside the \gls{ic}, the study focuses on the primary supply function (Fig. \ref{fig:monitored_function}).
-This function is the first to start when the chip is powered-on.
-It powers many blocks, especially sensitive digital cells and low-voltage analog functions.
-
-% Why testing this function
-There are two motivations for testing this particular function.
-One of its input (battery input) is an external pin and is also exposed as the system level.
-This pin can very likely be exposed to electrostatic discharges during real operation.
-Then, one of its output is also exposed externally, because the function requires a large capacitor for stabilisation that cannot be integrated on silicon.
-This pin is a very convenient monitoring point during tests.
-
-%TODO: Increase font size
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.9\textwidth]{src/3/figures/monitored_function.pdf}
-  \caption{Architecture of the primary supply}
-  \label{fig:monitored_function}
-\end{figure}
-
+Inside the integrated circuit, two key parts of the circuit have been highlighted.
+The primary supply is the function being studied in this chapter, and is powered by signal V\textsubscript{batt}.
+Its detailed operation is provided later in this section, but overall it down converts the battery voltage.
+On the output, it provides a regulated 2.5 V supply (signal V\textsubscript{2p5}).
+V\textsubscript{2p5} is used further in the ASIC, to power the core functionnities of the device constituted of digital cells, low voltage analog functions, communication buses, etc.
+The core of the circuit interacts with external equipments such as airbags for instance, and communicates with sensors or other modules.
+Given this system architecture, it is obvious that the V\textsubscript{2p5} signal is critical for normal operation.
+The disturbance of this signal could cause a propagation of issues way outside the integrated circuit, impacting other electronic modules and making some functionnalities temporarily unavailable.
 
 \subsubsection{Integrated supply function description}
 \label{sec:supply-desc}
 
-% Main task
-The main function of the regulation function is to down-convert a battery voltage to a 2.5V regulated supply.
-Several blocks are involved for processing the battery supply.
-The overall architecture is given in fig. \ref{fig:monitored_function}).
+% Go down in the hierarchy to the primary supply and explain why testing this function
+The next part of the study focuses on the primary supply function found inside the ASIC.
+Preliminary analysis showed that this function is put at fault during ESD testing.
+Appart from that, there are two motivations for testing this particular function.
+The battery input V\textsubscript{batt} is an external pin, which is convenient to inject test stresses.
+The regulated voltage output V\textsubscript{2p5} is also exposed externally, because the function requires a large capacitor for stabilisation.
+This is very convenient to monitor externally the behavior of the primary supply.
 
-%TODO: Uniform net names
+% Main task
+The main function of the regulation is to down-convert a battery voltage to a 2.5V regulated supply.
+Its architecture is given in Fig. \ref{fig:monitored_function}.
+Several blocks are involved for processing the battery supply.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/3/figures/monitored_function.pdf}
+  \caption{Architecture of the primary supply}
+  \label{fig:monitored_function}
+\end{figure}
+
 % First block
-First, a pre-regulator clamps the battery input (V\textsubscript{batt}) that can reach up to 40V and down to 9V.
-This is done to protect more sensitive circuitry connected downstream.
-This clamped voltage is accessible on output V\textsubscript{clamp9}.
-V\textsubscript{clamp9} has low current capability and is used for low-power functions.
-A second output V\textsubscript{pwr} provides a 12V clamped output with a large current capability.
+The pre-regulator clamps the battery input voltage (V\textsubscript{batt}) that can reach up to 40 V and down to 9 V.
+The clamped voltage is called V\textsubscript{clamp9}, has a current capability smaller than a few mA and is used for low-power functions.
+The second output of the pre-regulator called V\textsubscript{pwr} provides a 12V clamped output with a larger current capability of tens of mA.
 
 % Second block
-A bandgap reference is connected downstream.
-It is powered with V\textsubscript{clamp9}.
-Once properly started after a certain delay, the bandgap generates a 1.0 V voltage reference on V\textsubscript{ref1p0}.
-This reference is stable accross a wide range of temperature, process variation and process mismatchs.
-The bandgap also outputs a 10uA current reference on I\textsubscript{ref10u}, and a flag V\textsubscript{bgok} to signal it is ready for operation.
+The bandgap reference, connected downstream, is powered by V\textsubscript{clamp9}.
+After a startup delay, it generates a 1.0 V voltage reference on V\textsubscript{ref1p0}.
+This reference is stable accross a wide range of temperature, process variation and process mismatches.
+The bandgap also outputs a 10 uA current reference on I\textsubscript{ref10u}, and the V\textsubscript{bgok} flag to signal it is ready for operation.
 
 % Third major block
-Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage on V\textsubscript{2p5}.
-This output can deliver up to 20mA.
-V\textsubscript{2p5} is used further in the system to power digital gates.
-
-% Detail nets connections
-The regulator relies on multiple signals generated in the upstream blocks for operation.
-The most critical nets are the 1.0V reference V\textsubscript{ref1p0} from the bandgap, and the ramp-up signal V\textsubscript{ramp-up}.
-Circuit analysis shows that both nets can directly affect the output voltage.
-A variation on the reference voltage is immediately copied on the output.
-The ramp-up signal controls the soft-start of the regulator, that can directly change the output value.
-Other nets provide bias to the regulator, and their impact on the output is more limited.
-
-% Talk about external devices
-V\textsubscript{2p5} requires externally a 100nF decoupling capacitor to absorb peak currents and achieve stability.
+Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage on the external pin V\textsubscript{2p5}.
+This output can deliver up to 20 mA.
+V\textsubscript{2p5} is used further in the integrated circuit to power digital gates, like previously detailed.
+A 100 nF decoupling capacitor is required on V\textsubscript{2p5} to absorb peak currents and help the regulator achieve stability.
 
 % What are the minor blocks doing
-The \textit{current mirrors} provide copied current values from the bandgap, while offering much larger output impedance.
+The \textit{current mirrors} provide copied current values from the bandgap to the regulator, while offering much larger output impedance.
 The \textit{enable} block mostly checks and waits for the bandgap to be properly started.
 It then triggers a startup ramp-up sequence on the regulator.
