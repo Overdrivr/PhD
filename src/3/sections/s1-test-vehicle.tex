@@ -1,39 +1,21 @@
 \subsection{Test vehicle description}
 \label{sec:test-vehicle-desc}
 
-% Why making a testchip
-It is difficult to realize good measurements on an integrated circuit.
-The chip is enclosed in a package, and without physical access it is impossible to measure electrical properties.
-Even with physical access, placing micro-probes to contact metal connections can disturb sensitive parts of the device.
-To overcome these issues, it is interesting to develop custom structures that perform the measurements directly on the chip and output the data using standard \gls{io}.
-For that matter, a custom test vehicle has been designed and manufactured.
-
-% What is in the testchip
-The testchip reuses most blocks from the ASIC product described previously in \ref{sec:study-real-product}.
-
-% What is monitored
-In addition, custom functions were integrated on silicon to measure and monitor amplitude and duration of disturbances on internal nets.
-A communication system was setup to output measurement data using a few pins.
-
-%TODO: Talk about the inputs, outputs
-
-% Why monitoring a primary supply
-The studied function is the primary supply of a complex automotive \gls{asic}.
-This supply plays a critical role in the functionning of the entire product.
-It is connected to the battery of the vehicle, and is the first block of the product to start.
-It wakes up and powers all other functions inside the integrated circuit.
-
-% Global architecture
-The global architecture of the testchip (Fig. \ref{architecture_testchip}) is comprised of a duplicated supply function.
-The same supply block is instanciated twice on silicon.
-One of them is the function under test, which is exposed to \gls{ESD} stresses and is monitored for failures.
-The second one is responsible for powering the monitoring functions.
-
-% Isolation between supplies
-Several steps were put in place to isolate the reference regulator from disturbances, to ensure good measurements.
-First, it has its own external supply pin, and is powered externally by a different DC supply than the regulator under test.
-Much larger filtering is setup for the reference regulator.
-Both block only share the external ground connections.
+% A testchip has been made to put measurement structures on silicon
+Integrated circuits are very dense and fragile devices, enclosed in plastic or ceramic packages.
+It is nearly impossible to measure electrical properties without physical access.
+For instance, it could be useful to measure potential inside a given net inside the circuit.
+With integrated circuits, this is not doable and most of the time the external connections are the only points of access.
+Even with physical internal access, placing micro-probes to contact metal connections can disturb sensitive parts of the device.
+To overcome these issues, new approaches are required.
+In this research, custom measurement structures have been implemented directly on-chip.
+They perform analog measurements at the silicon level.
+External interaction with the structure to configure them and read the measurement data is done with digital input/output.
+The global architecture of the testchip is provided in Fig. \ref{architecture_testchip}.
+It contains two instances of the regulation function studied earlier in \ref{sec:study-real-product}.
+The first instance is exposed to \gls{ESD} stresses during tests and is monitored for failures.
+The second instance powers the monitoring functions and custom measurement structures.
+The rest of the chip is composed of the custom structures or communication buses.
 
 \begin{figure}[h]
   \centering
@@ -42,13 +24,25 @@ Both block only share the external ground connections.
   \label{architecture_testchip}
 \end{figure}
 
+% Isolation between supplies
+The protected primary regulator on the left (Fig. \ref{architecture_testchip}) is responsible for powering the monitoring blocks.
+It must not be disturbed by the discharges injected on the supply under test on the right.
+It has its own external supply pin DC\textsubscript{1}, powered externally by a different DC supply than the regulation function under test.
+Large external filtering has been used for this instance.
+Except for the ground connection, both regulators do not share connections.
+
 % What is in the monitoring system
-The \textit{monitoring system} is comprised of several functions.
-The overvoltage and undervoltage detectors monitor multiple net voltages inside the supply under test.
+The on-chip monitoring system is composed of several overvoltage and undervoltage detectors.
+They monitor multiple net voltages inside the supply under test.
 There are in total 35 detectors in the testchip.
-The communication function performs a parallel to serial conversion, in order to read and write a large amount of bits using just a few pins.
-Special structures for specific monitoring functions is also implemented.
-Details about the monitoring functions are given in the next sub-sections.
+The purpose of each detector is given in appendix \ref{apx:testchip-register-maps}.
+
+% What is in the communication system
+The communication systems provides a connection between the internal detectors and the external world.
+Configuration data can be provided from an external microcontroller and measurement data is output by the communication block.
+
+% How those monitoring functions have been designed
+The implementation of each monitoring function is detailed hereafter.
 
 \subsection{Voltage monitoring}
 
