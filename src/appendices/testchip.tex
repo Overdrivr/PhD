@@ -7,17 +7,17 @@
 \begin{tabular}{@{}lll@{}}
 \toprule
 Bit index& Name & Function \\ \toprule
-0	& D_pout<0>	  & Writes 0b0 or 0b1 on pin \\
-1	& D_pout<1>	  & Writes 0b0 or 0b1 on pin \\
-2	& D_pout<2>	  & Writes 0b0 or 0b1 on pin \\
-3	& D_pout<3>   & Writes 0b0 or 0b1 on pin \\
-4	& ref<0>	    & test_D : tunable reference : MSB - active low \\
-5	& ref<1>	    & test_D : tunable reference : bit 2 - active low \\
-6	& ref<2>      &	test_D : tunable reference : bit 3 - active low \\
-7	& ref<3>      &	test_D : tunable reference : bit 4 - active low \\
-8	& ref<4>      &	test_D : tunable reference : bit 5 - active low \\
-9	& ref<5>      &	test_D : tunable reference : bit 6 - active low \\
-10 &	ref<6>    &	test_D : tunable reference : LSB - active low \\
+0	& D_{pout}<0>	  & Writes 0b0 or 0b1 on pin \\
+1	& D_{pout}<1>	  & Writes 0b0 or 0b1 on pin \\
+2	& D_{pout}<2>	  & Writes 0b0 or 0b1 on pin \\
+3	& D_{pout}<3>   & Writes 0b0 or 0b1 on pin \\
+4	& ref<0>	    & test\_D : tunable reference : MSB - active low \\
+5	& ref<1>	    & test\_D : tunable reference : bit 2 - active low \\
+6	& ref<2>      &	test\_D : tunable reference : bit 3 - active low \\
+7	& ref<3>      &	test\_D : tunable reference : bit 4 - active low \\
+8	& ref<4>      &	test\_D : tunable reference : bit 5 - active low \\
+9	& ref<5>      &	test\_D : tunable reference : bit 6 - active low \\
+10 &	ref<6>    &	test\_D : tunable reference : LSB - active low \\
 \bottomrule
 \end{tabular}
 \caption{Write chain 1}
@@ -29,24 +29,23 @@ Bit index& Name & Function \\ \toprule
 \begin{tabular}{@{}lll@{}}
 \toprule
 Bit index & Name & Function \\ \toprule
-0	& vdd_nuv      & - \\
-1	& vdd_nuv_deg  &	test_vdd_nuv_deglitch \\
-2	& v2p5_nuv	   & test_v2p5_nuv \\
-3	& v2p5_nuv_deg & - \\
-4	& uv_9V_div4	 & uv_vclamp9_div4 \\
-5	& ov_9V_div4	 & ov_vclamp9_div4 \\
-6	& ov_vref1p2	 & ov_vref1p2_bg1 \\
-7	& ov2p5_1p2	   & ov2p5_vref1p2_bg1 \\
-8	&	uv_5MHz_vclamp9_div4  & - \\
-9	&	uv_200kHz_vclamp9_div4 & - \\
-10&	ov_5MHz_vclamp9_div4 & - \\
-11&	ov_200kHz_vclamp9_div4 & - \\
+0	& vdd\_nuv       & internal pre-regulator undervoltage flag \\
+1	& vdd\_nuv\_deg  & internal pre-regulator undervoltage deglitched flag \\
+2	& v2p5\_nuv	     & internal regulator undervoltage flag \\
+3	& v2p5\_nuv\_deg & internal deglitched undervoltage flag \\
+4	& uv\_9V\_div4	 & undervoltage detect on v_{clamp9} \\
+5	& ov\_9V\_div4	 & overvoltage detect on v_{clamp9} \\
+6	& ov\_vref1p2	   & overvoltage detect on bandgap reference \\
+7	& uv\_vref1p2	   & undervoltage detect on bandgap reference \\
+8	&	uv\_5MHz\_vclamp9\_div4  & undervoltage detect on v_{clamp9} with 5MHz BW \\
+9	&	uv\_200kHz\_vclamp9\_div4 & undervoltage detect on v_{clamp9} with 200kHz BW \\
+10&	ov\_5MHz\_vclamp9\_div4 & overvoltage detect on v_{clamp9} with 5MHz BW\\
+11&	ov\_200kHz\_vclamp9\_div4 & overvoltage detect on v_{clamp9} with 200kHz BW\\
 \bottomrule
 \end{tabular}
 \caption{Read chain 2}
 \label{tab:read-chain-2}
 \end{table}
-
 
 \begin{table}[!htbp]
 \centering
@@ -57,25 +56,25 @@ Bit index	& Name    & Function                                          \\ \topr
 1         &	agnd    &	input connected to agnd - should always be 0b0 \\
 2         &	vdd     &	level down shifter sampling an 8V reference - should always be 0b1 \\
 3         &	agnd    &	level down shifter sampling agnd - should always be 0b0 \\
-4         &	ov      &	test_A : raw OV output \\
-5         &	uv      &	test_A : raw UV output \\
-6         &	ov_2p5  & test_A : raw_OV output with 2p5 static ref \\
-7         &	ov_4p9  &	test_A : raw_OV output with 4p9 static ref \\
-8         &	ov_5p0	& test_A : raw_OV output with 5p0 static ref \\
-9         &	ov_5p1  &	test_A : raw_OV output with 5p1 static ref \\
-10        &	ov_7p5  &	test_A : raw_OV output with 7p5 static ref \\
-11        &	ov_0MHz	& test_B : raw OV output without filter \\
-12        &	ov_20MHz&	test_B : raw OV output with 20MHz lpf \\
-13        &	ov_10MHz&	test_B : raw OV output with 10MHz lpf \\
-14	      & ov_5MHz &	test_B : raw OV output with 5MHz lpf \\
-15        &	ov_2MHz	& test_B : raw OV output with 2MHz lpf \\
-16        &	ov_1MHz	& test_B : raw OV output with 1MHz lpf \\
-17        &	ov_0kHz	& test_C : raw OV output without filter \\
-18        &	ov_500kHz	& test_C : raw OV output with 500 kHz lpf \\
-19        &	ov_200kHz	& test_C : raw OV output with 200 kHz lpf \\
-20	      & ov_100kHz	& test_C : raw OV output with 100 kHz lpf \\
-21	      & ov_50kHz	& test_C : raw OV output with 50 kHz lpf \\
-22        &	ov_20kHz	& test_C : raw OV output with 20 kHz lpf \\
+4         &	ov      &	test\_A : raw OV output \\
+5         &	uv      &	test\_A : raw UV output \\
+6         &	ov\_2p5  & test\_A : raw_OV output with 2p5 static ref \\
+7         &	ov\_4p9  &	test\_A : raw_OV output with 4p9 static ref \\
+8         &	ov\_5p0	& test\_A : raw_OV output with 5p0 static ref \\
+9         &	ov\_5p1  &	test\_A : raw_OV output with 5p1 static ref \\
+10        &	ov\_7p5  &	test\_A : raw_OV output with 7p5 static ref \\
+11        &	ov\_0MHz	& test\_B : raw OV output without filter \\
+12        &	ov\_20MHz&	test\_B : raw OV output with 20MHz lpf \\
+13        &	ov\_10MHz&	test\_B : raw OV output with 10MHz lpf \\
+14	      & ov\_5MHz &	test\_B : raw OV output with 5MHz lpf \\
+15        &	ov\_2MHz	& test\_B : raw OV output with 2MHz lpf \\
+16        &	ov\_1MHz	& test\_B : raw OV output with 1MHz lpf \\
+17        &	ov\_0kHz	& test\_C : raw OV output without filter \\
+18        &	ov\_500kHz	& test\_C : raw OV output with 500 kHz lpf \\
+19        &	ov\_200kHz	& test\_C : raw OV output with 200 kHz lpf \\
+20	      & ov\_100kHz	& test\_C : raw OV output with 100 kHz lpf \\
+21	      & ov\_50kHz	& test\_C : raw OV output with 50 kHz lpf \\
+22        &	ov\_20kHz	& test\_C : raw OV output with 20 kHz lpf \\
 23	      & agnd	    & input connected to agnd - should always be 0b0 \\
 24	      & v2p5d	    & input connected to v2p5 - should always be 0b1 \\
 \bottomrule
@@ -90,21 +89,21 @@ Bit index	& Name    & Function                                          \\ \topr
 \begin{tabular}{@{}lll@{}}
 \toprule
 Bit index & Name & Function \\ \toprule
-0 &	vref_uv_9V	 & MSB \\
+0 &	vref\_uv\_9V	 & MSB \\
 1 & & \\
 2 & & \\
 3 & & \\
 4 & & \\
 5 & & \\
 6	&	& LSB \\
-7	& vref_ov_9V MSB \\
+7	& vref\_ov\_9V MSB \\
 8  & & \\
 9  & & \\
 10 & & \\
 11 & & \\
 12 & & \\
 13 & & LSB \\
-14 & vref_1p2 &	MSB \\
+14 & vref\_1p2 &	MSB \\
 15 & & \\
 16 & & \\
 17 & & \\
