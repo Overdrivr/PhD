@@ -40,16 +40,17 @@ There are in total 9 detectors in the testchip.
 The 4 remaining blocks are monitoring the regulator under test (Table \ref{tab:detectors}).
 Threshold can be configured externally using a communication bus.
 When new value is set through the communication, a digital to analog converter generates the new threshold for each detector.
+The detectors are able to detect level crossings from half a volt up to 13 V, which is designed to match the voltage range of most signals inside the chip.
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{@{}ll@{}}
+\begin{tabular}{@{}lll@{}}
 \toprule
-Name           & Function \\ \toprule
-uv\_9V\_div4	 & undervoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_9V\_div4	 & overvoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_vref1p2	   & overvoltage detect on bandgap reference (settable threshold) \\
-uv\_vref1p2	   & undervoltage detect on bandgap reference (settable threshold) \\
+Name           & Nominal value & Function \\ \toprule
+uv\_9V	       & 9V   & undervoltage detect on v\textsubscript{clamp9} (settable threshold)\\
+ov\_9V	       & 9V   & overvoltage detect on v\textsubscript{clamp9} (settable threshold)\\
+ov\_vref1p2	   & 1.2V & overvoltage detect on bandgap reference (settable threshold) \\
+uv\_vref1p2	   & 1.2V & undervoltage detect on bandgap reference (settable threshold) \\
 \bottomrule
 \end{tabular}
 \caption{Detectors on core functions}
@@ -87,9 +88,8 @@ The first block in this detector is the comparator.
 It is designed with a two-stage operational amplifier with an output buffer (see Fig. \ref{fig:comparator-design}).
 This topology is well suited for high-gain, open-loop comparators.
 This comparator provides a very high input impedance, to ensure the monitored net is not disturbed.
-A high-gain is useful for limiting the comparator's offset.
-The performance of the comparator is given in table \ref{tab:comparator-performance}.
-The critical factors are the high to low delay, to detect very fast transients, and the offset, to ensure detection accuracy is good.
+A high-gain is useful for limiting the comparator's offset and to ensure that the comparison will be accurate.
+The offset of the designed comparator is below 5 mV and the switching speed under 20 ns (on a 50pF load), which should be sufficient to detect fast glitches of several volts amplitude and a timescale similar to electrostatic discharges.
 
 \begin{figure}[!h]
   \centering
@@ -98,49 +98,24 @@ The critical factors are the high to low delay, to detect very fast transients, 
   \label{fig:comparator-design}
 \end{figure}
 
-%TODO: Detail nets of the schematic
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lllll@{}}
-\toprule
-property           & specification & value (typical) \\
-\midrule
-offset             & +/- 10mV      & 2.65 mV \\
-V(IH)              & +/- 10mV      & 1.15 mV \\
-V(IL)              & +/- 10 mV     & 4.16 mV \\
-delay low2high     & 50 ns         & 41 ns   \\
-delay high2low     & 50 ns         & 12.8 ns \\
-consumption (dc)   & 60 uA         & 33 uA \\
-consumption (peak) & 350 uA        & 264 uA \\
-\bottomrule
-\end{tabular}
-\caption{Comparator performance (typical)}
-\label{tab:comparator-performance}
-\end{table}
-
-
 % What is the purpose of filter
-On the output of the comparator, an optional RC filter can be connected.
+On the output of the comparator (Fig. \ref{fig:architecture-ov}), an optional RC filter can be connected.
 This filter can deglitch very short overvoltages, to only let large overvoltages pass through the detector.
 The stratety behind this filter is to use multiple detectors monitoring the same net, each one with a different filter.
 In function of which detectors triggered, an estimation of the overvoltage length can be made.
 
 % Hysteresis buffer
-After the filter, an hysteresis buffer increases the deglitching action of the filter.
-If the comparator's output remains high for a short period of time, the output of the filter will rise slowly.
-If a standard buffer was used in place of the hysteresis buffer, it would latch at about half the supply voltage.
-With the hysteresis, the buffer switches at a voltage much closer from the supply.
-With the same RC filter, this results in a much longer deglitching time.
-This was done because RC-filters require large resistors and large capacitors for integration on silicon, and occupy a considerable area on the chip.
-By increasing the deglitching time, smaller RC-filters could be used.
+%TODO: Add schematic ? Explain interacting with RC filter ?
+After the filter, an hysteresis buffer guarantees that a clean digital signal will be fed to the latch.
+The triggering levels are highly separated, with a low level near 2V and a high at about 6V.
 
 % Latch
 Finally, the latch stores the overvoltage flag.
-By default, the latch is reset at $t=0$.
+By default it stores a low-level.
 Its copy input $D$ is connected to the supply.
 If the hysteresis buffer triggers high, the enable pin triggers a copy in the latch.
 The output $Q$ copies the value from the $D$, storing a logical high in the latch.
+This way, any detected overvoltage or undervoltage is stored until it can be red or the latch is reset.
 
 % Origin of reference voltages
 The reference voltages for these comparators come from either fixed-values set by the protected supply, or \gls{dac} that can be reconfigured through the communication system.
@@ -149,69 +124,59 @@ The reference voltages for these comparators come from either fixed-values set b
 \label{sec:comm-system-testchip}
 
 % Why a comm IO
-The testchip requires many pins for basic functionnality, such as supplies, grounds, substrate connections, regulation functions.
-The manufacturing process for test vehicles enforces an LQFP-48 package.
-With the given requirements, this does not leave much pins available for directly outputting monitoring data.
-A custom communication bus was designed to reduce the pin count.
-Initially, the JTAG (TODO: ref or gloss ?) protocol was envisionned for this application.
-However, JTAG requires to use a digital state-machine for operation.
-This requires digital-synthesis (TODO: glos), which was not available with our given resource constraints.
-Instead, a simplified serie to parallel protocol has been designed from scratch.
-
-% What does the comm IO
-Two read-only and two write-only communication buses are implemented on the testchip.
-Read-only buses are connected to overvoltage and undervoltage detectors, for reading them.
-Write-only buses are connected to configuration registers for some monitoring functions.
-For instance, the variable voltage references for the detectors can be set using this bus.
-
-% Why two buses each
-A pair of read/write bus serves to validate some monitoring blocks.
-The second pair is connected to the actual monitoring function.
+The manufacturing process at NXP for test vehicles requires a 48 pin package.
+On those 48 pins, a few are already required for ground connection and substrate connection.
+Also, the two instances of the regulation function each need a supply connection and two external decoupling capacitors.
+The on-chip current sensor also require 4 pins for the calibration pattern and two pins per actual sensor.
+In the end, the available pin count would be too small for allowing to connect each detector to its own external pin.
+To overcome this issue, a custom communication bus has been designed.
+Initially, the JTAG (Joint Test Action Group) \cite{jtag} protocol was envisionned for this application.
+It is a test port for access and boundary-scan.
+It is commonly used to check that connections are correct between integrated circuits, and to configure internal parameters such as trim values and internal fuses.
+However, the JTAG system needs a digital state-machine for operation, described in any hardware description language (HDL).
+This step requires digital-synthesis, a step that converts a HDL sources into electrical netlist.
+Given the resource constraints in this research work, this step was not available for this test vehicle.
+Instead, a simplified serial to parallel protocol has been designed from scratch.
+The main idea to design reusable communication cells that can be duplicated and connected in a chain fashion, to get a register map of any size easily.
+Changing the size of the register is simply a matter of adding or removing individual cells.
+No digital-synthesis is being required.
 
 % Overall architecture
-Each bus is constituted of individual identical cells.
-The main principle is to propagate an enable signal.
-Each time a cell receives the enable signal, it will perform its duty, wait for a delay, then pass the enable to the next cell.
-%TODO: Talk about scalability
-%TODO: Speak about JTAG
-%TODO: Explain why custom solution and not digital-synthesis
-%TODO: Talk about comm not being used during the ESD, but afterward
+The chain of individual cells functions by propagating from cell to cell an enable signal.
+Each time a cell receives the enable signal, it will perform its task, then pass the enable to the next cell at the next clock edge.
 
+%TODO: Talk about scalability
+%TODO: Talk about comm not being used during the ESD, but afterward
 
 \subsubsection{Read cell}
 
 % Explain behavior
 The read cell is constituted of a tri-state buffer and a D-latch (see Fig. \ref{fig:read-cell-design}).
-The output of the tri-state buffer is set in high-impedance when the \textit{x} input is low.
+The output of the tri-state buffer is set in high-impedance when input \textit{x} is low.
 This action releases the communication bus for other read cells and is the default state.
-
-% Chaining
-Multiple cells can be connected serially in a chain-fashion.
-Increasing the total register size is simply done by adding more cells to the chain.
-This is convenient for testchip developments that have limited design resources.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_read_cell.pdf}
+  \includegraphics[width=0.8\textwidth]{src/3/figures/architecture_read_cell.pdf}
   \caption{Read-only cell design}
   \label{fig:read-cell-design}
 \end{figure}
 
 % Describe the chronogram
 Fig. \ref{fig:read-cell-curve} shows the simulated behavior of a chain of 8 reading cells.
-Signals in green (\textit{en\_in} and \textit{clk}) must be provided externally, by a microcontroller for instance.
-Signals in blue are internal control signals, to help the cells determine if they have the right to write on the bus.
-The signal in red (\textit{ser\_out}) is the data output, read by an external microcontroller.
+Signals in green (\textit{en1} and \textit{clk}) must be provided externally, by a microcontroller for instance.
+Signals in blue (\textit{en2} and \textit{en8}) are internal control signals, to help the cells determine if they have the right to write on the bus.
+The signal in red (\textit{data}) is the data output, read by an external microcontroller.
 
 % Explain time-response
-The reading sequence is initiated by setting \textit{en\_in} high.
-When \textit{en\_in} is set high, the output of the first latch (\textit{en\_out\_1}) switches high at the next clock cycle.
+The reading sequence is initiated by setting \textit{en1} high.
+When \textit{en1} is set high, the output of the first latch (\textit{en2}) switches high at the next clock cycle.
 This means the first cell has the permission to write on the bus.
-During one clock cycle, the \textit{flag} is written on \textit{ser\_out}.
+During one clock cycle, the \textit{flag} is written on \textit{data} bus.
 At the next clock cycle, the enable signal is propagated to the next cell.
 The first cell no longer has the permission to write to the bus.
 The second cell writes to the bus, during a single clock cycle.
-The process is naturally repeated by the system, until the enable has been propagated to the last cell (\textit{en\_out\_8}) and all serial data was written.
+The process is naturally repeated by the system, until the enable has been propagated to the last cell (\textit{en8}) and all serial data was written.
 
 \begin{figure}[!h]
   \centering
@@ -226,11 +191,11 @@ The process is naturally repeated by the system, until the enable has been propa
 The write cell is a bit more complex but operates on the same principle (Fig. \ref{fig:write-cell-design}).
 Data is placed serially by the user on the \textit{bus} line, syncronously with the clock.
 The enable signal is propagated from cell to cell, so that each cell knows when to sample the bus line and store the value.
-Basically, this cell sets on the \textit{output} the value on the bus when its enable is high (Fig. \ref{fig:write-cell-curve}).
+Basically, this cell sets on its \textit{output} the value on the bus when its enable is high (Fig. \ref{fig:write-cell-curve}).
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{src/3/figures/architecture_write_cell.pdf}
+  \includegraphics[width=0.8\textwidth]{src/3/figures/architecture_write_cell.pdf}
   \caption{Write-only cell design}
   \label{fig:write-cell-design}
 \end{figure}
@@ -268,32 +233,21 @@ D  &  SDI  &  SE  &  CLK  &  Q \\ \midrule
 
 % Describe the chronogram
 Fig. \ref{fig:write-cell-curve} shows the simulated behavior of a chain of 8 writing cells.
-Signals in green (\textit{en\_in} and \textit{clk}) must be provided externally.
+Signals in green (\textit{en1} and \textit{clk}) must be provided externally.
 Signals in blue are internal control signals, to help the cells determine if to who belongs the data on the bus.
-The signals in red (\textit{ser\_out}) are the data output, set on each individual output bit.
+The signals in red (\textit{bit 0} to \textit{bit n}) are the data output, set on each individual output bit.
 Ultimately, the reading-cell performs a serial to parallel conversion.
-The serial data is set on \textit{ser\_in}, and the parallel outputs are \textit{bit0},\textit{bit1}, etc.
-
-\subsubsection{Register map}
-
-The complete register maps of readable and writable data is given in appendix \ref{apx:testchip-register-maps}.
-%TODO: Detail more ? amount of readable bits, writeable bits, registers
+The serial data is set on \textit{bus}, and the parallel outputs are \textit{bit 0} to \textit{bit n}.
 
 \subsection{On-chip near-field current sensors}
 %TODO: Add reference to article ESREF 2012
 
 % Measuring currents is important too
-All monitoring structures presented so far watch for voltages.
-There is no measurement or monitoring function for currents.
-To this goal, current sensors were integrated on silicon, on a few critical nets.
-
-% What is a current sensors
-In this testchip, the current sensor is a near-field current loop.
-The sensor is placed close to a metal track in which current must be measured.
+Current sensing magnetic loops were integrated on silicon to measure current trough a few critical nets.
+They are sensitive to currents circulating nearby, and were placed close to metal tracks in which current must be measured.
 By coupling, the sensor generates a voltage proportional to the derivative of the current in the track.
-
-Figure. \ref{fig:near-field-current-sensor} and \ref{fig:near-field-current-sensor-layout} gives respectively a visual representation of the sensor and the final layout.
-This kind of integrated loop was originally designed and studied in \cite{AlainSallesInductors}.
+Figs. \ref{fig:near-field-current-sensor} and \ref{fig:near-field-current-sensor-layout} give respectively a visual representation of the metallic loop and its layout.
+This kind of integrated loop was studied in \cite{OtherInductors, InductorsLAAS1, InductorsLAAS2, AlainSallesInductors}.
 
 \begin{figure}[!h]
   \centering
@@ -310,33 +264,20 @@ This kind of integrated loop was originally designed and studied in \cite{AlainS
 \end{figure}
 
 % How is it designed and how is it used
-On silicon, three levels of metal are used to build the sensor.
-The first level (in red) and the third level (in purple) form a metal loop.
+On silicon, three levels of metal are used to build the loop.
+The first level (in red) and the third level (in purple) form a circle.
 Metallic vias connect both levels to close the loop vertically.
 Finally, the sensed current is at the second level (pale blue), and circulates between nets \textit{S1} and \textit{S2}.
 An oscilloscope with 50\textOmega\ input impedance performs a differential voltage measurement between pins \textit{C1} and \textit{C2}.
 An example waveform obtained by injecting a rectangular pulse is given in Fig. \ref{fig:nfs-wvf}.
 The obtained waveform requires specific post-processing to reconstitute the original current waveform.
-The post-processing is detailed later in section \ref{sec:on-chip-near-field-process}.
+The post-processing is detailed earlier in section \ref{sec:on-chip-near-field-process}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
-  \caption{Measured waveform with the on-chip near-field sensor}
+  \caption{Waveform measured with an oscilloscope connected to the on-chip near-field sensor}
   \label{fig:nfs-wvf}
-\end{figure}
-
-\subsection{Topcell}
-% intro
-Except for the two supply blocks, all the functionnalities described previously were designed, simulated and layouted.
-All layouts were assembled together to form the topcell (Fig. \ref{fig:top-cell-layout}).
-The complete pinout is given in appendix \ref{apx:testchip-pinout}.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{src/3/figures/topcell_layout.pdf}
-  \caption{Top-cell layout}
-  \label{fig:top-cell-layout}
 \end{figure}
 
 % Talk about the near-field current sensors placement
@@ -350,6 +291,22 @@ Sensor \textit{2} measures the current absorbed and deviated by the \gls{esd-pro
 Sensors \textit{3} measures the current flowing to the external stabilisation capacitor of the regulator under test.
 Finally, sensors \textit{4} and \textit{5} measure the currents flowing from the \textit{gndsub} metal ring into the external ground pins, connected externally to the board ground.
 
+\subsection{Topcell}
+
+%
+The primary supply chain under test is directly extracted from a real product, described in \ref{sec:product-desc}.
+It is placed in appropriate operating conditions on the testchip, and behaves identically to the real product.
+Except for the two supply blocks, all the functionnalities described previously were designed, simulated and layouted.
+All layouts were assembled together to form the topcell (Fig. \ref{fig:top-cell-layout}).
+The complete pinout is given in appendix \ref{apx:testchip-pinout}.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/3/figures/topcell_layout.pdf}
+  \caption{Top-cell layout}
+  \label{fig:top-cell-layout}
+\end{figure}
+
 % Explain why so much empty space
 On the layout, a lot of silicon space was left empty.
 This is due to manufacturing constraints that enforced the silicon dimensions.
@@ -357,4 +314,4 @@ After manufacturing and packaging, the chip is tested.
 The entire testing process and results are documented in section \ref{sec:test-vehicle-testing}.
 
 %TODO: Show inputs and ouputs of near-field current sensor
-See Presentation "testchip" of "13 Nov 2015"
+%See Presentation "testchip" of "13 Nov 2015"

@@ -1,37 +1,26 @@
 \subsection{Test boards}
 
 % Why these board
-For providing the external devices required by the testchip, and communicating with it, a master-slave architecture is selected.
+For providing the external devices required by the testchip, and communicating with it, a master-slave architecture has been chosen.
+The testchip is the slave, because it receives commands from the master for configuration and responds to reading requests.
 One \gls{pcb} is designed for the master, and one for the slave.
 The slave board contains the testchip and the required external devices.
-The master board contains mostly a microcontroller.
-It is responsible for generating the frames for the testchip's monitoring system (section \ref{sec:comm-system-testchip}).
+The master board contains the microcontroller responsible for generating the frames for the testchip's monitoring system (section \ref{sec:comm-system-testchip}).
 The master board connects to a computer for providing a user interface, reading, writing and storing the monitoring data.
 
 % Overview of the setup
-To protect the computer from the \gls{esd} discharges, the two boards are isolated electrically.
+To protect the computer from \gls{esd} discharges, the two boards are isolated electrically.
 Each board is powered with its own isolated battery, to avoid conducted stress propagating in the AC supply network.
 The communication between the two is achieved with several optical fibers.
-This type of setup was successfully employed in [TODO: REF Alain] to measure \gls{spi} registers before and after electro-static discharges were applied on a product.
+Optical communication is ideal because it completely isolates both boards electrically, and the fiber itself is completely immune to electrostatic discharges and more generally to electrical disturbances.
+Each board packs its own set of optical to electrical converters, to make the conversion between the fiber and electrical signals.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.95\textwidth]{src/3/figures/boards_architecture.pdf}
+  \includegraphics[width=\textwidth]{src/3/figures/boards_architecture.pdf}
   \caption{System architecture}
   \label{fig:system-board-architecture}
 \end{figure}
 
+
 %TODO: Picture?
-
-% Master board
-The master board is mostly a shield for the Kinetis KL25Z microcontroller.
-It provides pin-compatible headers with the KL25Z, an isolated and regulated supply, and the devices required for optical communication.
-The architecture is given in Fig. \ref{fig:system-board-architecture}.
-
-% Slabe board
-The slave board provides two isolated and regulated supplies and devices required for the testchip and the optical communication.
-The architecture is also given in Fig. \ref{fig:system-board-architecture}.
-
-% Optical comm
-The optical communication enables an electrically-isolated communication between the master board and slave board.
-This is done to ensure that no conducted discharge will propagate through the communication channel and protect the master board and host computer.

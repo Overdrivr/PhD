@@ -1,55 +1,47 @@
 \subsection{Test vehicle verification and testing after manufacturing}
 \label{sec:test-vehicle-testing}
 
-The testplan for the testchip is constituted of 7 steps.
-
-\begin{enumerate}
-\item Board supplies
-\item Testchip supplies
-\item Master-slave communication
-\item Near field current measurement
-\item Testchip communication
-\item Monitoring system validation
-\item ESD tests for regulation failure
-\end{enumerate}
-
-For steps 1 and 2, the supplies were simply checked with a voltmeter.
+The testplan for the testchip is constituted of 7 steps, described in Fig. \ref{fig:verif-plan}.
+The verification of the on-board voltage regulation is checked with a voltmeter, to ensure that a regulated 12V is well established.
+The on-chip regulation is checked with a voltmeter and observed with an oscilloscope to validate the behavior.
 All regulators from both boards and inside the testchip were found to operate as expected.
 
-\subsubsection{master-slave communication}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/3/figures/verification_plan.pdf}
+  \caption{Test plan}
+  \label{fig:verif-plan}
+\end{figure}
+
+
+\subsubsection{Optical communication}
 
 % What is this step
-In step 3, the communication between the master board and the slave board is verified.
-The goal is to ensure that signals transit correctly between the microcontroller \gls{io}s and the testchip \gls{io}s.
-The goal is not however to validate that the data is correctly exchanged.
-Only the physical layer is checked.
+The communication between the optical transceiver is verified.
+Both the microcontroller and testchip were disconnected prior to injecting test frames on each transceiver.
+Then, the output of the matching receiver was observed to ensure that the frame was properly transmitted.
+Overall, minor issues were identified and corrected, and the boards were found fonctionnal.
+This validates the physical layer of the communication.
 
-% What is the result
-Overall, minor issues were identified and corrected.
-Some pull-up resistors on the optical diodes were too large, preventing the communication to happen.
-After the resistors were replaced, the optical communication was functional.
+\subsubsection{Master-slave communication}
 
-\subsubsection{Near-field current measurement}
-
-The near-field current sensor is validated by injected a rectangular waveform on the sensed input.
-On the output, a curve close the input waveform's derivative is obtained.
-This result was expected because of the sensor's properties.
-A much more detailed analysis in done in section \ref{sec:on-chip-near-field-process}.
-
-\subsubsection{Testchip communication}
-
-Finally, the integrated communication system is tested.
-Unfortunaley, several issues were found with this system, completely preventing the communication.
+The complete communication is then tested.
+The microcontroller is used to send command frames such as reading requests on configuration data.
+The testchip is supposed to respond each time with some specific data in return.
+Unfortunately, very severe issues were found with this system.
+After extensive debugging and testing, it was concluded that the communication could not work as-is and needed corrections.
+As will be detailed later, the issue did not originally appear in the set of simulations ran during design to validate the entire test vehicle.
+It required complex debugging steps such as parasitic devices extraction from layout to only partially reproduce the issue.
 
 % How is the test done
-The test is conducted by sending the appropriate reading frame multiple times.
-By design, the integrated communication system expects a \textit{clock} signal with a frequency lower than 2MHz, and an \textit{en\_in} signal that must be high for a single rising clock edge.
-With both these criteria met, the communication system should return the data on the \textit{data\_out} pin.
+The test is conducted by sending a reading frame multiple times.
+By design, the integrated communication system expects a \textit{clk} signal with a frequency lower than 2MHz, and an \textit{en1} signal that must be high for a single rising clock edge.
+With both these criteria met, the communication system should return the data on the \textit{data} pin.
 
 % What is expected
 By design, each frame incorporates a few mechanisms to ensure the returned data is correct.
-Any \textit{data\_out} frame must start with binary code 1010 and end with binary code 01.
-The \textit{enable} signal set on input \textit{en\_in} is propagated from one read cell to the next one.
+Any \textit{data} frame must start with binary code 1010 and end with binary code 01.
+The \textit{en1} signal set on the external input is propagated from one read cell to the next one.
 The last cell of the chain is connected to the output pin \textit{en\_out}.
 Confidence in the data is increased if the \textit{enable} signal (a pulse with a width of a single clock period) is observed on \textit{en\_out},
 
@@ -59,7 +51,6 @@ Sometimes, the communication system returns an incomplete frame like in Fig. \re
 In this case, the enable signal is not propagated correctly through the chain.
 The \textit{en\_out} signal (not displayed here) stays low all the time.
 
-%TODO: Add scale to label
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_partial_frame.pdf}
@@ -70,7 +61,6 @@ The \textit{en\_out} signal (not displayed here) stays low all the time.
 In other cases, the chain returns a complete but corrupted frame like in Fig. \ref{fig:read-only-full-frame}.
 The enable is correctly propagated, and is visible on \textit{en\_out}, however the data start pattern is not correct (b'1011 instead of b'1010) and some intermediate digital values are not clearly defined.
 
-%TODO: Add scale to label
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_corrupted_frame.pdf}
@@ -104,4 +94,6 @@ Some reading issues could be reproduced, but this type of coupling is highly unl
 % Multiple bonding diagrams
 A second revision of the testchip is planned.
 Since the investigation on the communication system is unconclusive, it was decided to remove it.
-%TODO: Workaround ?
+Instead, detectors will be directly connected to pads, and most test or validation structure will be removed.
+To overcome the problem of low available pin count, it is possible to put on silicon more pads than the amount of external pins.
+Then, two different bonding diagrams will be made to connect each part of the available pads, to be able to use all detectors.
