@@ -188,18 +188,22 @@ A sudden increase of the leakage current (Fig. \ref{fig:iv-curve-esd-protection}
 
 % Requirements
 To design an efficient \gls{esd} protection, several requirements are to be fullfilled.
+This is called the conception window, illustrated in Fig. \ref{fig:soa-esd-protection}.
 In the absence of a discharge, protections must be transparent to the rest of the device.
+It corresponds to the area in green in Fig. \ref{fig:soa-esd-protection}.
 The protection must trigger above the operating voltage of the circuitry.
 For instance, if an input operates between 0V and 5V, and the protection switches on at 4V, it will trigger during normal operation and be immediately destroyed.
-On the other hand, protections must clamp voltage (by absorbing current) before reaching the maximum voltage tolerated by the silicon technology.
-They are designed to operate between those two boundaries which delimit the \gls{soa} (see Fig. \ref{fig:soa-esd-protection}).
+On the other hand, protections must clamp voltage (by absorbing current) before reaching the maximum voltage tolerated by the silicon gate oxide.
+It corresponds to the red area on Fig. \ref{fig:soa-esd-protection}.
+When absorbing large currents, the protection heats up very high locally.
+If the temperature exceeds the melting of silicon (1414 °C), the protection device gets destroyed through thermal breakdown, corresponding to the area in orange in Fig. \ref{fig:soa-esd-protection}.
 For demanding applications, protections must trigger at a given voltage accurately, independently of manufacturing process, mismatches and temperature variation.
-This reduces the \gls{soa} substantially and makes the design more challenging.
+This reduces the conception window substantially and makes the design more challenging.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/esd_protection_soa.pdf}
-  \caption{Safe-Operating Area of an ESD protection}
+  \includegraphics[width=0.7\textwidth]{src/1/figures/esd_protection_soa.pdf}
+  \caption{Conception window of an ESD protection}
   \label{fig:soa-esd-protection}
 \end{figure}
 
