@@ -3,7 +3,7 @@
 %TODO: Pictures
 % Electronic devices are exposed to ESD, in factories first
 As detailed in the introduction, electrostatic discharges constitute a large threat for electronic devices.
-Failures can occur during manufacturing and or normal operation.
+Failures can occur during manufacturing or normal operation.
 The manipulation of parts by manufacturing machines involves repeated contact and separation.
 Ultimately, triboelectrification and discharges happen and devices can get destroyed.
 Several standards exist to guarantee that devices can survive this manufacturing step.
@@ -54,16 +54,16 @@ Pictures of destroyed devices, obtained with an electronic microscope, are provi
 \end{figure}
 
 
-% Oxyde breakdown
+% Oxide breakdown
 %TODO: Etoffer avec these monnereau
+A first kind of common failure for integrated devices is the oxide breakdown.
+Oxide breakdown happens when an insulating material is exposed to a larger electric field than it can tolerate.
 %TODO: Values
-A first kind of common failure for integrated devices is the oxyde breakdown.
-Oxyde breakdown happens when an insulating material is exposed to a larger electric field than it can tolerate.
 During an \gls{esd}, large voltage variations in a short amount of time result in very large electric fields superior to 1kV/m ?
 For reference, thunder and lightning events have electrical fields in the same order of magnitude.
-Oxyde breakdown is usually discovered in the insulator constituting the gate of a \gls{mos} transistor.
-As technologies shrink, so does transistor gate oxyde thickness (TODO: Citer presentation).
-A thinner gate oxyde can tolerate less electrical field ?
+Oxide breakdown is usually discovered in the insulator constituting the gate of a \gls{mos} transistor.
+As technologies shrink, so does transistor gate oxide thickness.
+%TODO: thinner gate oxide can tolerate less electrical field ?
 After the failure, the gate that is normally insulated from the rest of the device leaks significant amount of current.
 The transistor can no longer operate and is considered destroyed.
 
@@ -74,7 +74,7 @@ It is caused for long discharges that can induce significant and very localized 
 It results in a significant increase of leakage current or apparition of short-circuits.
 
 % Metal melt
-Finally, metal melt is the last kind of failures observed after a discharge.
+Finally, metal melting is the last kind of failures observed after a discharge.
 Inside an integrated circuit, metal tracks are rather resistive because of their form factor.
 Resistivity sits in the range of 10m\textOmega{}/$\Box$ to 100m\textOmega/$\Box$.
 When large currents are flowing, metal tracks and vias dissipate power and heat up.
@@ -87,14 +87,14 @@ Nowadays, a new class of failures appears.
 Instead of studying permanent failures, devices are studied for temporary failures affecting their functionality.
 These are called soft-failures or functional failures.
 \gls{esd} can cause them to happen, with diverse consequences.
-In less severe situations, functionnality of a chip is disturbed just for the duration of the ESD and recovers immediately without noticeable consequence.
+In less severe situations, functionality of a chip is disturbed just for the duration of the ESD and recovers immediately without noticeable consequence.
 The failure remains located inside the integrated circuit and does not impact the application above.
-Sometimes, the discharge is harmful enough to cause a circuit to restart because the \gls{esd} disturbed some critial nets or parameters.
+Sometimes, the discharge is harmful enough to cause a circuit to restart because the \gls{esd} disturbed some critical nets or parameters.
 This is common when supply voltages go out of specification for instance.
-Startups or power-on reset functions understands overvoltage or undervoltage as the signal for a regular power-up sequence.
+Startups or power-on reset functions can interpret overvoltage or undervoltage caused by disturbances as the signal for a regular power-up sequence.
 The device can also perform restarts to try a recovery because proper operations cannot be guaranteed, due to unexpected values on some nets.
 Most microcontrollers for instance monitor supply voltages of digital gates.
-If the voltage is too low, the noise margins of the gates cannot be guaranteed and proper operations either.
+If the voltage is too low, the noise margins of the gates cannot be guaranteed and proper operation either.
 At this point, the microcontroller restarts to try to recover.
 Restarts are slow processes compared to the operation of a chip.
 For critical applications, this delay is highly unwanted because it impacts human safety.
@@ -120,7 +120,7 @@ The most common solution, presented in the next section, is the \gls{esd} protec
 
 % Principle of operation
 \gls{esd} protections deviate discharge current before it reaches sensitive circuitry.
-By offering a low impedance to ground, they clamp input voltages to avoid crossing the maximum accepted levels.
+By offering a low impedance path to ground, they clamp input voltages to avoid crossing the maximum accepted levels.
 Fig. \ref{fig:esd-protection-strategy} gives a simple example of \gls{esd} protection strategy.
 Current is routed into the ground before reaching the core circuitry.
 Protections have very low on-resistance, usually in the order of a few ohms.
@@ -144,7 +144,7 @@ This task was fullfilled by external protections, such as transient voltage supp
 Over the years, design techniques and simulations tools have improved, and more robust integrated protections could be designed.
 On the other hand, equipment manufacturer were always looking for means of reducing the \gls{bom} or the cost of electronic systems.
 This led to a shift of responsabilities toward on-chip \gls{esd} protections for handling system-level stresses.
-The shrink of integrated technologies makes this tasks ever more challenging.
+The shrink of integrated technologies makes this tasks even more challenging.
 External protections are still very relevant, where an integration solution would occupy too much silicon area, or when very harsh requirements are demanded.
 
 %TODO: These Monnereau : SEED Methodology - Collaboration entre protection interne et externe ?
@@ -179,6 +179,7 @@ The \gls{mos} switches on and absorbs current, deviating it into the ground.
 % Comment IV curve
 A few key values are important for describing a protection.
 V\textsubscript{t1} refers to the triggering voltage of the protection.
+%TODO: snap only ?
 I\textsubscript{t1} (snapback devices only ?) corresponds the current absorbed by the protection immediately after triggering.
 V\textsubscript{t2} and I\textsubscript{t2} describe the coordinates where the protection is destroyed.
 A sudden increase of the leakage current (Fig. \ref{fig:iv-curve-esd-protection}) is a good indicator of a damaged protection.
