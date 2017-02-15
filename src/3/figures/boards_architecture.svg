@@ -9,14 +9,44 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="661"
-   height="101.6252"
+   width="372.60001"
+   height="176.00027"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="master_board_architecture.svg">
+   sodipodi:docname="boards_architecture.svg">
   <defs
      id="defs4">
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInM"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5242"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(-0.4,-0.4)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4401"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Sstart">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.2,0,0,0.2,1.2,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4403" />
+    </marker>
     <marker
        inkscape:stockid="Arrow1Sstart"
        orient="auto"
@@ -27,38 +57,6 @@
        inkscape:isstock="true">
       <path
          id="path6816"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         inkscape:connector-curvature="0" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker6578"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Sstart"
-       inkscape:collect="always">
-      <path
-         inkscape:connector-curvature="0"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         id="path6580" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Sstart"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="marker6254"
-       style="overflow:visible"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         id="path6256"
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
          transform="matrix(0.2,0,0,0.2,1.2,0)"
@@ -82,22 +80,6 @@
     <marker
        inkscape:isstock="true"
        style="overflow:visible"
-       id="marker5566"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Sstart"
-       inkscape:collect="always">
-      <path
-         inkscape:connector-curvature="0"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         id="path5568" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
        id="marker5036"
        refX="0"
        refY="0"
@@ -109,54 +91,6 @@
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
          id="path5038" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Sstart"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="marker4790"
-       style="overflow:visible"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         id="path4792"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         inkscape:connector-curvature="0" />
-    </marker>
-    <marker
-       inkscape:isstock="true"
-       style="overflow:visible"
-       id="marker4640"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="Arrow1Sstart"
-       inkscape:collect="always">
-      <path
-         inkscape:connector-curvature="0"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         id="path4642" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Sstart"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="marker5471"
-       style="overflow:visible"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         id="path5473"
-         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
-         transform="matrix(0.2,0,0,0.2,1.2,0)"
-         inkscape:connector-curvature="0" />
     </marker>
     <marker
        inkscape:stockid="Arrow1Mstart"
@@ -378,31 +312,31 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.8157903"
-     inkscape:cx="337.99647"
-     inkscape:cy="-5.6334441"
+     inkscape:cx="154.34752"
+     inkscape:cy="100.18169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:snap-bbox="false"
+     inkscape:snap-bbox="true"
      showguides="false"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1058"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:object-nodes="true"
      inkscape:snap-global="true"
      fit-margin-top="3"
-     fit-margin-right="5"
+     fit-margin-right="1"
      fit-margin-bottom="3"
-     fit-margin-left="5"
+     fit-margin-left="1"
      units="px">
     <inkscape:grid
        type="xygrid"
        id="grid2985"
-       originx="-1409.5001"
-       originy="-5846.6746" />
+       originx="-1528.7"
+       originy="-5812.4997" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -420,7 +354,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-1409.5001,4895.9377)">
+     transform="translate(-1528.7,4936.1379)">
     <text
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
@@ -441,9 +375,9 @@
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5880"
-       width="70"
+       width="60"
        height="45"
-       x="1500"
+       x="1535"
        y="-4857.6377" />
     <rect
        inkscape:export-ydpi="360"
@@ -451,72 +385,39 @@
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5891"
-       width="49.999889"
-       height="25.000355"
-       x="1500"
+       width="60"
+       height="25.000488"
+       x="1535"
        y="-4887.6382" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1440.2948"
-       y="-4872.5596"
-       id="text5911"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="360"
-       inkscape:export-ydpi="360"><tspan
-         sodipodi:role="line"
-         x="1440.2948"
-         y="-4872.5596"
-         id="tspan5915">battery</tspan></text>
-    <path
-       sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5471);marker-end:url(#DotM)"
-       d="m 1772,-4877.6379 -97,0"
-       id="path5469"
-       inkscape:connector-curvature="0" />
-    <rect
-       y="-4887.6377"
-       x="1415.0001"
-       height="25.000355"
-       width="49.999889"
-       id="rect4330"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
-       inkscape:export-xdpi="360"
-       inkscape:export-ydpi="360" />
     <text
        inkscape:export-ydpi="360"
        inkscape:export-xdpi="360"
        sodipodi:linespacing="125%"
        id="text4332"
        y="-4877.8257"
-       x="1524.167"
+       x="1566.6018"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          id="tspan4334"
          y="-4877.8257"
-         x="1524.167"
+         x="1566.6018"
          sodipodi:role="line">Power</tspan><tspan
          y="-4868.4507"
-         x="1524.167"
+         x="1566.6018"
          sodipodi:role="line"
          id="tspan4336">regulators</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1535.0708"
-       y="-4839.6626"
+       x="1565.578"
+       y="-4833.0537"
        id="text4440"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360"><tspan
          sodipodi:role="line"
-         x="1535.0708"
-         y="-4839.6626"
-         id="tspan4448">KL25Z</tspan><tspan
-         sodipodi:role="line"
-         x="1535.0708"
-         y="-4830.2876"
+         x="1565.578"
+         y="-4833.0537"
          id="tspan4456">microcontroller</tspan></text>
     <rect
        inkscape:export-ydpi="360"
@@ -524,32 +425,32 @@
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4458"
-       width="35"
-       height="75"
-       x="1575"
-       y="-4887.6377" />
+       width="25"
+       height="45.000206"
+       x="1600"
+       y="-4857.6377" />
     <text
        inkscape:export-ydpi="360"
        inkscape:export-xdpi="360"
        sodipodi:linespacing="125%"
        id="text4460"
-       y="-4852.1782"
-       x="1593.2134"
+       y="-4837.3364"
+       x="1612.6918"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          id="tspan4464"
-         y="-4852.1782"
-         x="1593.2134"
+         y="-4837.3364"
+         x="1612.6918"
          sodipodi:role="line">level</tspan><tspan
-         y="-4842.8032"
-         x="1593.2134"
+         y="-4827.9614"
+         x="1612.6918"
          sodipodi:role="line"
-         id="tspan4468">shifters</tspan></text>
+         id="tspan4468">shift</tspan></text>
     <rect
        y="-4887.6377"
-       x="1615"
+       x="1630"
        height="75"
-       width="60"
+       width="45"
        id="rect4470"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
@@ -558,7 +459,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1644.1172"
+       x="1651.9056"
        y="-4850.6206"
        id="text4472"
        sodipodi:linespacing="125%"
@@ -566,23 +467,23 @@
        inkscape:export-ydpi="360"><tspan
          id="tspan4476"
          sodipodi:role="line"
-         x="1644.1172"
+         x="1651.9056"
          y="-4850.6206">optical</tspan><tspan
          sodipodi:role="line"
-         x="1644.1172"
+         x="1651.9056"
          y="-4841.2456"
          id="tspan4480">transceivers</tspan></text>
     <rect
        style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.60000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4482"
-       width="190"
-       height="84.999786"
-       x="1490"
+       width="150"
+       height="85.000206"
+       x="1530"
        y="-4892.6377" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1521.8306"
+       x="1651.5077"
        y="-4797.4102"
        id="text4486"
        sodipodi:linespacing="125%"
@@ -590,31 +491,19 @@
        inkscape:export-ydpi="360"><tspan
          id="tspan4490"
          sodipodi:role="line"
-         x="1521.8306"
+         x="1651.5077"
          y="-4797.4102">Master board</tspan></text>
     <path
-       inkscape:connector-curvature="0"
-       id="path4638"
-       d="m 1772,-4867.6379 -97,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4640);marker-end:url(#DotM)"
-       sodipodi:nodetypes="cc" />
-    <path
-       sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4790);marker-end:url(#DotM)"
-       d="m 1772,-4857.6379 -97,0"
+       sodipodi:nodetypes="cccssaccc"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DotM);marker-end:url(#DotM)"
+       d="m 1750,-4852.6379 -37.8042,0 -0.9911,-0.2534 c -5.0576,-0.4976 -9.0089,-4.7631 -9.0089,-9.9515 0,-5.5228 4.4772,-10 10,-10 5.5228,0 9.8892,5.2873 10,10 0.1055,4.4864 -3.9788,9.4836 -9.0617,9.9566 l -1.9383,0.2483 -36.1958,0"
        id="path4788"
        inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path5034"
-       d="m 1683,-4822.6379 97,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5036);marker-end:url(#DotM)"
-       sodipodi:nodetypes="cc" />
     <rect
        y="-4892.6377"
-       x="1775"
+       x="1745"
        height="85"
-       width="210"
+       width="155"
        id="rect5418"
        style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.60000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <text
@@ -623,11 +512,11 @@
        sodipodi:linespacing="125%"
        id="text5420"
        y="-4797.4102"
-       x="1960.1638"
+       x="1770.5697"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          y="-4797.4102"
-         x="1960.1638"
+         x="1770.5697"
          sodipodi:role="line"
          id="tspan5422">Slave board</tspan></text>
     <text
@@ -635,117 +524,40 @@
        inkscape:export-xdpi="360"
        sodipodi:linespacing="125%"
        id="text5424"
-       y="-4837.6128"
-       x="1725.5986"
+       y="-4884.8779"
+       x="1711.5967"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="-4837.6128"
-         x="1725.5986"
+         y="-4884.8779"
+         x="1711.5967"
          sodipodi:role="line"
          id="tspan5426">optical fibers</tspan></text>
     <rect
-       y="-4887.6377"
-       x="1845"
-       height="75"
-       width="35"
-       id="rect5428"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
-       inkscape:export-xdpi="360"
-       inkscape:export-ydpi="360" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1863.2134"
-       y="-4852.1782"
-       id="text5430"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="360"
-       inkscape:export-ydpi="360"><tspan
-         sodipodi:role="line"
-         x="1863.2134"
-         y="-4852.1782"
-         id="tspan5432">level</tspan><tspan
-         id="tspan5434"
-         sodipodi:role="line"
-         x="1863.2134"
-         y="-4842.8032">shifters</tspan></text>
-    <rect
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5436"
-       width="60"
-       height="75"
-       x="1780"
-       y="-4887.6377" />
-    <text
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       sodipodi:linespacing="125%"
-       id="text5438"
-       y="-4850.6206"
-       x="1809.1172"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         y="-4850.6206"
-         x="1809.1172"
-         sodipodi:role="line"
-         id="tspan5440">optical</tspan><tspan
-         id="tspan5442"
-         y="-4841.2456"
-         x="1809.1172"
-         sodipodi:role="line">transceivers</tspan></text>
-    <rect
        y="-4887.6382"
-       x="1930.0001"
-       height="25.000355"
-       width="49.999889"
+       x="1850.0001"
+       height="25.000488"
+       width="44.999878"
        id="rect5474"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360" />
     <text
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       sodipodi:linespacing="125%"
-       id="text5476"
-       y="-4872.5596"
-       x="2040.2949"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         id="tspan5478"
-         y="-4872.5596"
-         x="2040.2949"
-         sodipodi:role="line">battery</tspan></text>
-    <rect
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5480"
-       width="49.999889"
-       height="25.000355"
-       x="2015.0002"
-       y="-4887.6377" />
-    <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1954.1671"
+       x="1870.8628"
        y="-4877.8257"
        id="text5482"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360"><tspan
          sodipodi:role="line"
-         x="1954.1671"
+         x="1870.8628"
          y="-4877.8257"
          id="tspan5484">Power</tspan><tspan
          id="tspan5486"
          sodipodi:role="line"
-         x="1954.1671"
+         x="1870.8628"
          y="-4868.4507">regulators</tspan></text>
     <rect
        inkscape:export-ydpi="360"
@@ -753,9 +565,9 @@
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5488"
-       width="45"
-       height="45.000214"
-       x="1935"
+       width="65"
+       height="45"
+       x="1830"
        y="-4857.6377" />
     <text
        inkscape:export-ydpi="360"
@@ -763,17 +575,17 @@
        sodipodi:linespacing="125%"
        id="text5490"
        y="-4832.9028"
-       x="1956.7496"
+       x="1859.8728"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          y="-4832.9028"
-         x="1956.7496"
+         x="1859.8728"
          sodipodi:role="line"
          id="tspan5494">testchip</tspan></text>
     <rect
-       y="-4857.6377"
-       x="1885"
-       height="45"
+       y="-4887.6377"
+       x="1800"
+       height="25.000206"
        width="45"
        id="rect5498"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -783,101 +595,282 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1908.5177"
-       y="-4838.1348"
+       x="1822.9336"
+       y="-4878.2046"
        id="text5500"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360"><tspan
          sodipodi:role="line"
-         x="1908.5177"
-         y="-4838.1348"
+         x="1822.9336"
+         y="-4878.2046"
          id="tspan5504">test</tspan><tspan
          sodipodi:role="line"
-         x="1908.5177"
-         y="-4828.7598"
+         x="1822.9336"
+         y="-4868.8296"
          id="tspan5508">structures</tspan></text>
     <path
-       inkscape:connector-curvature="0"
-       id="path5564"
-       d="m 1497,-4874.6379 -32,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5566);marker-end:url(#DotM)"
-       sodipodi:nodetypes="cc" />
-    <path
        sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5992);marker-end:url(#DotM)"
-       d="m 1983,-4874.6379 32,0"
-       id="path5990"
-       inkscape:connector-curvature="0" />
-    <text
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       sodipodi:linespacing="125%"
-       id="text6236"
-       y="-4832.5601"
-       x="1440.2948"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         y="-4832.5601"
-         x="1440.2948"
-         sodipodi:role="line"
-         id="tspan6242">computer</tspan></text>
-    <rect
-       inkscape:export-ydpi="360"
-       inkscape:export-xdpi="360"
-       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect6240"
-       width="49.999889"
-       height="25.000355"
-       x="1415.0001"
-       y="-4847.6382" />
-    <path
-       sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6254)"
-       d="m 1497,-4834.6379 -28,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1545,-4812.6379 0,20"
        id="path6252"
        inkscape:connector-curvature="0" />
     <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1595,-4832.6379 5,0"
+       id="path4581"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1625,-4832.6379 5,0"
+       id="path4583"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1565,-4862.6379 0,5"
+       id="path4585"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1595,-4877.6379 35,0"
+       id="path4587"
        inkscape:connector-curvature="0"
-       id="path6576"
-       d="m 1467,-4834.6379 28,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6578)"
        sodipodi:nodetypes="cc" />
+    <g
+       id="g4937"
+       transform="translate(105,-45.000695)">
+      <text
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         sodipodi:linespacing="125%"
+         id="text5911"
+         y="-4862.5596"
+         x="1475.2948"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           id="tspan5915"
+           y="-4862.5596"
+           x="1475.2948"
+           sodipodi:role="line">battery</tspan></text>
+      <rect
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4330"
+         width="49.999889"
+         height="25.000355"
+         x="1450.0001"
+         y="-4877.6377" />
+      <rect
+         y="-4879.6377"
+         x="1455"
+         height="2"
+         width="6"
+         id="rect4727"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4729"
+         width="6"
+         height="2"
+         x="1489"
+         y="-4879.6377" />
+    </g>
+    <g
+       id="g4952"
+       transform="translate(95,50.000282)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="1470.2948"
+         y="-4827.5601"
+         id="text6236"
+         sodipodi:linespacing="125%"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360"><tspan
+           id="tspan6242"
+           sodipodi:role="line"
+           x="1470.2948"
+           y="-4827.5601">computer</tspan></text>
+      <rect
+         y="-4842.6382"
+         x="1445.0001"
+         height="25.000355"
+         width="49.999889"
+         id="rect6240"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <rect
+         inkscape:export-ydpi="360"
+         inkscape:export-xdpi="360"
+         inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4950"
+         width="60"
+         height="4.0002818"
+         x="1440"
+         y="-4817.6382" />
+    </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="2040.2948"
-       y="-4832.5601"
-       id="text6804"
-       sodipodi:linespacing="125%"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:139.99999762%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1553.7102"
+       y="-4799.2661"
+       id="text4964"
+       sodipodi:linespacing="140%"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360"><tspan
-         id="tspan6806"
          sodipodi:role="line"
-         x="2040.2948"
-         y="-4832.5601">computer</tspan></text>
+         x="1553.7102"
+         y="-4799.2661"
+         id="tspan4972">USB</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1540,-4887.6379 0,-45 57,0 0,8"
+       id="path4974"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1563,-4924.6379 0,-3 -18,0 0,40"
+       id="path4990"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
     <rect
-       y="-4847.6382"
-       x="2015.0001"
-       height="25.000355"
-       width="49.999889"
-       id="rect6808"
+       y="-4857.6377"
+       x="1800"
+       height="45.000206"
+       width="25"
+       id="rect6267"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
        inkscape:export-xdpi="360"
        inkscape:export-ydpi="360" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1812.6918"
+       y="-4837.3364"
+       id="text6269"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360"><tspan
+         sodipodi:role="line"
+         x="1812.6918"
+         y="-4837.3364"
+         id="tspan6271">level</tspan><tspan
+         id="tspan6273"
+         sodipodi:role="line"
+         x="1812.6918"
+         y="-4827.9614">shift</tspan></text>
+    <rect
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6275"
+       width="45"
+       height="75"
+       x="1750"
+       y="-4887.6377" />
+    <text
+       inkscape:export-ydpi="360"
+       inkscape:export-xdpi="360"
+       sodipodi:linespacing="125%"
+       id="text6277"
+       y="-4850.6206"
+       x="1771.9056"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="-4850.6206"
+         x="1771.9056"
+         sodipodi:role="line"
+         id="tspan6279">optical</tspan><tspan
+         id="tspan6281"
+         y="-4841.2456"
+         x="1771.9056"
+         sodipodi:role="line">transceivers</tspan></text>
     <path
        inkscape:connector-curvature="0"
-       id="path6810"
-       d="m 2013,-4834.6379 -28,0"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6254)"
-       sodipodi:nodetypes="cc" />
+       id="path6283"
+       d="m 1825,-4832.6379 5,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
-       sodipodi:nodetypes="cc"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker6814)"
-       d="m 1983,-4834.6379 28,0"
-       id="path6812"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1840,-4862.6379 0,5"
+       id="path6285"
        inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1875,-4862.6379 0,5"
+       id="path6287"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1800,-4832.6379 -5,0"
+       id="path6289"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4393"
+       d="m 1750,-4827.6379 -37.8042,0 -0.9911,-0.2534 c -5.0576,-0.4976 -9.0089,-4.7631 -9.0089,-9.9515 0,-5.5228 4.4772,-10 10,-10 5.5228,0 9.8892,5.2873 10,10 0.1055,4.4864 -3.9788,9.4836 -9.0617,9.9566 l -1.9383,0.2483 -36.1958,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DotM);marker-end:url(#DotM)"
+       sodipodi:nodetypes="cccssaccc" />
+    <g
+       transform="translate(375,-45.000695)"
+       id="g4523">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.49998379px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="1475.2948"
+         y="-4862.5596"
+         id="text4525"
+         sodipodi:linespacing="125%"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360"><tspan
+           sodipodi:role="line"
+           x="1475.2948"
+           y="-4862.5596"
+           id="tspan4527">battery</tspan></text>
+      <rect
+         y="-4877.6377"
+         x="1450.0001"
+         height="25.000355"
+         width="49.999889"
+         id="rect4529"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\B48923\Documents\Testchip\01_Proposal\03 rev1.2\05_diagram_ov.png"
+         inkscape:export-xdpi="360"
+         inkscape:export-ydpi="360" />
+      <rect
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4531"
+         width="6"
+         height="2"
+         x="1455"
+         y="-4879.6377" />
+      <rect
+         y="-4879.6377"
+         x="1489"
+         height="2"
+         width="6"
+         id="rect4533"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4535"
+       d="m 1890,-4887.6379 0,-45 -57,0 0,8"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path4537"
+       d="m 1867,-4924.6379 0,-3 18,0 0,40"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>
