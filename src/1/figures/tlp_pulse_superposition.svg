@@ -465,9 +465,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="164.62634"
-     inkscape:cy="20.631724"
+     inkscape:zoom="2"
+     inkscape:cx="172.85899"
+     inkscape:cy="79.886863"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -475,16 +475,16 @@
      fit-margin-right="4"
      fit-margin-bottom="1"
      fit-margin-left="8"
-     inkscape:window-width="1920"
-     inkscape:window-height="1018"
-     inkscape:window-x="1912"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      inkscape:object-nodes="true"
      showguides="false"
      inkscape:snap-bbox-midpoints="true"
-     inkscape:snap-global="true">
+     inkscape:snap-global="false">
     <inkscape:grid
        type="xygrid"
        id="grid4164"
@@ -499,7 +499,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -659,7 +659,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.25000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="593.70477"
+       x="596.20935"
        y="166.70107"
        id="text4395"
        sodipodi:linespacing="125%"
@@ -667,12 +667,12 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"><tspan
          sodipodi:role="line"
-         x="593.70477"
+         x="596.20935"
          y="166.70107"
          id="tspan4919">connection cable</tspan><tspan
          id="tspan4399"
          sodipodi:role="line"
-         x="593.70477"
+         x="596.20935"
          y="174.51357" /></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -769,5 +769,19 @@
        cx="546.23834"
        cy="152.50734"
        r="3" />
+    <text
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\EOS ESD 2015\FirstDraft\fullsetup.png"
+       sodipodi:linespacing="125%"
+       id="text4405"
+       y="160.06816"
+       x="561.06134"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.25000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="160.06816"
+         x="561.06134"
+         sodipodi:role="line"
+         id="tspan4409">relay</tspan></text>
   </g>
 </svg>
