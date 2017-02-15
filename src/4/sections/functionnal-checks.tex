@@ -1,4 +1,4 @@
-\section{Functionnal block checks}
+\section{Functional block checks}
 
 % Interest for ESD simulations
 Powered-on \gls{asic} simulations can be difficult to investigate because of the scale factor.
@@ -8,7 +8,7 @@ Disturbances propagate through the hierarchy, vertically (from top-level down to
 In case of failure, there can be multiple places where a fix could be applied.
 
 % High level view of the new method
-This section details a design method to detect functionnal failures early during the \gls{asic} design phase.
+This section details a design method to detect functional failures early during the \gls{asic} design phase.
 It is a bottom-up method like the one described in \ref{sec:bottom-up-modeling}.
 However, the proposed method focuses on the signals inside the block itself, and not at its boundaries.
 
@@ -154,7 +154,7 @@ Mistakes in testbenches will be easy to detect and understand, for anyone, witho
 
 Also, some blocks require long startup sequence (slow ramp-up), usually regulators that power digital cells.
 Those sequences can take an important simulation time.
-Those long sequences are an issue if a testbench tries to validate some functionnality after startup.
+Those long sequences are an issue if a testbench tries to validate some functionality after startup.
 To overcome this issue, some testbenches immediately put the block into its final DC state (using DC sources instead of ramp-up DC sources).
 The problem with this approach is that in some cases the block will not be properly biased.
 The assertion can help determine whether or not the block is in its final state and properly started.

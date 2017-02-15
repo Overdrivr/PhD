@@ -73,7 +73,7 @@ Goal is to know at the silicon level what individual block was disturbed.
 It is definitely a tool for the IC designers.
 After a block model was constructed, it is possible to propagate from block to block a disturbance in the shape of a rectangular pulse of a given width and amplitude.
 After each block, the disturbance changes, can increase or decrease in amplitude, become longer or shorter.
-Ultimately, this method gives a "bounding box" of the disturbance on the final net, which is often sufficient to detect a functionnal failure.
+Ultimately, this method gives a "bounding box" of the disturbance on the final net, which is often sufficient to detect a functional failure.
 This approach was tested with some success on the same case study than put previously on silicon.
 It is still at its very early days, assumes a lot of simplifications and requires many improvements, however preliminary results tend to show it could actually be usable in a foreseeable future.
 There are several challenges to overcome, in particular identifying the proprer level in the hierarchy to model the blocks.
@@ -96,9 +96,9 @@ It is a complete proposal and has not been tested so far, however the concept se
 The idea is to let analog designers define for their analog function blocks a set of assertions, or checks, that are mandatory for proper operation.
 For instance, the check could be to ensure that a large enough voltage difference is present between the gate of a current mirror and ground.
 It is also possible to add a check to ensure that a ground net never goes above a few hundred millivolts, otherwise it is either the sign that an ESD has induced a ground shift or that this net is simply floating.
-Ultimately, each block could own its set of functionnal assertions, that would be checked by the simulator.
+Ultimately, each block could own its set of functional assertions, that would be checked by the simulator.
 An appropriate tooling for observing the results and failed assertions is of course required, but it would be extremely helpful during power-on esd analysis to find which block was at fault, what block failed the first, understand how a disturbance has propagated inside the circuit and much more.
-This tool could serve during the normal design flow, to guarantee functionnality and immediately detect issues in block interconnections for instance.
+This tool could serve during the normal design flow, to guarantee functionality and immediately detect issues in block interconnections for instance.
 There are no known technology locks that would present this method to be implemented.
 Although not tested due to a lack of time, this tool is proposed and described inside this document because it was imagined from the experience gained with this research, and is believe to yield good and positive results.
 Because of its modular nature (each block gets its own set of assertions), it fits extremely well inside the current IC design flow.
@@ -117,4 +117,4 @@ At the end of this work, most of them remain merely at the prototyping phase.
 We feel that this work provided new axes and research for future research, and that other people can actually takes those tools from a prototype to a production ready tool.
 Improvements to near-field scan processing, improvements of the TLP-HMM and a larger validation of the TLP versus HMM correlation are probably the most simple follow-up work on the topic.
 The bottom-up modelling method, the black-box IC method are still largely at the prototype phase and will require extensive research work before being production-ready.
-Finally, the functionnal block checker, probably the most promising method among all those explored, needs initial work to make a prototype and evaluate the concept.
+Finally, the functional block checker, probably the most promising method among all those explored, needs initial work to make a prototype and evaluate the concept.
