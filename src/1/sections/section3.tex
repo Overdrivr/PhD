@@ -208,18 +208,18 @@ Voltage levels can reach 15kV peak and 30A of current.
 \end{figure}
 
 % How is the pulse generated
-The generation of the ESD pulse is done with a 330\textOmega resistor and 150 pF capacitor discharge network.
+The generation of the ESD pulse is done with a 330\textOmega{} resistor and 150 pF capacitor discharge network.
 The RC network alone though does not suffice to reproduce the waveform.
 Parasitic devices play an important part in shaping the waveform.
 Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model that helps understand the impact of parasitic devices.
 This model was originally written by Chiu \cite{phd-chiu} and is referenced in the PhD thesis of N. Monnereau \cite{phd-monnereau}.
-It adds an R\textsubscript{g}L\textsubscript{g}C\textsubscript{g} network to model the ground return.
-A parasitic capacitance C\textsubscript{i} and series inductance L\textsubscript{i} model imperfections in the direct injection path.
+It adds an RLC network to model the ground return.
+A series parasitic capacitance inductance model imperfections in the direct injection path.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/1/figures/gun_model.pdf}
-  \caption{ESD Gun model}
+  \includegraphics[width=0.6\textwidth]{src/1/figures/gun_model.pdf}
+  \caption{ESD Gun model (from Chiu \cite{phd-chiu})}
   \label{fig:esd-gun-model}
 \end{figure}
 
