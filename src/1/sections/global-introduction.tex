@@ -165,6 +165,10 @@ The first challenge for understanding soft-failures at silicon-level is to deter
 Between the injection point of a stress and the disturbed circuit, many devices are connected such as cables, discrete devices, etc.
 Each element interacts with the discharge, absorbs a part of its current or changes the waveform.
 A model library of common electrical elements found in \gls{esd} testing environment has been constructed and is detailed.
+The modelling method is applied to a complex pulse generator, and yields a highly accurate model.
+Finally, a new test generator was developed to overcome some issues met during the debug of silicon-level failures using system level \gls{esd} testers \cite{iec61000-4-2, iso10605}.
+The principle of operation and architecture of the generator is described.
+It produces the same compliant waveform than those standards, but with some interesting advantages for use during investigation.
 
 %
 A case of soft-failure in an integrated circuit is explained in chapter \ref{chap:3}.
@@ -186,13 +190,4 @@ The core research of this work focuses on proposing new analysis methods and too
 It is detailled in chapter \ref{sec:methods-operating-esd-analysis}.
 
 %
-Finally, a new test generator was developed to overcome some issues found when debugging silicon-level failures caused by system level \gls{esd} testers.
-The principle of operation and architecture of the generator is described in chapter \ref{sec:tlp-hmm}.
-The conclusion summarizes the work achieved during the PhD, highlights the most notable discoveries, and identifies follow-up work and research topics that could be worth pursuing.
-Some part of the research work also focused towards \gls{esd} testers.
-System-level \gls{esd} guns \cite{iec61000-4-2, iso10605} constitute a major testing and qualification tool, but bring too much complexity during silicon-level investigation.
-To overcome this issue, a new stress generator based on a \gls{tlp} is proposed in chapter \ref{sec:tlp-hmm}.
-It produces the same compliant waveform than those standards, but with some interesting advantages for use during investigation.
-
-%
-Final conclusions and potential following work are detailed in chapter \ref{sec:final-conclusion}.
+The conclusion in chapter \ref{sec:final-conclusion} summarizes the work achieved during the PhD, highlights the most notable discoveries, and identifies follow-up work and research topics that could be worth pursuing.
