@@ -222,11 +222,11 @@ Simulated period is often wrong compared to what is mathematically expected.
 Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation times.
 To simulate a 100 ns TLP with a 100 ps risetime using the distributed model, it would require unit elements with a of 10ps.
 10000 elements would be required to model the line, which is rather important and increases simulation time.
-And even with 10000 elements, resolution is still to larg to obtain a clean risetime \ref{fig:lines-simulations}.
+Even with 10000 elements the resolution is still too small to obtain a clean risetime \ref{fig:lines-simulations}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.7\textwidth]{src/2/figures/tline_comparison.png}
+  \includegraphics[width=\textwidth]{src/2/figures/tline_comparison.png}
   \caption{Lumped versus two-port models comparison in simulation}
   \label{fig:lines-simulations}
 \end{figure}
@@ -299,8 +299,8 @@ In conclusion, the values for parasitic inductor and resistor can be computed ve
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/capa_hf_response.png}
-  \caption{Frequency response of a 6.8nF capacitor}
+  \includegraphics[width=\textwidth]{src/2/figures/capa_hf_response.png}
+  \caption{Magnitude and phase frequency response of a 6.8nF capacitor}
   \label{fig:frequency-response-capa}
 \end{figure}
 
@@ -349,8 +349,8 @@ However, experimented TCAD designers with sufficient know-how are capable of per
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/esd_protection_tcad_model.png}
-  \caption{2D and 3D mesh representations of ESD protections for TCAD simulation}
+  \includegraphics[width=0.5\textwidth]{src/2/figures/tcad_process.png}
+  \caption{3D mesh representation of TCAD model (Credit: M Johnson and Wikipedia \cite{tcad-process})}
   \label{fig:esd-protection-tcad-model}
 \end{figure}
 
@@ -370,7 +370,7 @@ To each state of the machine is associated a slope value on the I(V) curve respo
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/2/figures/iv_state_machine.png}
+  \includegraphics[width=0.7\textwidth]{src/2/figures/iv_state_machine.pdf}
   \caption{ESD protection state machine and corresponding I(V) curve}
   \label{fig:esd-protection-state-machine}
 \end{figure}
