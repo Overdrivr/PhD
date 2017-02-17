@@ -116,12 +116,10 @@ In regard of those challenges, new analysis and prediction methods are required 
   \label{fig:esd-failures}
 \end{figure}
 
-%TODO: Explain the cost of fixing an issue early vs lately ?
-%TODO: refs
 % Comment predire ces defaillances fonctionnelles
-First research on the topic was published by F. Caignet and N. Lacrampe in 2007 \cite{}.
+A first article on the topic was published by N. Lacrampe in 2007 \cite{LacrampeTransientImmunity}.
 After a few years, the industry widely acknowledged the problem, reinforced by the current automotive trends.
-A large amount of research at the system level was published in EOS/ESD symposia 2012 \cite{} and 2013 \cite{}.
+A large amount of research at the system level was published in EOS/ESD symposia 2012 \cite{soft-error-esd-1,SDRAMCase,mixedModeESDSims} and 2013 \cite{softFailSubsystem, powered-tlp-soft-fail}.
 The draft standard IEC 62433-6 aims to provide a base framework for soft-failures analysis and prediction.
 So far, the litterature is focused on system-level analysis.
 There is currently no real work at the component level or studies performed inside the design of an integrated circuit.
@@ -139,9 +137,10 @@ The laboratory tests manufactured parts and runs investigations in case of failu
 The \gls{esd} and \gls{emc} team has the particularity to interact will all teams because issues and solutions can be found in any step of the design flow.
 Overall, the integrated circuits are designed hierarchically and the flow is a bottom-up process.
 Fundamental bricks are assembled together in rising complexity to create the required functions.
-The main source of delay in this process is the long delay for the feedback due to the manufacturing.
-Designs are put on silicon but the parts are tested only after manufacturing, which can occur several months later.
+The main source of delay in this process is the manufacturing time which can be of several months.
+Designs are put on silicon but the parts are tested only after manufacturing, several months later.
 To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
+Each additionnal manufacturing is very expensive, and increases further the development time of the product.
 This is why any simulation tool able to predict early any kind of failure (and functional failures among them) is very valuable for silicon design companies.
 
 \begin{figure}[!h]
