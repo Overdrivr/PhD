@@ -1,0 +1,56 @@
+% Electronic schematics are composed of transistor models
+Conception flow of integrated circuits is based on electronic schematics that describe the circuit using symbolic view
+This view is then converted into a netlist composed of all components inside the circuit and connections between them.
+At silicon-level, the components are mostly capacitors, resistors, and transistor devices.
+Those components are all described by their individual model.
+Those models are a mathematical or algorithmic representation of the behavior of a device.
+In electronics, it links current and voltages between the different terminals of the device.
+
+% Circuits are complex which raises all kinds of problems
+In the automotive field, ASICs used in ECUs are very complex.
+They must communicate with external sensors, process and interpret the data, then apply commands on other external devices.
+It is a lot of functionnality to pack into the integrated circuit.
+In return, schematics are very complex and dense.
+Simulating ESD injection into the circuit is a top cell simulation where the simulator must solve voltage and current in all circuit nodes, while dealing with very fast and large amplitude ESD signals.
+It raises big convergence issues, that can prevent the simulation to complete.
+When the simulation does complete, simulation time can be very important, preventing fast feedback, iteration, and investigation.
+All those issues increase a lot the investigation time, because ultimately the goal is to debug the circuit functionnality when exposed to electrical fast transients.
+
+% What is not taken into account in those transistor level models
+Also, those models and schematic are not perfect and do not take everything into account.
+Parasitic devices can be extracted from the layout, but require a layout which often is not designed until the end of the conception flow.
+Also, extraction is a time consuming and complex task, that takes quite some time to be computed.
+Finally, some phenomena such as substrate coupling are simply not reproduced and need special tooling for simulating them.
+
+% Talk about SEED and why it is a main driver for this chapter
+SEED methodology
+Big trend in the ESD field (Industry council)
+Recommends to size ESD protection with a collaboration between on-chip and system-level.
+Result of the shift of responsabilities on holding system-level specs at silicon level.
+It is not smart from a cost point of view.
+Goal of SEED is to provide the most efficient and cost-effective solution.
+A combination of protecting at system level and at silicon level.
+SEED applies so far to hard-failure.
+Ultimately, this trend will apply to soft-failure as well once the topic starts to be more mastered by the community.
+Problem nowadays is that there is no models of analog IC core functions that can be freely distributed.
+Distributing the transistor-level schematic is not conceivable.
+Reveal the conception detail
+
+% Black box model is a solution
+Black box models are a nice solution to the issues and limitations described previously.
+They only reproduce the behavior of the device from an external point of view, without knowing intrinsic details.
+Because they abstract all the inner complexity, and are much simpler, they help drastically reducing simulation time of transistor-level schematics.
+The also hide the inner functionnality and conception details.
+They can be distributed freely without revealing intellectual property.
+
+%TODO: Talk about design flow
+%TODO: Talk about bottom-up top down
+
+% What is done in this chapter
+In this chapter, three different kinds of modelling approaches at the integrated circuit level are explored.
+A bottom-up modelling method is presented first.
+It focuses on modelling mathematically interaction between an input and an output of invidual block functions inside the chip.
+Those individual blocks can then be chained together to deduce the behavior of the complete functionnality against a transient disturbance, using a much simpler model than the transistor-level schematic.
+A similar method is applied to a complete IC function.
+The goal is a bit different because the goal is to simulate electrically an IC function with a black box model.
+A characterization approach is presented, and current limitations are highlighted.
