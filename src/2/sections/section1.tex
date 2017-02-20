@@ -185,6 +185,7 @@ An example implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 
 % Compare both models to know which one is preferrable
 Simulations are ran to compare both models.
+The expected theoretical response is a perfectly rectangular waveform measured at the load, because the transmission line is ideal and the load purely resistive.
 The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of 1 ps into a load through the modelled transmission line.
 Different load values are employed to observe the performance and accuracy of each model.
 The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
@@ -212,7 +213,7 @@ simulation time  &  15 ms        & 170 ms     &  7.5 s     &   135 s    \\
 increase ratio   &  -            & x10        &  x44       &   x18      \\
 \bottomrule
 \end{tabular}
-\caption{Impact of the amount of unit elements on the simulation times}
+\caption{Impact of the amount of unit elements on the simulation times (the 2 port model has a constant simulation time of about 20 ms)}
 \label{tab:tline-impact-simulation-time}
 \end{table}
 
@@ -227,7 +228,7 @@ Even with 10000 elements the resolution is still too small to obtain a clean ris
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tline_comparison.png}
-  \caption{Lumped versus two-port models comparison in simulation}
+  \caption{Lumped versus two-port models comparison in simulation (charging voltage 1V)}
   \label{fig:lines-simulations}
 \end{figure}
 
@@ -432,17 +433,10 @@ Using this method, it is possible to build accurate common-mode filter models su
 %TODO
 % Description and function
 Ferrite bead are passive filtering devices, often found in \lgs{ic} decoupling networks.
-They remove high-frequency noise in supply lines, which is why they are very often met on power cables for consumer equipments such as laptop supplies for instance (see \ref{fig:ferrite-bead}).
+They remove high-frequency noise in supply lines, which is why they are very often met on power cables for consumer equipments such as laptop supplies for instance.
 They behave as a second-order low-pass filter.
 In the ESD field, multiple filtering strategies with second and third order filters involving ferrites were studied in \cite{filter-strategies-esd}.
 Some configurations claimed a very positive impact on the latchup immunity of the chip under test.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{src/2/figures/ferrite.jpg}
-  \caption{Picture of a ferrite bead}
-  \label{fig:ferrite-bead}
-\end{figure}
 
 \begin{figure}[!h]
   \centering

@@ -209,9 +209,11 @@ This is done by dividing each complex value of the measurement by the complex va
 Finally, the inverse \gls{fft} of the compensated data is calculated to bring back the waveform into the time-domain.
 The resulting waveform is compared to the original and the integration method in Fig. \ref{fig:freq-domain-reconstructed}.
 Overall, the results are similar between the time-domain and frequency-domain reconstitutions.
-The frequency domain seems to have more dynamic behavior, because it looks like it is reproducing rising and falling edges better.
-However, they have both large errors after the pulse and fail to reproduce the reflected wave.
+The frequency domain seems reproduce better the rising and falling edges better.
+The measurement has two short steps at the beginning and the end of the pulse, because it is performed with \gls{tdr}.
+It was expected that those steps would not show up on the reconsistuted waveform that should be perfectly rectangular.
 There is a lot of room for improvement for each method, such as increasing the measurement frequency, and using techniques like zero-padding before performing \gls{fft} and taking dissipated power into account.
+Those improvements will be evaluated and implemented as follow-up work.
 
 \begin{figure}[!h]
   \centering

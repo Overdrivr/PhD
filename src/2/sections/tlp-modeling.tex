@@ -63,11 +63,14 @@ The top path provides a series resistance that limits the discharge current.
 
 % Detail a first comparison with 25 ohms
 A first comparison between measurement and simulation is given in Fig. \ref{fig:comparison-tlp-load}.
-With a 25\textOmega{} resistor and a charging voltage of 500V, 4.5A (I\textsubscript{TLP}) of current and 125mV (V\textsubscript{TLP}) are recorded.
+With a 25\textOmega{} resistor and a charging voltage of 500V, a current of 4.5A (I\textsubscript{TLP}) and a voltage of 125mV (V\textsubscript{TLP}) are recorded.
 The ratio of V\textsubscript{TLP}/I\textsubscript{TLP} between 40 ns to 100 ns is equal to 25\textOmega{} as expected.
+The small difference in the second step is due to a small mismatch between the defined charging voltage on the actual TLP bench and the value really applied onto the line.
+It can be easily corrected in simulation by adding a small offset to the charging voltage.
 Until 220 ns, both curves match closely.
-After this time, some differences appear due to the bouncing back and forth of the pulse inside the system, and the accumulation of model errors.
-However, most ESD investigations focus on the main part of the discharge under 120 ns.
+After this time, some differences appear due to small modelling errors.
+Because of the reflected waves, the errors accumulate and become significant, but only after the main part of the pulse.
+Indeed, most ESD investigations focus on the part of the discharge under 120 ns which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
 
 \begin{figure}[!h]
   \centering

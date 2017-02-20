@@ -11,25 +11,8 @@ Study cases, observation methods and modeling approaches are presented.
 
 \subsection{Case studies}
 
-% Case 1 - NXP bandgap + substrate coupling
-K. Abouda details in \cite{softfailEMCIC} a case of soft-failure on an integrated automotive regulator \gls{ic}.
-The failure signature is a loss of the regulated voltage when exposed to \gls{bci} ISO11452-4 \cite{iso11452}.
-The test setup is provided in Fig. \ref{fig:bci-setup}.
-The product is investigated manually, by searching inside the design for coupling and propagation paths, and performing multiple simulations.
-Eventually, it was proven that a residue of the disturbance was coupling through the substrate on a current mirror inside the bandgap reference.
-During the disturbance, bandgap voltage was shifting from its nominal value.
-After some delay, the bandgap output was reaching an undervoltage threshold, causing the entire system to restart.
-To avoid it, a design fix was proposed by filtering at the appropriate spot inside the design to avoid the amplification of the disturbance.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/1/figures/bci_setup.pdf}
-  \caption{Bulk Current Injection setup}
-  \label{fig:bci-setup}
-\end{figure}
-
 % Case 2 - CESAME IC - paper Vrignon + Ben dhia
-N. Lacrampe presents another failure case in \cite{LacrampeTransientImmunity}.
+N. Lacrampe presents a functional failure case in \cite{LacrampeTransientImmunity}.
 Very-fast \gls{tlp} is injected on an 0.18 \textmu{}m CMOS technology (1.8 V supply voltage) testchip.
 The chip contains 6 instances on the same logic core, differing only by their power-rails architecture.
 The injection on power rails is performed using a \gls{dc} block 1 nF capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
@@ -91,6 +74,32 @@ After the failure location was determined, RC-networks are used as countermeasur
   \caption{ESD Current Distribution on Mobile Phone and Backside sub-battery pack at (a) 1.0 ns and (b) 1.8 ns (Credit: \cite{softFailMobile})}
   \label{fig:mobile-phone-3d-em}
 \end{figure}
+
+% Case 1 - NXP bandgap + substrate coupling
+K. Abouda details in \cite{softfailEMCIC} a case of soft-failure on an integrated automotive regulator \gls{ic}.
+The failure signature is a loss of the regulated voltage when exposed to \gls{bci} ISO11452-4 \cite{iso11452}.
+The test setup is provided in Fig. \ref{fig:bci-setup}.
+The product is investigated manually, by searching inside the design for coupling and propagation paths, and performing multiple simulations.
+Eventually, it was proven that a residue of the disturbance was coupling through the substrate on a current mirror inside the bandgap reference.
+During the disturbance, bandgap voltage was shifting from its nominal value.
+After some delay, the bandgap output was reaching an undervoltage threshold, causing the entire system to restart.
+To avoid it, a design fix was proposed by filtering at the appropriate spot inside the design to avoid the amplification of the disturbance.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/bci_setup.pdf}
+  \caption{Bulk Current Injection setup}
+  \label{fig:bci-setup}
+\end{figure}
+
+% Summary
+In summary of the case studies, multiple soft-failures of integrated circuits were studied.
+They involved core CMOS logic, SDRAM memories, video processors or multimedia devices failing to work temporarily, detected by raising a flag, display issues and communication errors.
+Overall, it was demonstrated that it remains highly difficult to identify the root cause of the failure, especially without access to the design of the chip.
+A multitude of tools has been employed throughout the studies, such as near-field injection and scan, modified TEM cells, SPICE and electromagnetic simulations and modelling languages such as VHDL-AMS.
+Ultimately, it seems that access to the silicon design is essential to debug the problem and fix, as was shown successfully in \cite{softfailEMCIC}.
+All these conclusions call for new investigation methods at silicon level, and modelling method for enabling system level simulations without disclosing intellectual property.
+The new methods and tools presented in this document aim to solve exactly this kind of issues. 
 
 \subsection{Observation methods}
 
