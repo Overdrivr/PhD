@@ -6,31 +6,38 @@
 \label{sec:block-failure-cz}
 
 % What is bottom up
-In any bottom-up approach, the study focuses first on the small-scale components of a system.
-They are characterized individually, and a model is derived for each component.
-Afterwards, these models are assembled together to match the full system architecture.
-The main idea of a bottom-up approach is that a system is the sum of its parts.
-Ultimately, we study if the robustness of a system can be assimilated as the sum of the robustness of its parts.
-%TODO: Detail more
-
-% Applicability to IC design
-This approach fits well with the \gls{asic} design flow in general.
-At some point in the design flow, the architecture of the integrated circuit is decided.
-Then, each top-level function is split recursively into unit functions to be designed, to simplify the problem.
-This part is rather a divide-and-conquer method, where a complex problem is split up into multiple simpler tasks.
-
-Then, the design phase starts. It is a bottom-up method.
-Transistors are assembled together to perform (usually one) unit function into what is called a \gls{block}.
-Those blocks are then assembled together to build the more complex and interesting functionalities.
+The modelling method presented in this section is classified as bottom-up, just like the design phase described previously.
+It focuses first on studying individually the bottom cells of the circuit.
+They are characterized individually, leading to the definition of a failure model for each cell.
+In a second step, the individual models are linked together.
+The connection between the models reproduce the connections between the cells in the actual circuit.
+Finally, an electrical stimulii such as an electrostatic discharge is fed on the input of the first model.
+It is applied on this model that produces an output stimulii.
+This output stimulii is fed to the second model in the chain which is using it as input.
+The process is repeated until the last output, where the stimulii gives the shape of the disturbance of the complete function.
 
 % Why bottom up
-The main perk of this characterization method is the inherent modularity.
-The objective is to study each block independently of the others.
-This way, the model built for each block is reusable.
-A characterized block can be reused multiple times without having to do the characterization again each time.
+The main perk of this characterization method is the modularity, because each block is characterized independently of the others.
+The model built for each cell is reusable, and once the characterization is done it does not need to be repeated unless modifications are brought to the circuit.
+
+% Models are not electrical but failure models
+The goal of this method is to build a propagation model and not an electrical \gls{spice} model.
+The models built here are not usable directly in standard simulations and does not produce strict waveforms on their ouputs.
+Instead, they represent input and output waveforms by bounding boxes of a given amplitude and width.
+The methodology is built on the hypothesis that simplified \gls{esd} waveforms could be sufficient to estimate the robustness of an integrated function.
+This hypothesis is tested as detailed later in the document.
+
+% Describe the changes
+Several refinements of the modelling methods were applied to solve issues as they were encountered.
+This chapter gives a logical history of those improvements in order to understand the starting phase and the modifications applied after.
+Initially, Wunsch and Bell characterization \cite{wunsch-bell} is used to determine failure levels of individual cells when exposed to stresses of different width and amplitude.
+A single failure criteria was preliminary established for each model.
+It usually took the form of a voltage threshold applied on the output of a cell, above which a fault is recorded.
+This treshold is set prior to the simulation, and there is no general rule for setting it.
+The \gls{dc} specification of the output can be used directly, if it exists, or a sound value in regard of the design, or an arbitrary level.
 
 % How is it done, core concept
-The method described in this section starts by characterizing each block in a particular setup.
+The first part of the modelling method is the characterization of each block in a particular setup.
 This setup provides appropriate biasing to the block, in order to set it in normal operating conditions.
 This setup is also in charge of injecting the characterization signal on the tested input, and monitoring of the output under test.
 Fig. \ref{block_function_cz} gives an example of such a characterization setup for a supply input.
@@ -49,8 +56,6 @@ The characterization signal is a square waveform, applied on the tested input.
 A set of simulations is ran with this setup.
 Each simulation runs with a different pair of values for the \textbf{amplitude} and \textbf{duration} of the square signal.
 Table \ref{parameterized-simulations} illustrates this simulation process.
-%TODO Ref
-This testing method was invented by Wunsch and Bell
 
 \begin{table}[!h]
 \centering
@@ -77,18 +82,10 @@ In the time domain, this set of simulations is illustrated in Fig. \ref{set_inpu
 
 % What is the direct result of the characterization, how to obtain it
 For each simulation, the waveform of the output under test is recorded.
-The waveform is compared against a threshold.
-This threshold can also be seen as failure criteria of the studied function.
-%TODO: Donner un example : If we consider the pre-reg block, the failure criteria will be ...
-
-This treshold is set prior to the simulation.
-There is no general rule for setting it.
-The \gls{dc} specification of the output can be used directly, if it exists, or a sound value in regard of the design, or an arbitrary level.
-
-If the waveform goes above (maximum threshold) or below (minimum threshold), the simulation is marked as \textit{fail}.
+The waveform is compared against two voltage thresholds constituting the failure criteria.
+If the waveform goes above the maximum threshold or below the minimum threshold, the simulation is marked as \textit{fail}.
 For each simulation, the duration during which the failure criteria was violated is also recorded.
 Once all simulations are complete, it is known which ones contain a \textit{fail}.
-
 The results are summarized into table \ref{simulation-results}.
 
 \begin{table}[!h]
