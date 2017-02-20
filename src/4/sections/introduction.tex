@@ -17,6 +17,8 @@ To organize the design, a hierarchy is set in place, similar to a tree.
 The top-level cell has child cells themselves having child cells, until root cells composed of transistors, passive devices, etc.
 The design phase usually starts from the bottom, where basic blocks are designed with library devices, then blocks are connected together in rising complexity up to the top.
 For that reason, the design phase is usually called bottom-up.
+After the design phase, all the schematic views are converted and drawn into a layout view.
+The layout view represents the set of masks and layers that will be used during manufacturing to build the circuit.
 
 % Complex simulations too
 Simulating the injection of an ESD into the circuit is rather challenging, because the simulator must solve voltage and current in all circuit nodes, while dealing with very fast and large amplitude ESD signals.
