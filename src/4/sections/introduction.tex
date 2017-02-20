@@ -1,20 +1,29 @@
 % Electronic schematics are composed of transistor models
-Conception flow of integrated circuits is based on electronic schematics that describe the circuit using symbolic view
-This view is then converted into a netlist composed of all components inside the circuit and connections between them.
-At silicon-level, the components are mostly capacitors, resistors, and transistor devices.
-Those components are all described by their individual model.
-Those models are a mathematical or algorithmic representation of the behavior of a device.
-In electronics, it links current and voltages between the different terminals of the device.
+The conception flow of integrated circuits is based on electronic schematics.
+Those schematics are converted into a netlist composed of all components inside the circuit and connections between them.
+At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
+Each element is described by a model, which is a mathematical representation of their behavior.
+In electronics, models usually link current and voltages between the different terminals of the device, and can accept external parameters such as temperature.
+With a knowledge of the netlist and the models, the simulator knows the stimulii, the devices and the connections inside the circuit.
+It is able to simulate its behavior, allowing for validation of the functionnality very early in the design phase.
+As detailled in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
 
-% Circuits are complex which raises all kinds of problems
-In the automotive field, ASICs used in ECUs are very complex.
+% Circuits are complex hierarchies
+In the automotive field, \gls{asic}s used in electronic modules are very complex.
 They must communicate with external sensors, process and interpret the data, then apply commands on other external devices.
 It is a lot of functionnality to pack into the integrated circuit.
 In return, schematics are very complex and dense.
-Simulating ESD injection into the circuit is a top cell simulation where the simulator must solve voltage and current in all circuit nodes, while dealing with very fast and large amplitude ESD signals.
+To organize the design, a hierarchy is set in place, similar to a tree.
+The top-level cell has child cells themselves having child cells, until root cells composed of transistors, passive devices, etc.
+The design phase usually starts from the bottom, where basic blocks are designed with library devices, then blocks are connected together in rising complexity up to the top.
+For that reason, the design phase is usually called bottom-up.
+
+% Complex simulations too
+Simulating the injection of an ESD into the circuit is rather challenging, because the simulator must solve voltage and current in all circuit nodes, while dealing with very fast and large amplitude ESD signals.
 It raises big convergence issues, that can prevent the simulation to complete.
-When the simulation does complete, simulation time can be very important, preventing fast feedback, iteration, and investigation.
-All those issues increase a lot the investigation time, because ultimately the goal is to debug the circuit functionnality when exposed to electrical fast transients.
+When the simulation does complete, simulation time can be very important.
+To successfully debug a circuit, it takes multiples iterations and design tweaks to reach the desired goal.
+Therefore, the investigation time can be rather large.
 
 % What is not taken into account in those transistor level models
 Also, those models and schematic are not perfect and do not take everything into account.
@@ -23,28 +32,20 @@ Also, extraction is a time consuming and complex task, that takes quite some tim
 Finally, some phenomena such as substrate coupling are simply not reproduced and need special tooling for simulating them.
 
 % Talk about SEED and why it is a main driver for this chapter
-SEED methodology
-Big trend in the ESD field (Industry council)
-Recommends to size ESD protection with a collaboration between on-chip and system-level.
-Result of the shift of responsabilities on holding system-level specs at silicon level.
-It is not smart from a cost point of view.
-Goal of SEED is to provide the most efficient and cost-effective solution.
-A combination of protecting at system level and at silicon level.
-SEED applies so far to hard-failure.
-Ultimately, this trend will apply to soft-failure as well once the topic starts to be more mastered by the community.
-Problem nowadays is that there is no models of analog IC core functions that can be freely distributed.
-Distributing the transistor-level schematic is not conceivable.
-Reveal the conception detail
+The \gls{seed} methodology is a novel approach for efficiently designing ESD robust applications.
+It is a significant trend in the ESD field supported by the Industry Council \cite{seed}.
+This methodology recommends a collaboration the chip and the system to handle the \gls{esd} robustness.
+The goal of this method is to provide the most efficient and cost-effective solution for designing products, with a combination of protections at the system level and at silicon level.
+So far, \gls{seed} applies to hard-failure.
+It is believed that this trend will also apply to soft-failure once the topic starts to be more experienced by the community.
+The major lock nowadays is the lack analog IC function models that can be freely distributed, and that would allow equipment manufacturers to perform complete ESD simulations with the integrated circuit model.
 
 % Black box model is a solution
-Black box models are a nice solution to the issues and limitations described previously.
+Black box models are a potential solution to the issues and limitations described previously.
 They only reproduce the behavior of the device from an external point of view, without knowing intrinsic details.
 Because they abstract all the inner complexity, and are much simpler, they help drastically reducing simulation time of transistor-level schematics.
 The also hide the inner functionnality and conception details.
 They can be distributed freely without revealing intellectual property.
-
-%TODO: Talk about design flow
-%TODO: Talk about bottom-up top down
 
 % What is done in this chapter
 In this chapter, three different kinds of modelling approaches at the integrated circuit level are explored.
