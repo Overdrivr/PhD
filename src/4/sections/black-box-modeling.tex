@@ -23,7 +23,7 @@ Then, it transfer that information to the output port model, that changes behavi
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.6\textwidth]{src/4/figures/black_box_model_principle.pdf}
+  \includegraphics[width=0.65\textwidth]{src/4/figures/black_box_model_principle.pdf}
   \caption{Black-box model principle}
   \label{fig:black-box-principle}
 \end{figure}
@@ -39,30 +39,84 @@ This characterization is based on the hypothesis that the quasi-static I(V) curv
 It will be demonstrated afterward that this hypothesis is not completely true and an alternative approach is required for the output pin.
 This I(V) curve is converted in an electrical model using a piecewise-linear curve described in Verilog-A modelling language.
 Finally, once the two electrical models and the failure model have been constructed, it can be possible to join all the parts together to build the complete IC model.
+
+% Detail the particular simulation process
+%TODO
+The process to simulate an entire board following SEED is the following
+A SPICE simulation with the input port model is ran
+After the simulation, the input curve is analysed to see if an failure will occurr on the output.
+Then, a second simulation is ran with the output setup this time.
+If the failure was detected in the first, the info is passed to the output model that generates a fake failure ressembling the one measured.
+At the end of this process, a board simulation could be ran to simulate the behavior of the IC.
+It is not as straightforward as a single simulation but it can already achieve the SEED goal.
+
 The concept was not tested entirely in simulation because of some issues discovered late, but using a particular setup it is possible to build it as follow-up work.
 The next part of this chapter details further the modelling approach and all the issues met during the developpement as well as possible improvements.
+% END TODO
+
+% What is the case study
+To validate the concept, the characterization is performed on the integrated primary supply studied earlier (see Chapter \ref{sec:supply-desc}).
+The input pin is called $V_{batt}$ and accepts the battery supply voltage.
+The output pin is called $V_{2p5}$ and is supposed to deliver a 2.5V regulated supply.
+Fig. \ref{fig:black-box-applied} summarize the model configuration with those pins and function.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{src/4/figures/black_box_model_applied.pdf}
+  \caption{Black-box model applied to the primary regulation function}
+  \label{fig:black-box-applied}
+\end{figure}
+
 
 \subsection{Function failure model}
 
-% How is the characterization conducted
-Once again, a variable width/variable amplitude rectangular pulses are applied on an input pin.
-The output pin is then observed to detect for which input parameters it is going out of specification.
+% First the function failure is characterized
+As previously detailled, the primary regulation function failure is characterized first.
+This is done by applying a set of variable width and variable amplitude rectangular pulses on the input pin, while monitoring the behavior of the output pin.
+In case of significant variations of behavior, a failure is recorded.
+The characterization yields a lookup table (see Table \ref{tab:cz-failure}) that associates to an input width and an input amplitude a flag representing the presence or absence of a failure.
 
-% What is characterized
-This characterization is performed on the testchip, on the complete regulation function.
+\begin{table}[!h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+input width (ns) & input amplitude (V) & Failure   \\ \midrule
+10               & 1                   & No        \\
+10               & 2                   & No        \\
+etc.             & ...                 & ...       \\
+100              & 1                   & No        \\
+etc.             & ...                 & ...       \\
+1000             & 10                  & Yes       \\
+etc.             & ...                 & ... \\ \bottomrule
+\end{tabular}
+\caption{Example of resulting table of failure characterization}
+\label{tab:cz-failure}
+\end{table}
+
+% How is the characterization conducted and with which values
 The characterization pulses are injected on the $V_{batt}$ input.
-The output pin is $V_{2p5}$, the regulated supply.
-It is supposed to deliver a 2.5V regulated supply.
-The failure criteria is set at a voltage below 2.1V.
-It corresponds to a level below which digital cells powered by this supply will have noise margins too small for proper operation.
+If a voltage below 2.1V is detected on $V_{2p5}$, a failure is recorded.
+This voltage threshold is the failure criteria.
+This value was chosen because it corresponds to a level below which digital cells powered by this supply will have noise margins too small for proper operation.
+The input stress amplitude range is from -50 V to -500 V.
+The input stress width is comprised between 1 ns and 1000 ns.
+The characterization setup is given in Fig. \ref{fig:cz-black-box-setup}.
+On the input pin, a 12 V bias supply is connected in series with the rectangular pulse generator.
+On the output, a 100 nF capacitor is connected because required by the regulation function for stabilisation.
 
-% Fig X shows the waveform of the VBAT injected current when stressed with a TLP (square) impulse.
-% The TLP waveform before the capacitor is shown for reference.
-%TODO: WAVEFORM CURRENT VBAT AND TLP BEFORE INJECTION CAPACITOR ?
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/4/figures/black_box_model_setup.pdf}
+  \caption{Black-box characterization setup}
+  \label{fig:cz-black-box-setup}
+\end{figure}
 
 % Detail the characterization
-The characterization table is plotted in Fig. \ref{fig:cz-black-box}.
-X-axis is the pulse width, and y-axis is the minimal stress amplitude that caused a failure on the output.
+The result of the characterization is plotted in Fig. \ref{fig:cz-black-box}.
+The x-axis is the pulse width, the y-axis is pulse amplitude and a colored cell represents a failure on the output.
+This plot is simply a different representation of the lookup table discussed previously.
+The plot shows that a combination of long stresses and large amplitude are the most disturbing for the function.
+Amplitude or width alone are not necessarily sufficient to put the function at fault.
 
 \begin{figure}[!h]
   \centering
@@ -71,34 +125,38 @@ X-axis is the pulse width, and y-axis is the minimal stress amplitude that cause
   \label{fig:cz-black-box}
 \end{figure}
 
-% What to do with that
-%TODO: We that below this value the function is in fail, etc
-However, the motivation for this model is to replace the transistor-level schematic inside a SPICE simulation at board-level.
-Given a pulse width and an amplitude on $V_{batt}$, the model can estimate the disturbance amplitude and width on $V_{2p5}$.
-However, the model itself is not an electrical model, only a failure model.
-It cannot determinate, given for instance an input voltage, how much current is flowing into it.
-This is also true for the output.
-Thus, this method calls for an electrical model of \gls{io}.
-The next section details how to solve this issue.
+Now that the characterization step is done, the next part of this work focuses on electrical modelling of input and output pins.
 
 \subsection{Electrical pin models}
-
-%TODO: Review everything hereafter
-An electrical modelling method for silicon functions is explored.
-Ideally, the model could replace any function's input or output, be extracted and configured easily.
-We formulate the initial hypothesis that \gls{io}s can be modeled by their extracted TLP characteristic, representing their quasi-static I(V) response.
+\subsubsection{I(V) curve extraction in powered and unpowered modes}
 
 % powered or unpowered conditions ?
-Extracting the \gls{tlp} characteristic can be bone with the device powered or unpowered.
-Unpowered condition is the simplest case, because the characterization can be performed without external components.
-In powered conditions, the characterization is more challenging, because for the device to be functional, external devices can be required.
-Yet they are not wanted in the characterization.
+As a remainder, they initial hypothesis in this section is that \gls{tlp} characterization can be used to represent an input or output port of an integrated function.
+Extracting the \gls{tlp} characteristic can be done with the device powered or unpowered.
+To see the impact of the biasing and decide the best approach, \gls{tlp} characterizations are performed in both conditions.
+The test setup for the input port is given in Fig. \ref{fig:tlp-input-testbench}.
+The DC source can be configured for 0 V supply (unpowered conditions) or 12 V (powered conditions).
+The TLP is a perfect rectangular source in combination with a series 50 \textOmega{} resistor.
 
-% Comparison to decide
-To decide the best approach, \gls{tlp} characterizations are performed on the testchip's regulation function, in powered and unpowered conditions.
-For powered conditions, it is considered that full functionality and performance does not matter, just the equivalent impedance of the input or output.
-As a consequence, the function is biased but external devices are not connected.
-Unpowered and powered characterizations are compared respectively in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/4/figures/black_box_model_tlp_setup.pdf}
+  \caption{I(V) extraction of input port}
+  \label{fig:tlp-input-testbench}
+\end{figure}
+
+The test setup for the output port is given in Fig. \ref{fig:tlp-output-testbench}.
+The main issue with this characterization is that it includes the external stabilisation capacitor.
+It will be verified after if this external device is an issue for modelling.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{src/4/figures/black_box_model_tlp_setup_output.pdf}
+  \caption{I(V) extraction of output port}
+  \label{fig:tlp-output-testbench}
+\end{figure}
+
+The results are provided for the input and output ports in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
 
 \begin{figure}[!h]
   \centering
@@ -114,14 +172,17 @@ Unpowered and powered characterizations are compared respectively in Fig. \ref{f
   \label{fig:tlp-output-cz}
 \end{figure}
 
-For both input and output ports, large differences are observed between powered and unpowered modes.
-Different amount of current are absorbed by the device in each conditions.
-Since the model is intended for powered-on simulations, the characterization in powered conditions is chosen.
+% Comment the results
+For both ports, large differences are observed between powered and unpowered modes.
+Different amount of currents are absorbed by the device in each conditions.
+Ultimately, the powered configuration is chosen for the characterization because it is the one used for soft-failure testing (with the device in operation).
+
+\subsubsection{I(V) curve modelling}
 
 % Explain the PWL model
-The second step of the modelling method is to build an electrically simulatable model of the function.
+The second step of the modelling method is to build an electrical model of the function from those curves.
 A piecewise linear model seems well suited for this situation.
-Specifically, a configurable four-points piecewise linear model is written in Verilog-A (see Listing \ref{lst:pwl-4pts}).
+A four-points piecewise linear model is written in Verilog-A (see Listing \ref{lst:pwl-4pts}).
 The model is configured easily with 4 four (V\textsubscript{i},I\textsubscript{i}) coordinates.
 
 \begin{code}
@@ -130,32 +191,45 @@ The model is configured easily with 4 four (V\textsubscript{i},I\textsubscript{i
 \label{lst:pwl-4pts}
 \end{code}
 
+% How to avoid convergence issues
+With this kind of model, convergence can be difficult to achieve if the piecewise-linear curve is not continuous at order 0.
+Electrically speaking, it is equivalent to switching the value of a resistor very abruptly.
+To ensure that this does not happen, it is important to use \textbr{exactly} the same coordinates at inflexion points, where the model switches between operating curves.
+This is taken into account in the current model.
 
-% Comment the model
-For this kind of model to work, a few rules of thumbs must be followed.
-First, convergence can be difficult to achieve if the piecewise-linear curve is not continuous at order 0.
-Electrically speaking, it would be equivalent to very abruptly switching the value of a resistor for instance.
-%TODO: SOA gloss
-For our particular case, I(V) curves are extracted for a wide range of voltages.
-However, integrated function are being characterized and not ESD protections.
-Any part of the curve above Safe-Operating Areas is irrelevant for this functional model, since beyond it the function is destroyed.
-Therefore, it is important to fit the curve inside and near the nominal operating area.
-For the input, the model should be accurate between -10V and 40V.
-%TODO: Speak about resistance value near 0V versus matching overall curve shape
+% Focus on the area of interest
+During this \gls{tlp} characterization, I(V) curves were extracted for a wide range of voltages.
+However, not the entire I(V) curve is relevant for those soft-failure simulations.
+Any part of the I(V) curve beyond the safe operating area is irrelevant because after that the function is destroyed.
+Therefore, it is important to fit the I(V) curve with the piecewise linear curve inside the SOA.
+For the input, the modelling is focused on a voltage range from -10V to 40V.
+On the output, the modelling range is from -5V to 5V.
+
+\subsubsection{Comparison of input model with reference}
 
 % Validate the model with TLP
-The verilog-a model is first tested against the complete schematic for the function's input.
+The Verilog-A model is tested against the complete schematic for the function's input.
+The test setup is given in Fig. \ref{fig:compare-veriloga-model-input}.
+Biasing and injection circuits are identical for both circuits.
+The full schematic is simply replaced by the Verilog-A input model.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/testbench_blackbox_input.png}
-  \caption{Testbench for comparing omplete schematic with input model simulations}
-  \label{fig:compare-model-simu-m10}
+  \includegraphics[width=0.95\textwidth]{src/4/figures/testbench_blackbox_input.pdf}
+  \caption{Testbench for comparing complete schematic with input model simulations}
+  \label{fig:compare-veriloga-model-input}
 \end{figure}
 
-After issues described previously were solved, good agreement is achieved between model and complete circuit.
-This was verified at -10V, 20V and 40V TLP amplitude (Fig. \ref{fig:compare-model-simu-m10}, Fig. \ref{fig:compare-model-simu-20}, Fig. \ref{fig:compare-model-simu-40}).
-The model is considered mostly valid for the input.
+% What is the result of comparison of model versus complete schematic for input ?
+A first comparison is ran by injecting a -10V TLP with the device powered.
+The voltage and current waveforms are provided in Fig. \ref{fig:compare-model-simu-m10}.
+Voltage matches very well between the reference and the Verilog-A model.
+The DC behavior as well as the transient behavior are correctly reproduced.
+The current waveform has a poorer correlation.
+There is an offset in DC and in transient, probably due to a modelling error with the piecewise linear curve.
+There are two large spikes at the beginning and the end of the pulse that are not reproduced.
+This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
+Overall, the accuracy remains acceptable for an ESD simulation.
 
 \begin{figure}[!h]
   \centering
@@ -163,6 +237,10 @@ The model is considered mostly valid for the input.
   \caption{Comparison of complete schematic and model simulations for input port (-10V TLP)}
   \label{fig:compare-model-simu-m10}
 \end{figure}
+
+Other validations are provided for positive 20V and 40V TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
+They confirm that the input model performs correctly, and even better when exposed to positive stresses.
+Overall, the Verilog-A model is considered valid for the input port.
 
 \begin{figure}[!h]
   \centering
@@ -178,53 +256,53 @@ The model is considered mostly valid for the input.
   \label{fig:compare-model-simu-40}
 \end{figure}
 
-% Check the output
-The same test is performed for the function's output model.
+\subsubsection{Comparison of output model with reference}
+
+% The output port is not a passive device
+The output port is more complicated than the input port, because it is equivalent to an active device, unlike the input that is passive.
+In normal operation, the primary supply regulates a 2.5 V voltage on the output and drives a current into the external load to maintain that voltage.
+However, the Verilog-A I(V) curve model is just a voltage controlled resistor and is not capable of driving a current.
+A voltage or current source is required in the model to reproduce this behavior.
+In case of failure, the output port will also fail temporarily and the output voltage will fall down.
+This phenomenon must also be taken into account in the model.
+To solve those issues, a DC voltage source and a transient voltage source are added to the model.
+The DC source is configured at 2.5 V, representing the normal operation.
+The PWL source generates a rectangular negative disturbance that reproduces the failure on the output.
+This new architecture is summarized in Fig. \ref{fig:first-output-model}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_m10V.png}
-  \caption{Comparison of complete schematic and model simulations for output port (-10V TLP)}
-  \label{fig:compare-model-simu-m10}
-\end{figure}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_20V.png}
-  \caption{Comparison of complete schematic and model simulations for output port (-20V TLP)}
-  \label{fig:compare-model-simu-20}
-\end{figure}
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_40V.png}
-  \caption{Comparison of complete schematic and model simulations for output port (-40V TLP)}
-  \label{fig:compare-model-simu-40}
-\end{figure}
-
-%TODO
-The situation is more complex in this case.
-The output model must perform three tasks.
-First, offer an output impedance close the the one of the real function.
-Second, provide a DC value, here corresponding to the regulated 2.5V.
-Lastly, reproduce the function reset where the output voltage falls down then restarts.
-A first output model is envisionned (Fig. \ref{fig:first-output-model}).
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.3\textwidth]{src/4/figures/first_output_model.png}
-  \caption{First proposal for modeling function output}
+  \includegraphics[width=0.7\textwidth]{src/4/figures/first_output_model.pdf}
+  \caption{Architecture of the output port model}
   \label{fig:first-output-model}
 \end{figure}
 
-% Is this first model working
-Preliminary and extended tests show that this configuration is not working.
-Ultimately, the I(V) curve Verilog-A model is a voltage-controlled current source.
-When the model is combined with the external devices, several issues arise.
-%TODO: Fig
-Fig. X shows such a configuration.
+% Make the comparison and comment the curves
+Finally, the output port model is compared to the complete schematic in simulation.
+A failure is triggered on the complete schematic by applying a negative -10V TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
+The testbench is identical to the input validation testbench given in Fig. \ref{fig:compare-veriloga-model-input}, except this time it is the output that is recorded.
+The comparison is plotted in Fig. \ref{fig:compare-model-simu-m10-output}.
+Large differences are observed between reference and model simulations.
+First, the DC value of the model is wrong, lower than the reference by approximately 1.5 V.
+Why ?
+No DC content because TLP I(V) quasi-static not suitable ?
+No transient content because the model is just an I(V) curve
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_bad_m10V.png}
+  \caption{Comparison of complete schematic and model simulations for output port (-10V TLP)}
+  \label{fig:compare-model-simu-m10-output}
+\end{figure}
+
+%TODO
+A new model for the output is given in Fig. \ref{fig:first-output-model}.
+Contains a DC model and PWL without the I(V) curve.
 
 \subsection{Combining failure and electrical models}
+
+There is no point in combining models while it is not possible to run both input and output sims as one
+Need an analysis method to detect in real-time on the input if a failure will occur, so that it can be reproduced, faked, on the output.
 
 % What is the complete model
 The complete function model combines the input piecewise-linear model, the failure model, the output piecewise-linear model, and an output DC source (for settling nominal value).
