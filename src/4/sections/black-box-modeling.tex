@@ -283,11 +283,17 @@ A failure is triggered on the complete schematic by applying a negative -10V TLP
 The testbench is identical to the input validation testbench given in Fig. \ref{fig:compare-veriloga-model-input}, except this time it is the output that is recorded.
 The comparison is plotted in Fig. \ref{fig:compare-model-simu-m10-output}.
 Large differences are observed between reference and model simulations.
-First, the DC value of the model is wrong, lower than the reference by approximately 1.5 V.
-Why ?
-No DC content because TLP I(V) quasi-static not suitable ?
-No transient content because the model is just an I(V) curve
+The DC value of the model is wrong, lower than the reference by approximately 1.5 V.
+The failure is not reproduced by the model despite the transient source of the model applying a -3V disturbance at 40 ns.
+It seems that those issues can be explained by looking back at the I(V) curve of the output.
+For voltages near 0 V, the current is close to zero and the slope of the curve is extremely large.
+At these voltages, the I(V) model is equivalent to an extremely large resistor that prevents this large 100 nF capacitor from charging appropriately.
+%TODO
+What is not clear is why the current during the DC phase tends to 0 A with the Verilog-A model.
+The root cause of this issue is not clear.
+It can be due to an unknwon issue regarding the Verilog-A I(V) model or it could also be the sign that TLP-extracted I(V) curves might not be suitable for modelling the equivalent impedance of an active device.
 
+%TODO: Add current A sims
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_bad_m10V.png}
@@ -296,7 +302,7 @@ No transient content because the model is just an I(V) curve
 \end{figure}
 
 %TODO
-A new model for the output is given in Fig. \ref{fig:first-output-model}.
+A new model for the output is given in Fig. \ref{fig:second-output-model}.
 Contains a DC model and PWL without the I(V) curve.
 
 \subsection{Combining failure and electrical models}
