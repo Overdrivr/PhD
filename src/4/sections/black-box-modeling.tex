@@ -1,31 +1,48 @@
 \section{Black box modeling approach}
 
-% Difference with bottom-up, not the same application, not the same goal
-The black-box modeling method relies on the same core principles than the bottom-up modeling approach.
-It studies the relationship and transfert function between the input and the output of a silicon function.
-Unlike the bottom-up method though, the model is only built for external input and output pins.
-It is not meant to be chained with other models, using a special chaining method.
-Instead, it targets electrical, board-level circuit simulations.
-Basically, the black box model is intented to act as a drop-in replacement for the complete \gls{ic} circuit, for board-level simulations.
+% Motivation for a black box model of the complete circuit
+The goal of the black-box modeling method is to build a combined electrical and failure model of an integrated function between two external pins.
+This model is developped to allow third-parties that don't have access to the integrated circuit design to perform ESD simulations of a board containing integrated circuits.
+The electrical part of the model serves to run the \gls{spice} simulations.
+The failure part of the model watches the external input pin and detects conditions that would lead to a failure visible on the external output pin.
+The black box model is somehow intented to act as a replacement for the complete \gls{ic} circuit for \gls{esd} board-level simulations.
+This approach follows the recommendation of the \gls{seed} methodology \cite{seed} presented earlier.
+The \gls{seed} methodology normally applies to hard-failure, but in this chapter the concept is pushed further with soft-failures.
+\gls{seed} recommends that the ESD robustness of a system should be handled by a collaboration between the board and the integrated circuit.
+To achieve this, it is necessary to have simulation tools capable of simulating both elements at the same time.
+The black-box model presented in this chapter is a potential solution to this issue.
+It does not reveal the internal IC design while allowing complete simulations of board and integrated circuits to predict soft-failures.
+It also abstracts the internal complexity of the integrated circuit design, allowing significantly faster simulations and less convergence issues.
+Of course, the downside is a loss of accuracy for the simulations, but that can remain acceptable for ESD analysis.
 
-% What is the motivation
-%TODO: Reference for SEED
-The purpose is also different from the bottom-up approach.
-The goal is not to detect issues at silicon-level early before manufacturing, but to let customers using the \gls{ic} in a \gls{pcb} to detect issues with the board that could result in silicon-functions failure.
-The \gls{seed} methodology recommends to design systems in a smart fashion for making them robust during operation, which requires a collaboration between board-level and silicon-level protective measures.
-Ultimately, the goal is to provide a black box model that is fast to simulate and can be distributed without disclosing sensitive intellectual property.
+% What is the model
+As previously described, the model contains a failure element and two electrical models \ref{fig:black-box-principle}.
+The input port model reproduces the behavior of the integrated circuit between the external input pin and (usually) a ground pin.
+The failure model watches for voltage or current on the input port, compares those parameters to the failure characterization and deduces if the input was sufficiently disturbed to create a fault.
+Then, it transfer that information to the output port model, that changes behavior in case of fault or remains in its DC state in the absence of a failure.
 
-% introduction, failure relation between input and output
-The main benefit of this model is to abstract the internal silicon complexity.
-The model focuses on describing the failure of an output when an input is stressed.
-At board-level, failure criteria can be more easily set from the chip specification.
-After setting the failure criteria, the approach is to inject rectangular pulses on an input pin, and record when an output is in fault.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{src/4/figures/black_box_model_principle.pdf}
+  \caption{Black-box model principle}
+  \label{fig:black-box-principle}
+\end{figure}
 
-% access to the signals
-Since the characterized nets are external pins, they are physically accessible.
-Thus, the black box models can be derived from actual measurements.
+% How is the model constructed
+The failure model is extracted first, using a set of variable amplitude and width rectangular pulses applied on the input pin while monitoring the output pin.
+After this step, the robustness of the function against this range of stresses is known.
+A curve is built that describes the failure of the output when an input is stressed.
+The second step is to electrically model both the input and the output ports.
+Initially, a \gls{tlp} characterization of each port is performed to extract an equivalent I(V) curve.
+Since the circuit is stressed while being powered and in operation, it is studied afterward if this extraction should occur on a device powered as well or not, and what is the impact of the supply on the extracted curve.
+This characterization is based on the hypothesis that the quasi-static I(V) curve could be suitable for reproducing the behavior of the port both in DC and transient domain.
+It will be demonstrated afterward that this hypothesis is not completely true and an alternative approach is required for the output pin.
+This I(V) curve is converted in an electrical model using a piecewise-linear curve described in Verilog-A modelling language.
+Finally, once the two electrical models and the failure model have been constructed, it can be possible to join all the parts together to build the complete IC model.
+The concept was not tested entirely in simulation because of some issues discovered late, but using a particular setup it is possible to build it as follow-up work.
+The next part of this chapter details further the modelling approach and all the issues met during the developpement as well as possible improvements.
 
-\subsection{Failure model}
+\subsection{Function failure model}
 
 % How is the characterization conducted
 Once again, a variable width/variable amplitude rectangular pulses are applied on an input pin.
@@ -64,7 +81,7 @@ This is also true for the output.
 Thus, this method calls for an electrical model of \gls{io}.
 The next section details how to solve this issue.
 
-\subsection{Electrical modeling of inputs and outputs}
+\subsection{Electrical pin models}
 
 %TODO: Review everything hereafter
 An electrical modelling method for silicon functions is explored.
@@ -128,6 +145,14 @@ For the input, the model should be accurate between -10V and 40V.
 
 % Validate the model with TLP
 The verilog-a model is first tested against the complete schematic for the function's input.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/testbench_blackbox_input.png}
+  \caption{Testbench for comparing omplete schematic with input model simulations}
+  \label{fig:compare-model-simu-m10}
+\end{figure}
+
 After issues described previously were solved, good agreement is achieved between model and complete circuit.
 This was verified at -10V, 20V and 40V TLP amplitude (Fig. \ref{fig:compare-model-simu-m10}, Fig. \ref{fig:compare-model-simu-20}, Fig. \ref{fig:compare-model-simu-40}).
 The model is considered mostly valid for the input.
@@ -135,26 +160,49 @@ The model is considered mostly valid for the input.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_m10V.png}
-  \caption{Comparison of complete schematic and model simulations - -10V TLP}
+  \caption{Comparison of complete schematic and model simulations for input port (-10V TLP)}
   \label{fig:compare-model-simu-m10}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_20V.png}
-  \caption{Comparison of complete schematic and model simulations - 20V TLP}
+  \caption{Comparison of complete schematic and model simulations for input port (-20V TLP)}
   \label{fig:compare-model-simu-20}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_40V.png}
-  \caption{Comparison of complete schematic and model simulations - 40V TLP}
+  \caption{Comparison of complete schematic and model simulations for input port (-40V TLP)}
   \label{fig:compare-model-simu-40}
 \end{figure}
 
 % Check the output
 The same test is performed for the function's output model.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_m10V.png}
+  \caption{Comparison of complete schematic and model simulations for output port (-10V TLP)}
+  \label{fig:compare-model-simu-m10}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_20V.png}
+  \caption{Comparison of complete schematic and model simulations for output port (-20V TLP)}
+  \label{fig:compare-model-simu-20}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_40V.png}
+  \caption{Comparison of complete schematic and model simulations for output port (-40V TLP)}
+  \label{fig:compare-model-simu-40}
+\end{figure}
+
+%TODO
 The situation is more complex in this case.
 The output model must perform three tasks.
 First, offer an output impedance close the the one of the real function.
