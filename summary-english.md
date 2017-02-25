@@ -24,11 +24,10 @@ It is based on a hierarchical approach where each element of the system is model
 A practical case of functionnal failure at silicon-level is analyzed using simulation tools.
 To acquire more data on this fault, a testchip has been designed.
 It contains on-chip monitoring structures to measure voltage and current, and monitor function behavior directly at silicon-level.
-For instance, an integrated near-field on-chip sensor was integrated on silicon, to measure currents circulating inside near tracks.
 The last part of this research details different analysis methods developped for identifying efficiently functionnal weaknesses.
-They enable hierarchical analysis of complex integrated circuit designs, in order to identify potential weak spots inside the circuit that could require more shielding or protection.
 The methods rely heavily on simulation tools, and prototypes have been implemented to prove the initial concepts.
 The first method models each function inside the chip individually, using behavioral models, then enables to connect the models together in order to deduce the full function's robustness.
+It enables hierarchical analysis of complex integrated circuit designs, in order to identify potential weak spots inside the circuit that could require more shielding or protection.
 The second method is focused on constructing equivalent electrical black box models of integrated circuit functions.
 The goal is to model the IC with a behavioral, black-box model capable of reproducing waveforms in powered conditions during the ESD.
 
