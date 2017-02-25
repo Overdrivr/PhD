@@ -1,11 +1,11 @@
 % Electronic schematics are composed of transistor models
-The conception flow of integrated circuits is based on electronic schematics.
-Those schematics are converted into a netlist composed of all components inside the circuit and connections between them.
+The conception flow of integrated circuits is based on circuit schematic, a form of symbolic view describing an electronic circuit.
+Those schematics are converted into a netlist composed of all components inside the schematic and connections between them.
 At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
-Each element is described by a model, which is a mathematical representation of their behavior.
+Each element is described by a model, which is a mathematical or algorithmic representation of their behavior.
 In electronics, models usually link current and voltages between the different terminals of the device, and can accept external parameters such as temperature.
-With a knowledge of the netlist and the models, the simulator knows the stimulii, the devices and the connections inside the circuit.
-It is able to simulate its behavior, allowing for validation of the functionnality very early in the design phase.
+With the netlist and the model library, the simulator knows the stimulii, the devices and the connections inside the circuit.
+It is able to simulate circuit behavior, allowing for validation of the functionnality very early in the design phase.
 As detailled in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
 
 % Circuits are complex hierarchies
