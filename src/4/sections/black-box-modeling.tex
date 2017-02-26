@@ -5,18 +5,18 @@ The goal of the black-box modeling method is to build a combined electrical and 
 This model is developped to allow third-parties that don't have access to the integrated circuit design to perform ESD simulations of a board containing integrated circuits.
 The electrical part of the model serves to run the \gls{spice} simulations.
 The failure part of the model watches the external input pin and detects conditions that would lead to a failure visible on the external output pin.
-The black box model is somehow intented to act as a replacement for the complete \gls{ic} circuit for \gls{esd} board-level simulations.
+The black box model is intented to act as a replacement for the \gls{ic} function during \gls{esd} board-level simulations.
 This approach follows the recommendation of the \gls{seed} methodology \cite{seed} presented earlier.
 The \gls{seed} methodology normally applies to hard-failure, but in this chapter the concept is pushed further with soft-failures.
 \gls{seed} recommends that the ESD robustness of a system should be handled by a collaboration between the board and the integrated circuit.
 To achieve this, it is necessary to have simulation tools capable of simulating both elements at the same time.
 The black-box model presented in this chapter is a potential solution to this issue.
-It does not reveal the internal IC design while allowing complete simulations of board and integrated circuits to predict soft-failures.
+It does not reveal the internal IC design while allowing complete simulations of board and integrated circuits together to predict soft-failures.
 It also abstracts the internal complexity of the integrated circuit design, allowing significantly faster simulations and less convergence issues.
-Of course, the downside is a loss of accuracy for the simulations, but that can remain acceptable for ESD analysis.
 
 % What is the model
-As previously described, the model contains a failure element and two electrical models \ref{fig:black-box-principle}.
+As previously described, the two requirements for the model is to be usable in \gls{spice} simulations and to detect failures by monitoring the input.
+This can be achieved with a model containing a failure element and two electrical models as proposed in Fig. \ref{fig:black-box-principle}.
 The input port model reproduces the behavior of the integrated circuit between the external input pin and (usually) a ground pin.
 The failure model watches for voltage or current on the input port, compares those parameters to the failure characterization and deduces if the input was sufficiently disturbed to create a fault.
 Then, it transfer that information to the output port model, that changes behavior in case of fault or remains in its DC state in the absence of a failure.
@@ -29,7 +29,7 @@ Then, it transfer that information to the output port model, that changes behavi
 \end{figure}
 
 % How is the model constructed
-The failure model is extracted first, using a set of variable amplitude and width rectangular pulses applied on the input pin while monitoring the output pin.
+The failure model is extracted first, using a set of variable amplitude and variable width rectangular pulses applied on the input pin while monitoring the output pin.
 After this step, the robustness of the function against this range of stresses is known.
 A curve is built that describes the failure of the output when an input is stressed.
 The second step is to electrically model both the input and the output ports.
@@ -205,7 +205,7 @@ Therefore, it is important to fit the I(V) curve with the piecewise linear curve
 For the input, the modelling is focused on a voltage range from -10V to 40V.
 On the output, the modelling range is from -5V to 5V.
 
-\subsubsection{Comparison of input model with reference}
+\subsubsection{Comparison of input model with reference circuit}
 
 % Validate the model with TLP
 The Verilog-A model is tested against the complete schematic for the function's input.
@@ -223,7 +223,7 @@ The full schematic is simply replaced by the Verilog-A input model.
 % What is the result of comparison of model versus complete schematic for input ?
 A first comparison is ran by injecting a -10V TLP with the device powered.
 The voltage and current waveforms are provided in Fig. \ref{fig:compare-model-simu-m10}.
-Voltage matches very well between the reference and the Verilog-A model.
+Voltage matches well between the reference and the Verilog-A model.
 The DC behavior as well as the transient behavior are correctly reproduced.
 The current waveform has a poorer correlation.
 There is an offset in DC and in transient, probably due to a modelling error with the piecewise linear curve.
@@ -240,7 +240,7 @@ Overall, the accuracy remains acceptable for an ESD simulation.
 
 Other validations are provided for positive 20V and 40V TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
 They confirm that the input model performs correctly, and even better when exposed to positive stresses.
-Overall, the Verilog-A model is considered valid for the input port.
+Overall, this Verilog-A model is considered valid for the input port while considering that there is a lot of room for improvement.
 
 \begin{figure}[!h]
   \centering
@@ -256,13 +256,13 @@ Overall, the Verilog-A model is considered valid for the input port.
   \label{fig:compare-model-simu-40}
 \end{figure}
 
-\subsubsection{Comparison of output model with reference}
+\subsubsection{Comparison of output model with reference circuit}
 
 % The output port is not a passive device
 The output port is more complicated than the input port, because it is equivalent to an active device, unlike the input that is passive.
 In normal operation, the primary supply regulates a 2.5 V voltage on the output and drives a current into the external load to maintain that voltage.
-However, the Verilog-A I(V) curve model is just a voltage controlled resistor and is not capable of driving a current.
-A voltage or current source is required in the model to reproduce this behavior.
+However, the Verilog-A I(V) curve model is just a voltage controlled resistor and is not capable of regulating a voltage.
+A voltage source is required in the model to reproduce this behavior.
 In case of failure, the output port will also fail temporarily and the output voltage will fall down.
 This phenomenon must also be taken into account in the model.
 To solve those issues, a DC voltage source and a transient voltage source are added to the model.
@@ -277,23 +277,12 @@ This new architecture is summarized in Fig. \ref{fig:first-output-model}.
   \label{fig:first-output-model}
 \end{figure}
 
-% Make the comparison and comment the curves
+% Make the comparison
 Finally, the output port model is compared to the complete schematic in simulation.
 A failure is triggered on the complete schematic by applying a negative -10V TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
-The testbench is identical to the input validation testbench given in Fig. \ref{fig:compare-veriloga-model-input}, except this time it is the output that is recorded.
+The testbench is identical to the input validation testbench given in Fig. \ref{fig:compare-veriloga-model-input}, except this time the output waveform is being recorded.
 The comparison is plotted in Fig. \ref{fig:compare-model-simu-m10-output}.
-Large differences are observed between reference and model simulations.
-The DC value of the model is wrong, lower than the reference by approximately 1.5 V.
-The failure is not reproduced by the model despite the transient source of the model applying a -3V disturbance at 40 ns.
-It seems that those issues can be explained by looking back at the I(V) curve of the output.
-For voltages near 0 V, the current is close to zero and the slope of the curve is extremely large.
-At these voltages, the I(V) model is equivalent to an extremely large resistor that prevents this large 100 nF capacitor from charging appropriately.
-%TODO
-What is not clear is why the current during the DC phase tends to 0 A with the Verilog-A model.
-The root cause of this issue is not clear.
-It can be due to an unknwon issue regarding the Verilog-A I(V) model or it could also be the sign that TLP-extracted I(V) curves might not be suitable for modelling the equivalent impedance of an active device.
 
-%TODO: Add current A sims
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_bad_m10V.png}
@@ -302,41 +291,36 @@ It can be due to an unknwon issue regarding the Verilog-A I(V) model or it could
 \end{figure}
 
 %TODO
-A new model for the output is given in Fig. \ref{fig:second-output-model}.
-Contains a DC model and PWL without the I(V) curve.
 
-\subsection{Combining failure and electrical models}
+% Comment the curves
+Large differences are observed between reference and model simulations.
+Capacitor is pre-charged at 2V and not 2.5V to see if the model is capable of charging at 2.5V.
 
-There is no point in combining models while it is not possible to run both input and output sims as one
-Need an analysis method to detect in real-time on the input if a failure will occur, so that it can be reproduced, faked, on the output.
+The DC value of the model is wrong, and is always increasing.
+This can be explained by looking at the I(V) curve of the output magnified between 0V and 5V (see Fig. \ref{fig:tlp-output-cz-zoomed}).
+At the beginning of the simulation, the I(V) model sees a potential difference of 2.5V accross its terminals.
+For a 2.5V voltage, the I(V) curve model produces a value of 0.75 mA.
+This constant current will keep on charging the capacitor, and
+This means that even though the output voltage at the beginning of the simulation is correct, it will increase because of the Verilog-A I(V) model.
+The combination of the DC source and the I(V) curve does not seem suitable for modelling an active output.
 
-% What is the complete model
-The complete function model combines the input piecewise-linear model, the failure model, the output piecewise-linear model, and an output DC source (for settling nominal value).
-
-Fig. \ref{fig:complete-black-box-model}
-The failure model act as a voltage-controlled voltage source, controlled by the input, and acting on the output.
-Given an disturbance amplitude and width and width on the input, it configures and generates a rectangular pulse on the output.
+% TODO: Was it actually good in the other way for connections ?
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.3\textwidth]{src/4/figures/complete_black_box_model.pdf}
-  \caption{Architecture of the complete black-box model}
-  \label{fig:complete-black-box-model}
+  \includegraphics[width=\textwidth]{src/4/figures/tlp_output_characterization_magnified.png}
+  \caption{TLP characterization of function output near 2.5V (magnified)}
+  \label{fig:tlp-output-cz-zoomed}
 \end{figure}
 
-% how is this model
-To test the entire concept, two simulations are run.
-The first one is the classic, transistor-level simulation of the function exposed to a (XX V, XXX ns) disturbance.
-It serves as a reference.
-The second simulation simulates only the output of the model.
-The output failure source generates a rectangular pulse of (XXX V, XXX ns), corresponding to the same (XX V, XXX ns) disturbance on the input than the reference.
-The goal is to verify if the model can reproduce even partially the disturbance on the output pin.
-
-%TODO: Simulation
-
-In conclusion, it can reproduce the variation on the output, for a given input disturbance.
+Configuring the model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
+A more complex solution must be conceived and developped to solve those issues.
+The raw I(V) curve extracted from TLP does not seem to be usable as-is to model an active output.
+This analysis has enable to highlights the current issues to solve before being able to model active outputs for ESD simulations.
+Key milestone for black box modelling.
 
 \subsection{Conclusion on black-box modeling}
+% TODO: Review and rewrite
 
 % Conclusion
 Black box models of analog integrated functions are very interesting for distributing SPICE models to external parties.
@@ -349,6 +333,7 @@ The core principle is that TLP characterization of inputs and ouputs on a biased
 This impedance can replace the function in the schematic, during an ESD simulation, in order to reduce complexity and simulation time.
 The second core principle is to simplify waveforms into rectangular ones in order to reduce the complexity of the problem.
 
+%TODO: Talk about Simulation AAS as an alternative to black box models ?
 % Opening work
 There are many new leads to explore on these black box models.
 First, behavior of the models against more time-varying disturbances such as ESD gun waveforms should be investigated.
