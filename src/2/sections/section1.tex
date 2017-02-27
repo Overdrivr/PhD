@@ -432,7 +432,7 @@ Using this method, it is possible to build accurate common-mode filter models su
 
 %TODO
 % Description and function
-Ferrite bead are passive filtering devices, often found in \lgs{ic} decoupling networks.
+Ferrite bead are passive filtering devices, often found in \gls{ic} decoupling networks.
 They remove high-frequency noise in supply lines, which is why they are very often met on power cables for consumer equipments such as laptop supplies for instance.
 They behave as a second-order low-pass filter.
 In the ESD field, multiple filtering strategies with second and third order filters involving ferrites were studied in \cite{filter-strategies-esd}.
@@ -447,5 +447,5 @@ Some configurations claimed a very positive impact on the latchup immunity of th
 
 % electrical model
 Ferrite beads are modeled for ESD in \cite{mixedModeESDSims} with a resistor-capacitor-inductor network given in \ref{fig:ferrite-model}.
-The main coil is represented by an inductance L, a parasitic resistance R\textsubscrip{p} and capacitance C\textsubscript{p} and a series resistance R\textsubscript{s}.
+The main coil is represented by an inductance L, a parasitic resistance R\textsubscript{p} and capacitance C\textsubscript{p} and a series resistance R\textsubscript{s}.
 Those parameters can be extracted using an impedance meter, or by performing an S-parameter characterization.
