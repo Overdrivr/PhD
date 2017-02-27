@@ -3,13 +3,13 @@
 
 % Context is a competitive environment, where any tool can make a difference
 The electronic design world is highly competitive, and especially the automotive field.
-For companies to stay performant, it is vital to design products as fast as possible, with lowest possible costs, while guaranting expected quality.
+For companies to stay performant, it is vital to design products as fast as possible, with lowest possible costs, while guaranteeing expected quality.
 On the other hand, electronics systems are complex to design and it is almost impossible to get the design right at the first manufacturing pass.
 As the project moves forward in the design cycle and reaches new milestones, every redesign and modification becomes exponentially more costly.
 For instance, modifying properties of a few transistors inside an integrated circuit during the early design phase comes almost for free.
 It takes a few minutes for a designer to make the changes.
 However, if this change is done after a first tape-out, many more steps must be executed.
-It still takes a few minutes to a designer to make the changes, but now the top layout of the product must be updated, a new tapeout must prepared, a new set of lithographic photomasks must be prepared.
+It still takes a few minutes to a designer to make the changes, but now the top layout of the product must be updated, a new tapeout prepared and a new set of lithographic photomasks manufactured.
 After a few months of manufacturing time, and testing time of the new part, the modification is landed.
 In the process, it has cost a lot of time and manpower to the company.
 Therefore, to remain competitive, the amount of design-manufacturing phases must be kept to a bare minimum, ideally to a single pass.
@@ -21,7 +21,7 @@ They constitute a fundamental tool used massively in integrated circuit and syst
 Silicon-manufacturing companies put a lot of effort to develop highly accurate models of their integrated technologies.
 In those environments, accuracy of standard analog simulations is rightfully taken for granted.
 For electrostatic and electromagnetic simulations though, the situation is different.
-By nature, electrostatic discharge are very fast and highly non-linear signals.
+By nature, electrostatic discharges are very fast and highly non-linear signals.
 Those events occupy a much larger frequency spectrum than waveforms usally met in standard analog simulations.
 It is essential to verify the accuracy of models and simulations.
 Models must be validated against actual measurement data, and in many different test conditions, including powered and unpowered conditions.
@@ -34,7 +34,7 @@ The proposed methodology is modular and offers to reuse models between common de
 A typical ESD test setup comprises equipments such as DC sources, oscilloscopes, and stress generators.
 Equipments are connected together with wires, coaxial cables, twisted wire pairs, etc.
 The integrated circuit under test is often soldered onto a printed circuit board.
-\gls{PCB}s usually host multiple kind of discrete devices, such as passive devices, ESD protections, common-mode chokes, relays, etc.
+\gls{pcb}s usually host multiple kind of discrete devices, such as passive devices, ESD protections, common-mode chokes, relays, etc.
 Components are connected together by metal tracks.
 The goal of the proposed methodology is to build a library of all those elements, from lab equipments down to tiny discrete components.
 Each model of the library will be qualified independently with individual characterization and comparison with its model.
@@ -71,20 +71,20 @@ Transmission lines are characterized by their characteristic impedance, supposed
 It is determined by its cross-sectional dimensions and constituting materials.
 For coaxial cables, common characteristic impedances are 50\textOmega{} or 75\textOmega{}.
 This value is equivalent to the resistance that could be measured statically between outer and inner conductors for an \textbf{infinitely long} transmission line.
-All transmission lines are lossy, meaning that some a part of the incoming power traversing it is dissipated.
+All transmission lines are lossy, meaning that some part of the incoming power traversing it is dissipated.
 In most cases though, losses are very small and negligible, and the line is considered lossless.
-The behavior of the line is also frequency-dependant.
+The behavior of the line is also frequency-dependent.
 Losses, characteristic impedance and other properties can change above certain frequencies.
 For frequencies below a GHz, most cables and metal strips can be correctly approximated by a lossless and non frequency-dependant line.
 
 % How is a transmission line mathematically modelled
-Physically, a transmission line can be seens as a succession of infinitely small unit elements.
-Each element is modeled by an inductance \textdelta{}L, a capacitance \textdelta{}C and sometimes a leakage resistance or conductance.
+Physically, a transmission line can be seen as a succession of infinitely small unit elements.
+Each element is modeled by an inductance L, a capacitance C and sometimes a leakage resistance or conductance.
 Those unit values are directly related to the characteristic impedance Z\textsubscript{c} as described in Eq. \ref{eq:characteristic-impedance}.
-\gls{Zc} is the also expressed as the ratio of voltage and current of a single wave propagating along the line.
+This characteristic impedance is also expressed as the ratio of voltage and current of a single wave propagating along the line.
 
 \begin{equation}
-Z_{c} = \sqrt{\frac{\delta L}{\delta C}}
+Z_{c} = \sqrt{\frac{L}{C}}
 \label{eq:characteristic-impedance}
 \end{equation}
 
@@ -103,7 +103,7 @@ Values for the element can be computed from the characteristic impedance \gls{Zc
 \end{figure}
 
 \begin{equation}
-\delta t = \sqrt{\delta L.\delta C}
+\delta t = \sqrt{L.C}
 \label{eq:unit-delay}
 \end{equation}
 
@@ -170,7 +170,7 @@ V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
 % Explain the equations
 Z\textsubscript{C} is the characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
 Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward travelling wave and a backward travelling wave.
-An example implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
+An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 
 \begin{code}
 \inputminted[frame=single]{VHDL}{src/2/snippets/tline.vhdl}
@@ -213,12 +213,12 @@ increase ratio   &  -            & x10        &  x44       &   x18      \\
 \end{table}
 
 For good accuracy, individual delay must be 2 or 10 times smaller than the shortest rise time.
-Also, simulators with variable timestep have trouble reproducing appropriately oscillating events.
+Also, simulators with variable timestep have trouble reproducing properly oscillating events.
 Simulated period is often wrong compared to what is mathematically expected.
 Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation times.
-To simulate a 100 ns TLP with a 100 ps risetime using the distributed model, it would require unit elements with a of 10ps.
-10000 elements would be required to model the line, which is rather important and increases simulation time.
-Even with 10000 elements the resolution is still too small to obtain a clean risetime \ref{fig:lines-simulations}.
+To simulate a 100 ns TLP with a 100 ps risetime using the distributed model, it would require unit elements with a delay of 10ps.
+It means that 10000 elements are required to model the line, which is rather important and increases simulation time.
+Even with such a large amount, oscillations are still visible at high frequency in the simulation as shown in Fig. \ref{fig:lines-simulations}.
 
 \begin{figure}[!h]
   \centering
@@ -238,8 +238,8 @@ Capacitors, inductors and resistors logically impact \gls{esd} waveforms.
 Their properties change at high frequencies and high-power levels of electrostatic discharges \cite{capa-esd-cz}.
 Nominal values easily vary by an order of magnitude.
 At frequencies above a few MHz, parasitic devices of any discrete component cause a degradation of performance.
-For sufficently high frequencies, the parasitic device can prevail over the nominal function.
-This is how a capacitor can exhibit a inductive behavior above its resonance frequency.
+For sufficiently large frequencies, the parasitic device can prevail over the nominal function.
+This is how a capacitor can exhibit an inductive behavior above its resonance frequency.
 
 % In what frequency range are ESD active, and are those limitations in effect
 The frequency content of an electrostatic discharges was characterized in \cite{fft-esd}.
@@ -320,21 +320,21 @@ There is still room for model improvement, with MLCC capacitors at high-regime r
 %
 ESD protection is the most extensively studied device in the \gls{esd} field.
 ESD protections designate a class of devices rather than a particular electronic component.
-ESD protections can be realized in multiple ways, with diodes, thryistors, \gls{tvs}, silicon-controlled rectifiers, etc.
+ESD protections can be realized in multiple ways, with diodes, thyristors, \gls{tvs}, silicon-controlled rectifiers, etc.
 Overall, ESD protection are devices in high-impedance below a triggering voltage, low-impedance above it and capable of absorbing significant amount of currents temporarily.
 Overall, there are two kinds of modelling methods with physically-based models and behavioral models.
 
 % Physical modelling
 Physical modelling is often referred as \gls{tcad} modelling, for Technology Computer-Aided Design.
 TCAD modelling is performed by ESD designers to evaluate performance and robustness of their devices before manufacturing.
-In TCAD, devices can be represented as 2 or 3 dimensionnal meshes \ref{fig:esd-protection-tcad-model}.
+In TCAD, devices can be represented as 2 or 3 dimensionnal meshes as shown in Fig. \ref{fig:esd-protection-tcad-model}.
 The model is represented by a mesh, composed of triangle primitives.
 A TCAD model generally requires extensive preparation before being ready for simulation.
 Each manufacturing step is first described.
 A very broad amount of parameters must be described, such as concentration of doping materials, temperature, etc.
 Afterwards, the 2D or 3D shape of the lithographic photomasks are defined with sets of coordinates.
 Finally, all this information is provided to the TCAD program that simulates the manufacturing process.
-This step consist in computing for each triangle primitive of the mesh several parameters, such as the concentration of doping materials.
+This step consists in computing for each triangle primitive of the mesh several parameters, such as the concentration of doping materials.
 This step is computationnally intensive and can take days to complete.
 Afterwards, the model is ready for electrical simulation.
 2D meshes are faster to prepare and simulate than 3D meshes.
@@ -375,7 +375,7 @@ The active machine state is stored in a digital variable called \textit{flag}.
 Initially, it is at the value 0 representing the off state.
 When voltage becomes superior to the triggering voltage \textit{v\_1}, \textit{flag} takes the value of 1 and the protection turns on.
 For the protection to return to the off state, current flowing through the protection must become smaller than a very low value.
-It is generally the physical behavior observed with thyristors for instance, and incidentally helps the simulator to converge and avoid oscillations between the on-state and the off-state.
+It is generally the physical behavior observed with thyristors for instance, and incidentally helps the simulator converge and avoid oscillations between the on-state and the off-state.
 
 \begin{code}
 \inputminted[frame=single,breaklines=true]{VHDL}{src/2/snippets/beh_snapback.vhd}
@@ -392,12 +392,12 @@ Future improvements of these methods could focus on triggering delay and oversho
 
 % Common mode choke
 Common mode chokes (CMC) or common mode filters (CMF) allow differential currents to flow while blocking common-mode currents.
-They are composed of two coils wounded around a single core.
+They are composed of two coils wound around a single core.
 CMC offer a very low impedance to differential currents, and a large impedance to common-mode currents.
 They are frequently encountered in electronic systems to protect differential inputs and supply inputs \cite{cmc-for-emc-protection, cmc-esd, alternative-cmc-emi-noise}.
 Unlike regular RC-network filtering, CMC isolate from common mode disturbances where both signal and ground voltages shift.
 They are effective to protect differential inputs from common noise while preserving integrity of a differential signal.
-Chokes are frequently used for reducing emmission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
+Chokes are frequently used for reducing emission in \gls{emc} tests, and increasing immunity of a system to conducted disturbances.
 
 \begin{figure}[!h]
   \centering
@@ -408,7 +408,7 @@ Chokes are frequently used for reducing emmission in \gls{emc} tests, and increa
 
 CMF were studied and modeled for ESD in \cite{usb2ESDProtection}.
 Fig. \ref{fig:cmf-model} gives an example of a linear model.
-L31 and L42 represent the mutual inductance of the CMC.
+L31 and L42 represent the mutual inductances of the CMC.
 C1 and C2 model the parasitic coupling between the two coils, and all the other elements account for parasitic behavior of the coil wires.
 The device is tuned from a small-signal characterization.
 However, electrostatic discharges put devices in highly non-linear behavior.
@@ -435,4 +435,4 @@ Some configurations claimed a very positive impact on the latchup immunity of th
 % electrical model
 Ferrite beads are modeled for ESD in \cite{mixedModeESDSims} with a resistor-capacitor-inductor network given in \ref{fig:ferrite-model}.
 The main coil is represented by an inductance L, a parasitic resistance R\textsubscript{p} and capacitance C\textsubscript{p} and a series resistance R\textsubscript{s}.
-Those parameters can be extracted using an impedance meter, or by performing an S-parameter characterization.
+Those parameters can be extracted using an impedance meter, or by performing an S-parameters characterization.

@@ -56,7 +56,7 @@ The top curve represents the input (I\textsubscript{TLP}) and the bottom curve t
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.95\textwidth]{src/3/figures/measured_waveform.png}
+  \includegraphics[width=0.9\textwidth]{src/3/figures/measured_waveform.png}
   \caption{Measured voltage waveform}
   \label{fig:measurement-nfs}
 \end{figure}
@@ -68,7 +68,7 @@ Both values were estimated at $1/G = 8.10^8$ and $A = -V_{TLP}(t = 0)$ .
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/time_domain_vs_ref.png}
-  \caption{Reference current waveform versus time-domain reconstructed}
+  \caption{Reference current waveform versus time-domain reconstruction}
   \label{fig:time-domain-reconstructed}
 \end{figure}
 
@@ -85,8 +85,8 @@ Therefore, those discrepancies are ignored, and the reconstitution method is con
 
 % Defaults to overcome
 The time-domain method is simple to compute and produces good results.
-So far, it was tested with a rectangular pulse, and in the future more checks should be done to ensure it works with dynamic signal such as sine waves.
-The time-domain method also makes several approximations regarding the sensor's shape and its behavior.
+So far, it was tested with a rectangular pulse, and in the future more cross checks should be done to ensure it works with dynamic signal such as sine waves.
+The time-domain method also makes several approximations regarding the sensor's characteristics and its behavior.
 It assumes that the gain of the sensor is constant for all frequencies, which is not true.
 The frequency response is provided in the next section.
 It should be noted that the bonding pads are also part of the calibration, but they may limit the sensor performance at high frequency.
@@ -123,13 +123,11 @@ $S22$ is the reflected power from the output, which is not relevant for this stu
 % Analyse the response
 It was suspected previously that the sensor's response is not constant versus frequency.
 The \gls{sparams} measurement confirms it, showing a sensor bandwidth of about 300MHz.
-
 % Talk about S11
 S11 shows a resonance of -43.9 dB at 1.15 GHz.
 It corresponds to a frequency where insertion losses become very small.
 However, this peak is not visible on the transmitted coefficient $S12$ or $S21$.
 It probably means that at this frequency, a part of the input power is dissipated by the device, either by the bonding or the sensor itself.
-
 % Talk about S21
 S21 is the only scattering parameter used in the post-processing method.
 It represents the transfer function between the input current and the sensed voltage.
@@ -154,7 +152,7 @@ Phase information is very helpful to improve the quality of the post-processing,
 % The algorithm
 The post-processing method is detailled in Fig. \ref{fig:postprocess-nfs-pipeline}.
 The measurement data in the time-domain is converted to the frequency domain using \gls{fft}.
-The ouptut array associates to each frequency point a complex number.
+The output array associates a complex number to each frequency point.
 An example is given in Table \ref{tab:complex-fft}.
 
 \begin{table}[!h]
@@ -227,7 +225,7 @@ Those improvements will be evaluated and implemented as follow-up work.
 In conclusion, both methods so far produce acceptable results.
 The frequency method is closer to the physical properties of the device.
 Ultimately, it is believed that it should behave better than the time-domain method.
-It is the method chosen for processing measurement data later on in section \ref{sec:test-vehicle-testing}
+It is the method chosen for processing measurement data later-on in section \ref{sec:test-vehicle-testing}
 
 % Follow up work
 As follow-up work, both techniques should be verified with sine-waves and other time varying signals.

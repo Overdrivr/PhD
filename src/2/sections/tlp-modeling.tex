@@ -2,7 +2,7 @@
 \label{sec:tlp-modeling}
 
 % Illustrate the method with a practical case
-The methodology described previous (section \ref{sec:esd-modeling}) is applied to the \gls{tlp} bench at NXP laboratory in Toulouse.
+The methodology previously described in section \ref{sec:esd-modeling} is applied to the \gls{tlp} bench at NXP laboratory in Toulouse.
 It is a good illustration on how to use the library of models for simulating a complete system.
 Also, this particular testbench is widely used in NXP for characterizing and testing products.
 The model described hereafter is used for instance to validate non-linear frequency model of passive devices.
@@ -22,17 +22,16 @@ The setup is identical for each simulation and measurement and is given Fig. \re
 % Continue describing the approach
 All the recorded time-domain waveforms serve as a reference for the modelling.
 The list of test loads is constituted of resistors, capacitors and inductors of different values.
-Pictures of the generator environment, its internal circuitry, and its schematic are also very valuable.
-Then, a first version of the testbench model is build, taking into account elements what physically exists.
+A first version of the testbench model is built, taking into account elements that physically exists.
 It is tested with a first \gls{spice} simulation for a resistive load and charging voltage, and waveforms are compared against measurements.
 If results correlate, the validation is continued with another load or another amplitude.
-If results don't correlate, the model needs corrections.
-Usually, some part of the curve will match the measurement, but others won't and call for improvements.
+If results do not correlate, the model needs corrections.
+Usually, some part of the curve will match the measurement, but others will not and call for improvements.
 It can be convenient to try improving a single part of the waveform at a time.
 Properties of time-domain reflectometry are helpful for locating where the model needs adjustements.
 Indeed, with \gls{tdr}, a portion of the curve in time corresponds to a physical location inside the system.
 If the fall time of the pulse is wrong for instance, then it can mean that some device that smoothes the discharge is missing at the far end of the discharge cable.
-It is also very convenient to observe pictures of the system while building the model, because some small elements might easily be missed out or forgotten from the preliminary observation, yet they might impact waveforms a lot.
+It is also very convenient to observe pictures of the system taken during testing while building the model, because some small elements might easily be missed out or forgotten from the preliminary observation, yet they might impact waveforms a lot.
 If some minor sections of the curves really cannot be matched using the system schematic as reference, then parasitic devices can be added.
 All of these steps should quickly converge on an accurate ESD model.
 
@@ -70,12 +69,12 @@ It can be easily corrected in simulation by adding a small offset to the chargin
 Until 220 ns, both curves match closely.
 After this time, some differences appear due to small modelling errors.
 Because of the reflected waves, the errors accumulate and become significant, but only after the main part of the pulse.
-Indeed, most ESD investigations focus on the part of the discharge under 120 ns which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
+Indeed, most ESD investigations focus on the part of the discharge below 120 ns which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_R25_500V.png}
-  \caption{Voltage and current waveforms comparison - 500 V charging voltage on 25\textOmega{}}
+  \caption{Voltage and current waveforms comparison : 500 V charging voltage on 25\textOmega{}}
   \label{fig:comparison-tlp-load}
 \end{figure}
 
@@ -90,7 +89,7 @@ Because this is a limitation of the equipment, it is not modelled inside the sim
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_short_500V.png}
-  \caption{Voltage and current waveforms comparison - 500 V charging voltage on a short circuit}
+  \caption{Voltage and current waveforms comparison : 500 V charging voltage on a short circuit}
   \label{fig:comparison-tlp-short}
 \end{figure}
 
@@ -99,14 +98,14 @@ Finally, the process is repeated on an open circuit in Fig. \ref{fig:comparison-
 Observations are similar to the previous figures.
 The voltage is recorded at 220V, corresponding to a bit less than half the TLP charging voltage.
 For an ideal TLP, the value would be exactly 250V.
-Due to the 50\textOmega{} resistor between signal and ground inside this TLP, the voltage is slightly lower.
+Due to the 50\textOmega{} resistor between signal and ground inside this TLP bench, the voltage is slightly lower.
 The current is close to 0A because the load is an open circuit and does absorb current.
 Between 100ns and 120ns, the same clamped measurement issue than previously is observed on the current waveform.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_open_500V.png}
-  \caption{Voltage and current waveforms comparison - 500 V charging voltage on open circuit}
+  \caption{Voltage and current waveforms comparison : 500 V charging voltage on open circuit}
   \label{fig:comparison-tlp-open}
 \end{figure}
 
@@ -122,11 +121,11 @@ The slope of this linear curve is directly related to the capacitor value.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_1nF_500V.png}
-  \caption{Voltage and current waveforms comparison - 500 V charging voltage on a 1nF capacitor}
+  \caption{Voltage and current waveforms comparison : 500 V charging voltage on a 1nF capacitor}
   \label{fig:comparison-tlp-capa}
 \end{figure}
 
 % More validations in Annex
 More simulation and validation curves are provided in Annex \ref{apx:tlp-validation-curves}, for different loads and amplitudes.
-The goal of all those validation is to verify the model at both nominal and boundary conditions.
+The goal of all those validations is to verify the model at both nominal and boundary conditions.
 Overall, the model is good and fits very well the measurements, demonstrating the validity of the modelling method.

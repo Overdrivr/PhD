@@ -54,7 +54,7 @@ During phase 3, the inductor draws all the current and brings the voltage at A d
 The result of this combined action generates the characteristic slow slope of the HMM waveform.
 
 % Behavior of R
-The resistor R creates an voltage offset at $t=2\Delta t$.
+The resistor R creates a voltage offset at $t=2\Delta t$.
 It is used to match better the standardized waveform, which also has a superior to zero value after the first peak.
 
 % Tuning the peak width
@@ -79,20 +79,16 @@ Overall, its dimensions must be kept as small as possible to reduce the impact o
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/5/figures/shaping_filter_schematic.pdf}
-  \caption{shaping-filter schematic}
+  \caption{Shaping-filter schematic}
   \label{fig:shaping_filter_schematic}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/5/figures/filter.jpg}
-  \caption{assembled shaping-filter}
+  \caption{Assembled shaping-filter}
   \label{pic:shaping_filter_assembled}
 \end{figure}
-
-%TODO: Figure impact delay ?
-% Compared to the TLP risetime, a shorter delay for the shaping filter’s cable will reduce the amplitude of the peak while a longer delay will let the TLP reach its maximum voltage and generate a short flat region. The impact of different t values on the peak is presented on Fig 7. The TLP charging voltage is identical for each curve and the load is 2 calibration load defined in IEC 61000-4-2). A 2ns rise time filter is employed here for accentuating the interaction between the risetime of the pulse and the delay of the cable. In the final system, a 1ns risetime filter is used instead to comply with the HMM specification.
-%The red curve in Fig. 7 corresponds to the shortest cable. The peak amplitude never reaches the maximum voltage. The blue curve corresponds to the optimal length. The peak reaches the maximum voltage and falls immediately. The green curve corresponds to the longest cable. The delay is long enough that the load sees a TLP step for 10ns before the voltage falls down.
 
 \subsubsection{Absorber}
 
@@ -110,14 +106,14 @@ The device is constituted of a 50\textOmega{} resistor, in series with a 6.6 nF 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/5/figures/absorber_schematic.pdf}
-  \caption{absorber schematic}
+  \caption{Absorber schematic}
   \label{fig:absorber_schematic}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.4\textwidth]{src/5/figures/absorber.jpg}
-  \caption{assembled absorber}
+  \caption{Assembled absorber}
   \label{pic:absorber_filter_assembled}
 \end{figure}
 

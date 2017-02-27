@@ -31,7 +31,8 @@ architecture behav of simple_snapback is
     signal flag: integer range 2 downto 0:=0;
     signal previous_state: integer range 2 downto 0:=0;
 begin
---digital state machine
+-- digital state machine
+-- Defines in which state is the protection (on, off)
 process
 	variable state: integer range 2 downto 0 := 0;
 begin
@@ -51,7 +52,8 @@ begin
 		when others => null;
 	end case;
 end process;
-
+-- Synchronisation between analog and digital simulator cores
+-- When protection changes of state
 process (flag) is
 begin
 	case flag is
@@ -65,11 +67,10 @@ begin
 end process;
 
 -- Analog part
+-- Defines the operating slope of the protection depending on its state
 if (flag = 2)    use Iscr == ((i_4 - i_3) / (v_4-v_3)) * Vscr + (i_4 - v_4 * ((i_4 - i_3) / (v_4 - v_3))) ;
 elsif (flag = 1) use Iscr == ((i_2 - i_1) / (v_2-v_1)) * Vscr + (i_2 - v_2 * ((i_2 - i_1) / (v_2 - v_1))) ;
 else                 Iscr == 0.0;
 end use;
-
---break on flag; --liaison analogique numerique
 
 end architecture behav;
