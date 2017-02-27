@@ -1,6 +1,6 @@
 # English summary - (< 4000 characters)
 
-The miniaturization of electronic circuits continues nowadays and sees the more recent technologies being applied to diverse fields of application such as automotive.
+Miniaturization of electronic circuits continues nowadays and sees the more recent technologies being applied to diverse fields of application such as automotive.
 Very dense and small integrated circuits are interesting for economical reasons, because they are cheaper to manufacture in mass and can pack more functionalities with elevated performances.
 The counterpart of size reduction is integrated circuits becoming more fragile electrically.
 
