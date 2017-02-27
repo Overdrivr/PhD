@@ -55,16 +55,12 @@ Pictures of destroyed devices, obtained with an electronic microscope, are provi
 
 
 % Oxide breakdown
-%TODO: Etoffer avec these monnereau
 A first kind of common failure for integrated devices is the oxide breakdown.
 Oxide breakdown happens when an insulating material is exposed to a larger electric field than it can tolerate.
 A picture of the oxide of a device destroyed because of an electrostatic discharge is provided in Fig. \ref{fig:silicon-level-failures}.
-%TODO: Values
-During an \gls{esd}, large voltage variations in a short amount of time result in very large electric fields superior to 1kV/m ?
-For reference, thunder and lightning events have electrical fields in the same order of magnitude.
-Oxide breakdown is usually discovered in the insulator constituting the gate of a \gls{mos} transistor.
+During an \gls{esd}, large voltage variations in a short amount of time result in very large electric fields.
+Oxide breakdown happens usually with the insulator constituting the gate of a \gls{mos} transistor.
 As technologies shrink, so does transistor gate oxide thickness.
-%TODO: thinner gate oxide can tolerate less electrical field ?
 After the failure, the gate that is normally insulated from the rest of the device leaks significant amount of current.
 The transistor can no longer operate and is considered destroyed.
 
@@ -156,10 +152,8 @@ External protections are still very relevant, where an integration solution woul
 \end{figure}
 
 % Implementation and common architectures
-%TODO: These monnereau pr etoffer
 ESD protections can be designed in various ways (see Fig. \ref{fig:architecture-esd-protection}).
-Diodes are commonly found.
-Thyristor architectures are frequently used too.
+Diodes or thyristors are two main architectures used for designing a protection.
 Thyristors have typical snapback characteristics as shown in Fig. \ref{fig:iv-curve-esd-protection}.
 RC-triggered \gls{mos} are frequently found for protecting low-voltage \gls{io} of \gls{cmos} circuits.
 Basically, it is a power transistor activated during the discharge by a resistor-capacitor network.
@@ -167,7 +161,6 @@ The capacitor is most of the time the parasitic gate capacitance to ground (TODO
 During a transient event, the capacitor acts as a short-circuit, rising the gate potential.
 The \gls{mos} switches on and absorbs current, deviating it into the ground.
 
-%TODO: Put leakage curve
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/1/figures/esd_protections_curves.pdf}
@@ -178,12 +171,9 @@ The \gls{mos} switches on and absorbs current, deviating it into the ground.
 % Comment IV curve
 A few key values are important for describing a protection.
 V\textsubscript{t1} refers to the triggering voltage of the protection.
-%TODO: snap only ?
-I\textsubscript{t1} (snapback devices only ?) corresponds the current absorbed by the protection immediately after triggering.
+I\textsubscript{t1} corresponds the current absorbed by the protection immediately after triggering.
 V\textsubscript{t2} and I\textsubscript{t2} describe the coordinates where the protection is destroyed.
 A sudden increase of the leakage current (Fig. \ref{fig:iv-curve-esd-protection}) is a good indicator of a damaged protection.
-
-%TODO: Talk about protection strategies, centralized clamp vs distributed. RC-mos + boost rail to trigger all protections, etc.
 
 % Requirements
 To design an efficient \gls{esd} protection, several requirements are to be fullfilled.

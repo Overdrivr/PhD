@@ -15,8 +15,6 @@ In the process, it has cost a lot of time and manpower to the company.
 Therefore, to remain competitive, the amount of design-manufacturing phases must be kept to a bare minimum, ideally to a single pass.
 In this context, any tool capable of detecting early issues, enabling to prevent them before manufacturing, is highly valuable.
 
-%TODO: Schema with design cycle + cost increase at each step
-
 % Simulations are vital
 Electrical simulations are the corner-stone of modern, computer-aided electronic design.
 They constitute a fundamental tool used massively in integrated circuit and system development.
@@ -42,7 +40,6 @@ The goal of the proposed methodology is to build a library of all those elements
 Each model of the library will be qualified independently with individual characterization and comparison with its model.
 
 % Assemble models together to build the complete thing
-%TODO: Etoffer
 After the library is constructed, models can be connected together to simulate the entire system.
 The topology of the system serves as a blueprint for connecting models.
 
@@ -191,8 +188,6 @@ Different load values are employed to observe the performance and accuracy of ea
 The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
 Both values correspond to the cable usually employed in a transmission line pulsing generator and are thus very realistic.
 
-%TODO: Simulation with 10
-
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/2/figures/tline_validation_setup.pdf}
@@ -275,13 +270,12 @@ Values can be extracted with an impedance meter capable of measuring impedances 
 The extraction is performed in small-signal conditions, which can be an issue as will be later detailed.
 Fig. \ref{fig:frequency-response-capa} displays the magnitude and phase versus frequency of a 6.8 nF \gls{smd} capacitor.
 The capacitor exhibits a perfect behavior up to 45MHz.
-The slope of the curve below 45 MHz is directly related to the capacitor value (see Equation \ref{eq:capacitor-impedance}).
+The slope of the curve below 45 MHz is negative and is a function of frequency and the capacitor value.
+The capacitor value can be computed with Eq. \ref{eq:capacitor-impedance} obtained from capacitor theory.
 Below 45 MHz, the phase has a value of $-90$ degrees, corresponding to the theory.
 
-
-%TODO: Check this equation
 \begin{equation}
-\delta M/ \delta f = C. \omega = 2.\omega .C.f
+C = \frac{1}{2\pi .f.\lvert Z \rvert}
 \label{eq:capacitor-impedance}
 \end{equation}
 
@@ -290,11 +284,12 @@ At the resonant frequency, the capacitor is equivalent to a non-ideal short-circ
 This resistor, also called \gls{esr}, is both a parasitic device and the series resistance in the high-frequency model presented earlier.
 Beyond 45 MHz, the capacitor behaves as an inductor.
 The phase shift is the one of an inductor at $+90$ degrees.
-This second slope is determined by the parasitic inductor value (see equation \ref{eq:inductor-impedance}).
+This second slope is positive and a function of frequency and inductor value.
+The inductor value can be computed with Eq. \ref{eq:inductor-impedance}.
 In conclusion, the values for parasitic inductor and resistor can be computed very easily from a measurement.
 
 \begin{equation}
-\delta M/ \delta f =  -L.\omega = -2.\omega .L.f
+L = \frac{\lvert Z \rvert}{2\pi .f}
 \label{eq:inductor-impedance}
 \end{equation}
 
@@ -356,10 +351,9 @@ However, experimented TCAD designers with sufficient know-how are capable of per
 \end{figure}
 
 % Behavioral modelling
-%TODO: Improve VHDL-AMS description
 Behavioral modelling is widely used for studying interactions between the protection and a circuit.
 The I(V) curve extracted from a \gls{tcad} simulation or a \gls{tlp} measurement is reproduced by an equivalent model \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
-By nature, ESD protections switch from a high-impedance to a low-impedance state.
+By nature, ESD protections switch from a high-impedance for the off-state to a low-impedance state after turn-on.
 In the case of snapback devices, the impedance change is very abrupt, leading to discontinuities of the slope of the I(V) curve.
 Snapback devices have non-monotonous curves, where multiple values of current can be found for a given voltage, depending on the state of the device.
 Large and sudden discontinuities are very challenging for classic \gls{spice} simulations, where convergence issues rise and prevent the simulator to complete.
@@ -388,12 +382,6 @@ It is generally the physical behavior observed with thyristors for instance, and
 \caption{Single snapback behavioral device model}
 \label{lst:snapback-device}
 \end{code}
-
-%TODO
-% Example time-domain simulation
-%Can see that first the protection is at the off-state, voltage rises
-%Than voltage becomes suddenly smaller, and current increases
-%The protection has turned on and absorbs current
 
 % Conclusions and future work on ESD protections
 The two main kinds of methods for modelling ESD protections have been presented.
@@ -430,7 +418,6 @@ Using this method, it is possible to build accurate common-mode filter models su
 
 \subsection{Ferrite beads}
 
-%TODO
 % Description and function
 Ferrite bead are passive filtering devices, often found in \gls{ic} decoupling networks.
 They remove high-frequency noise in supply lines, which is why they are very often met on power cables for consumer equipments such as laptop supplies for instance.

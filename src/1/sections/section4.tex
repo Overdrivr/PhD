@@ -24,9 +24,7 @@ It is proven that modelling the output buffer of the core logic is enough for re
 It is less accurate than a full-netlist simulation, but faster to simulate.
 VHDL-AMS and \gls{spice} modelling are performed in this analysis.
 
-%TODO: Pictures
 % Case 3 - failures on an SDRAM
-%TODO: Read reference articles in this article
 In \cite{SDRAMCase}, soft-failures are studied on a SDRAM memory in operation.
 The injection setup consists of a modified compact \gls{tem} cell \ref{fig:modified-tem-cell} with a reduced septum height.
 Reduced dimensions result in increased field strenghts, to reach levels normally produced by an \gls{esd} gun.
@@ -99,7 +97,7 @@ Overall, it was demonstrated that it remains highly difficult to identify the ro
 A multitude of tools has been employed throughout the studies, such as near-field injection and scan, modified TEM cells, SPICE and electromagnetic simulations and modelling languages such as VHDL-AMS.
 Ultimately, it seems that access to the silicon design is essential to debug the problem and fix, as was shown successfully in \cite{softfailEMCIC}.
 All these conclusions call for new investigation methods at silicon level, and modelling method for enabling system level simulations without disclosing intellectual property.
-The new methods and tools presented in this document aim to solve exactly this kind of issues. 
+The new methods and tools presented in this document aim to solve exactly this kind of issues.
 
 \subsection{Observation methods}
 
@@ -141,10 +139,6 @@ For \gls{esd}, this sampling frequency is almost ideal.
   \caption{Latch comparator and timings for substrate noise detection from \cite{}}
   \label{fig:noise-detect-latch-comparator}
 \end{figure}
-
-%TODO ?
-%\subsubsection{Optically-isolated communication}
-%Banc Alain
 
 \subsubsection{Emission Microscopy (EMMI)}
 
@@ -203,10 +197,6 @@ The architecture of a near-field scanner is given in Fig. \ref{fig:near-field-sc
   \caption{Architecture of a near-field scanning testbench}
   \label{fig:near-field-scanner}
 \end{figure}
-
-
-%TODO: Other methods presented in Contribution à l’étude électromagnétique théorique et expérimentale des cartes de circuit imprimé
-% « Mesure des champs électromagnétiques par thermographie infrarouge. Comparaison avec une simulation numérique
 
 % Challenges
 In a near-field scan, the amplitude recorded by the probe depends on many factors.

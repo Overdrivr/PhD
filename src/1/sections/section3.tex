@@ -63,9 +63,9 @@ They do not pollute the system with reflected waves.
 Some configurations use Time-Domain Reflectometry (TDR) and others rely on more standard techniques for measuring electrical properties of a load.
 
 % Principle of TDR for TLP
-%TODO: Find TLP TDR reference, and non TDR TLP ref
 Time-domain reflectometry is a measurement technique with a wide range of applications.
 With TDR, it is possible to determine electrical properties of a device by observing reflected waveforms.
+Application of time-domain reflectometry to TLP is described in the ANSI ANSI/ESD STM 5.5.1-2016 standard \cite{tlp-standard}.
 In this configuration, voltage and current measured at the output of the generator are equal to voltage and current waveforms inside the load.
 
 \begin{figure}[!h]
@@ -243,8 +243,6 @@ The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
   \label{iso_pulse}
 \end{figure}
 
-%TODO: Annex F ISO 10605
-
 ISO 10605 introduces the concept of performance classes for categorizing the robustness of powered-on electronic systems in operation against electrical disturbances.
 Classes are defined from A to E, with A describing systems that are the more immune to the test.
 Class E corresponds to the worst severity, where the electronic device did not survive the test.
@@ -290,11 +288,11 @@ The characteristics of pulse 2A are given in fig. \ref{fig:iso_2a_pulse}.
 \end{figure}
 
 % How is the pulse generated
-%TODO: Is it 2 ohms ?
 The ISO 7637-2 standard does not enforce how stress generators must be constructed or modelled.
 A compliant generator can be implemented with a resistor-capacitor discharge network.
-However, by tuning both values, it is rather straightforward to produce the standardized waveform on a 2\textOmega{} resistor.
-It should be noted that the behavior of an RC network is quite different from an actual inductive load disconnection, but as long as the generated waveform is correct the generator is considered compliant.
+By tuning both values, it is rather straightforward to produce the standardized waveform.
+It should be noted though that the behavior of an RC network is quite different from an actual inductive load disconnection.
+However, as long as the generated waveform follows the amplitude criteria defined in the standard the generator is considered compliant.
 
 \begin{figure}[!h]
   \centering
@@ -402,7 +400,6 @@ A typical pin injection setup is given in Fig. \ref{fig:iec62215_setup}.
 \end{figure}
 
 % Talk about immunity classes
-%TODO
 Beyond test setup and waveforms, the standard defines immunity classes (see Table \ref{tab:class-a-levels}) to categorize the behavior of integrated circuits exposed to disturbances.
 It is a direct adaptation of performance classes defined in Annex B of ISO10605 and presented previously in Table \ref{tab:iso-class-a-levels}.
 Classes range from A to E.
