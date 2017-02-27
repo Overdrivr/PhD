@@ -231,44 +231,41 @@ There are two large spikes at the beginning and the end of the pulse that are no
 This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
 Overall, the accuracy remains acceptable for an ESD simulation.
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_m10V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (-10V TLP)}
-  \label{fig:compare-model-simu-m10}
-\end{figure}
-
 Other validations are provided for positive 20V and 40V TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
 They confirm that the input model performs correctly, and even better when exposed to positive stresses.
 Overall, this Verilog-A model is considered valid for the input port while considering that there is a lot of room for improvement.
 
-\begin{figure}[!h]
+\begin{figure}[!p]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_20V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (-20V TLP)}
+  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_m10V.png}
+  \caption{Comparison of complete schematic and model simulations for input port (-10V TLP)}
+  \label{fig:compare-model-simu-m10}
+\end{figure}
+
+\begin{figure}[!p]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_20V.png}
+  \caption{Comparison of complete schematic and model simulations for input port (20V TLP)}
   \label{fig:compare-model-simu-20}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!p]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_40V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (-40V TLP)}
+  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_40V.png}
+  \caption{Comparison of complete schematic and model simulations for input port (40V TLP)}
   \label{fig:compare-model-simu-40}
 \end{figure}
 
 \subsubsection{Comparison of output model with reference circuit}
 
 % The output port is not a passive device
-The output port is more complicated than the input port, because it is equivalent to an active device, unlike the input that is passive.
-In normal operation, the primary supply regulates a 2.5 V voltage on the output and drives a current into the external load to maintain that voltage.
-However, the Verilog-A I(V) curve model is just a voltage controlled resistor and is not capable of regulating a voltage.
-A voltage source is required in the model to reproduce this behavior.
+The output port is more complicated than the input port, because it is equivalent to an active device, unlike the input that can be assimilated to a passive port.
+The primary supply regulates a 2.5 V voltage on this output and drives a current into the external load to maintain that voltage.
+The Verilog-A I(V) model used for the input is just a voltage controlled current source and is not capable of regulating a voltage.
+A more complex architecture is proposed with Fig. \ref{fig:first-output-model}.
+A DC voltage source is added to generate the regulated 2.5V.
 In case of failure, the output port will also fail temporarily and the output voltage will fall down.
-This phenomenon must also be taken into account in the model.
-To solve those issues, a DC voltage source and a transient voltage source are added to the model.
-The DC source is configured at 2.5 V, representing the normal operation.
-The PWL source generates a rectangular negative disturbance that reproduces the failure on the output.
-This new architecture is summarized in Fig. \ref{fig:first-output-model}.
+A transient voltage source is added to the model to simulate the output fault.
 
 \begin{figure}[!h]
   \centering
@@ -278,10 +275,11 @@ This new architecture is summarized in Fig. \ref{fig:first-output-model}.
 \end{figure}
 
 % Make the comparison
-Finally, the output port model is compared to the complete schematic in simulation.
-A failure is triggered on the complete schematic by applying a negative -10V TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
-The testbench is identical to the input validation testbench given in Fig. \ref{fig:compare-veriloga-model-input}, except this time the output waveform is being recorded.
-The comparison is plotted in Fig. \ref{fig:compare-model-simu-m10-output}.
+This new output port model is compared to the complete schematic in simulation.
+With the complete schematic, a failure is triggered by applying a negative -10V TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
+For the model, the PWL source is used to fake a failure.
+The testbench is identical to the input validation testbench shown previously (Fig. \ref{fig:compare-veriloga-model-input}).
+Voltage and current waveforms are compared in Fig. \ref{fig:compare-model-simu-m10-output}.
 
 \begin{figure}[!h]
   \centering
@@ -290,21 +288,25 @@ The comparison is plotted in Fig. \ref{fig:compare-model-simu-m10-output}.
   \label{fig:compare-model-simu-m10-output}
 \end{figure}
 
-%TODO
-
-% Comment the curves
+% Comment the reference curve
 Large differences are observed between reference and model simulations.
-Capacitor is pre-charged at 2V and not 2.5V to see if the model is capable of charging at 2.5V.
+In the reference curve (in blue), the regulation is starting up between 0 and 35\textmu{}s.
+This part of the curve is not particularly relevant for the ESD analysis and can be ignored overall.
+Then, at 40\textmu{}s, the pulse is injected on the input (not plotted), resulting in a fault on this output.
+In turn, the reference curve exhibits the typical restart explained previously in chapter \ref{sec:failure-case-study}.
+The voltage drops until 1V, then the regulator restarts until it is operating properly again at 75 \textmu{}s.
 
-The DC value of the model is wrong, and is always increasing.
-This can be explained by looking at the I(V) curve of the output magnified between 0V and 5V (see Fig. \ref{fig:tlp-output-cz-zoomed}).
-At the beginning of the simulation, the I(V) model sees a potential difference of 2.5V accross its terminals.
-For a 2.5V voltage, the I(V) curve model produces a value of 0.75 mA.
-This constant current will keep on charging the capacitor, and
-This means that even though the output voltage at the beginning of the simulation is correct, it will increase because of the Verilog-A I(V) model.
+% Comment the model curve
+The model curve (in green) is very different from the reference.
+Initially, the 100nF capacitor connected on the output (Fig. \ref{fig:first-output-model}) is pre-charged at 2V, to see if the model is capable of charging it at 2.5V and reaching the DC operating point.
+Instead, the output voltage keeps increasing.
+This can be explained by looking at the I(V) curve of the output magnified between 1V and 4V (see Fig. \ref{fig:tlp-output-cz-zoomed}).
+At the beginning of the simulation, the I(V) model sees a potential difference of 2.0V accross its terminals.
+For a 2.0V voltage, the I(V) curve model produces a value of 0.75 mA.
+It is not identical to the characterized value of 0.2mA but the error remains acceptable.
+This non-zero current is therefore forced by the Verilog-A model into the the capacitor, that keeps charging.
+In itself, the
 The combination of the DC source and the I(V) curve does not seem suitable for modelling an active output.
-
-% TODO: Was it actually good in the other way for connections ?
 
 \begin{figure}[!h]
   \centering
@@ -313,36 +315,40 @@ The combination of the DC source and the I(V) curve does not seem suitable for m
   \label{fig:tlp-output-cz-zoomed}
 \end{figure}
 
-Configuring the model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
-A more complex solution must be conceived and developped to solve those issues.
-The raw I(V) curve extracted from TLP does not seem to be usable as-is to model an active output.
-This analysis has enable to highlights the current issues to solve before being able to model active outputs for ESD simulations.
-Key milestone for black box modelling.
+Configuring the Verliog-A model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
+The I(V) curve extracted with a TLP characterization in simulation does not seem to be usable as-is to model an active output.
+A more complex or different solution must be conceived and developped to solve those issues.
+One potential solution would be to create a custom Verilog-A model capable of regulating a voltage while offering proper output impedance.
+Overall, this study on input and output ports modelling has enabled to identify key issues preventing for now to develop a complete model of integrated function for powered ESD simulations.
+This is a first step toward more advanced models and modelling techiques that ultimately should enable better cooperation between silicon-design companies and equipment manufacturers, as described by the SEED methodology.
 
 \subsection{Conclusion on black-box modeling}
-% TODO: Review and rewrite
+
 
 % Conclusion
-Black box models of analog integrated functions are very interesting for distributing SPICE models to external parties.
-They do not disclose the internal design of the chip, yet they can help achieve system-level ESD simulations.
-Ultimately, the goal is to follow the SEED (TODO: Ref) methodology, that indicates that ESD robustness should not be handled at a single level of a system, but at every level (equipment, board, integrated circuit), and that all levels should work efficiently together toward that goal.
-Black box models fit very nicely in this methodology.
-In this section, a first technique for extracting and creating black-box models was presented.
-There is a lot of room for improvements, but it is already working for some intermediate complex cases.
-The core principle is that TLP characterization of inputs and ouputs on a biased function is sufficient to extract an equivalent impedance.
-This impedance can replace the function in the schematic, during an ESD simulation, in order to reduce complexity and simulation time.
-The second core principle is to simplify waveforms into rectangular ones in order to reduce the complexity of the problem.
+Black box models are very promising for distributing SPICE models of integrated functions to third-parties without disclosing intellectual property.
+They do not disclose the internal design of the chip and might help achieve system-level ESD simulations with IC models.
+Ultimately, the goal is to follow the SEED \cite{seed} methodology that indicates that ESD robustness of a system should not be handled by a single component but with a collaboration between all parts (equipment, board, integrated circuit), using appropriate design techniques to ensure that the cooperation is efficient.
+In this section, a first attempt at extracting and creating black-box models for integrated functions was presented, in the context of ESD simulations.
+TLP characterization was performed on input and ouput pin of a biased function, to extract an equivalent impedance.
+The resulting I(V) curve was then modelled using Verilog-A modelling language, then used in circuit simulations.
+For the input pin that is somehow equivalent to a passive device, this model has shown promising results with excellent correlation in both DC and transient domains.
+The Verilog-A model performed particularly good for the input when expositive to a positive rectangular stress.
+The correlation was less accurate with a negative rectangular pulse but remained acceptable for an ESD simulation.
+For the output pin, the situation was more complex because it should be modelled by an equivalent active device.
+A first model was proposed specifically for modelling active outputs, however it was not successful.
+Differences between the reference schematic and the model were simply too large, showing that a different or more complex approach is required.
+Despite the lack of correlation, this study has enabled to identify a important issue preventing to build a model of an integrated function, for ESD simulations.
+Solving this issue should be the topic for future work and research, and identifying it was already a significant milestone to reach for achieving this goal.
+Ultimately, black box models should enable to replace a integrated function during an ESD simulation, in order to reduce complexity, simulation time, and protect intellectual property.
 
-%TODO: Talk about Simulation AAS as an alternative to black box models ?
 % Opening work
-There are many new leads to explore on these black box models.
-First, behavior of the models against more time-varying disturbances such as ESD gun waveforms should be investigated.
-Also, the piecewise-linear models should be improved to be more stable, and to fit more closely the extracted I(V) curve.
-This technique should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
+There are many new leads to explore on these black box models, and work to accomplish.
+The behavior of the black-box models should be investigated against more time-varying disturbances such as ESD gun waveforms.
+The piecewise-linear modelling technique, usually employed in the ESD field for modelling ESD protections, should be improved to be more stable and fit more closely the extracted I(V) curve.
+The methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
 For now, input and outputs must be simulated separately.
 First, the input is simulated, then analyzed to extract the width and amplitude of the disturbance.
 This data is then used to configure the output failure source pulse.
 The model must be improved in order for the output to react in real-time to the disturbance of the input.
-Ultimately, this calls for a Verilog-A model of the failure for instance, plus most likely an improved characterization method able to extract and describe this real-time behavior.
-
-%TODO: need to validate with a varying waveform
+Research on all those topics should lead to the development a black-box model that will work for powered electrostatic discharge simulations.
