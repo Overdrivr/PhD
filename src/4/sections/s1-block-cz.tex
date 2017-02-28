@@ -5,8 +5,7 @@
 \label{sec:block-failure-cz}
 
 % What is bottom up
-The modelling method presented in this section is classified as bottom-up, just like the design phase described previously.
-It focuses first on studying individually the bottom cells of the circuit.
+The modelling method presented in this section focuses first on studying low-level cells of the circuit.
 They are characterized individually, leading to the definition of a failure model for each cell.
 In a second step, the individual models are linked together.
 The connection between the models reproduce the connections between the cells in the actual circuit.
@@ -18,6 +17,7 @@ The process is repeated until the last output, where the output signal represent
 % Why bottom up
 The main perk of this characterization method is the modularity, because each block is characterized independently of the others.
 The model built for each cell is reusable, and once the characterization is done it does not need to be repeated unless modifications are brought to the circuit.
+This method is called bottom-up because low-level functions components are characterized then assembled to model higher-level functions, rising from the bottom of the hierarchy to upper levels.
 
 % Models are not electrical but failure models
 The goal of this method is to build a propagation model and not an electrical \gls{spice} model.
@@ -36,13 +36,16 @@ This treshold is set prior to the simulation, and there is no general rule for s
 The \gls{dc} specification of the output can be used directly, if it exists, or a sound value in regard of the design, or an arbitrary level.
 
 % How is it done, core concept
-The first part of the modelling method is the characterization of each block in a particular setup.
-This setup provides appropriate biasing to the block, in order to set it in normal operating conditions.
-This setup is also in charge of injecting the characterization signal on the tested input, and monitoring of the output under test.
-Fig. \ref{block_function_cz} gives an example of such a characterization setup for a supply input.
+The first part of the modelling method is the characterization of each block using the electrical setup of Fig. \ref{block_function_cz} in a \gls{spice} simulation environment.
+This setup provides appropriate biasing to the block with V\textsubscript{DC} voltage source, in order to set the block function in operating conditions.
+It also enables the injection of the characterization signal on the tested input with V\textsubscript{stress} transient voltage source.
+The characterization pulses are rectangular waveforms similarly to the Wunsch and Bell technique.
+Each simulation runs with a different pair of values for the \textbf{amplitude} and \textbf{duration} of the square signal.
+On the other side of the cell under test, the output is monitored.
+Prior to the simulation, a failure criteria consisting of a voltage threshold is set.
+If the output waveform goes above this threshold, the simulation is tagged as \textit{fail}.
+The threshold is chosen depending on multiple parameters such as the functionality of the block or its DC operating point.
 
-%TODO: Improve figure (text sizes)
-%TODO: Remove range comparator
 \begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/characterization_setup.pdf}
@@ -50,98 +53,64 @@ Fig. \ref{block_function_cz} gives an example of such a characterization setup f
   \label{block_function_cz}
 \end{figure}
 
-% What are the characterization signal
-The characterization signal is a square waveform, applied on the tested input.
-A set of simulations is ran with this setup.
-Each simulation runs with a different pair of values for the \textbf{amplitude} and \textbf{duration} of the square signal.
-Table \ref{parameterized-simulations} illustrates this simulation process.
-
-\begin{table}[!h]
-\centering
-\begin{tabular}{@{}lllll@{}}
-\toprule
-    & 1ns   & 10ns  & 100ns & 1\textmugreek{}s   \\ \midrule
-5V  & sim11 & sim21 & sim31 & sim41 \\
-10V & sim12 & sim22 & sim32 & sim42 \\
-15V & sim13 & sim23 & sim33 & sim43 \\ \bottomrule
-\end{tabular}
-\caption{Parameterized simulation planning for the characterization}
-\label{parameterized-simulations}
-\end{table}
-
-In the time domain, this set of simulations is illustrated in Fig. \ref{set_input_signals}.
-
-%TODO: Fix sim 12 sim12
-\begin{figure}[!h]
-  \centering
-  \includegraphics{src/4/figures/time_domain_cz_curves.pdf}
-  \caption{Variations on (amplitude, duration) of the input characterization signal}
-  \label{set_input_signals}
-\end{figure}
-
-% What is the direct result of the characterization, how to obtain it
-For each simulation, the waveform of the output under test is recorded.
-The waveform is compared against two voltage thresholds constituting the failure criteria.
-If the waveform goes above the maximum threshold or below the minimum threshold, the simulation is marked as \textit{fail}.
-For each simulation, the duration during which the failure criteria was violated is also recorded.
-Once all simulations are complete, it is known which ones contain a \textit{fail}.
 The results are summarized into table \ref{simulation-results}.
+The simulations in red contain a fail, meaning that the output voltage crossed the failure threshold.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
     & 1ns                          & 10ns                         & 100ns                        & 1\textmugreek{}s             \\ \midrule
-5V  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
+15V & {\color[HTML]{FE0000} sim13} & {\color[HTML]{FE0000} sim23} & {\color[HTML]{FE0000} sim33} & {\color[HTML]{FE0000} sim43} \\
 10V & {\color[HTML]{32CB00} sim12} & {\color[HTML]{FE0000} sim22} & {\color[HTML]{FE0000} sim32} & {\color[HTML]{FE0000} sim42} \\
-15V & {\color[HTML]{FE0000} sim13} & {\color[HTML]{FE0000} sim23} & {\color[HTML]{FE0000} sim33} & {\color[HTML]{FE0000} sim43} \\ \bottomrule
+5V  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
+\bottomrule
 \end{tabular}
-\caption{Example of results on a set of simulations (simulations in red contain a fail)}
+\caption{Example of results on a set of simulations}
 \label{simulation-results}
 \end{table}
 
 % A first visualization of the characterization
-A curve can be build from this table, to make visualization easier.
-It gives a visual representation of the functional robustness of the block.
-Following table \ref{simulation-results}, the x axis is the duration of the input stress.
+A curve can be built from this table to give a visual representation of the functional robustness of the block (see Fig. \ref{wb_cz_curve_example}).
+The x axis is the duration of the input stress.
 The y axis is the amplitude of the input signal during the stress.
-This amplitude is the voltage or current seen by the characterized input pin.
-It is the sum of the stress amplitude and an eventual biasing level.
-Finally, each point (x,y) of the curve represents the \textbf{minimal} amplitude (y) for the given pulse width (x) at which failures occur.
+The color of the curve (red or green) corresponds to the presence or absence of failure at the given input amplitude and width.
 
-Fig. \ref{wb_cz_curve_example} gives an example of such a characterization curve.
-
-%TODO: REVOIR COULEURS
 \begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/example_curve.pdf}
-  \caption{Principle of Wunsch and Bell curve for powered-on block testing}
+  \caption{Visual representation of powered-on block testing results}
   \label{wb_cz_curve_example}
 \end{figure}
 
 % How to improve the displayed information
-The duration during which an output is in fail was recorded for each simulation, as stated earlier.
-% WHY IS THIS IMPORTANT
-It is possible to improve table \ref{simulation-results} by replacing the \textit{fail} by the duration of the fail.
+Presence or absence of a failure is not the only information that can be obtained by monitoring the output.
+Because soft-failures are temporary issues, their duration is also very relevant.
+Using the same characterization setup as before (Fig. \ref{block_function_cz}), it is possible to also measure the duration of a failure.
+It is possible to improve table \ref{simulation-results} by replacing the fail or no-fail flag by the duration of the fail.
 This is illustrated in table \ref{simulation-results-bis}.
+With those example values, for an input pulse stress of 5V with a input pulse width of 1ns, no failure was recorded.
+On the other hand, with a 5V 1\textmu{}s stress, a failure was recorded and the output waveform crossed the threshold during 2\textmu{}s.
+A 15V 1\textmu{}s stress caused a failure that lasted 30\textmu{}s.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lcccc@{}}
 \toprule
     & \multicolumn{1}{l}{1ns}      & \multicolumn{1}{l}{10ns}     & \multicolumn{1}{l}{100ns}    & \multicolumn{1}{l}{1us}     \\ \midrule
-5V  & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{F56B00} 2us}  \\
+15V & {\color[HTML]{00D2CB} 110ns} & {\color[HTML]{FFCB2F} 150ns} & {\color[HTML]{FE0000} 30us}  & {\color[HTML]{FE0000} 30us} \\
 10V & {\color[HTML]{32CB00} }      & {\color[HTML]{00D2CB} 125ns} & {\color[HTML]{F8A102} 540ns} & {\color[HTML]{FE0000} 30us} \\
-15V & {\color[HTML]{00D2CB} 110ns} & {\color[HTML]{FFCB2F} 150ns} & {\color[HTML]{FE0000} 30us}  & {\color[HTML]{FE0000} 30us} \\ \bottomrule
+5V  & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{F56B00} 2us}  \\
+\bottomrule
 \end{tabular}
-\caption{A more informative representation of all simulation results to account for duration of output failure}
+\caption{Example result set containing failure width information}
 \label{simulation-results-bis}
 \end{table}
 
 % How to improve the curve from the improved table
 This improvement can also be transfered to the curve representation.
-A gradient can be used rather than a simple failure curve.
-For each point of the curve, the gradient will have a value representing the duration of the failure on \textbf{\textit{V(out)}}.
+A gradient is used rather than a fail or no-fail area.
+The gradient color for each location corresponds to the failure duration the output.
 The figure \ref{wb_cz_curve_example_v2} provides an example of this improved representation.
 In this figure, the warmer the gradient, the longer the output is disturbed.
 
@@ -162,7 +131,17 @@ This representation looses some information compared to the gradient one, but is
   \label{wb_cz_curve_example_v2_discrete}
 \end{figure}
 
-%TODO: Comment this figure
+% TODO Review
+% Summarize the method
+Detailled a method to extract the robustness of a block function in a behavioral manner.
+Inject pulses on an input and watch for changes on an output.
+The block model is composed of a characterization table and a failure criteria.
+It can be summarized in Fig. \ref{fig:principle-transfert-func}.
+Table accepts input width and amplitude, and returns output width.
+The failure criteria serves two purposes.
+It is used during characterization.
+It is also used as output amplitude in the next section where models are chained.
+
 \begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/principle_transfert_function.pdf}
@@ -170,6 +149,16 @@ This representation looses some information compared to the gradient one, but is
   \label{fig:principle-transfert-func}
 \end{figure}
 
+% Why modelling individual blocks
+The motivation for modelling blocks individually is that a single block can be failing but the error can remain internal.
+Complete function can continue to operate without changes.
+In the other way around, not all blocks need to be failing in order to cause the complete function to fail as well.
+It is important to determine which blocks may be in fault to be able to fix the problem.
+This is why the characterization method presented here focuses on blocks and not complete functions.
+
+% What is done next
+In the next section, those individual block models are chained together to deduce the robustness of a complete function.
+The processed is explained in detailed and is later applied on a practical case.
 
 \subsection{Block models chaining}
 \label{sec:block-chaining}
