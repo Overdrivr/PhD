@@ -206,12 +206,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="187.2174"
-     inkscape:cy="30.743681"
+     inkscape:zoom="1.979899"
+     inkscape:cx="146.82718"
+     inkscape:cy="89.243783"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="true"
+     showgrid="false"
      fit-margin-top="4"
      fit-margin-right="4"
      fit-margin-bottom="4"
@@ -238,7 +238,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -248,7 +248,7 @@
      id="layer1"
      transform="translate(-417.26668,-112.71899)">
     <path
-       style="fill:#ffb37a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ff6a6a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 696.23833,137.50734 0,74.99999 -120,-5 -35,-20 -45,0 -15,-30 -15,0 0,-19.99999"
        id="path5473"
        inkscape:connector-curvature="0"
@@ -258,7 +258,7 @@
        inkscape:connector-curvature="0"
        id="path5471"
        d="m 466.23833,232.50733 0,-75 15,0 15,30 45,0 35,20 120,5 0,20"
-       style="fill:#abff7a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:#59e94a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 466.23833,157.50733 15,0 15,30 45,0 35,20 120,5"
@@ -280,20 +280,21 @@
        inkscape:export-xdpi="180"
        sodipodi:linespacing="125%"
        id="text8794"
-       y="185.21156"
-       x="431.21286"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
-         y="185.21156"
-         x="431.21286"
+       y="455.47861"
+       x="-233.38931"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="455.47861"
+         x="-233.38931"
          sodipodi:role="line"
-         id="tspan5497">V(in)</tspan></text>
+         id="tspan5497">input amplitude (V)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="513.65668"
-       y="250.2036"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="534.86987"
+       y="247.7036"
        id="text5457"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="180"
@@ -301,9 +302,9 @@
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
          sodipodi:role="line"
          id="tspan5459"
-         x="513.65668"
-         y="250.2036"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">T(in) (stress length)</tspan></text>
+         x="534.86987"
+         y="247.7036"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">input width (ns)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

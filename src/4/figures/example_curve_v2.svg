@@ -20,6 +20,44 @@
   <defs
      id="defs4">
     <linearGradient
+       id="linearGradient4762"
+       inkscape:collect="always">
+      <stop
+         id="stop4764"
+         offset="0"
+         style="stop-color:#00c9ff;stop-opacity:1" />
+      <stop
+         style="stop-color:#55f72f;stop-opacity:1"
+         offset="0.36363637"
+         id="stop4766" />
+      <stop
+         id="stop4768"
+         offset="0.48636365"
+         style="stop-color:#ffc400;stop-opacity:1" />
+      <stop
+         style="stop-color:#ff7d00;stop-opacity:1"
+         offset="0.64045453"
+         id="stop4770" />
+      <stop
+         id="stop4772"
+         offset="1"
+         style="stop-color:#ff0026;stop-opacity:1" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker4633"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4522"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.4)" />
+    </marker>
+    <linearGradient
        inkscape:collect="always"
        id="linearGradient4244">
       <stop
@@ -226,15 +264,6 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4244"
-       id="linearGradient4250"
-       x1="546.23834"
-       y1="192.50734"
-       x2="561.23834"
-       y2="107.50733"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4244"
        id="linearGradient4323"
        gradientUnits="userSpaceOnUse"
        x1="691.23834"
@@ -242,6 +271,17 @@
        x2="691.23834"
        y2="137.50734"
        gradientTransform="translate(45,0)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4762"
+       id="radialGradient4277"
+       cx="595.83295"
+       cy="133.18907"
+       fx="595.83295"
+       fy="133.18907"
+       r="115"
+       gradientTransform="matrix(3.0869565,-1.9387871e-8,0,0.95652191,-1333.072,80.109071)"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -250,9 +290,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="262.29057"
-     inkscape:cy="93.950823"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="30.565684"
+     inkscape:cy="72.461739"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -260,8 +300,8 @@
      fit-margin-right="4"
      fit-margin-bottom="2"
      fit-margin-left="4"
-     inkscape:window-width="1920"
-     inkscape:window-height="1058"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -282,7 +322,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -292,17 +332,11 @@
      id="layer1"
      transform="translate(-417.22884,-111.32726)">
     <path
-       style="fill:url(#linearGradient4250);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:url(#radialGradient4277);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 696.23833,137.50734 0,74.99999 -120,-5 -35,-20 -45,0 -15,-30 -15,0 0,-19.99999"
        id="path5473"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccc" />
-    <path
-       sodipodi:nodetypes="cccccccc"
-       inkscape:connector-curvature="0"
-       id="path5471"
-       d="m 466.23833,232.50733 0,-75 15,0 15,30 45,0 35,20 120,5 0,20"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 466.23833,157.50733 15,0 15,30 45,0 35,20 120,5"
@@ -318,87 +352,27 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM);marker-end:url(#TriangleOutM)"
        sodipodi:nodetypes="ccc"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png" />
-    <text
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       sodipodi:linespacing="125%"
-       id="text8794"
-       y="185.21156"
-       x="431.21286"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
-         y="185.21156"
-         x="431.21286"
-         sodipodi:role="line"
-         id="tspan5497">V(in)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="513.65668"
-       y="250.2036"
-       id="text5457"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
-         sodipodi:role="line"
-         id="tspan5459"
-         x="513.65668"
-         y="250.2036"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">T(in) (stress length)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="481.77615"
-       y="214.86673"
-       id="text5475"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
-         sodipodi:role="line"
-         id="tspan5477"
-         x="481.77615"
-         y="214.86673"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:Roboto">V(out) &lt; Vmax</tspan></text>
-    <text
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       sodipodi:linespacing="125%"
-       id="text5491"
-       y="170.12543"
-       x="554.47968"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:Roboto"
-         y="170.12543"
-         x="554.47968"
-         id="tspan5493"
-         sodipodi:role="line">V(out) &gt; Vmax</tspan></text>
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path4321"
-       d="m 741.23833,137.50734 0,74.99999 -15.00001,0 0,-74.99999"
+       d="m 741.23833,137.50734 0,74.99999 -10.00001,0 5e-5,-74.99999"
        style="fill:url(#linearGradient4323);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="683.27411"
-       y="126.43633"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="707.51648"
+       y="127.15062"
        id="text4325"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
          sodipodi:role="line"
-         id="tspan4327"
-         x="683.27411"
-         y="126.43633"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:Roboto">V(out) &gt; Vmax for</tspan></text>
+         x="707.51648"
+         y="127.15062"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';"
+         id="tspan4351">failure duration</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 731.23832,212.50733 10,0"
@@ -436,88 +410,18 @@
        sodipodi:linespacing="125%"
        id="text4345"
        y="214.84645"
-       x="745.79956"
+       x="747.94244"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto"
          y="214.84645"
-         x="745.79956"
+         x="747.94244"
          id="tspan4347"
-         sodipodi:role="line">1e<tspan
-   style="font-size:64.99999762%;baseline-shift:super"
-   id="tspan4383">-12</tspan> s</tspan></text>
+         sodipodi:role="line">1 ns</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="745.35315"
-       y="199.31075"
-       id="text4385"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
-         sodipodi:role="line"
-         id="tspan4387"
-         x="745.35315"
-         y="199.31075"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto">1e<tspan
-   id="tspan4389"
-   style="font-size:64.99999762%;baseline-shift:super">-11</tspan> s</tspan></text>
-    <text
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       sodipodi:linespacing="125%"
-       id="text4391"
-       y="184.66789"
-       x="745.35315"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto"
-         y="184.66789"
-         x="745.35315"
-         id="tspan4393"
-         sodipodi:role="line">1e<tspan
-   style="font-size:64.99999762%;baseline-shift:super"
-   id="tspan4395">-10</tspan> s</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="745.35315"
-       y="169.84647"
-       id="text4397"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
-         sodipodi:role="line"
-         id="tspan4399"
-         x="745.35315"
-         y="169.84647"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto">1e<tspan
-   id="tspan4401"
-   style="font-size:64.99999762%;baseline-shift:super">-9</tspan> s</tspan></text>
-    <text
-       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
-       inkscape:export-ydpi="180"
-       inkscape:export-xdpi="180"
-       sodipodi:linespacing="125%"
-       id="text4403"
-       y="154.66789"
-       x="745.35315"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto"
-         y="154.66789"
-         x="745.35315"
-         id="tspan4405"
-         sodipodi:role="line">1e<tspan
-   style="font-size:64.99999762%;baseline-shift:super"
-   id="tspan4407">-8</tspan> s</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="745.35315"
+       x="745.08527"
        y="139.57861"
        id="text4409"
        sodipodi:linespacing="125%"
@@ -526,10 +430,45 @@
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
          sodipodi:role="line"
          id="tspan4411"
-         x="745.35315"
+         x="745.08527"
          y="139.57861"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto">1e<tspan
-   id="tspan4413"
-   style="font-size:64.99999762%;baseline-shift:super">-7</tspan> s</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;font-family:Roboto;-inkscape-font-specification:Roboto">10 µs</tspan></text>
+    <text
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text8794-5"
+       y="455.34052"
+       x="-235.32283"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="455.34052"
+         x="-235.32283"
+         sodipodi:role="line"
+         id="tspan5497-4">input amplitude (V)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="535.9035"
+       y="248.97182"
+       id="text5457-4"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
+         sodipodi:role="line"
+         id="tspan5459-5"
+         x="535.9035"
+         y="248.97182"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">input width (ns)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4633)"
+       d="m 756.23838,147.50731 0,54.99999"
+       id="path4371"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>
