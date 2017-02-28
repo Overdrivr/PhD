@@ -1,15 +1,15 @@
 % Electronic schematics are composed of transistor models
-The conception flow of integrated circuits is based on circuit schematic, a form of symbolic view describing an electronic circuit.
+The conception flow of integrated circuits relies on circuit schematics, a symbolic view describing an electronic circuit.
 Those schematics are converted into a netlist composed of all components inside the schematic and connections between them.
 At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
 Each element is described by a model, which is a mathematical or algorithmic representation of their behavior.
-In electronics, models usually link current and voltages between the different terminals of the device, and can accept external parameters such as temperature.
+In electronics, models usually link current and voltages at the different terminals of the device, and can accept external parameters such as temperature.
 With the netlist and the model library, the simulator knows the stimulii, the devices and the connections inside the circuit.
 It is able to simulate circuit behavior, allowing for validation of the functionnality very early in the design phase.
 As detailled in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
 
 % Circuits are complex hierarchies
-In the automotive field, \gls{asic}s used in electronic modules are very complex.
+In the automotive field, \gls{asic}s used in electronic modules integrate a lot of functionalities.
 They must communicate with external sensors, process and interpret the data, then apply commands on other external devices.
 It is a lot of functionnality to pack into the integrated circuit.
 In return, schematics are very complex and dense.
@@ -57,3 +57,21 @@ Those individual blocks can then be chained together to deduce the behavior of t
 A similar method is applied to a complete IC function.
 The goal is a bit different because the goal is to simulate electrically an IC function with a black box model.
 A characterization approach is presented, and current limitations are highlighted.
+
+% Introduce Wunsch & Bell
+% TODO review
+A common point between the proposed methods is to use the Wunsch and Bell (WB) technique \cite{wunsch-bell}, outside of its usual application scope.
+In the ESD field, WB is generally employed to estimate the hardware robustness of a device in function of a stress amplitude and width.
+The typical characterization process consists in injecting a set of rectangular pulses (Fig. \ref{set_input_signals}) on a tested device, and observing for which couple of amplitude and width values a destructive failure occurs.
+A TLP generator is often employed to generate pulses of parameterized amplitude.
+Pulse width variation on a TLP can also be easily achieved by using a longer charging cable.
+In this research work, the WB approach is proposed as a non-destructive characterization tool.
+A set of parameterized pulses are injected on the input of the item under test while the output is being monitored.
+
+%TODO: Fix sim 12 sim12
+\begin{figure}[!h]
+  \centering
+  \includegraphics{src/4/figures/time_domain_cz_curves.pdf}
+  \caption{Typical set of parameterized characterization pulses}
+  \label{set_input_signals}
+\end{figure}
