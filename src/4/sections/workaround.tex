@@ -1,29 +1,16 @@
 \subsection{Proposed workaround}
 
 %
-In the first proposed approach, blocks are characterized using a failure criteria on the output.
-If the output goes beyond this criteria, the failure duration is recorded.
-The characterization is done with a large range of input amplitude and duration.
-This yields a 2D table that associates to an input amplitude and input duration an output duration.
-This table is a part of the block model.
-The output amplitude must also be modeled to be able to predict the output waveform from the input waveform.
-Since the characterization is performed with a fixed failure criteria, almost all information regarding the output amplitude is lost.
-The only remaining data is whether the criteria was violated or not.
-It was supposed earlier that this limitation is the main source of error.
+In the current approach, blocks are characterized using a fixed failure criteria on the output.
+It results in a characterization table, describing the duration of the output disturbance from the width and amplitude of the input stimulus.
+To remove and replace the failure criteria, the same exact approach is proposed.
+Since the output duration is calculated with a table, then the output amplitude could be calculated using another table as well.
 
-% What is kept in the method, What is modified
-A modification to the characterization method is proposed.
-The failure criteria on the output is removed.
-Instead, the extreme output amplitude value is recorded in addition to the duration.
-The block model now contains two 2D tables instead of one.
-The first table still associates an \textbf{output duration} to an input width/amplitude.
-The second and new table associates an \textbf{output amplitude} to an input width/amplitude.
-
-% Tables
+% New model description
+The new model contains two 2D tables instead of one, and the new table associates an output amplitude to an input width and amplitude.
 Fig. \ref{fig:principle-transfert-func-v2} summarizes the new model.
-Function $F_{W}$ uses the first table mentioned previously, as a \gls{lookup-table}.
-It returns for an arbitrary input amplitude and width the closest output width found in the table.
-Function $F_{V}$ is identical, except it is using the second table, and returns the closest output amplitude.
+\textbf{Table A} is the amplitude table, to calculate the \textbf{amplitude} of the output disturbance.
+\textbf{Table W} is the width table, to calculate the \textbf{duration} of the output disturbance.
 
 \begin{figure}[!h]
   \centering
@@ -32,92 +19,89 @@ Function $F_{V}$ is identical, except it is using the second table, and returns 
   \label{fig:principle-transfert-func-v2}
 \end{figure}
 
-To obtain the response of multiple blocks, models are still chained together.
-Fig. \ref{fig:full-method-v2} illustrates the entire characterization and chaining process for a 2-block setup.
-Each block is characterized, generating the two tables mentionned earlier.
-Then, using both tables, an input stress of 50V 100ns becomes a 12V 350ns disturbance after the first block, and a 3V 4000 ns after the second block.
+% What changes in the characterization
+To extract both tables, the process is a bit different from the first methodology.
+For each characterization simulation, the maximum output amplitude is recorded.
+It is stored in table A.
+The duration is measured on the output at 90\% of this maximum amplitude.
+The validity of this threshold is discussed after in \ref{sec:limits-block-cz-final}.
 
-%TODO: Replace the plots in the figure by tables, delimiter better block models
-\begin{figure}[!hp]
-  \centering
-  \includegraphics[width=0.7\textwidth]{src/4/figures/full_method_overview_v2.pdf}
-  \caption{Overview of improved bottom-up method - example with two blocks}
-  \label{fig:full-method-v2}
-\end{figure}
+% What does not change
+The rest of the methodology remains identical.
+In particular, model chaining is performed the same way since block models still accept and input width/disturbance and return an output width/disturbance.
 
-% What's the global idea, hypothesis here
-The method described here relies on the hypothesis that the entire top-level circuit is not required for ESD simulations.
-The behavior of the block could be reproduced with a decent accuracy in the condition that it is correctly biased and loaded, and exposed to a somehow similar input disturbance.
-Under those conditions the output is supposed to be disturbed similarly between a full simulation and a single-block simulation.
+% Summary of the process
+%Fig. \ref{fig:full-method-v2} summarizes the entire characterization and chaining process for a 2-block setup.
+%Each block is characterized, generating the two tables mentionned earlier.
+%Then, using both tables, an input stress of 50V 100ns becomes a 12V 350ns disturbance after the first block, and a 3V 4000 ns after the second block.
 
-\subsubsection{Preliminary application}
-% First run the reference sim
-To test this hypothesis, a few simulations are run.
-The testbenches are given in Fig. \ref{fig:hypothesis-setup}.
-A reference simulation is performed first.
-It contains the complete schematic, composed of the three blocks of our study case.
-An electrical disturbance is injected on the first input $V_{batt}$.
-The final output $V_{2p5}$, and intermediate nets $V_{clamp9}$ and $V_{1p0}$ are observed and disturbance properties on those nets recorded.
+%\begin{figure}[!h]
+%  \centering
+%  \includegraphics[width=0.7\textwidth]{src/4/figures/full_method_overview_v2.pdf}
+%  \caption{Overview of improved bottom-up method - example with two blocks}
+%  \label{fig:full-method-v2}
+%\end{figure}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/hypothesis_testing_setup.pdf}
-  \caption{Testbenches used for characterization and hypothesis testing}
-  \label{fig:hypothesis-setup}
-\end{figure}
+\subsubsection{Application of the improved method}
 
-% Then do the same thing but with the individual models
-Afterwards, each block is simulated separately in its own individual testbench.
-The pre-regulator is stressed with the same pulse than the reference simulation.
-Its output waveform is compared with the reference in Fig. \ref{fig:sim-compare-block1}.
-Both curves (blue and green) look rather similar, in terms of maximum amplitude, duration and overall shape.
-The maximum amplitude is estimated at -1.5 V and the duration at 880 ns.
-The red curve represents the waveform injected on the second block and configured from these two values.
+The new characterization method is applied to all three blocks of the regulation function.
+The amplitude table of the pre-regulator is plotted in Fig. \ref{fig:pre_regu_amp} and the width table in Fig. \ref{fig:pre_regu_width}
+Different patterns can be observed between both figures.
+The amplitude gradient seems independent from the input width because it displays only horizontal lines, and depends only on the input amplitude.
+The width matrix is a lot more complex with multiple different patterns.
+Overall, large input amplitude and duration tend to result in long output disturbances.
+Tables for the bandgap and pre-regulator are provided in Annex \ref{apx:block-cz}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block1.png}
-  \caption{$V_{clamp9}$ waveform}
-  \label{fig:sim-compare-block1}
+  \includegraphics[width=\textwidth]{src/4/figures/vpre_cz_v2_amplitude.png}
+  \caption{Pre-regulator V\textsubscript{clamp9} amplitude matrix}
+  \label{fig:pre_regu_amp}
 \end{figure}
-
-% Second block output
-On the second block output, the blue and green waveforms exhibit more differences (Fig. \ref{fig:sim-compare-block2}).
-The green waveform has a longer slope than the reference.
-However, both waveforms are still quite close in terms of maximum amplitude and duration.
-This is an interesting result, because it shows that \textbf{blocks can be simulated individually} for \gls{esd} simulations, without loosing too much accuracy.
-This is great for simulation speed and modularity.
-Once again, the red curve represents the waveform injected on the third block.
-It is a simplified waveform derived from the blue and green curves, with a width of 2 \textmugreek{}s and an amplitude of 0V.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block2.png}
-  \caption{$V_{1p0}$ waveform}
-  \label{fig:sim-compare-block2}
+  \includegraphics[width=\textwidth]{src/4/figures/vpre_cz_v2_width.png}
+  \caption{Pre-regulator V\textsubscript{clamp9} width matrix}
+  \label{fig:pre_regu_width}
 \end{figure}
 
-% Third output
-On the third and final block output (Fig. \ref{fig:sim-compare-block3}), both waveforms are very similar.
-The difference of maximum amplitude can be explained by an offset between both curves at $t=0$.
-The reference curve is delayed in comparison of the individual simulation, but otherwise both curves match.
+
+% TODO
+% What is done for validation
+To validate the changes, the chaining process...
+The reference curve and reference test setups remain identical to the ones presented earlier (Fig. \ref{fig:reference_simu_circuit}).
+
+% Result of the chaining process
+The chaining process predicted that V\textsubscript{clamp9} will be down at -1.6V during 1800 ns.
+In turn, V\textsubscript{1p0} was predicted at -1.25V during 3300 ns.
+Finally, V\textsubscript{2p5} is predicted at 1.97V during 2700 ns.
+Those values are employed for generating model waveforms.
+They are compared to the reference simulation in Fig. \ref{fig:reference_simu_v2}.
+
+% Curve analysis
+The model matches correctly the simulation of V\textsubscript{clamp9}, both in terms of amplitude and width.
+The width is slightly underestimated but overall the result is acceptable.
+For V\textsubscript{1p0}, the width is extremely well reproduced, but the amplitude is about twice the reference value.
+It seems that taking the minimum amplitude value during the characterization is not ideal.
+This error should be investigated further to determine the actual root cause and provide a solution.
+The last signal V\textsubscript{2p5} shows a quite good correlation despite the fact that it is a triangle-like waveform.
+Overall, the modifications brought to the modelling method seemed to have a positive impact on the curve models.
+A lot of room is left for improvements, in particular for reproducing the bandgap output signal.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/simulation_comparison_block3.png}
-  \caption{$V_{2p5}$ waveform}
-  \label{fig:sim-compare-block3}
+  \includegraphics[width=\textwidth]{src/4/figures/total_simulation_30V_1u_V2.png}
+  \caption{Reference simulation waveform - TLP stress -30V 1\textmugreek{}s }
+  \label{fig:reference_simu_v2}
 \end{figure}
 
 % Conclusion, it works for this case
-In conclusion, for this specific study-case, the initial hypothesis was correct.
-Simulating the models isolately produced the same results than the reference simulation, for estimating degradation of functionality.
-As a consequence, block models extracted from variable amplitude/width characterization should work properly, since it is mathematically equivalent to the simulations that were performed in this section.
-block models are simply pre-computed simulations with results stored in \gls{lookup-table}s.
-% Transition
-The next section discusses how to automate the extraction of a width and amplitude from a waveform, in order to build the two lookup tables from a characterization efficiently.
+This section presented a potential improvement over the model chain method initially proposed.
+This technique showed good results and seems promising for quickly estimating the robustness of a high-level integrated function.
+The next section discusses further improvements for extracting width and amplitude during characterization.
 
-\subsubsection{Automating model extraction}
+\subsubsection{Potential improvements regarding parameters extraction}
 
 % What is the challenge regarding the extraction of the models
 In the simulations described earlier, a single width and maximum amplitude per waveform were extracted manually.
@@ -165,6 +149,7 @@ Ideally, it needs to extract a width and amplitude that would result in the same
 A feature detection method using amplitude distribution could be performed to identify key amplitudes in the waveforms.
 
 \subsection{Limitations, conclusion and follow-up work}
+\label{sec:limits-block-cz-final}
 
 % Sum up what was done
 In this section, principles were detailed for a block modeling method, targeting powered-on circuits exposed to disturbances.
