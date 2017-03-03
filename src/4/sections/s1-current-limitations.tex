@@ -147,45 +147,6 @@ Once again, it is proven that a fixed failure criteria is a major issue and limi
 It is responsible for the large variations observed in Table \ref{tab:impact-load-on-cz} at small amplitudes.
 This result correlates with the observation made earlier in section \ref{sec:fixed-failure-threshold}.
 
-\subsubsection{Impact of connections between blocks}
-\label{sec:impact-missing-conns}
-
-%TODO
-The topology of the circuit is very important to achieve a good correlation between model chain and reference.
-It must match exactly between the characterization setup and the reference setup.
-For instance, a simulation was conducted using a slightly modified setup given in Fig. \ref{fig:reference_simu_circuit}.
-In the former setup, the signal V\textsubscript{clamp2p5} from the bandgap was not connected to the bias input of the regulator.
-Now, in the modifed setup, the connection is reinstated.
-The goal is to see the impact of a modified connection on the model correlation.
-
-Failure signature is changed
-Improvements are required
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/characterization_setup_regu_complete_modified.pdf}
-  \caption{Reference simulation circuit with a modified connection}
-  \label{fig:reference_simu_circuit}
-\end{figure}
-
-See impact of this new connection on Vout
--30V 1us pulse
-Failure amplitude is X times larger
-Correlation with model can no longer be achieved.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/4/figures/impact_connection_changed_v2p5.png}
-  \caption{Impact of a single connection changed on V\textsubscript{2p5}}
-  \label{fig:simu_comparison_v2p5_conn}
-\end{figure}
-
-One of the current limitations of the model.
-Only supports a given topology
-Because it only takes 1 input and 1 output into account.
-In practice, blocks have multiple inputs and multiple outputs.
-More research is required on this issue to support those cases and make the model more widely applicable.
-
 \subsubsection{Preliminary conclusion}
 
 % Conclusion - fixed threshold sucks
