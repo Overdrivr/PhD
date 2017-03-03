@@ -1,156 +1,150 @@
 \subsection{Application to the test vehicle}
 \label{sec:application-test-vehicle}
 
-The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on real blocks.
-More precisely, it will be tested against the regulation function of the testchip (See section \ref{sec:supply-desc}).
+The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on the regulation function of the testchip.
+The testchip was presented in section \ref{sec:supply-desc}, and it was shown that negative rectangular pulses can generate functional failures in it.
+The regulation function is composed mostly of a pre-regulator, a bandgap and a regulator.
 
-% Which pins are selected for characterization
-As a remainder, the complete regulation function is composed mostly of a pre-regulator, a bandgap and a regulator.
-The input/outputs in table \ref{selected-pins-for-cz} were selected for applying and validating the characterization method described previously.
+%TODO: Remind application setup + blocks inside IC
 
-%TODO: To simplify
+One input and one output per block were selected (Table \ref{selected-pins-for-cz}) for validating the characterization method.
+V\textsubscript{batt} is the input pin of the pre-regulator and is also exposed externally.
+It is the battery input connection and constitutes a very likely \gls{esd} entry point.
+Nominal voltage on this pin is expected near 14V.
+
+V\textsubscript{clamp9} is a 9V output supply from the pre-regulator and an input for the bandgap.
+The bandgap block cannot operate without this supply voltage.
+This is why this pin was selected for the characterization.
+The failure criteria is set at 0 V, corresponding to a level where the ESD causes V\textsubscript{clamp9} to go negative, which is a worse situation than without any DC supply.
+
+V\textsubscript{ref1p0} is the 1V bandgap output reference.
+It is the main signal required by the regulator to produce the final 2.5V V\textsubscript{2p5} regulated supply.
+Failure criteria of V\textsubscript{ref1p0} is chosen at 0.5 V, half the operating voltage.
+The choice of this particular level is not strict and another value could have been chosen.
+
+V\textsubscript{2p5} is the output of the regulator and the last signal in the considered function.
+It is an external node, that requires a large 100 nF decoupling capacitance.
+This output is used further in the original circuit to supply digital cells.
+The failure criteria for this net is chosen at 2.1V.
+Below this value, digital cells are no longer guaranteed to operate properly.
+
 \begin{table}[!h]
 \centering
-\begin{tabular}{@{}llllll@{}}
+\begin{tabular}{@{}llll|ll@{}}
 \toprule
-input pin       &  DC value (V) & stress amplitude   &  stress width   &   output      & Fail criteria \\ \midrule
-vbatt           &  12V          & -1V to -10V        &  1ns to 1000ns  &   vclamp9     & < 0V             \\
-vclamp9         &  9V           & -1V to -15V        &  1ns to 1000ns  &   vref1p0     & < 1.25 V         \\
-vref1p0         &  1.0V         & -0.5 to -10V       &  1ns to 1000ns  &   v2p5        & < 2.1 V          \\
+input pin       &  DC value (V) & stress amplitude   &  stress width        &   output      & fail criteria \\ \midrule
+vbatt           &  14V          & -1V to -10V        &  1ns to 1\textmu{}s  &   vclamp9     & < 0 V             \\
+vclamp9         &  9V           & -1V to -15V        &  1ns to 1\textmu{}s  &   vref1p0     & < 0.5 V         \\
+vref1p0         &  1.0V         & -0.5 to -10V       &  1ns to 1\textmu{}s  &   v2p5        & < 2.1 V          \\
 \bottomrule
 \end{tabular}
 \caption{Selected pins for characterization and characterization limits}
 \label{selected-pins-for-cz}
 \end{table}
 
-% Talk about the characterization limits
-The characterization is done using negative voltages.
-The goal is to exploit the weakness of the suuply function against negative pulses detailed in section \ref{sec:failure-case-study}.
-Basically, it was observed for sufficiently high negative voltage a short pulse can cause a full restart of the system.
-The time taken by this restart, observed on the regulator output, is several order of magnitudes longer than the original pulse injected on the pre-regulator input.
+\subsubsection{Per-block characterization}
 
-% failure criteria chosen
-The failure criteria for the pre-regulator is a voltage lower than 0V on the output.
-It corresponds to a situation worse than the unpowered state, where all nets are at 0V.
-The failure criteria for the bandgap is a voltage lower than 1.25V on the 2.5V reference output.
-Finally, the failure criteria for the regulator, which is also the failure criteria for the complete function, is a voltage lower than 2.1V on the 2.5V regulated output.
-This criteria corresponds to a voltage below which digital cells using this supply will fail to function properly.
+% Talk about the characterization limits
+The characterization is done using negative voltages, to reproduce failures observed previously with the testchip.
+It was observed for a sufficiently high negative voltage that a short pulse can cause a full restart of the primary supply and the V\textsubscript{2p5} signal.
+The time taken by this restart is several order of magnitudes longer than the original pulse injected on the pre-regulator input.
 
 % Which load value for characterization
-The test setup described in section \ref{sec:block-failure-cz} requires a characterization load to simulate the impact of neighbor blocks.
-In a first time, a very simplistic model is employed for this load.
-An arbitrary load value of 1 M\textOmega{} is initially chosen, just to perform a preliminary test.
+The characterization setup for each block is provided in Fig. \ref{fig:block_function_cz_regu}.
+They require a characterization load to simulate the impact of neighbor blocks, initially modelled with a 1 M\textOmega{} resistor.
 A high-impedance avoids drawing too much current on the output, which could affect or prevent normal operation.
-The impact of this load on the characterization will be evaluated later on in the analysis.
+This value is not chosen in a strict manner and other values could have been chosen.
+The goal is to perform a preliminary test.
+The impact of this load on the characterization is evaluated later on in the analysis.
+
+%
+The regulator setup (characterization C) is more complex because the characterized input is not a supply but a 1.0V reference.
+The regulator must also be powered, and a 9V DC supply is added for this purpose.
+A 100 nF decoupling capacitor is also connected on the output because it is required by the regulation function.
+The regulator needs a low-power biasing signal called V\textsubscript{clamp2p5}, that is normally generated by the bandgap in the real circuit.
+This connection is represented in orange in the Fig. \ref{fig:block_function_cz_regu}.
+In the setup provided here, blocks are characterized independently in different testbenches, therefore the bandgap and regulator cannot be connected together.
+Therefore, the orange connection cannot be made between the two blocks.
+V\textsubscript{clamp2p5} is left floating on the bandgap output.
+For the regulator, the biasing signal is modelled with a 2.5V DC supply in series with a 1 k\textOmega{} resistor.
+The impact of the removal of this connection on the failure signature is discussed later in section \ref{sec:impact-missing-conns}.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/characterization_setup_regu.pdf}
+  \caption{Block characterization setups}
+  \label{fig:block_function_cz_regu}
+\end{figure}
 
 % Simulation process
-For each block, the characterization testbench is setup and a set of simulations is ran.
-This set is calculated with the characterization range given in Table \ref{selected-pins-for-cz}.
+A set of simulations is run with those characterization setups.
+The only varying parameters are the input pulse amplitude and input width of each PWL source.
+Ranges for these parameters were given previously (Table \ref{selected-pins-for-cz}).
 This type of parameterized simulations can be efficiently distributed on multiple machines.
-This way, the complete characterization of a block does not take longer than the time taken by a single simulation.
-Once all simulations are run, the results are analysed and plotted using the method detailed in the previous sections.
+Characterization results are provided in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and \ref{regu_wb}.
 
-% Talk about the output
-These characterization curves are given in Figs. \ref{pre_regu_wb}, \ref{bandgap_wb} and \ref{regu_wb}.
-The characterization of the pre-regulator (fig. \ref{pre_regu_wb}) is plotted using the stress amplitude only on the X axis.
-The stress amplitude is the pulse voltage set in the pulse generator SPICE model.
-On the other hand, the bandgap and regulator curves are using instead the voltage probed on the input net during the stress.
-
-
-% TODO: Why curve 1 has different x-axis
-%The reason for using the set voltage directly, and not
-%TODO: Add axis to gradient
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/preregulator_cz.png}
-  \caption{Pre-regulator 9V clamped-output characterization}
+  \caption{Pre-regulator V\textsubscript{clamp9} failure matrix}
   \label{pre_regu_wb}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/bandgap_cz.png}
-  \caption{Bandgap 1.0V reference characterization}
+  \caption{Bandgap V\textsubscript{ref1p0} failure matrix}
   \label{bandgap_wb}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/regulator_cz.png}
-  \caption{Regulator 2.5V supply characterization}
+  \caption{Regulator V\textsubscript{2p5} failure matrix}
   \label{regu_wb}
 \end{figure}
 
+\subsubsection{Model chaining}
+
 % Characterization done, now perform chaining
 After the characterization phase, it is now possible to chain the models together.
-The goal is to evaluate the entire function's robustness with the method described in \ref{sec:block-chaining}.
+The goal is to evaluate the entire function's robustness.
 A rectangular pulse is injected on the global input (pre-regulator input).
-The chain of models is used to predict, without running any more simulations, the failure or not on the output pin.
-For the purpose of this test, the input stress will be generated by a \gls{tlp} generator, producing a pulse of 100ns duration and -30V amplitude.
-
-%TODO?
-%\begin{figure}[!h]
-%  \centering
-%  \includegraphics{src/4/figures/chaining_curves.png}
-%  \caption{Principle of chaining model curves ?}
-%  \label{fig:chain-curves}
-%\end{figure}
+The chain of models is employed for predicting without running any simulation whether or not a failure will be found on the output pin.
+The input stress is generated by a \gls{tlp} generator, producing a pulse of 1 \textmu{}s duration with a -30V amplitude.
 
 % Do it on one pulse config
-%TODO: Review values
-First, the coordinates (100ns, -30V) are reported on curve \ref{pre_regu_wb}, the first block model of the system.
-This point indicates a failure on the output of the pre-regulator, for a duration of 500ns.
-The failure criteria is 0V on the output.
-This gives the next point coordinates (500 ns, 0V).
-This point is reported on the bandgap's model, the next block in the system.
-Using these coordinates in the curve \ref{bandgap_wb} indicates a failure on the bandgap output for about 800ns.
-Since the failure criteria for the bandgap is 0V on the output, the next point coordinates are (800ns, 0V).
-They are used as an input on the final block's model (fig. \ref{regu_wb}).
-Reporting those coordinates, no failure is expected on the regulator output.
+Therefore, coordinates (1\textmu{}s, -30V) are reported on the pre-regulator failure matrix (Fig. \ref{pre_regu_wb}).
+This point indicates a failure on V\textsubscript{clamp9} below 0V (failure criteria) for a duration of 2300ns.
+Coordinates (2300 ns, 0V) are reported on the bandgap's failure matrix (Fig. \ref{bandgap_wb}).
+This point indicates a failure on V\textsubscript{ref1p0} below 0.5V for a duration of 3000ns.
+Coordinates (3000ns, 0.5V) are reported on the regulator's failure matrix (Fig. \ref{regu_wb}).
+With those coordinates, the final signal V\textsubscript{2p5} is estimated to fail (< 1.25V) during 1500ns.
 
-In conclusion, the model chain estimated that for a -30V 100ns stress on the input, the regulation function will not be at fault (output < 2.1V).
-
-% Same analysis but with a TLP stress that will cause a fail
-The same analysis is done for a -30V stress but with a longer width of 1us.
-The failure on the pre-regulator is then estimated to last 2300 ns.
-In turn, the bandgap is estimated to fail during 3000 ns.
-Finally, the output of the regulator and thus the entire function is estimated to fail during 1500ns.
+% Summarize results
+The model chain estimated for a -30V 100ns stress on the input, the regulation function is at fault during 1500ns.
 
 % Perform standard complete simulation for reference
-Those results are then tested against a complete simulation of the entire regulation function (all three block).
-The simulation circuit is given Fig. \ref{fig:reference_simu_circuit}.
-This simulation uses transistor-level block models.
-It will serve as a reference to compare the model-chain against it.
-%TODO: Speak about simplifications in this circuit. Not consistent with failure case represented in previous chapter
+This result is tested against a simulation of the regulation function.
+The simulation setup is given Fig. \ref{fig:reference_simu_circuit}.
+This simulation uses the full block schematic but the blocks are connected together only through the nets V\textsubscript{clamp9} and V\textsubscript{ref1p0}.
+For instance, the biasing signal in orange is still kept disconnected between the two blocks.
+This simulation serves as a reference for evaluating the model chain.
 
-% How will the simulation be conducted
-For this simulation, the same input stress are used than previously, and the global output is monitored for failures.
-To check the validity of the models at each stage, intermediate voltages are also monitored, at the output of the pre-regulator and the bandgap.
-The simulation of the input, pre-regulator output, bandgap output and final (regulator) output are given fig. \ref{fig:reference_simu}.
-
-%TODO: Add perfect sources in schematic
-%TODO: Complete schematic with more details
-%TODO: Improve figures (text fonts)
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/complete_simulation_setup.pdf}
-  \caption{Complete reference simulation circuit}
+  \includegraphics[width=\textwidth]{src/4/figures/characterization_setup_regu_complete.pdf}
+  \caption{Reference simulation circuit}
   \label{fig:reference_simu_circuit}
 \end{figure}
 
-% Result of the simulation
-The reference simulation showed that for a -30V 1\textmugreek{}s TLP stress, the output V(out2p5) does not fall below 2.1V.
-The minimal value is 2.15V.
-As a reminder, with the same conditions, the chain of models estimated the output to go below 2.1V for 1500ns, without informations regarding minimal value.
-To understand those differences, intermediate nets are now observed.
+% What is injected
+The complete simulation is ran with the same -30V 1\textmu{}s input stress than the model chain.
+Signals V\textsubscript{batt}, V\textsubscript{clamp9}, V\textsubscript{ref1p0} and V\textsubscript{2p5} are compared with values obtained from the model chain.
+Simulation results are provided in Fig. \ref{fig:reference_simu}.
+The model chain results are also plotted on the curve (red waveforms).
+Those waveforms are simply generated with the duration and amplitude predicted by the model chain.
 
-% Error at the first block
-At the output of the first block (the pre-regulator), the reference simulation shows voltage going below 0V (failure criteria) for 1000ns.
-The model predicted 2300 ns.
-At the first block's output, there is a factor of 2 between model and reference simulation.
-
-%TODO: To replace with one extracted with perfect sources
-%TODO: Fix scale (us instead of ns)
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/total_simulation_30V_1u.png}
@@ -158,31 +152,29 @@ At the first block's output, there is a factor of 2 between model and reference 
   \label{fig:reference_simu}
 \end{figure}
 
-% Error at the second block
-At the output the second block (bandgap), the reference simulation falls below 0V during approximately 1800 ns.
-The minimal reached value is -0.8V
-The model predicted the voltage to go below 0V for 3000 ns.
-No clear conclusion can be drawn yet on the model validity.
+% Comment the results
+Overall, the model chain predicts quite well the disturbance on the output of each block.
+V\textsubscript{batt} has no waveform model because it is the input external signal.
 
-% Test further simulation vs model
-To test it further, a set of reference simulations is ran, with variable pulse amplitude and length.
-The goal is to get more reference data to test the model against.
-For each stress, the result predicted by the model and the reference simulation are compared.
+% Vclamp9
+V\textsubscript{clamp9} is well modelled and both waveforms match quite well.
+It should be noted that the correlation on the amplitude between model and simulation is purely incidental.
+It is due to the fact that the failure criteria was arbitrarily set at 0V, and that the block circuit design tends to clamp the output voltage near 0V in case of a negative disturbance.
 
-% Preliminary conclusion regarding the results, differences observed
-The simulation is ran with stresses ranging from (-2V, 1ns) to (-50V, 1us).
-In the case of the reference simulations, no failure is ever recorded.
-The models on the opposite predict that in the worst case (-50V, 1us) the regulator's output will go below 2.1V for 2us.
+% Vref1p0
+The width of V\textsubscript{ref1p0} is also correctly modelled and matches the reference.
+On the other hand, the amplitude shows a large correlation difference.
+Here again, the design seems to clamp the output voltage near 0V on negative transients.
+Since the failure criteria is set above that at 0.5V, both curves do not match.
 
-% Observe intermediate nets
-Unlike the final output, the full simulation exhibits failures on intermediate nets.
-In the worst case (TLP -50V 1us), the first net vlamp9 is disturbed during 1\textmugreek{}s and the second net v1p0 during 2us.
-With the model chain, vclamp9 is disturbed during 2800ns and v1p0 for 3200ns.
+% V2p5
+Large differences are observed for V\textsubscript{2p5} between model and reference.
+They are due to the triangular shape of the signal, that cannot be properly modelled with the rectangular shape.
+It is one of the first limitations of the model.
+Other limitations are discussed in the next section.
+Despite this, the disturbance was detected by the model which is already a good achievement.
 
-% Conclusion regarding the results
-In conclusion, the model was tested against reference simulations on a wide range of input stresses.
-There does not seem to be any clear correlation between the two.
-The model seems to not fit the simulation at all, in the current conditions of its extraction.
-
-In regard of these problems, the next section will discuss pitfalls of this bottom-up characterization and modelling method.
-Potential workaround will be detailed.
+% Transition with next section
+This first simulation proved that the model chain method definitely has some potential.
+It has also highlighted some limitations.
+The next section discusses further pitfalls of the model chain and an improvement is proposed and tested.
