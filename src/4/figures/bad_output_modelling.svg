@@ -19,13 +19,44 @@
   <defs
      id="defs4">
     <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4533"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4536" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4415"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4417" />
+    </marker>
+    <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
        refY="0"
        refX="0"
        id="Arrow1Mstart"
        style="overflow:visible"
-       inkscape:isstock="true">
+       inkscape:isstock="true"
+       inkscape:collect="always">
       <path
          id="path4535"
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
@@ -175,7 +206,8 @@
        refX="0"
        id="Arrow1Mend"
        style="overflow:visible"
-       inkscape:isstock="true">
+       inkscape:isstock="true"
+       inkscape:collect="always">
       <path
          id="path4308"
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
@@ -281,9 +313,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="245.27945"
-     inkscape:cy="128.24514"
+     inkscape:zoom="2.8284273"
+     inkscape:cx="230.85215"
+     inkscape:cy="78.226273"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -332,7 +364,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="457.75711"
+       x="460.93909"
        y="235.17334"
        id="text4707"
        sodipodi:linespacing="125%"
@@ -341,18 +373,20 @@
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
          id="tspan4709"
          sodipodi:role="line"
-         x="457.75711"
+         x="460.93909"
          y="235.17334"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">Vfail</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">V<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan4808">FAIL</tspan></tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.60000002,2.4000001;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.6, 2.39999999999999990;stroke-dashoffset:0;stroke-opacity:1"
        d="m 481.23832,232.50731 350,0"
        id="path4711"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend)"
-       d="m 486.23832,162.50731 0,110 345,0"
+       d="m 486.23832,162.50731 0,110 165,0"
        id="path4363"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
@@ -369,18 +403,20 @@
        sodipodi:linespacing="125%"
        id="text5019"
        y="162.48874"
-       x="455.99454"
+       x="460.59073"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
          y="162.48874"
-         x="455.99454"
+         x="460.59073"
          sodipodi:role="line"
-         id="tspan5021">V(out)</tspan></text>
+         id="tspan5021">V<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan4806">OUT</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="640.90295"
+       x="555.34302"
        y="285.17175"
        id="text5403"
        sodipodi:linespacing="125%"
@@ -389,7 +425,7 @@
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
          id="tspan5405"
          sodipodi:role="line"
-         x="640.90295"
+         x="555.34302"
          y="285.17175"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">Time</tspan></text>
     <path
@@ -400,18 +436,18 @@
        style="fill:none;fill-rule:evenodd;stroke:#ff7e7e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#007915;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 486.23832,182.50731 170,0"
+       d="m 486.23832,181.50731 170,0"
        id="path4295"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#d00000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="m 661.23832,182.50731 58,0 0,50 72,0 0,-50 40,0"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#d00000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 661.23832,181.50731 58,0 0,51 72,0 0,-51 40,0"
        id="path4301"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007915;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#007915;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
        x="546.26257"
        y="177.50731"
        id="text4307"
@@ -419,32 +455,38 @@
          sodipodi:role="line"
          id="tspan4309"
          x="546.26257"
-         y="177.50731">v(vout) model</tspan></text>
+         y="177.50731">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4301">OUT</tspan> model</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4311"
        y="224.17636"
        x="555.63171"
-       style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#60c471;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#60c471;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
        xml:space="preserve"><tspan
          y="224.17636"
          x="555.63171"
          id="tspan4313"
-         sodipodi:role="line">v(out)</tspan></text>
+         sodipodi:role="line">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4303">OUT</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4315"
        y="227.50731"
        x="728.26257"
-       style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#d00000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#d00000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
        xml:space="preserve"><tspan
          y="227.50731"
          x="728.26257"
          id="tspan4317"
-         sodipodi:role="line">v(vout) model</tspan></text>
+         sodipodi:role="line">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4297">OUT</tspan> model</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff7e7e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#ff7e7e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
        x="733.88171"
        y="252.67636"
        id="text4319"
@@ -452,6 +494,29 @@
          sodipodi:role="line"
          id="tspan4321"
          x="733.88171"
-         y="252.67636">v(out)</tspan></text>
+         y="252.67636">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4299">OUT</tspan></tspan></text>
+    <path
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path4413"
+       d="m 661.23832,162.50731 0,110 165,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker4415);marker-end:url(#marker4533)" />
+    <text
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4802"
+       y="285.17175"
+       x="737.77655"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:10px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="285.17175"
+         x="737.77655"
+         sodipodi:role="line"
+         id="tspan4804">Time</tspan></text>
   </g>
 </svg>
