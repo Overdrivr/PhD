@@ -67,7 +67,7 @@ Tables for the bandgap and pre-regulator are provided in Annex \ref{apx:block-cz
 \end{figure}
 
 
-% TODO
+% TODO next
 % What is done for validation
 To validate the changes, the chaining process...
 The reference curve and reference test setups remain identical to the ones presented earlier (Fig. \ref{fig:reference_simu_circuit}).
@@ -145,20 +145,22 @@ Overall, it was observed that the model and original waveform areas should be cl
 Instead of focusing on the peak amplitude, a smarter method is required.
 Ideally, it needs to extract a width and amplitude that would result in the same area than the original waveform, while looking as similar as possible.
 
-%TODO
 A feature detection method using amplitude distribution could be performed to identify key amplitudes in the waveforms.
 
-\subsection{Limitations, conclusion and follow-up work}
+\subsection{Final conclusion and follow-up work}
 \label{sec:limits-block-cz-final}
 
 % Sum up what was done
-In this section, principles were detailed for a block modeling method, targeting powered-on circuits exposed to disturbances.
+In this section, principles were detailed for a block modeling method, targeting powered integrated functions exposed to disturbances.
 It initially started off from the Wunsch and Bell method \cite{wunsch-bell}, which is based on a pass/fail failure criteria and targets hard-failure of electronic devices.
 The method was improved to fit better the modeling of analog functions, symbolized by an input, and output and a transfer function.
-The main modifications was to remove the use of a failure criteria, and record the severity of a disturbance through its duration and maximum amplitude.
-For this purpose, waveforms observed on the inputs and outpus were simplified as rectangular shapes.
-Then, lookup tables store the transient response of the characterized block against a wide range of input disturbance configurations.
-On a single study-case, it was shown that this method works for predicting the failure of an output given an input stress.
+The failure criteria was then removed because it was a large source of error.
+The final model is constituted of two characterization tables.
+The first one describes the \textbf{output amplitude} as a function of the input amplitude and duration.
+The second one describes the \textbf{output duration} as a function of the input amplitude and duration.
+For this purpose, waveforms observed on the inputs and outputs were simplified as rectangular shapes.
+Each table stores the transient response of the characterized block against a wide range of input disturbance configurations.
+On a single study-case, it was shown that this method is able to reproduce simplified waveforms of a disturbance propagating through a chain of block functions.
 
 % Limitations
 Some limitations must be overcomed before this method can be applied to a larger scale.
