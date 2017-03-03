@@ -8,15 +8,13 @@ This section discusses those errors and how improvements can be implemented.
 \subsubsection{Impact of fixed failure threshold}
 \label{sec:fixed-failure-threshold}
 
+% Explain why the fixed failure criteria is wrong
 The simulation presented earlier (Fig. \ref{fig:reference_simu}) clearly showed that the fixed threshold is a major source of modelling error.
-The problem was particularly clear for on the signal V\textsubscript{1p0}.
-
-It seems that the failure criteria should not be used as output amplitude value, because it oversimplifies the waveform of the output.
-This is illustrated by figure. \ref{fig:impact-single-failure-criteria}.
-Any disturbance under the failure criteria is modeled as no disturbance.
-This is the case even if the disturbance is just below the failure criteria, without crossing it.
-On the contrary, any disturbance beyond the failure criteria uses the failure level for modeling.
-The max value of the output may be much larger than the failure criteria, however, it will still be modeled as a square pulse of amplitude Vfail.
+The problem was particularly clear forthe amplitude of signal V\textsubscript{1p0}.
+Indeed, a fixed failure criteria leads to an oversimplification of the output waveform model, as illustrated by Fig. \ref{fig:impact-single-failure-criteria}.
+The green waveforms show the case where the failure is not recorded, and the curve model is simply flat and constant (V\textsubscript{OUT} model).
+The red waveforms show the case where a failure is well recorded, but the amplitude of the original signal goes way beyond the failure criteria.
+In this case, the curve model amplitude (V\textsubscript{OUT} model) is not large enough and does not match V\textsubscript{OUT}.
 
 \begin{figure}[!h]
   \centering
@@ -25,8 +23,13 @@ The max value of the output may be much larger than the failure criteria, howeve
   \label{fig:impact-single-failure-criteria}
 \end{figure}
 
-% Remove failure criteria by table
-In fact, the failure criteria itself
+%
+Originally, the fixed failure criteria was used for historical reasons.
+It came from characterization of hard-failure robustness performed with Wunsch and Bell method \cite{wunsch-bell}.
+The methodology presented in this document started directly from this approach, and a first prototype was implemented using this same fixed failure criteria.
+In regard of the results presented earlier, the applicability of this fixed threshold for modelling soft-failure of analog block functions has been questionned.
+The analysis in this section demonstrated that \textbf{a fixed failure threshold is not suitable in the modelisation of analog blocks}.
+This major observation is confirmed in the next section that discusses the impact of the fixed characterization load.
 
 \subsubsection{Impact of characterization output load}
 
@@ -37,11 +40,9 @@ It also draws a non-negligible amount of current and reproduces the circuit load
 It is possible that this fixed high-impedance load is a factor of error for the model chain.
 
 % Compare 1Mohm with real case where blocks are connected together
-%TODO: Clarify
 In practice, each block sees a load impedance on its output much different than 1 M\textOmega{}.
 For instance, the output of the pre-regulator is used as a supply by other blocks.
-It can deliver a maximum of 20 mA of current while maintaining 8V.
-Thus, the minimum output load this block can sustain is 400 \textOmega{}.
+It can deliver a maximum of 20 mA of current while maintaining 8V, corresponding to a minimum output load this block can sustain is 400 \textOmega{}.
 The bandgap, on the other hand, provides a reference voltage at 1V but does not deliver a lot of DC current.
 More than 1uA is enough to make the output fall of a hundred millivolts.
 In this case, the bandgap must see an output impedance of at least 1 M\textOmega{}.
@@ -142,47 +143,67 @@ In both cases, a failure will be recorded.
 
 % Conclusion, the main impact is not the characterization load, but the single failure criteria
 In conclusion, the load value used during characterization does not seem to be the main source of error.
-Once again, it seems that a fixed failure criteria is a major issue and limiting factor.
+Once again, it is proven that a fixed failure criteria is a major issue and limiting factor.
 It is responsible for the large variations observed in Table \ref{tab:impact-load-on-cz} at small amplitudes.
-This results correlates with the observation made earlier in section \ref{sec:fixed-failure-threshold}, that also indicates that this fixed failure threshold should be removed.
-
+This result correlates with the observation made earlier in section \ref{sec:fixed-failure-threshold}.
 
 \subsubsection{Impact of connections between blocks}
 \label{sec:impact-missing-conns}
 
-Failure signature is changed
+%TODO
+The topology of the circuit is very important to achieve a good correlation between model chain and reference.
+It must match exactly between the characterization setup and the reference setup.
+For instance, a simulation was conducted using a slightly modified setup given in Fig. \ref{fig:reference_simu_circuit}.
+In the former setup, the signal V\textsubscript{clamp2p5} from the bandgap was not connected to the bias input of the regulator.
+Now, in the modifed setup, the connection is reinstated.
+The goal is to see the impact of a modified connection on the model correlation.
 
+Failure signature is changed
 Improvements are required
 
-\subsubsection{Other sources}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/characterization_setup_regu_complete_modified.pdf}
+  \caption{Reference simulation circuit with a modified connection}
+  \label{fig:reference_simu_circuit}
+\end{figure}
 
-%TODO: Make section ? Speak about limitations with multiples nets that are responsible for error propagation
-%TODO: Limitation with multiple nets. Interactions between inputs. Diamond-like connections
+See impact of this new connection on Vout
+-30V 1us pulse
+Failure amplitude is X times larger
+Correlation with model can no longer be achieved.
 
-% What was the promise of this model
-This method looked rather promising in terms of applicability.
-In theory, a block could be characterized once, and its model reused in different places.
-The robustness of a full system could be quickly and easily deduced from the models of its parts.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/4/figures/impact_connection_changed_v2p5.png}
+  \caption{Impact of a single connection changed on V\textsubscript{2p5}}
+  \label{fig:simu_comparison_v2p5_conn}
+\end{figure}
 
-% Real outcome is that it's not working well
-However, with the study case exposed earlier, several issues arose that clearly limit the ability of the model to perform as expected.
+One of the current limitations of the model.
+Only supports a given topology
+Because it only takes 1 input and 1 output into account.
+In practice, blocks have multiple inputs and multiple outputs.
+More research is required on this issue to support those cases and make the model more widely applicable.
 
-% Main issue
-So far the main issue of this method is to be limited to a binary fail/no fail criteria.
-In some cases, the specification could be used to set this criteria, but mostly it was an arbitrary level.
-For digital cells, a binary criteria is correct because above a certain input level disturbance an output can be switched, and the failure is then clear.
-However, for most analog functions, there is no clear failure.
-Most nets will have degraded values until extreme levels where biasing might completely fail.
+\subsubsection{Preliminary conclusion}
+
+% Conclusion - fixed threshold sucks
+Different sources of errors were analyzed in this section.
+It was established that the fixed failure threshold is unsuitable for characterizing and modelling analog block functions.
+It should also be noted that setting this fixed threshold is a very big issue in itself, because very often a purely arbitrary value has to be chosen.
+In some rare cases, the specification could be used to set this criteria, but it remained mostly an arbitrary level.
+For digital cells, a binary criteria is correct because above a certain input level disturbance an output can be switched and the failure is clear.
+However for the analog domain this rationale does not apply, because for most analog functions there is no clear failure.
+Most nets will have degraded values until extreme levels are reached where biasing might completely fail.
 Sometimes, the product is destroyed before reaching those extreme levels.
-In any case, the binary criteria hides a lot of information about the degradation.
+In any case, the fixed threshold hides a lot of information about the degradation.
 
 % Secondary issue
 It was also suspected that the output load used during characterization might impact the results too much.
 In practice, it was proven in the case of the regulator that this is not exactly true.
-Changing the load can induce a varation, but seemingly more limited than the impact of the binary failure criteria.
-
-% Directivity ?
-% Basically : WE ASSUME STRESS AND FAILURES PROPAGATE FROM INPUT TO OUTPUT. MAY NOT BE THE CASE. ALSO, MAY NOT WORK IN REVERSE WITH SINGLE2MANY BLOCK CONNECTIONS
+Changing the load can induce a varation, but seemingly more limited than the impact of the fixed failure criteria.
 
 % Next
-The next section will explore a modification of the characterization method to fix the binary failure criteria issue.
+In the next section, a modification is brought to the characterization and modelling method.
+The fixed threshold is removed and replaced by a more flexible and powerful solution.
