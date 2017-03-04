@@ -115,27 +115,24 @@ This applies to the input waveform and the output waveform during the characteri
 
 % First approach with a 90% amplitude
 Initially, the rules were to set $V$ equal to the maximum value of the waveform (input or output), and $W$ the width of the pulse at 90\% of $V$.
-The concept is illustrated in Fig. \ref{fig:impact-single-failure-criteria} with a few example curves.
+This waveform simplification into a rectangular shape can be difficult to perform with some non-trivial curves.
+Two cases where this simplification is not straightforward are illustrated in Fig. \ref{fig:impact-single-failure-criteria}.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.98\textwidth]{src/4/figures/better_output_modelling.pdf}
+  \includegraphics[width=\textwidth]{src/4/figures/better_output_modelling.pdf}
   \caption{Improved output modelling method based on 90\% of maximum disturbance amplitude}
   \label{fig:impact-single-failure-criteria}
 \end{figure}
 
-% Problems with the 90% threshold
-In case \textit{A}, the waveform can be simplified easily into a rectangular pulse.
-However, this 90\% threshold does not work reliably with cases \textit{B} and \textit{C}.
-
-% Explain case B
-Case \textit{B} is often observed during the injection of an electrostatic discharge.
+% Explain case A
+Case \textit{A} is often observed during the injection of an electrostatic discharge.
 The \gls{esd} signal is superimposed on top of a slow signal variation.
 In that case, the waveform exhibits a very short, high amplitude peak, followed by slower smaller-amplitude variation.
 The width of the pulse is much shorter than the original curve, leading the model to be very inaccurate.
 
 % Explain case C
-Case \textit{C} is observed on nets with high capacitive coupling to ground.
+Case \textit{B} is observed on nets with high capacitive coupling to ground.
 Those signals are not directly disturbed by the \gls{esd}, but the block that drives them can go into reset.
 In this situation, the nets slowly decreases then, once functionality resumes, the nets goes back to its nominal value.
 With the 90\% threshold, a large area of the disturbed waveform is missing in the model, making it very inaccurate.
@@ -150,6 +147,16 @@ Instead of focusing on the peak amplitude, a smarter method is required.
 Ideally, it needs to extract a width and amplitude that would result in the same area than the original waveform, while looking as similar as possible.
 
 A feature detection method using amplitude distribution could be performed to identify key amplitudes in the waveforms.
+Other techniques could be conceived, such as "convoluting" multiple rectangular waveforms to describe more complex waveforms.
+Basically, it would consist in breaking down a complex waveform into 2 or more rectangles, and applying each rectangle to the model chain.
+This waveform breakdown concept is illustrated in Fig. \ref{fig:waveform-deconvolution}.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{src/4/figures/shape_convolution.pdf}
+  \caption{Waveform breakdown into rectangular shapes}
+  \label{fig:waveform-deconvolution}
+\end{figure}
 
 \subsection{Final conclusion and follow-up work}
 \label{sec:limits-block-cz-final}
