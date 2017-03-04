@@ -45,12 +45,12 @@ In particular, model chaining is performed the same way since block models still
 \subsubsection{Application of the improved method}
 
 The new characterization method is applied to all three blocks of the regulation function.
-The amplitude table of the pre-regulator is plotted in Fig. \ref{fig:pre_regu_amp} and the width table in Fig. \ref{fig:pre_regu_width}
+The amplitude table of the pre-regulator is plotted in Fig. \ref{fig:pre_regu_amp} and the width table in Fig. \ref{fig:pre_regu_width}.
 Different patterns can be observed between both figures.
-The amplitude gradient seems independent from the input width because it displays only horizontal lines, and depends only on the input amplitude.
-The width matrix is a lot more complex with multiple different patterns.
+The output amplitude gradient seems independent from the input width because it displays only horizontal lines, and depends only on the input amplitude.
+The output duration gradient is a lot more complex with multiple different patterns.
 Overall, large input amplitude and duration tend to result in long output disturbances.
-Tables for the bandgap and pre-regulator are provided in Annex \ref{apx:block-cz}.
+The other characterization tables of the bandgap and pre-regulator are provided in Annex \ref{apx:block-cz}.
 
 \begin{figure}[!h]
   \centering
@@ -67,17 +67,19 @@ Tables for the bandgap and pre-regulator are provided in Annex \ref{apx:block-cz
 \end{figure}
 
 
-% TODO next
 % What is done for validation
-To validate the changes, the chaining process...
+The chaining process is performed again with a -30V 1 \textmu{}s rectangular input stimulus.
 The reference curve and reference test setups remain identical to the ones presented earlier (Fig. \ref{fig:reference_simu_circuit}).
 
 % Result of the chaining process
-The chaining process predicted that V\textsubscript{clamp9} will be down at -1.6V during 1800 ns.
-In turn, V\textsubscript{1p0} was predicted at -1.25V during 3300 ns.
-Finally, V\textsubscript{2p5} is predicted at 1.97V during 2700 ns.
-Those values are employed for generating model waveforms.
-They are compared to the reference simulation in Fig. \ref{fig:reference_simu_v2}.
+The chaining process predicts that V\textsubscript{clamp9} will be down at -1.6V during 1800 ns.
+The 1.6V value is obtained by taking coordinates of the input stimulus (-30V, 1 \textmu{}s) and applying them to Fig. \ref{fig:pre_regu_amp}.
+1.6V then corresponds to the gradient value at those coordinates.
+The 1800ns is obtained with the same input coordinates but applied to Fig. \ref{fig:pre_regu_width} instead.
+The same process is then used for the bandgap and the regulator.
+V\textsubscript{1p0} is predicted at -1.25V during 3300 ns.
+V\textsubscript{2p5} is predicted at 2.0V during 2700 ns.
+Those values are employed for generating model waveforms, and are compared to the reference simulation in Fig. \ref{fig:reference_simu_v2}.
 
 % Curve analysis
 The model matches correctly the simulation of V\textsubscript{clamp9}, both in terms of amplitude and width.
@@ -86,13 +88,15 @@ For V\textsubscript{1p0}, the width is extremely well reproduced, but the amplit
 It seems that taking the minimum amplitude value during the characterization is not ideal.
 This error should be investigated further to determine the actual root cause and provide a solution.
 The last signal V\textsubscript{2p5} shows a quite good correlation despite the fact that it is a triangle-like waveform.
+More validations were performed with (-20V, 1\textmu{}s) and (-20V, 100ns) stimulii.
+The results are provided in appendix \ref{apx:block-model-comparison}.
 Overall, the modifications brought to the modelling method seemed to have a positive impact on the curve models.
-A lot of room is left for improvements, in particular for reproducing the bandgap output signal.
+A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{1p0} that systematically suffers from amplitude modelling error.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/total_simulation_30V_1u_V2.png}
-  \caption{Reference simulation waveform - TLP stress -30V 1\textmugreek{}s }
+  \caption{Reference simulation waveform : TLP stress -30V 1\textmugreek{}s }
   \label{fig:reference_simu_v2}
 \end{figure}
 
