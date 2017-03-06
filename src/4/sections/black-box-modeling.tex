@@ -1,12 +1,10 @@
 \section{Black box modeling approach}
 
 % Motivation for a black box model of the complete circuit
-The goal of the black-box modeling method is to build a combined electrical and failure model of an integrated function between two external pins.
+The goal of the black-box modeling method is to build a combined electrical and failure model of an integrated function between an input pin and an output pin.
 This model is developped to allow third-parties that don't have access to the integrated circuit design to perform ESD simulations of a board containing integrated circuits.
-The electrical part of the model serves to run the \gls{spice} simulations.
-The failure part of the model watches the external input pin and detects conditions that would lead to a failure visible on the external output pin.
-The black box model is intented to act as a replacement for the \gls{ic} function during \gls{esd} board-level simulations.
-This approach follows the recommendation of the \gls{seed} methodology \cite{seed} presented earlier.
+Bascically, this black box model is intented to act as a replacement for the \gls{ic} function during \gls{esd} board-level simulations.
+This combined system-level and integrated circuit simulation approach is very valuable for designing robust applications, and is almost identical to the \gls{seed} \cite{seed} methodology introduced in previous chapters.
 The \gls{seed} methodology normally applies to hard-failure, but in this chapter the concept is pushed further with soft-failures.
 \gls{seed} recommends that the ESD robustness of a system should be handled by a collaboration between the board and the integrated circuit.
 To achieve this, it is necessary to have simulation tools capable of simulating both elements at the same time.
@@ -14,12 +12,12 @@ The black-box model presented in this chapter is a potential solution to this is
 It does not reveal the internal IC design while allowing complete simulations of board and integrated circuits together to predict soft-failures.
 It also abstracts the internal complexity of the integrated circuit design, allowing significantly faster simulations and less convergence issues.
 
-% What is the model
-As previously described, the two requirements for the model is to be usable in \gls{spice} simulations and to detect failures by monitoring the input.
-This can be achieved with a model containing a failure element and two electrical models as proposed in Fig. \ref{fig:black-box-principle}.
-The input port model reproduces the behavior of the integrated circuit between the external input pin and (usually) a ground pin.
-The failure model watches for voltage or current on the input port, compares those parameters to the failure characterization and deduces if the input was sufficiently disturbed to create a fault.
-Then, it transfer that information to the output port model, that changes behavior in case of fault or remains in its DC state in the absence of a failure.
+% Explanation of the model
+The proposed model is composed of two port models and a failure model as shown in Fig. \ref{fig:black-box-principle}.
+The electrical parts enable \gls{spice} simulations with this model inside an electrical environment.
+The port model reproduces the behavior of the integrated circuit between an external pin and usually a ground pin.
+The failure part of the model watches the external input pin and detects conditions that would lead to a failure visible on the external output pin.
+If a fail was detected, the information is transferred to the output port model that will reproduce the behavior of the output during a failure.
 
 \begin{figure}[!h]
   \centering
@@ -29,6 +27,8 @@ Then, it transfer that information to the output port model, that changes behavi
 \end{figure}
 
 % How is the model constructed
+The failure model is obtained with a preliminary characterization method.
+It is also inspired by the Wunsch-Bell methodology \cite{wunsch-bell}.
 The failure model is extracted first, using a set of variable amplitude and variable width rectangular pulses applied on the input pin while monitoring the output pin.
 After this step, the robustness of the function against this range of stresses is known.
 A curve is built that describes the failure of the output when an input is stressed.
@@ -39,20 +39,6 @@ This characterization is based on the hypothesis that the quasi-static I(V) curv
 It will be demonstrated afterward that this hypothesis is not completely true and an alternative approach is required for the output pin.
 This I(V) curve is converted in an electrical model using a piecewise-linear curve described in Verilog-A modelling language.
 Finally, once the two electrical models and the failure model have been constructed, it can be possible to join all the parts together to build the complete IC model.
-
-% Detail the particular simulation process
-%TODO
-The process to simulate an entire board following SEED is the following
-A SPICE simulation with the input port model is ran
-After the simulation, the input curve is analysed to see if an failure will occurr on the output.
-Then, a second simulation is ran with the output setup this time.
-If the failure was detected in the first, the info is passed to the output model that generates a fake failure ressembling the one measured.
-At the end of this process, a board simulation could be ran to simulate the behavior of the IC.
-It is not as straightforward as a single simulation but it can already achieve the SEED goal.
-
-The concept was not tested entirely in simulation because of some issues discovered late, but using a particular setup it is possible to build it as follow-up work.
-The next part of this chapter details further the modelling approach and all the issues met during the developpement as well as possible improvements.
-% END TODO
 
 % What is the case study
 To validate the concept, the characterization is performed on the integrated primary supply studied earlier (see Chapter \ref{sec:supply-desc}).
@@ -71,8 +57,7 @@ Fig. \ref{fig:black-box-applied} summarize the model configuration with those pi
 \subsection{Function failure model}
 
 % First the function failure is characterized
-As previously detailled, the primary regulation function failure is characterized first.
-This is done by applying a set of variable width and variable amplitude rectangular pulses on the input pin, while monitoring the behavior of the output pin.
+The primary regulation function is characterized by applying a set of variable width and variable amplitude rectangular pulses on the input pin, while monitoring the behavior of the output pin.
 In case of significant variations of behavior, a failure is recorded.
 The characterization yields a lookup table (see Table \ref{tab:cz-failure}) that associates to an input width and an input amplitude a flag representing the presence or absence of a failure.
 
@@ -130,8 +115,8 @@ Now that the characterization step is done, the next part of this work focuses o
 \subsection{Electrical pin models}
 \subsubsection{I(V) curve extraction in powered and unpowered modes}
 
-% powered or unpowered conditions ?
-As a remainder, they initial hypothesis in this section is that \gls{tlp} characterization can be used to represent an input or output port of an integrated function.
+% Choose between powered or unpowered conditions
+The initial hypothesis in this section is that \gls{tlp} characterization can be used to represent an input or output port of an integrated function.
 Extracting the \gls{tlp} characteristic can be done with the device powered or unpowered.
 To see the impact of the biasing and decide the best approach, \gls{tlp} characterizations are performed in both conditions.
 The test setup for the input port is given in Fig. \ref{fig:tlp-input-testbench}.
@@ -148,6 +133,7 @@ The TLP is a perfect rectangular source in combination with a series 50 \textOme
 The test setup for the output port is given in Fig. \ref{fig:tlp-output-testbench}.
 The main issue with this characterization is that it includes the external stabilisation capacitor.
 It will be verified after if this external device is an issue for modelling.
+The results are provided for the input and output ports in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
 
 \begin{figure}[!h]
   \centering
@@ -155,8 +141,6 @@ It will be verified after if this external device is an issue for modelling.
   \caption{I(V) extraction of output port}
   \label{fig:tlp-output-testbench}
 \end{figure}
-
-The results are provided for the input and output ports in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
 
 \begin{figure}[!h]
   \centering
@@ -204,6 +188,7 @@ Any part of the I(V) curve beyond the safe operating area is irrelevant because 
 Therefore, it is important to fit the I(V) curve with the piecewise linear curve inside the SOA.
 For the input, the modelling is focused on a voltage range from -10V to 40V.
 On the output, the modelling range is from -5V to 5V.
+Those values are obtained from the function specification and correspond to the sustained input ranges.
 
 \subsubsection{Comparison of input model with reference circuit}
 
@@ -230,7 +215,6 @@ There is an offset in DC and in transient, probably due to a modelling error wit
 There are two large spikes at the beginning and the end of the pulse that are not reproduced.
 This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
 Overall, the accuracy remains acceptable for an ESD simulation.
-
 Other validations are provided for positive 20V and 40V TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
 They confirm that the input model performs correctly, and even better when exposed to positive stresses.
 Overall, this Verilog-A model is considered valid for the input port while considering that there is a lot of room for improvement.
@@ -343,12 +327,9 @@ Solving this issue should be the topic for future work and research, and identif
 Ultimately, black box models should enable to replace a integrated function during an ESD simulation, in order to reduce complexity, simulation time, and protect intellectual property.
 
 % Opening work
-There are many new leads to explore on these black box models, and work to accomplish.
-The behavior of the black-box models should be investigated against more time-varying disturbances such as ESD gun waveforms.
-The piecewise-linear modelling technique, usually employed in the ESD field for modelling ESD protections, should be improved to be more stable and fit more closely the extracted I(V) curve.
-The methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
-For now, input and outputs must be simulated separately.
-First, the input is simulated, then analyzed to extract the width and amplitude of the disturbance.
-This data is then used to configure the output failure source pulse.
-The model must be improved in order for the output to react in real-time to the disturbance of the input.
+There are many new leads to explore on these black box models to get more accurate results.
+It was shown that modelling of active outputs directly with a \gls{tlp} characterization and a bias does not seem to work and more research is required on this topic.
+Also, the behavior of the input port model against non-rectangular waveforms should be studied and investigated to ensure that the model works correctly in dynamic regime.
+The piecewise-linear modelling technique, usually employed in the ESD field for modelling ESD protections, should be improved by adding more fitting points to fit more closely the extracted I(V) curve.
+Also, this methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
 Research on all those topics should lead to the development a black-box model that will work for powered electrostatic discharge simulations.
