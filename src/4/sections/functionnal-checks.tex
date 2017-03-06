@@ -6,8 +6,8 @@ It has also a broader scope of application than just the search of functional we
 This methodology remained at the concept phase and went only trhough very early preliminary testing, because it needs a deep involvement of a design team which could not be done during this research work, and potentially some modification of the simulation engine.
 It was conceived very late in the research work with the experience and feedback gained from the other modelling methods.
 
-%TODO: Speak about virtual test
-%TODO: Speak about per-block validation by running simulation and checking waveforms
+% Speak about virtual test ?
+% Speak about per-block validation by running simulation and checking waveforms ?
 
 % Why is it interesting for ESD simulations
 Powered-on \gls{asic} simulations are difficult to investigate because of the scale factor inherent to automotive \gls{asic} detailled in the chapter introduction.
@@ -51,8 +51,6 @@ In case the produced waveform goes outside those criteria, a simple fail is noti
 Here, the fail is timestamped is essential because it shows not only that something went wrong, but also when and for how long.
 It differentiates from normal tooling used during circuit verification to ensure that a block is running properly.
 
-%TODO : Fig with example assertion on a current mirror
-
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.3\textwidth]{src/4/figures/special_cells_concept.pdf}
@@ -93,7 +91,7 @@ Blocks that are the most sensitive can be easily identified for hardening.
 These assertions can be implemented in different manners.
 
 % Method using spectre-simulator checkers
-The Spectre (TODO: To check?) simulator offers the possibility to build a list of assertions to check for a simulation.
+The Spectre simulator offers the possibility to build a list of assertions to check for a simulation.
 This is not exactly the concept described in this section, because this list cannot be associated to a block but only to a simulation.
 It can however enable to test this assertion system and the value of information obtained with it.
 
@@ -101,15 +99,15 @@ It can however enable to test this assertion system and the value of information
 Another option is to create a dedicated assertion view inside the block's cell.
 This view takes the form of a text file containing a list of all assertions for the block.
 Then, the simulator must be instructed to use this view if it exists and check the assertions defined in it.
-%TODO: Fig with schematic and assertion file OR schematic with assertion file in it
+% Fig with schematic and assertion file OR schematic with assertion file in it ?
 
 % Method using in-schematic assertions
 The last approach is to add directly in the schematic assertion cells (Fig. \ref{fig:ex-special-cells}).
 Those cells can be implemented in any analog or mixed-signal \gls{hdl}, such as Verilog-A or VHDL-AMS.
 Those cells are transparent for the simulator and do not impact the electrical simulation.
 
-%TODO: Example Verilog-a code for special cell amplitude threshold cross
-%TODO: Example Verilog-a code for current detection
+% Example Verilog-a code for special cell amplitude threshold cross ?
+% Example Verilog-a code for current detection ?
 
 \begin{figure}[!h]
   \centering
@@ -159,23 +157,17 @@ The goal is to show with just a few assertions, the failure case of section \lab
 Only a few assertions are implemented per block.
 The supplies and ground pins are checked against a voltage range.
 Current mirrors are checked to ensure current is properly copied.
-%TODO What else ?
-%TODO: Table of assertion placements
+% What else ?
+% Table of assertion placements ?
 
 % How is it checked
 The Spectre simulator assertions are used for testing purposes.
-%TODO: show the circuit
+% show the circuit ?
 A XX V XX ns TLP pulse is injected on VBATT.
 Failure is observed on V2p5
 
 The assertions were recorded and given in table XXX
 
-%TODO: Table of results
-
-%TODO: Analyse the results
-% Impacted blocks
-% Sorted list
-% Duration list
 
 \subsection{Assertion writing}
 

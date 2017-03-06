@@ -59,16 +59,14 @@ The goal is a bit different because the goal is to simulate electrically an IC f
 A characterization approach is presented, and current limitations are highlighted.
 
 % Introduce Wunsch & Bell
-% TODO review
 A common point between the proposed methods is to use the Wunsch and Bell (WB) technique \cite{wunsch-bell}, outside of its usual application scope.
-In the ESD field, WB is generally employed to estimate the hardware robustness of a device in function of a stress amplitude and width.
-The typical characterization process consists in injecting a set of rectangular pulses (Fig. \ref{set_input_signals}) on a tested device, and observing for which couple of amplitude and width values a destructive failure occurs.
+In the ESD field, WB is generally employed to estimate the hardware robustness of a device in function of a stress amplitude, width, risetime, or any other electrical parameter.
+The typical characterization process consists in injecting a set of rectangular pulses (Fig. \ref{set_input_signals}) on a tested device, and observing for which pulses a destructive failure occurs.
 A TLP generator is often employed to generate pulses of parameterized amplitude.
 Pulse width variation on a TLP can also be easily achieved by using a longer charging cable.
 In this research work, the WB approach is proposed as a non-destructive characterization tool.
 A set of parameterized pulses are injected on the input of the item under test while the output is being monitored.
 
-%TODO: Fix sim 12 sim12
 \begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/time_domain_cz_curves.pdf}

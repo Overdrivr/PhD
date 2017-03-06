@@ -70,18 +70,6 @@ Guarantying matching along the path should eliminate this ringing oscillation.
   \label{fig:absorber_schematic_parasitics}
 \end{figure}
 
-% TODO: Do next ?
-% Afterwards, resistive loads of 2 10 and 0 are tested
-% The first two loads are simply constituted of several resistors in parallel.
-% The oscilloscope input impedance is used for the 50  load.
-% In this case, reflections are eliminated by the matched load and the waveform is less disturbed.
-
-% For 2 and 10, the measurements (Fig. 16 & 17) are quite noisy because of reflections.
-% Despite that, it is interesting to observe that overall the amplitudes match well.
-% The differences come mostly from parasitic devices not taken into account in those simulation.
-%TODO: Waveforms 2ohm, 10ohm, 50ohms
-
-
 \subsubsection{Comparison with an ESD Gun}
 
 % Introduce how generators are usually tested against ESD gun
@@ -133,12 +121,11 @@ HMM     (V) & 1250  & 1250  & 1500   & 1500 & 6500 & 5000 & 13000 & 9500 & 20000
 
 \subsubsection{Correlation between TLP and HMM}
 
-%TODO: Overly simplistic, but does it work ?
 % Correlation method principle orrelation results
 Based on those preliminary results, a correlation method is built between TLP failure levels and HMM failure levels.
 It exploits the fact that the TLP-HMM is at its core a TLP, yet has a similar behavior to an HMM generator.
 The analysis was published in \cite{my-publi-tlp-hmm}.
-It requires a characterization step for each generator, to extract the most simple equivalent circuit composed of a resistor and a DC voltage source.
+It requires a very simple characterization step for each generator, to extract the most simple equivalent circuit composed of a resistor and a DC voltage source.
 The DC voltage source takes the value defined by the user on the generator before a pulse.
 The resistor is extracted from the characterization.
 Finally, the ESD protection is modeled by its on-resistance.

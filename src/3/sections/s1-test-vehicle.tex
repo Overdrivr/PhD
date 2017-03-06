@@ -105,9 +105,8 @@ The stratety behind this filter is to use multiple detectors monitoring the same
 In function of which detectors triggered, an estimation of the overvoltage length can be made.
 
 % Hysteresis buffer
-%TODO: Add schematic ? Explain interacting with RC filter ?
 After the filter, an hysteresis buffer guarantees that a clean digital signal will be fed to the latch.
-The triggering levels are highly separated, with a low level near 2V and a high at about 6V.
+The triggering levels are set quite far away, with the low level near 2V and the high level at about 6V.
 
 % Latch
 Finally, the latch stores the overvoltage flag.
@@ -129,7 +128,7 @@ On those 48 pins, a few are already required for ground connection and substrate
 Also, the two instances of the regulation function each need a supply connection and two external decoupling capacitors.
 The on-chip current sensor also require 4 pins for the calibration pattern and two pins per actual sensor.
 In the end, the available pin count would be too small for allowing to connect each detector to its own external pin.
-To overcome this issue, a custom communication bus has been designed.
+To overcome this issue, a custom communication bus has been designed, to discuss with the testchip before and after ESD tests.
 Initially, the JTAG (Joint Test Action Group) \cite{jtag} protocol was envisionned for this application.
 It is a test port for access and boundary-scan.
 It is commonly used to check that connections are correct between integrated circuits, and to configure internal parameters such as trim values and internal fuses.
@@ -144,9 +143,6 @@ No digital-synthesis is being required.
 % Overall architecture
 The chain of individual cells functions by propagating from cell to cell an enable signal.
 Each time a cell receives the enable signal, it will perform its task, then pass the enable to the next cell at the next clock edge.
-
-%TODO: Talk about scalability
-%TODO: Talk about comm not being used during the ESD, but afterward
 
 \subsubsection{Read cell}
 
@@ -240,7 +236,6 @@ Ultimately, the reading-cell performs a serial to parallel conversion.
 The serial data is set on \textit{bus}, and the parallel outputs are \textit{bit 0} to \textit{bit n}.
 
 \subsection{On-chip near-field current sensors}
-%TODO: Add reference to article ESREF 2012
 
 % Measuring currents is important too
 Current sensing magnetic loops were integrated on silicon to measure current trough a few critical nets.
@@ -312,6 +307,3 @@ On the layout, a lot of silicon space was left empty.
 This is due to manufacturing constraints that enforced the silicon dimensions.
 After manufacturing and packaging, the chip is tested.
 The entire testing process and results are documented in section \ref{sec:test-vehicle-testing}.
-
-%TODO: Show inputs and ouputs of near-field current sensor
-%See Presentation "testchip" of "13 Nov 2015"

@@ -10,14 +10,12 @@ To perform the injection, the battery is replaced by a \gls{dc} source and a \gl
 Both devices are isolated from one another using a \gls{bias-tee}, as defined in the DPI standard \cite{iec62132-4}.
 This setup is simply a capacitor-inductor network as shown in Fig. \ref{fig:injection-setup-dpi}.
 
-%TODO: A remplacer par schema complet
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/3/figures/injection_setup_dpi.pdf}
+  \includegraphics{src/3/figures/architecture_system_test.pdf}
   \caption{Injection setup to superimpose a stress on a DC voltage}
   \label{fig:injection-setup-dpi}
 \end{figure}
-
 
 % What is the root cause -> reset of regulator, soft-start
 The failure signature recorded on V\textsubscript{2p5} is given in Fig. \ref{fig:meas-reset-v2p5}.

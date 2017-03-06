@@ -68,7 +68,6 @@ The enable is correctly propagated, and is visible on \textit{en\_out}, however 
   \label{fig:read-only-full-frame}
 \end{figure}
 
-%TODO: Detail more investigation
 % Potential cause - clock freq
 The clock frequency was initially suspected as a root cause for the problem.
 Previous measurements were taken for a slow 1kHz clock frequency, which is far slower than the upper limit 2MHz.
@@ -80,14 +79,13 @@ Multiple simulations of the entire read chain were run by placing large delays i
 No failure could be highlighted using this method.
 
 % Potential cause - parasitic RC
-Afterwards, an RC parasitics were extracted from the layout.
-Once again, the read chain performed correctly.
+Afterwards, RC parasitic device extraction was performed from the layout.
+All previous validation simulations were ran, without any success in finding the issue.
+For all simulations, the read chain performed correctly.
 
 % Potential cause - susbstrate coupling
 Susbtrate couplings were also suspected.
 Some reading issues could be reproduced, but this type of coupling is highly unlikely to happen for clock frequencies of 1kHz.
-
-%TODO: Detail simulations + what was done to reproduce problem
 
 \subsubsection{Future work}
 

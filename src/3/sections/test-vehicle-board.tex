@@ -22,5 +22,15 @@ Each board packs its own set of optical to electrical converters, to make the co
   \label{fig:system-board-architecture}
 \end{figure}
 
+A picture with both boards is given in Fig. \ref{fig:system-board-pictures}.
+The microcontroller of the master board (on the left) is not visible because it is located on the other side.
+Two supply inputs are available on the slave board (on the right).
+The reference supply powers the monitoring block (and is heavily filtered at the board level as detailed before).
+The dut supply powers the functions of the testchip that are tested and exposed to electrostatic discharges.
 
-%TODO: Picture?
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/3/figures/boards_picture.pdf}
+  \caption{Picture of master and slave boards}
+  \label{fig:system-board-pictures}
+\end{figure}
