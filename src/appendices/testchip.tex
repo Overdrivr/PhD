@@ -29,66 +29,6 @@ Bit index& Name & Function \\ \toprule
 \begin{tabular}{@{}lll@{}}
 \toprule
 Bit index & Name & Function \\ \toprule
-0	& vdd\_nuv       & internal pre-regulator undervoltage flag \\
-1	& vdd\_nuv\_deg  & internal pre-regulator undervoltage deglitched flag \\
-2	& v2p5\_nuv	     & internal regulator undervoltage flag \\
-3	& v2p5\_nuv\_deg & internal deglitched undervoltage flag \\
-4	& uv\_9V\_div4	 & undervoltage detect on v_{clamp9} \\
-5	& ov\_9V\_div4	 & overvoltage detect on v_{clamp9} \\
-6	& ov\_vref1p2	   & overvoltage detect on bandgap reference \\
-7	& uv\_vref1p2	   & undervoltage detect on bandgap reference \\
-8	&	uv\_5MHz\_vclamp9\_div4  & undervoltage detect on v_{clamp9} with 5MHz BW \\
-9	&	uv\_200kHz\_vclamp9\_div4 & undervoltage detect on v_{clamp9} with 200kHz BW \\
-10&	ov\_5MHz\_vclamp9\_div4 & overvoltage detect on v_{clamp9} with 5MHz BW\\
-11&	ov\_200kHz\_vclamp9\_div4 & overvoltage detect on v_{clamp9} with 200kHz BW\\
-\bottomrule
-\end{tabular}
-\caption{Read chain 2}
-\label{tab:read-chain-2}
-\end{table}
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Bit index	& Name    & Function                                          \\ \toprule
-0	        & v2p5d	  & input connected to v2p5 - should always be 0b1 \\
-1         &	agnd    &	input connected to agnd - should always be 0b0 \\
-2         &	vdd     &	level down shifter sampling an 8V reference - should always be 0b1 \\
-3         &	agnd    &	level down shifter sampling agnd - should always be 0b0 \\
-4         &	ov      &	test\_A : raw OV output \\
-5         &	uv      &	test\_A : raw UV output \\
-6         &	ov\_2p5  & test\_A : raw_OV output with 2p5 static ref \\
-7         &	ov\_4p9  &	test\_A : raw_OV output with 4p9 static ref \\
-8         &	ov\_5p0	& test\_A : raw_OV output with 5p0 static ref \\
-9         &	ov\_5p1  &	test\_A : raw_OV output with 5p1 static ref \\
-10        &	ov\_7p5  &	test\_A : raw_OV output with 7p5 static ref \\
-11        &	ov\_0MHz	& test\_B : raw OV output without filter \\
-12        &	ov\_20MHz&	test\_B : raw OV output with 20MHz lpf \\
-13        &	ov\_10MHz&	test\_B : raw OV output with 10MHz lpf \\
-14	      & ov\_5MHz &	test\_B : raw OV output with 5MHz lpf \\
-15        &	ov\_2MHz	& test\_B : raw OV output with 2MHz lpf \\
-16        &	ov\_1MHz	& test\_B : raw OV output with 1MHz lpf \\
-17        &	ov\_0kHz	& test\_C : raw OV output without filter \\
-18        &	ov\_500kHz	& test\_C : raw OV output with 500 kHz lpf \\
-19        &	ov\_200kHz	& test\_C : raw OV output with 200 kHz lpf \\
-20	      & ov\_100kHz	& test\_C : raw OV output with 100 kHz lpf \\
-21	      & ov\_50kHz	& test\_C : raw OV output with 50 kHz lpf \\
-22        &	ov\_20kHz	& test\_C : raw OV output with 20 kHz lpf \\
-23	      & agnd	    & input connected to agnd - should always be 0b0 \\
-24	      & v2p5d	    & input connected to v2p5 - should always be 0b1 \\
-\bottomrule
-\end{tabular}
-\caption{Read chain 1}
-\label{tab:read-chain-1}
-\end{table}
-
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Bit index & Name & Function \\ \toprule
 0 &	vref\_uv\_9V	 & MSB \\
 1 & & \\
 2 & & \\
@@ -116,5 +56,173 @@ Bit index & Name & Function \\ \toprule
 \label{tab:write-chain-2}
 \end{table}
 
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Bit index	& Name    & Function                                          \\ \toprule
+    0	        & v2p5d	  & input connected to v2p5 - should always be 0b1 \\
+    1         &	agnd    &	input connected to agnd - should always be 0b0 \\
+    2         &	vdd     &	level down shifter sampling an 8V reference - should always be 0b1 \\
+    3         &	agnd    &	level down shifter sampling agnd - should always be 0b0 \\
+    4         &	ov      &	test\_A : raw OV output \\
+    5         &	uv      &	test\_A : raw UV output \\
+    6         &	ov\_2p5  & test\_A : raw OV output with 2p5 static ref \\
+    7         &	ov\_4p9  &	test\_A : raw OV output with 4p9 static ref \\
+    8         &	ov\_5p0	& test\_A : raw OV output with 5p0 static ref \\
+    9         &	ov\_5p1  &	test\_A : raw OV output with 5p1 static ref \\
+    10        &	ov\_7p5  &	test\_A : raw OV output with 7p5 static ref \\
+    11        &	ov\_0MHz	& test\_B : raw OV output without filter \\
+    12        &	ov\_20MHz&	test\_B : raw OV output with 20MHz lpf \\
+    13        &	ov\_10MHz&	test\_B : raw OV output with 10MHz lpf \\
+    14	      & ov\_5MHz &	test\_B : raw OV output with 5MHz lpf \\
+    15        &	ov\_2MHz	& test\_B : raw OV output with 2MHz lpf \\
+    16        &	ov\_1MHz	& test\_B : raw OV output with 1MHz lpf \\
+    17        &	ov\_0kHz	& test\_C : raw OV output without filter \\
+    18        &	ov\_500kHz	& test\_C : raw OV output with 500 kHz lpf \\
+    19        &	ov\_200kHz	& test\_C : raw OV output with 200 kHz lpf \\
+    20	      & ov\_100kHz	& test\_C : raw OV output with 100 kHz lpf \\
+    21	      & ov\_50kHz	& test\_C : raw OV output with 50 kHz lpf \\
+    22        &	ov\_20kHz	& test\_C : raw OV output with 20 kHz lpf \\
+    23	      & agnd	    & input connected to agnd - should always be 0b0 \\
+    24	      & v2p5d	    & input connected to v2p5 - should always be 0b1 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Read chain 1}
+  \label{tab:read-chain-1}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Bit index & Name & Function \\ \toprule
+0	& vdd\_nuv       & internal pre-regulator undervoltage flag \\
+1	& vdd\_nuv\_deg  & internal pre-regulator undervoltage deglitched flag \\
+2	& v2p5\_nuv	     & internal regulator undervoltage flag \\
+3	& v2p5\_nuv\_deg & internal deglitched undervoltage flag \\
+4	& uv\_9V\_div4	 & undervoltage detect on v\textsubscript{clamp9} \\
+5	& ov\_9V\_div4	 & overvoltage detect on v\textsubscript{clamp9} \\
+6	& ov\_vref1p2	   & overvoltage detect on bandgap reference \\
+7	& uv\_vref1p2	   & undervoltage detect on bandgap reference \\
+8	&	uv\_5MHz\_vclamp9\_div4  & undervoltage detect on v\textsubscript{clamp9} with 5MHz BW \\
+9	&	uv\_200kHz\_vclamp9\_div4 & undervoltage detect on v\textsubscript{clamp9} with 200kHz BW \\
+10&	ov\_5MHz\_vclamp9\_div4 & overvoltage detect on v\textsubscript{clamp9} with 5MHz BW\\
+11&	ov\_200kHz\_vclamp9\_div4 & overvoltage detect on v\textsubscript{clamp9} with 200kHz BW\\
+\bottomrule
+\end{tabular}
+\caption{Read chain 2}
+\label{tab:read-chain-2}
+\end{table}
+
 \section{pinout}
 \label{apx:testchip-pinout}
+
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{@{}llllll@{}}
+    \toprule
+Index & Name           & IO  & Type  & Spec   & Function                                                          \\ \toprule
+1	 & NC	               & -   & -	   & -      & no connect                                                       \\
+2	 & GNDSUB            & -	 & PWR	 & -      & connect to PCB ground      \\
+3	 & VSUP\_M           & IN	 & PWR	 & 12 V	  & 12V	supply input for monitoring blocks                             \\
+4	 & VDD\_M	           & OUT &	PWR	 & 8V     &	internal 8V supply ouput probing                                   \\
+5	 & V2P5A\_M	         & OUT &	PWR	 & 2.5V	  & 2.5V regulator output (220nF decap)        \\
+6	 & V2P5D\_M	         & OUT & PWR	 & 2.5V	  & 2.5V regulator output (220nF decap)           \\
+7	 & GLOBAL\_RST	     & IN	 & SIG   & 0-2.5V	& active high reset for monitoring                          \\
+8	 & SERIAL\_EN\_IN    & IN  & COM   & 0-2.5V	& enable input for read chain 1           \\
+9  & SERIAL\_CLK\_IN   & IN  & COM   & 0-2.5V	& clock input for read chain 1            \\
+10 & SERIAL\_RSTB\_IN	 & IN  & COM   & 0-2.5V	& active low reset for read chain 1         \\
+11 & SERIAL\_EN\_OUT	 & OUT & COM   & 0-2.5V	& enable output of read chain 1             \\
+12 & SERIAL\_DATA\_OUT & OUT & COM   & 0-2.5V	& serial data output of read chain 1        \\
+13 & VNODE             & IN	 & SIG   & 0-8V   & input A of OV/UV detectors                \\
+14 & VREF              & IN	 & SIG   & 0-8V   &	input B of OV/UV detectors                \\
+15 & A\_OV	           & OUT & SIG   & 0-8V	  & raw OV flag (bit 4 of read chain 1)  \\
+16 & GND               & -   & PWR   & -      & connect to PCB ground             \\
+17 & A\_UV	           & OUT & SIG   & 0-8V	  & raw UV flag (bit 5 of read chain 1) \\
+    \bottomrule
+  \end{tabular}
+  \caption{Pinout (pins 1 to 17) - OV : overvoltage, UV: undervoltage}
+  \label{tab:testchip-pinout-1}
+\end{table}
+
+
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{@{}llllll@{}}
+    \toprule
+Index & Name           & IO  & Type  & Spec   & Function                                                          \\ \toprule
+18 & A\_OV\_V2P5       & OUT & SIG   & 0-8V	  & OV flag ref 2.5V (bit 6 of RC 1)          \\
+19 & B\_OV\_0MHz       & OUT & SIG   & 0-8V	  & OV flag nofilter (bit 11 of RC 1)                 \\
+20 & B\_OV\_1MHz	     & OUT & SIG   & 0-8V	  & OV flag 1MHz filter (bit 16 of RC 1)      \\
+21 & B\_OV\_0kHz	     & OUT & SIG	 & 0-8V	  & OV flag 1MHz filter (bit 16 of RC 1) \\
+22 & B\_OV\_20kHz	     & OUT & SIG	 & 0-8V	  & OV flag 0kHz filter (bit 22 of RC 1) \\
+23 & SENSOR\_B\_V2P5A	 & OUT & SIG	 & -      & pin B of current sensor on V2P5A \\
+24 & SENSOR\_A\_V2P5A	 & OUT & SIG	 & -      & pin A of current sensor on V2P5A  \\
+25 & F\_V2P5A	         & OUT & PWR	 & 2.5V	  & 2.5V regulator output (220nF decap) \\
+26 & F\_V2P5D	         & OUT & PWR	 & 2.5V	  & 2.5V regulator output (220nF decap) \\
+27 & F\_CLK	           & IN	 & COM	 & 0-2.5V	& clock input for RC 2 and WC 2       \\
+28 & F\_RSTB           & IN	 & COM	 & 0-2.5V	& active low reset for RC 2 and WC 2     \\
+29 & SENSOR\_B\_GNDSUB2	& OUT &	SIG	 & -      & pin B of sensor on GNDSUB (pin 31)           \\
+30 & SENSOR\_A\_GNDSUB2	& OUT	& SIG	 & -      & pin A of sensor on GNDSUB (pin 31)           \\
+31 & GNDSUB	           & - 	 & PWR   & -      &	connect to PCB ground                                \\
+32 & GND	             & -   & PWR	 & -	    & connect to PCB ground                                \\
+\bottomrule
+\end{tabular}
+\caption{Pinout (pins 18 to 32) - RC : Read Chain, WC : Write Chain}
+\label{tab:testchip-pinout-2}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Index & Name           & IO  & Type  & Spec   & Function                                                          \\ \toprule
+33 & DATA\_IN\_WRITE	 & IN  & COM   & 0-2.5V	& serial data input of WC2        \\
+34 & EN\_IN\_WRITE	   & IN  & COM 	 & 0-2.5V	& enable of WC2   \\
+35 & DATA\_OUT\_READ	 & OUT & COM   & 0-2.5V	& data output of RC2               \\
+36 & EN\_OUT\_READ	   & OUT & COM   & 0-2.5V	& enable output of RC2            \\
+37 & EN\_IN\_READ	     & IN  & COM   & 0-2.5V	& enable input of RC2                  \\
+38 & SIG\_B	           & IN  & SIG	 & -      & port B feed of calibration sensor            \\
+39 & SENSOR\_B\_CAL	   & OUT & SIG	 & -      & pin B of calibration sensor          \\
+40 & SENSOR\_A\_CAL	   & OUT & SIG	 & -      & pin A of calibration sensor               \\
+41 & SIG\_A	           & IN &	SIG		 & -      & port A feed of calibration sensor            \\
+42 & SENSOR\_2\_VBOOST\_B & OUT &	SIG	&	-     & pin B VBOOST ESD current sensor                                    \\
+43 & SENSOR\_2\_VBOOST\_A & OUT &	SIG	&	-     & pin A VBOOST ESD current sensor                  \\
+44 & VBOOST	              & IN  &	PWR	& 12V  	& 12V supply                                   \\
+45 & VBOOST	              & IN  &	PWR	& 12V	  & idem      \\
+46 & SENSOR\_1\_VBOOST\_B &	OUT &	SIG	& -     & pin B VBOOST current sensor                       \\
+47 & SENSOR\_1\_VBOOST\_A	& OUT &	SIG & -     & pin A VBOOST current sensor                \\
+48 & GND		              & PWR & -   & -     & connect to PCB ground             \\
+\bottomrule
+\end{tabular}
+\caption{Pinout (pins 33 to 48) - RC : Read Chain, WC : Write Chain}
+\label{tab:testchip-pinout-3}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Index & Name           & IO  & Type  & Spec   & Function                                                          \\ \toprule
+49 & NC	               & -   & -	   & -      & no connect                                                     \\
+50 & DAC\_OUT	         & OUT & SIG	 & 0-8V   & output of the DAC ref        \\
+51 & POUT<0>	         & OUT & SIG	 & 0-2.5V	& bit 0 of test write cell                    \\
+52 & POUT<1>	         & OUT & SIG	 & 0-2.5V	& bit 1 of ".."                      \\
+53 & POUT<2>	         & OUT & SIG	 & 0-2.5V	& bit 2 of ".."                      \\
+54 & POUT<3>           & OUT & SIG	 & 0-2.5V	& bit 3 of ".."                       \\
+55 & D\_EN\_OUT	       & OUT & COM	 & 0-2.5V	& enable output of WC1     \\
+56 & D\_DATA\_OUT      & OUT & COM	 & 0-2.5V	& data output of WC1   \\
+57 & D\_RSTB           & IN	 & COM	 & 0-2.5V	& active low reset of WC1    \\
+58 & D\_CLK	           & IN	 & COM	 & 0-2.5V	& clock input of WC1         \\
+59 & D\_EN\_IN         & IN	 & COM	 & 0-2.5V	& enable input of WC1       \\
+60 & D\_DATA\_IN       & IN	 & COM	 & 0-2.5V	& data input or WC1             \\
+61 & GLOBAL\_8V\_RST   & OUT & SIG	 & 0-8V	  & global reset check             \\
+62 & SENSOR\_B\_GNDSUB1& OUT & SIG	 & -      & pin B of GNDSUB (pin 2) sensor           \\
+63 & SENSOR\_A\_GNDSUB1& OUT & SIG	 & -      & pin A of GNDSUB (pin 2) sensor          \\
+64 & GND	             & -	 & PWR	 & -      & connect to PCb ground          \\
+\bottomrule
+\end{tabular}
+\caption{Pinout (pins 49 to 64) - RC : Read Chain, WC : Write Chain}
+\label{tab:testchip-pinout-4}
+\end{table}
