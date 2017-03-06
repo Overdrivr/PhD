@@ -362,9 +362,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="215.1806"
-     inkscape:cy="74.604499"
+     inkscape:zoom="4.0000001"
+     inkscape:cx="182.50212"
+     inkscape:cy="77.376979"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -395,7 +395,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -736,7 +736,7 @@
          x="522.55792"
          y="191.29837"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.50000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
-         id="tspan7083">sim12</tspan></text>
+         id="tspan7083">sim21</tspan></text>
     <text
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
        inkscape:export-ydpi="180"
