@@ -20,7 +20,7 @@ The setup is identical for each simulation and measurement and is given Fig. \re
 \end{figure}
 
 % Continue describing the approach
-All the recorded time-domain waveforms serve as a reference for the modelling.
+All the recorded time-domain waveforms serve as a reference for the modeling.
 The list of test loads is constituted of resistors, capacitors and inductors of different values.
 A first version of the testbench model is built, taking into account elements that physically exists.
 It is tested with a first \gls{spice} simulation for a resistive load and charging voltage, and waveforms are compared against measurements.
@@ -28,9 +28,9 @@ If results correlate, the validation is continued with another load or another a
 If results do not correlate, the model needs corrections.
 Usually, some part of the curve will match the measurement, but others will not and call for improvements.
 It can be convenient to try improving a single part of the waveform at a time.
-Properties of time-domain reflectometry are helpful for locating where the model needs adjustements.
+Properties of time-domain reflectometry are helpful for locating where the model needs adjustments.
 Indeed, with \gls{tdr}, a portion of the curve in time corresponds to a physical location inside the system.
-If the fall time of the pulse is wrong for instance, then it can mean that some device that smoothes the discharge is missing at the far end of the discharge cable.
+If the fall time of the pulse is wrong for instance, then it can mean that some device that smooths the discharge is missing at the far end of the discharge cable.
 It is also very convenient to observe pictures of the system taken during testing while building the model, because some small elements might easily be missed out or forgotten from the preliminary observation, yet they might impact waveforms a lot.
 If some minor sections of the curves really cannot be matched using the system schematic as reference, then parasitic devices can be added.
 All of these steps should quickly converge on an accurate ESD model.
@@ -67,7 +67,7 @@ The ratio of V\textsubscript{TLP}/I\textsubscript{TLP} between 40 ns to 100 ns i
 The small difference in the second step is due to a small mismatch between the defined charging voltage on the actual TLP bench and the value really applied onto the line.
 It can be easily corrected in simulation by adding a small offset to the charging voltage.
 Until 220 ns, both curves match closely.
-After this time, some differences appear due to small modelling errors.
+After this time, some differences appear due to small modeling errors.
 Because of the reflected waves, the errors accumulate and become significant, but only after the main part of the pulse.
 Indeed, most ESD investigations focus on the part of the discharge below 120 ns which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
 
@@ -84,7 +84,7 @@ The goal is to test the extreme conditions where the model is going to be used.
 As expected the voltage is null and the current is close to the maximum 10A supplied by the TLP (500 V through 50\textOmega{}).
 At 120 ns, a large difference is observed between the two curves.
 It is actually a measurement issue due to the oscilloscope clamping amplitude outside the observation window.
-Because this is a limitation of the equipment, it is not modelled inside the simulation.
+Because this is a limitation of the equipment, it is not modeled inside the simulation.
 
 \begin{figure}[!h]
   \centering
@@ -128,4 +128,4 @@ The slope of this linear curve is directly related to the capacitor value.
 % More validations in Annex
 More simulation and validation curves are provided in Annex \ref{apx:tlp-validation-curves}, for different loads and amplitudes.
 The goal of all those validations is to verify the model at both nominal and boundary conditions.
-Overall, the model is good and fits very well the measurements, demonstrating the validity of the modelling method.
+Overall, the model is good and fits very well the measurements, demonstrating the validity of the modeling method.

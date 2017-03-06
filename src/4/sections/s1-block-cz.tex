@@ -5,7 +5,7 @@
 \label{sec:block-failure-cz}
 
 % What is bottom up
-The modelling method presented in this section focuses first on studying low-level cells of the circuit.
+The modeling method presented in this section focuses first on studying low-level cells of the circuit.
 They are characterized individually, leading to the definition of a failure model for each cell.
 In a second step, the individual models are linked together.
 The connection between the models reproduce the connections between the cells in the actual circuit.
@@ -20,7 +20,7 @@ The model built for each cell is reusable, and once the characterization is done
 This method is called bottom-up because low-level functions components are characterized then assembled to model higher-level functions, rising from the bottom of the hierarchy to upper levels.
 
 % Why modelling individual blocks
-The motivation for modelling blocks individually is that a single block can be failing but the error can remain internal.
+The motivation for modeling blocks individually is that a single block can be failing but the error can remain internal.
 Complete function can continue to operate without changes.
 In the other way around, not all blocks need to be failing in order to cause the complete function to fail as well.
 It is important to determine which blocks may be in fault to be able to fix the problem.
@@ -28,22 +28,22 @@ This is why the characterization method presented here focuses on blocks and not
 
 % Models are not electrical but failure models
 The goal of this method is to build a propagation model and not an electrical \gls{spice} model.
-The models built here are not usable directly in standard simulations and does not produce strict waveforms on their ouputs.
+The models built here are not usable directly in standard simulations and does not produce strict waveforms on their outputs.
 Instead, they represent input and output waveforms by bounding boxes of a given amplitude and width.
 The methodology is built on the hypothesis that simplified \gls{esd} waveforms could be sufficient to estimate the robustness of an integrated function.
 This hypothesis is tested as detailed later in the document.
 
 % Describe the changes
-Several refinements of the modelling methods were applied to solve issues as they were encountered.
+Several refinements of the modeling methods were applied to solve issues as they were encountered.
 This chapter gives a logical history of those improvements in order to understand the starting phase and the modifications applied after.
 Initially, Wunsch and Bell characterization \cite{wunsch-bell} is used to determine failure levels of individual cells when exposed to stresses of different width and amplitude.
 A single failure criteria was preliminary established for each model.
 It usually took the form of a voltage threshold applied on the output of a cell, above which a fault is recorded.
-This treshold is set prior to the simulation, and there is no general rule for setting it.
+This threshold is set prior to the simulation, and there is no general rule for setting it.
 The \gls{dc} specification of the output can be used directly, if it exists, or a sound value in regard of the design, or an arbitrary level.
 
 % How is it done, core concept
-The first part of the modelling method is the characterization of each block using the electrical setup of Fig. \ref{block_function_cz} in a \gls{spice} simulation environment.
+The first part of the modeling method is the characterization of each block using the electrical setup of Fig. \ref{block_function_cz} in a \gls{spice} simulation environment.
 This setup provides appropriate biasing to the block with V\textsubscript{DC} voltage source, in order to set the block function in operating conditions.
 It also enables the injection of the characterization signal on the tested input with V\textsubscript{stress} transient voltage source.
 The characterization pulses are rectangular waveforms similarly to the Wunsch and Bell technique.
@@ -128,7 +128,7 @@ In this figure, the warmer the gradient, the longer the output is disturbed.
   \label{wb_cz_curve_example_v2}
 \end{figure}
 
-The gradient can also be discretized into a few aeras for better readability as shown in figure \ref{wb_cz_curve_example_v2_discrete}.
+The gradient can also be discretized into a few areas for better readability as shown in figure \ref{wb_cz_curve_example_v2_discrete}.
 This representation looses some information compared to the gradient one but is easier to generate and read.
 
 \begin{figure}[!h]
@@ -139,7 +139,7 @@ This representation looses some information compared to the gradient one but is 
 \end{figure}
 
 % Summarize the method
-In this section, a method was detailled to extract the robustness of a block function.
+In this section, a method was detailed to extract the robustness of a block function.
 It relies on injecting pulses on an input and watching for changes on an output.
 After characterization, a model can be constructed.
 It is composed of a characterization table and a failure criteria.
@@ -148,7 +148,7 @@ Fig. \ref{fig:principle-transfert-func} provides a visual representation of this
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/4/figures/principle_transfert_function.pdf}
-  \caption{First modelling method}
+  \caption{First modeling method}
   \label{fig:principle-transfert-func}
 \end{figure}
 
@@ -158,7 +158,7 @@ More specifically, the width (red arrow) and the amplitude (blue arrow) of the i
 Those values are fed to the characterization table to calculate the width of the output signal.
 The characterization table is represented by the function $F(V,W)$, with $V$ corresponding to the input amplitude and $W$ to the input width.
 The failure criteria V\textsubscript{fail}, employed for establishing the characterization table, is also used directly as amplitude value for the output signal.
-Using the failure criteria for modelling the output amplitude is a large approximation and validity of this approach is checked in the next section.
+Using the failure criteria for modeling the output amplitude is a large approximation and validity of this approach is checked in the next section.
 Ultimately, the goal is to investigate whether or not a fixed failure threshold is suitable for ESD functional analysis.
 
 % What is done next

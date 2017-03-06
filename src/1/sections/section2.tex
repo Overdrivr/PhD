@@ -41,7 +41,7 @@ The automotive environment is even harsher, with vehicles being a major source o
 
 % Main impact is hard-failure
 The electrical destruction of a device is called a hard-failure.
-A hard-failure corresponds to changes in the material structure or properties of a device to the point where it no longer fullfills at least part of its specification.
+A hard-failure corresponds to changes in the material structure or properties of a device to the point where it no longer fulfills at least part of its specification.
 \gls{esd} induce those failures because of the extremely large current densities, high voltages, and power levels involved.
 Different kinds of failure signatures can be observed.
 Pictures of destroyed devices, obtained with an electronic microscope, are provided in Fig. \ref{fig:silicon-level-failures}.
@@ -105,7 +105,7 @@ Hard-failures are not considered for functional robustness analysis.
 
 % What is the challenge
 In this context, soft-failures represent a risk just as important as hardware failures.
-To limit risks and costs inherents to upgrading a device after it was deployed in the field, these failures must be taken care of as early as possible.
+To limit risks and costs inherent to upgrading a device after it was deployed in the field, these failures must be taken care of as early as possible.
 Ideally, the robustness of an electronic product should be studied, characterized or simulated during its design phase.
 The research conducted and presented in this document aims to develop new tools and techniques for studying and predicting functional failures.
 
@@ -137,10 +137,10 @@ On-chip protections are integrated directly into silicon.
 External protections are discrete devices connected to inputs or outputs of integrated circuits.
 Historically, on-chip protections were designed for stresses generated during manufacturing.
 They were not aimed to protect against system-level discharges, i.e. discharges happening in the field during the normal product life.
-This task was fullfilled by external protections, such as transient voltage suppressors, diodes, capacitors, filters.
+This task was fulfilled by external protections, such as transient voltage suppressors, diodes, capacitors, filters.
 Over the years, design techniques and simulations tools have improved, and more robust integrated protections could be designed.
 On the other hand, equipment manufacturer were always looking for means of reducing the \gls{bom} or the cost of electronic systems.
-This led to a shift of responsabilities toward on-chip \gls{esd} protections for handling system-level stresses.
+This led to a shift of responsibilities toward on-chip \gls{esd} protections for handling system-level stresses.
 The shrink of integrated technologies makes this tasks even more challenging.
 External protections are still very relevant, where an integration solution would occupy too much silicon area, or when very harsh requirements are demanded.
 
@@ -175,7 +175,7 @@ V\textsubscript{t2} and I\textsubscript{t2} describe the coordinates where the p
 A sudden increase of the leakage current (Fig. \ref{fig:iv-curve-esd-protection}) is a good indicator of a damaged protection.
 
 % Requirements
-To design an efficient \gls{esd} protection, several requirements are to be fullfilled.
+To design an efficient \gls{esd} protection, several requirements are to be fulfilled.
 This is called the conception window, illustrated in Fig. \ref{fig:soa-esd-protection}.
 In the absence of a discharge, protections must be transparent to the rest of the device.
 It corresponds to the area in green in Fig. \ref{fig:soa-esd-protection}.
@@ -199,4 +199,4 @@ This reduces the conception window substantially and makes the design more chall
 To design and validate protections, tools like Synopsys TCAD (Technology Computer Aided Design) \cite{tcad} are employed to simulate semiconductor physics.
 Afterwards, an electrical model is constructed, to verify that the protection and the circuit cooperate as expected.
 Simulation is ran in a \gls{spice} environment.
-Modelling of \gls{esd} protections for \gls{spice} simulations is presented later in chapter \ref{esd-protection-modelling}.
+Modeling of \gls{esd} protections for \gls{spice} simulations is presented later in chapter \ref{esd-protection-modelling}.

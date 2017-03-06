@@ -3,14 +3,14 @@
 % Here present a new methodology that was developped, explain why
 This section details a concept for a methodology that could help detect and investigate soft-failure more efficiently and robustly.
 It has also a broader scope of application than just the search of functional weaknesses, and can help finding errors and design issues during the design phase.
-This methodology remained at the concept phase and went only trhough very early preliminary testing, because it needs a deep involvement of a design team which could not be done during this research work, and potentially some modification of the simulation engine.
-It was conceived very late in the research work with the experience and feedback gained from the other modelling methods.
+This methodology remained at the concept phase and went only through very early preliminary testing, because it needs a deep involvement of a design team which could not be done during this research work, and potentially some modification of the simulation engine.
+It was conceived very late in the research work with the experience and feedback gained from the other modeling methods.
 
 % Speak about virtual test ?
 % Speak about per-block validation by running simulation and checking waveforms ?
 
 % Why is it interesting for ESD simulations
-Powered-on \gls{asic} simulations are difficult to investigate because of the scale factor inherent to automotive \gls{asic} detailled in the chapter introduction.
+Powered-on \gls{asic} simulations are difficult to investigate because of the scale factor inherent to automotive \gls{asic} detailed in the chapter introduction.
 \gls{asic} are very dense and complex devices, with multiple levels of hierarchy.
 Disturbances propagate through the hierarchy, vertically from top-level down to transistor-level and horizontally between cells.
 In case of failure, there can be multiple places where a fix could be applied.
@@ -28,7 +28,7 @@ At the end of an \gls{esd} simulation for instance, the log can be inspected to 
 
 % Example
 For instance, a designer may define a set of assertions for a current mirror \ref{fig:ex-current-mirror-assert}.
-He defines that the potential accross the gate voltage of a current mirror must be superior the MOS gate threshold.
+He defines that the potential across the gate voltage of a current mirror must be superior the MOS gate threshold.
 An assertion is also added to check that the copied current matches the input current.
 Another interesting assertion consists in checking that the ground pin voltage never becomes superior to a threshold.
 In case a ground pin is misconnected inside a circuit and is floating, its potential will increase above the threshold and this issue will immediately be caught by the assertion checker.
@@ -42,7 +42,7 @@ In case a ground pin is misconnected inside a circuit and is floating, its poten
 
 % Difference with normal verif + validation flow
 This method differentiates from virtual testing and validation flow by two key parameters.
-In a normal flow, it is the waveforms produced by a block when exposed to stimulii that is being checked.
+In a normal flow, it is the waveforms produced by a block when exposed to stimuli that is being checked.
 Those checks are specific to a given simulation and are not reusable.
 Here, the assertions are specific to a cell and not to a simulation.
 They are reusable, while now IP blocks of analog circuitry tend to become more common.
@@ -81,7 +81,7 @@ Blocks that are the most sensitive can be easily identified for hardening.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/example_assertion_analysis.pdf}
-  \caption{Example of chronograms for investigating failures raised by assertions}
+  \caption{Example of time chart for investigating failures raised by assertions}
   \label{fig:ex-special-cells}
 \end{figure}
 
@@ -202,7 +202,7 @@ However, this technique can have multiple different applications.
 The major interest of these assertions would be to run them in any simulation, not just \gls{esd} simulations.
 
 First, the file containing the assertions constitutes an electrical documentation of the block.
-Any designer tasked with upgrading a block developped by someone else will immediately get a view of biasing levels,
+Any designer tasked with upgrading a block developed by someone else will immediately get a view of biasing levels,
 expected current capabilities, etc.
 
 Also, in a multi-person IC design team, a single block can be simulated by many different people (designer, verification, esd, etc.).
@@ -221,7 +221,7 @@ The assertion can help determine whether or not the block is in its final state 
 Also, assertions can help detect early connection issues.
 This is very useful for instance to detect floating ground.
 A voltage criteria can be set on all ground nets, that will trigger a failure if a ground voltage exceeds for instance 1V.
-This is very useful to detect unconnected nets, which can happen regurlarly with complex IC blocks that mix power functions, digital, analog
+This is very useful to detect unconnected nets, which can happen regularly with complex IC blocks that mix power functions, digital, analog
 and usually have dedicated grounds for each domain.
 
 Potential integration in Cadence environment
@@ -244,7 +244,7 @@ How to assess coverage ?
 
 \subsection{Conclusion and follow-up work}
 
-A new concept that could not reasonnably be developped in the timeframe of this research work was presented.
+A new concept that could not reasonably be developed in the timeframe of this research work was presented.
 Potential solutions and design choices for building a prototype were presented.
-This concept could be developped into a prototype in order to evaluate initial issues.
+This concept could be developed into a prototype in order to evaluate initial issues.
 Topology analysis

@@ -96,7 +96,7 @@ Near the end of the HMM waveform, the inductor is drawing almost all the incomin
 After 100ns, the current injected by the TLP into the shaping filter and the \gls{dut} becomes null because the cable is completely discharged.
 However, the current inside the inductor cannot be stopped instantly.
 Without the absorber, the inductor would keep absorbing a non-zero current after the TLP pulse, drawing a negative potential at point A.
-To avoid this phenomenom, the absorber completely filters the TLP falling edge at the end of the pulse.
+To avoid this phenomenon, the absorber completely filters the TLP falling edge at the end of the pulse.
 This way, the current through the inductor is softly brought back to 0 by the absorber, effectively eliminating the negative voltage issue.
 It also acts as a matched termination for transient events, which is great to eliminate reflections and prevent ringing oscillations.
 

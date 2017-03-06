@@ -9,7 +9,7 @@ As the project moves forward in the design cycle and reaches new milestones, eve
 For instance, modifying properties of a few transistors inside an integrated circuit during the early design phase comes almost for free.
 It takes a few minutes for a designer to make the changes.
 However, if this change is done after a first tape-out, many more steps must be executed.
-It still takes a few minutes to a designer to make the changes, but now the top layout of the product must be updated, a new tapeout prepared and a new set of lithographic photomasks manufactured.
+It still takes a few minutes to a designer to make the changes, but now the top layout of the product must be updated, a new tapeout prepared and a new set of lithographic photo-masks manufactured.
 After a few months of manufacturing time, and testing time of the new part, the modification is landed.
 In the process, it has cost a lot of time and manpower to the company.
 Therefore, to remain competitive, the amount of design-manufacturing phases must be kept to a bare minimum, ideally to a single pass.
@@ -22,7 +22,7 @@ Silicon-manufacturing companies put a lot of effort to develop highly accurate m
 In those environments, accuracy of standard analog simulations is rightfully taken for granted.
 For electrostatic and electromagnetic simulations though, the situation is different.
 By nature, electrostatic discharges are very fast and highly non-linear signals.
-Those events occupy a much larger frequency spectrum than waveforms usally met in standard analog simulations.
+Those events occupy a much larger frequency spectrum than waveforms usually met in standard analog simulations.
 It is essential to verify the accuracy of models and simulations.
 Models must be validated against actual measurement data, and in many different test conditions, including powered and unpowered conditions.
 
@@ -46,25 +46,25 @@ The topology of the system serves as a blueprint for connecting models.
 \subsection{Transmission line}
 
 % Cables and delays identified as important for esd sims - because of similar order of magnitude
-Cables are critial elements in any \gls{esd} test setup.
+Cables are critical elements in any \gls{esd} test setup.
 They introduce significant propagation delays in regard of the duration of an electrostatic discharge.
 A 50\textOmega{} coaxial cable has a propagation ratio of approximately 5 ns/m.
-In a laboratory, it is common to find cables of tens of centimers to a couple of meters long, resulting in delays between 1 ns and 10 ns.
+In a laboratory, it is common to find cables of tens of centimeters to a couple of meters long, resulting in delays between 1 ns and 10 ns.
 As a comparison, the scale of an electrostatic discharge is a few hundred nanoseconds.
 Both values are near the same order of magnitude and a large impact from cables on the simulation can logically be expected.
 Cables, microstrip lines, wires and electrical propagation media behave as transmission lines.
-Transmission lines were originally analysed by J. Maxwell, L. Kelvin and O. Heavyside and a huge amount of studies on the topic are available in the litterature \cite{branin-tl-ref, hf-coax,lossy-tl,emc-analysis-tl}.
+Transmission lines were originally analyzed by J. Maxwell, L. Kelvin and O. Heaviside and a huge amount of studies on the topic are available in the literature \cite{branin-tl-ref, hf-coax,lossy-tl,emc-analysis-tl}.
 
 % Cables can be a source of oscillations
 Cables can also be a source of ringing oscillations if the circuit contains impedance mismatches, which is often the case.
 Oscillation period is directly related to the cable length.
 In this situation, a delay even less than 1 ns can have a strong impact on waveforms.
-Therefore, coaxial cables, long \gls{pcb} traces and any element that generates a significant delay superior to the nanosecond should be modelled.
+Therefore, coaxial cables, long \gls{pcb} traces and any element that generates a significant delay superior to the nanosecond should be modeled.
 
 % Emphasize that a good line model is essential given how often the TLP is used for analysis in the ESD field
 Transmission line pulsing was used extensively during this study.
 As a remainder, it consists primarily in the discharge of a coaxial cable.
-Thus, proper modelling of coaxial cables is useful in that regard as well.
+Thus, proper modeling of coaxial cables is useful in that regard as well.
 
 % model delays with lossless TL
 Transmission lines are characterized by their characteristic impedance, supposedly constant on the entire line.
@@ -75,7 +75,7 @@ All transmission lines are lossy, meaning that some part of the incoming power t
 In most cases though, losses are very small and negligible, and the line is considered lossless.
 The behavior of the line is also frequency-dependent.
 Losses, characteristic impedance and other properties can change above certain frequencies.
-For frequencies below a GHz, most cables and metal strips can be correctly approximated by a lossless and non frequency-dependant line.
+For frequencies below a GHz, most cables and metal strips can be correctly approximated by a lossless and non frequency-dependent line.
 
 % How is a transmission line mathematically modelled
 Physically, a transmission line can be seen as a succession of infinitely small unit elements.
@@ -113,9 +113,9 @@ In a string of connected unit elements, the individual delays add up.
 With enough elements, the delay and behavior of the complete cable is reproduced.
 
 % Tradeoff between amount of elements and
-During modelling, it is tempting to take large values for \textdelta{}L and \textdelta{}C, to get a large unit delay.
+During modeling, it is tempting to take large values for \textdelta{}L and \textdelta{}C, to get a large unit delay.
 Doing so reduces the amount of unit elements, and speeds up the simulation.
-However, there is a tradoff between the delay of the unit element and the accuracy of the simulation.
+However, there is a trade-off between the delay of the unit element and the accuracy of the simulation.
 A smaller unit delay increases accuracy of the model at large frequencies, but more elements are required for the total cable, resulting in longer simulation times.
 On the other hand, a larger unit delay reduces the bandwidth of the model, which may be unsuitable for accuracy, even if simulation times are improved.
 
@@ -145,8 +145,8 @@ Also, this model will always be bandwidth limited, otherwise it would require an
 The two-port network model described by H. Branin \cite{branin-tl-ref} is a much better alternative to the distributed model.
 It can describe efficiently and with great accuracy the behavior of uniform lossless transmission lines.
 The model is constituted of two voltage-controlled voltage sources and two resistors (Fig. \ref{fig:beh-line-model}).
-Compared to the distributed model, the behavioral model has by design an infinite bandwith, and is extremely fast to simulate.
-It also is constant in complexity, because the simulation time is independant of the cable's delay or required bandwidth
+Compared to the distributed model, the behavioral model has by design an infinite bandwidth, and is extremely fast to simulate.
+It also is constant in complexity, because the simulation time is independent of the cable's delay or required bandwidth
 
 \begin{figure}[!h]
   \centering
@@ -169,7 +169,7 @@ V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
 
 % Explain the equations
 Z\textsubscript{C} is the characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
-Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward travelling wave and a backward travelling wave.
+Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward traveling wave and a backward traveling wave.
 An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 
 \begin{code}
@@ -183,7 +183,7 @@ An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 % Compare both models to know which one is preferrable
 Simulations are ran to compare both models.
 The expected theoretical response is a perfectly rectangular waveform measured at the load, because the transmission line is ideal and the load purely resistive.
-The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of 1 ps into a load through the modelled transmission line.
+The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of 1 ps into a load through the modeled transmission line.
 Different load values are employed to observe the performance and accuracy of each model.
 The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
 Both values correspond to the cable usually employed in a transmission line pulsing generator and are thus very realistic.
@@ -228,7 +228,7 @@ Even with such a large amount, oscillations are still visible at high frequency 
 \end{figure}
 
 In conclusion, the two-port model should always be preferred over the lumped model.
-This is obviously the approach used for all transmission line modelling presented in this document.
+This is obviously the approach used for all transmission line modeling presented in this document.
 
 \subsection{Passive devices}
 
@@ -252,7 +252,7 @@ Therefore for \gls{esd} simulations, passive devices require models that take th
 % Not all device need parasitic device modelling
 In practice, it was found that only some passive devices in a system have a notable impact on the waveform at high-frequencies.
 For others, using a regular electrical model is sufficient.
-Decoupling capacitors were noticed to require parasitic device modelling.
+Decoupling capacitors were noticed to require parasitic device modeling.
 Since they are connected between a voltage reference (supply voltage) and a reference (ground), they have a strong impact on the disturbance waveforms that an \gls{ic} pin is exposed to.
 Passive device models working at frequencies below 1GHz are given in Fig. \ref{fig:rlc-esd-models} for inductors, resistors and capacitors.
 The parasitic devices are represented in orange.
@@ -310,7 +310,7 @@ For high power and amplitudes, most passive devices also suffer of nominal ratin
 On the contrary, capacitors built with the X7R technology are much most resilient in high regime conditions and exhibit little variations \cite{fabien-capas}.
 
 % Conclusion
-Parasitic device modelling for passive devices is a pretty common technique in high-frequency, \gls{emc} and \gls{esd} simulations.
+Parasitic device modeling for passive devices is a pretty common technique in high-frequency, \gls{emc} and \gls{esd} simulations.
 For \gls{esd}, using parasitic models is not systematically required, but it is an important tool to remember when building a system model.
 There is still room for model improvement, with MLCC capacitors at high-regime regime for instance.
 
@@ -322,20 +322,20 @@ ESD protection is the most extensively studied device in the \gls{esd} field.
 ESD protections designate a class of devices rather than a particular electronic component.
 ESD protections can be realized in multiple ways, with diodes, thyristors, \gls{tvs}, silicon-controlled rectifiers, etc.
 Overall, ESD protection are devices in high-impedance below a triggering voltage, low-impedance above it and capable of absorbing significant amount of currents temporarily.
-Overall, there are two kinds of modelling methods with physically-based models and behavioral models.
+Overall, there are two kinds of modeling methods with physically-based models and behavioral models.
 
 % Physical modelling
-Physical modelling is often referred as \gls{tcad} modelling, for Technology Computer-Aided Design.
-TCAD modelling is performed by ESD designers to evaluate performance and robustness of their devices before manufacturing.
-In TCAD, devices can be represented as 2 or 3 dimensionnal meshes as shown in Fig. \ref{fig:esd-protection-tcad-model}.
+Physical modeling is often referred as \gls{tcad} modeling, for Technology Computer-Aided Design.
+TCAD modeling is performed by ESD designers to evaluate performance and robustness of their devices before manufacturing.
+In TCAD, devices can be represented as 2 or 3 dimensional meshes as shown in Fig. \ref{fig:esd-protection-tcad-model}.
 The model is represented by a mesh, composed of triangle primitives.
 A TCAD model generally requires extensive preparation before being ready for simulation.
 Each manufacturing step is first described.
 A very broad amount of parameters must be described, such as concentration of doping materials, temperature, etc.
-Afterwards, the 2D or 3D shape of the lithographic photomasks are defined with sets of coordinates.
+Afterwards, the 2D or 3D shape of the lithographic photo-masks are defined with sets of coordinates.
 Finally, all this information is provided to the TCAD program that simulates the manufacturing process.
 This step consists in computing for each triangle primitive of the mesh several parameters, such as the concentration of doping materials.
-This step is computationnally intensive and can take days to complete.
+This step is computationally intensive and can take days to complete.
 Afterwards, the model is ready for electrical simulation.
 2D meshes are faster to prepare and simulate than 3D meshes.
 However, 2D meshes do not reproduce 3D corner of device.
@@ -351,15 +351,15 @@ However, experimented TCAD designers with sufficient know-how are capable of per
 \end{figure}
 
 % Behavioral modelling
-Behavioral modelling is widely used for studying interactions between the protection and a circuit.
+Behavioral modeling is widely used for studying interactions between the protection and a circuit.
 The I(V) curve extracted from a \gls{tcad} simulation or a \gls{tlp} measurement is reproduced by an equivalent model \cite{modelling-diode-esd, esd-diode-compact-model, tvs-modeling}.
 By nature, ESD protections switch from a high-impedance for the off-state to a low-impedance state after turn-on.
 In the case of snapback devices, the impedance change is very abrupt, leading to discontinuities of the slope of the I(V) curve.
 Snapback devices have non-monotonous curves, where multiple values of current can be found for a given voltage, depending on the state of the device.
 Large and sudden discontinuities are very challenging for classic \gls{spice} simulations, where convergence issues rise and prevent the simulator to complete.
-To overcome those difficulties, modelling languages like VHDL-AMS or Verilog-A are extremely helpful.
+To overcome those difficulties, modeling languages like VHDL-AMS or Verilog-A are extremely helpful.
 They enable to describe models with very useful primitives such as equation formulation, direct support for signal integration and derivative, combined digital and analog solvers for improved convergence.
-Using VHDL-AMS for modelling ESD protections was proposed by N. Monnereau in \cite{phd-monnereau}.
+Using VHDL-AMS for modeling ESD protections was proposed by N. Monnereau in \cite{phd-monnereau}.
 The original solution proposed to handle snapback devices was to describe their behavior using a state machine.
 To each state of the machine is associated a slope value on the I(V) curve response \ref{fig:esd-protection-state-machine}.
 
@@ -384,9 +384,9 @@ It is generally the physical behavior observed with thyristors for instance, and
 \end{code}
 
 % Conclusions and future work on ESD protections
-The two main kinds of methods for modelling ESD protections have been presented.
+The two main kinds of methods for modeling ESD protections have been presented.
 They enable accurate simulations of interactions between a circuit and a protection.
-Future improvements of these methods could focus on triggering delay and overshoot modelling.
+Future improvements of these methods could focus on triggering delay and overshoot modeling.
 
 \subsection{Common mode filter}
 
@@ -412,7 +412,7 @@ L31 and L42 represent the mutual inductances of the CMC.
 C1 and C2 model the parasitic coupling between the two coils, and all the other elements account for parasitic behavior of the coil wires.
 The device is tuned from a small-signal characterization.
 However, electrostatic discharges put devices in highly non-linear behavior.
-It is recommended in \cite{esd-codesign} that ferrite-based devices should be modelled with a non-linear model.
+It is recommended in \cite{esd-codesign} that ferrite-based devices should be modeled with a non-linear model.
 Thus, L31 and L42 are represented in the model using a non-linear equation.
 Using this method, it is possible to build accurate common-mode filter models suitable for electrostatic discharge simulations.
 

@@ -49,7 +49,7 @@ The time taken by this restart is several order of magnitudes longer than the or
 
 % Which load value for characterization
 The characterization setup for each block is provided in Fig. \ref{fig:block_function_cz_regu}.
-They require a characterization load to simulate the impact of neighbor blocks, initially modelled with a 1 M\textOmega{} resistor.
+They require a characterization load to simulate the impact of neighbor blocks, initially modeled with a 1 M\textOmega{} resistor.
 A high-impedance avoids drawing too much current on the output, which could affect or prevent normal operation.
 This value is not chosen in a strict manner and other values could have been chosen.
 The goal is to perform a preliminary test.
@@ -64,7 +64,7 @@ This connection is represented in orange in the Fig. \ref{fig:block_function_cz_
 In the setup provided here, blocks are characterized independently in different testbenches, therefore the bandgap and regulator cannot be connected together.
 Therefore, the orange connection cannot be made between the two blocks.
 V\textsubscript{clamp2p5} is left floating on the bandgap output.
-For the regulator, the biasing signal is modelled with a 2.5V DC supply in series with a 1 k\textOmega{} resistor.
+For the regulator, the biasing signal is modeled with a 2.5V DC supply in series with a 1 k\textOmega{} resistor.
 The impact of the removal of this connection on the failure signature is discussed later in section \ref{sec:impact-missing-conns}.
 
 \begin{figure}[!h]
@@ -155,19 +155,19 @@ Overall, the model chain predicts quite well the disturbance on the output of ea
 V\textsubscript{batt} has no waveform model because it is the input external signal.
 
 % Vclamp9
-V\textsubscript{clamp9} is well modelled and both waveforms match quite well.
+V\textsubscript{clamp9} is well modeled and both waveforms match quite well.
 It should be noted that the correlation on the amplitude between model and simulation is purely incidental.
 It is due to the fact that the failure criteria was arbitrarily set at 0V, and that the block circuit design tends to clamp the output voltage near 0V in case of a negative disturbance.
 
 % Vref1p0
-The width of V\textsubscript{ref1p0} is also correctly modelled and matches the reference.
+The width of V\textsubscript{ref1p0} is also correctly modeled and matches the reference.
 On the other hand, the amplitude shows a large correlation difference.
 Here again, the design seems to clamp the output voltage near 0V on negative transients.
 Since the failure criteria is set above that at 0.5V, both curves do not match.
 
 % V2p5
 Large differences are observed for V\textsubscript{2p5} between model and reference.
-They are due to the triangular shape of the signal, that cannot be properly modelled with the rectangular shape.
+They are due to the triangular shape of the signal, that cannot be properly modeled with the rectangular shape.
 It is one of the first limitations of the model.
 Other limitations are discussed in the next section.
 Despite this, the disturbance was detected by the model which is already a good achievement.

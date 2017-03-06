@@ -23,7 +23,7 @@ The waveform common to those three standards (Fig. \ref{fig:hmm-waveform}) is vi
 By design, the \gls{esd-gun} has certain requirements to generate a realistic \gls{esd} discharge.
 Incidentally, those requirements make investigation harder because the injected waveform and test conditions are less reproducible \cite{hmm-round-robin-study}.
 For instance, injection is performed through a metallic tip a few centimeters long.
-The tip is a large source of electomagnetic radiated noise during the discharge up to several gigahertz \cite{system-level-esd-failure-variation}.
+The tip is a large source of electromagnetic radiated noise during the discharge up to several gigahertz \cite{system-level-esd-failure-variation}.
 Also, the ground return is a metallic ribbon a few meters long.
 It models the equivalent ground connection of a human body.
 However, it is also very inductive, and its value changes considerably in function of its shape.
@@ -52,7 +52,7 @@ A risetime filter connected after the switch enforces a maximum risetime of 700p
 Overall, the generated waveforms has less dynamic than the standardized waveform and exhibits two flat steps.
 It is also widely unmatched because of the series resistor.
 It is suspected that this impedance mismatch placed between two delays makes this generator very likely to generate oscillations.
-The mismatch causes travelling waves to bounce back and forth between the load and R\textsubscript{ML}, and this kind of behavior is quite far from an original gun generator.
+The mismatch causes traveling waves to bounce back and forth between the load and R\textsubscript{ML}, and this kind of behavior is quite far from an original gun generator.
 It does comply to the standards though since the required values for risetime, current at 30ns and 60ns are comprised in the tolerance margins.
 
 \begin{figure}[!h]
@@ -82,7 +82,7 @@ Ultimately, this generator is probably not compliant with the standard.
 
 % What is proposed here is a different architecture for tlp-hmm generator
 In this chapter, a new and different setup is proposed.
-It is based on using propation delays to shape the pulse with high flexibility.
+It is based on using propagation delays to shape the pulse with high flexibility.
 Compared to those two previous approaches, the design proposed in this document works with a classic 100 ns \gls{tlp}, without requiring internal modifications.
 It will be demonstrated later that the proposed architecture is quite flexible, and can be tuned to match any gun pulse configuration.
 It is also possible to tune the output impedance, while still keeping the same waveform.

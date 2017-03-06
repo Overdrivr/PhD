@@ -2,8 +2,8 @@
 
 % Motivation for a black box model of the complete circuit
 The goal of the black-box modeling method is to build a combined electrical and failure model of an integrated function between an input pin and an output pin.
-This model is developped to allow third-parties that don't have access to the integrated circuit design to perform ESD simulations of a board containing integrated circuits.
-Bascically, this black box model is intented to act as a replacement for the \gls{ic} function during \gls{esd} board-level simulations.
+This model is developed to allow third-parties that don't have access to the integrated circuit design to perform ESD simulations of a board containing integrated circuits.
+Basically, this black box model is intended to act as a replacement for the \gls{ic} function during \gls{esd} board-level simulations.
 This combined system-level and integrated circuit simulation approach is very valuable for designing robust applications, and is almost identical to the \gls{seed} \cite{seed} methodology introduced in previous chapters.
 The \gls{seed} methodology normally applies to hard-failure, but in this chapter the concept is pushed further with soft-failures.
 \gls{seed} recommends that the ESD robustness of a system should be handled by a collaboration between the board and the integrated circuit.
@@ -37,7 +37,7 @@ Initially, a \gls{tlp} characterization of each port is performed to extract an 
 Since the circuit is stressed while being powered and in operation, it is studied afterward if this extraction should occur on a device powered as well or not, and what is the impact of the supply on the extracted curve.
 This characterization is based on the hypothesis that the quasi-static I(V) curve could be suitable for reproducing the behavior of the port both in DC and transient domain.
 It will be demonstrated afterward that this hypothesis is not completely true and an alternative approach is required for the output pin.
-This I(V) curve is converted in an electrical model using a piecewise-linear curve described in Verilog-A modelling language.
+This I(V) curve is converted in an electrical model using a piecewise-linear curve described in Verilog-A modeling language.
 Finally, once the two electrical models and the failure model have been constructed, it can be possible to join all the parts together to build the complete IC model.
 
 % What is the case study
@@ -87,7 +87,7 @@ The input stress amplitude range is from -50 V to -500 V.
 The input stress width is comprised between 1 ns and 1000 ns.
 The characterization setup is given in Fig. \ref{fig:cz-black-box-setup}.
 On the input pin, a 12 V bias supply is connected in series with the rectangular pulse generator.
-On the output, a 100 nF capacitor is connected because required by the regulation function for stabilisation.
+On the output, a 100 nF capacitor is connected because required by the regulation function for stabilization.
 
 \begin{figure}[!h]
   \centering
@@ -110,7 +110,7 @@ Amplitude or width alone are not necessarily sufficient to put the function at f
   \label{fig:cz-black-box}
 \end{figure}
 
-Now that the characterization step is done, the next part of this work focuses on electrical modelling of input and output pins.
+Now that the characterization step is done, the next part of this work focuses on electrical modeling of input and output pins.
 
 \subsection{Electrical pin models}
 \subsubsection{I(V) curve extraction in powered and unpowered modes}
@@ -131,8 +131,8 @@ The TLP is a perfect rectangular source in combination with a series 50 \textOme
 \end{figure}
 
 The test setup for the output port is given in Fig. \ref{fig:tlp-output-testbench}.
-The main issue with this characterization is that it includes the external stabilisation capacitor.
-It will be verified after if this external device is an issue for modelling.
+The main issue with this characterization is that it includes the external stabilization capacitor.
+It will be verified after if this external device is an issue for modeling.
 The results are provided for the input and output ports in Fig. \ref{fig:tlp-input-cz} and \ref{fig:tlp-output-cz}.
 
 \begin{figure}[!h]
@@ -161,10 +161,10 @@ For both ports, large differences are observed between powered and unpowered mod
 Different amount of currents are absorbed by the device in each conditions.
 Ultimately, the powered configuration is chosen for the characterization because it is the one used for soft-failure testing (with the device in operation).
 
-\subsubsection{I(V) curve modelling}
+\subsubsection{I(V) curve modeling}
 
 % Explain the PWL model
-The second step of the modelling method is to build an electrical model of the function from those curves.
+The second step of the modeling method is to build an electrical model of the function from those curves.
 A piecewise linear model seems well suited for this situation.
 A four-points piecewise linear model is written in Verilog-A (see Listing \ref{lst:pwl-4pts}).
 The model is configured easily with 4 four (V\textsubscript{i},I\textsubscript{i}) coordinates.
@@ -186,8 +186,8 @@ During this \gls{tlp} characterization, I(V) curves were extracted for a wide ra
 However, not the entire I(V) curve is relevant for those soft-failure simulations.
 Any part of the I(V) curve beyond the safe operating area is irrelevant because after that the function is destroyed.
 Therefore, it is important to fit the I(V) curve with the piecewise linear curve inside the SOA.
-For the input, the modelling is focused on a voltage range from -10V to 40V.
-On the output, the modelling range is from -5V to 5V.
+For the input, the modeling is focused on a voltage range from -10V to 40V.
+On the output, the modeling range is from -5V to 5V.
 Those values are obtained from the function specification and correspond to the sustained input ranges.
 
 \subsubsection{Comparison of input model with reference circuit}
@@ -211,7 +211,7 @@ The voltage and current waveforms are provided in Fig. \ref{fig:compare-model-si
 Voltage matches well between the reference and the Verilog-A model.
 The DC behavior as well as the transient behavior are correctly reproduced.
 The current waveform has a poorer correlation.
-There is an offset in DC and in transient, probably due to a modelling error with the piecewise linear curve.
+There is an offset in DC and in transient, probably due to a modeling error with the piecewise linear curve.
 There are two large spikes at the beginning and the end of the pulse that are not reproduced.
 This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
 Overall, the accuracy remains acceptable for an ESD simulation.
@@ -285,12 +285,12 @@ The model curve (in green) is very different from the reference.
 Initially, the 100nF capacitor connected on the output (Fig. \ref{fig:first-output-model}) is pre-charged at 2V, to see if the model is capable of charging it at 2.5V and reaching the DC operating point.
 Instead, the output voltage keeps increasing.
 This can be explained by looking at the I(V) curve of the output magnified between 1V and 4V (see Fig. \ref{fig:tlp-output-cz-zoomed}).
-At the beginning of the simulation, the I(V) model sees a potential difference of 2.0V accross its terminals.
+At the beginning of the simulation, the I(V) model sees a potential difference of 2.0V across its terminals.
 For a 2.0V voltage, the I(V) curve model produces a value of 0.75 mA.
 It is not identical to the characterized value of 0.2mA but the error remains acceptable.
 This non-zero current is therefore forced by the Verilog-A model into the the capacitor, that keeps charging.
 In itself, the
-The combination of the DC source and the I(V) curve does not seem suitable for modelling an active output.
+The combination of the DC source and the I(V) curve does not seem suitable for modeling an active output.
 
 \begin{figure}[!h]
   \centering
@@ -299,12 +299,12 @@ The combination of the DC source and the I(V) curve does not seem suitable for m
   \label{fig:tlp-output-cz-zoomed}
 \end{figure}
 
-Configuring the Verliog-A model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
+Configuring the Verilog-A model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
 The I(V) curve extracted with a TLP characterization in simulation does not seem to be usable as-is to model an active output.
-A more complex or different solution must be conceived and developped to solve those issues.
+A more complex or different solution must be conceived and developed to solve those issues.
 One potential solution would be to create a custom Verilog-A model capable of regulating a voltage while offering proper output impedance.
-Overall, this study on input and output ports modelling has enabled to identify key issues preventing for now to develop a complete model of integrated function for powered ESD simulations.
-This is a first step toward more advanced models and modelling techiques that ultimately should enable better cooperation between silicon-design companies and equipment manufacturers, as described by the SEED methodology.
+Overall, this study on input and output ports modeling has enabled to identify key issues preventing for now to develop a complete model of integrated function for powered ESD simulations.
+This is a first step toward more advanced models and modeling techniques that ultimately should enable better cooperation between silicon-design companies and equipment manufacturers, as described by the SEED methodology.
 
 \subsection{Conclusion on black-box modeling}
 
@@ -314,13 +314,13 @@ Black box models are very promising for distributing SPICE models of integrated 
 They do not disclose the internal design of the chip and might help achieve system-level ESD simulations with IC models.
 Ultimately, the goal is to follow the SEED \cite{seed} methodology that indicates that ESD robustness of a system should not be handled by a single component but with a collaboration between all parts (equipment, board, integrated circuit), using appropriate design techniques to ensure that the cooperation is efficient.
 In this section, a first attempt at extracting and creating black-box models for integrated functions was presented, in the context of ESD simulations.
-TLP characterization was performed on input and ouput pin of a biased function, to extract an equivalent impedance.
-The resulting I(V) curve was then modelled using Verilog-A modelling language, then used in circuit simulations.
+TLP characterization was performed on input and output pin of a biased function, to extract an equivalent impedance.
+The resulting I(V) curve was then modeled using Verilog-A modeling language, then used in circuit simulations.
 For the input pin that is somehow equivalent to a passive device, this model has shown promising results with excellent correlation in both DC and transient domains.
-The Verilog-A model performed particularly good for the input when expositive to a positive rectangular stress.
+The Verilog-A model performed particularly good for the input when exposed to a positive rectangular stress.
 The correlation was less accurate with a negative rectangular pulse but remained acceptable for an ESD simulation.
-For the output pin, the situation was more complex because it should be modelled by an equivalent active device.
-A first model was proposed specifically for modelling active outputs, however it was not successful.
+For the output pin, the situation was more complex because it should be modeled by an equivalent active device.
+A first model was proposed specifically for modeling active outputs, however it was not successful.
 Differences between the reference schematic and the model were simply too large, showing that a different or more complex approach is required.
 Despite the lack of correlation, this study has enabled to identify a important issue preventing to build a model of an integrated function, for ESD simulations.
 Solving this issue should be the topic for future work and research, and identifying it was already a significant milestone to reach for achieving this goal.
@@ -328,8 +328,8 @@ Ultimately, black box models should enable to replace a integrated function duri
 
 % Opening work
 There are many new leads to explore on these black box models to get more accurate results.
-It was shown that modelling of active outputs directly with a \gls{tlp} characterization and a bias does not seem to work and more research is required on this topic.
+It was shown that modeling of active outputs directly with a \gls{tlp} characterization and a bias does not seem to work and more research is required on this topic.
 Also, the behavior of the input port model against non-rectangular waveforms should be studied and investigated to ensure that the model works correctly in dynamic regime.
-The piecewise-linear modelling technique, usually employed in the ESD field for modelling ESD protections, should be improved by adding more fitting points to fit more closely the extracted I(V) curve.
+The piecewise-linear modeling technique, usually employed in the ESD field for modeling ESD protections, should be improved by adding more fitting points to fit more closely the extracted I(V) curve.
 Also, this methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
 Research on all those topics should lead to the development a black-box model that will work for powered electrostatic discharge simulations.

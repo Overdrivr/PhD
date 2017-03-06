@@ -4,14 +4,14 @@ Those schematics are converted into a netlist composed of all components inside 
 At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
 Each element is described by a model, which is a mathematical or algorithmic representation of their behavior.
 In electronics, models usually link current and voltages at the different terminals of the device, and can accept external parameters such as temperature.
-With the netlist and the model library, the simulator knows the stimulii, the devices and the connections inside the circuit.
-It is able to simulate circuit behavior, allowing for validation of the functionnality very early in the design phase.
-As detailled in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
+With the netlist and the model library, the simulator knows the stimuli, the devices and the connections inside the circuit.
+It is able to simulate circuit behavior, allowing for validation of the functionality very early in the design phase.
+As detailed in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
 
 % Circuits are complex hierarchies
 In the automotive field, \gls{asic}s used in electronic modules integrate a lot of functionalities.
 They must communicate with external sensors, process and interpret the data, then apply commands on other external devices.
-It is a lot of functionnality to pack into the integrated circuit.
+It is a lot of functionality to pack into the integrated circuit.
 In return, schematics are very complex and dense.
 To organize the design, a hierarchy is set in place, similar to a tree.
 The top-level cell has child cells themselves having child cells, until root cells composed of transistors, passive devices, etc.
@@ -46,14 +46,14 @@ The major lock nowadays is the lack analog IC function models that can be freely
 Black box models are a potential solution to the issues and limitations described previously.
 They only reproduce the behavior of the device from an external point of view, without knowing intrinsic details.
 Because they abstract all the inner complexity, and are much simpler, they help drastically reducing simulation time of transistor-level schematics.
-The also hide the inner functionnality and conception details.
+The also hide the inner functionality and conception details.
 They can be distributed freely without revealing intellectual property.
 
 % What is done in this chapter
-In this chapter, three different kinds of modelling approaches at the integrated circuit level are explored.
-A bottom-up modelling method is presented first.
-It focuses on modelling mathematically interaction between an input and an output of invidual block functions inside the chip.
-Those individual blocks can then be chained together to deduce the behavior of the complete functionnality against a transient disturbance, using a much simpler model than the transistor-level schematic.
+In this chapter, three different kinds of modeling approaches at the integrated circuit level are explored.
+A bottom-up modeling method is presented first.
+It focuses on modeling mathematically interaction between an input and an output of individual block functions inside the chip.
+Those individual blocks can then be chained together to deduce the behavior of the complete functionality against a transient disturbance, using a much simpler model than the transistor-level schematic.
 A similar method is applied to a complete IC function.
 The goal is a bit different because the goal is to simulate electrically an IC function with a black box model.
 A characterization approach is presented, and current limitations are highlighted.

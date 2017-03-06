@@ -7,24 +7,24 @@ This class of issues has been studied for many years, and is the core of ESD res
 Recently, a new class of failures started to be considered.
 Electrostatic discharges can cause temporary disturbances on devices.
 In the context of always ever-more sensitive electronic devices and IC in particular, this is an issue.
-Even more considering that electronic modules nowadays have increasingly large responsabilities in regard of our safety.
+Even more considering that electronic modules nowadays have increasingly large responsibilities in regard of our safety.
 New trends for the autonomous car ask electronics to take vital decisions such as braking, direction, etc.
 Guarantying safety of operation against electrostatic discharge is critical.
 
 % Chap 1
 In a first phase, a review of the test methods common in the ESD field was conducted, to identify relevant and realistic stress sources in laboratory environment.
-Then, a review of the litterature on soft-failure analysis and prediction method showed few research at silicon level.
+Then, a review of the literature on soft-failure analysis and prediction method showed few research at silicon level.
 Many general-purpose observation techniques exist such as EMMI, Near-field scan.
 Simulation tools were used in the past, such as \gls{spice} simulation of course, and more advanced techniques such as 3D full-wave electromagnetic simulations or \gls{tcad} simulations.
 These tools are highly interesting at the system and board level, to evaluate what fraction of an incoming discharge actually reach an integrated circuit.
 We were interested in electrical simulations of conducted disturbances in particular.
 
 % Chap 2
-For this purpose, chapter 2 provides a detailed modelling method of electronic systems for ESD that relies on past work on the topic.
-A modular approach is adopted, where each component is modelled individually to form a library, then assembled together in a hierarchical fashion.
-Mostly physically based and most parameters can be extracted with simple tools, or by estimatation where it is sometimes enough.
-A concrete case study is presented with the modelling of a complex TLP generator.
-It is perfect to illustrate a few key points for the modelling methods, and to demonstrate its accuracy against a lot of reference measurements.
+For this purpose, chapter 2 provides a detailed modeling method of electronic systems for ESD that relies on past work on the topic.
+A modular approach is adopted, where each component is modeled individually to form a library, then assembled together in a hierarchical fashion.
+Mostly physically based and most parameters can be extracted with simple tools, or by estimation where it is sometimes enough.
+A concrete case study is presented with the modeling of a complex TLP generator.
+It is perfect to illustrate a few key points for the modeling methods, and to demonstrate its accuracy against a lot of reference measurements.
 
 % TLP-HMM
 The development of this model and the insights gained in the process led to the development of a new pulse generator.
@@ -42,9 +42,9 @@ Failure analysis on the destroyed parts should be conducted to verify if the fai
 
 % Near-field current processing
 In the last part of the chapter 2, a detailed post-processing method for on-chip near-field sensor has been presented.
-It details the operation of the post-processing pipeline developped for this kind of sensor.
+It details the operation of the post-processing pipeline developed for this kind of sensor.
 The processing script is released \cite{} under an open-source license in order to promote collaboration and future improvements on the topic.
-Two different methods are evaluated and compared in order to reconstitute a current waveform from the voltage measured accross the on-chip sensor.
+Two different methods are evaluated and compared in order to reconstitute a current waveform from the voltage measured across the on-chip sensor.
 
 % Chap 3
 Chapter 3 is a direct application on-silicon of those investigation methods.
@@ -52,12 +52,12 @@ An actual case study is presented, where a complex analog function restarts beca
 The function is a primary regulator for a large automotive product.
 To gain more insights and data, a custom test vehicle has been designed.
 Some monitoring structures were designed specifically for this purpose.
-Not all monitoring techniques were successfull, as a few issues were met with the communication system responsible for outputting some measurement data.
+Not all monitoring techniques were successful, as a few issues were met with the communication system responsible for outputting some measurement data.
 Those issues can be fixed for future testchips.
 Overall, the on-chip monitoring method lays a ground work for future silicon-level research and could be reused.
 
 % Chapter 4
-Research work also focused on developping tools for simulation environment.
+Research work also focused on developing tools for simulation environment.
 This work is presented in chapter 4.
 The value of simulation tools is well known, because it enables to detect issues very early in the development cycle, which is extremely valuable for avoiding late issues and cutting the cost of fixing them late.
 The main challenge for ESD at silicon-level is the complexity of the circuits and simulations.
@@ -67,7 +67,7 @@ Most of the time, it is required to manufacture a first silicon to test the part
 To avoid those issues, new methods are required and two of them were proposed and explored during this research.
 
 % First modelling method
-The first method consist in characterizing and modelling some blocks of an analog function.
+The first method consist in characterizing and modeling some blocks of an analog function.
 More specifically, the relationship between a given block input and block output.
 Goal is to know at the silicon level what individual block was disturbed.
 It is definitely a tool for the IC designers.
@@ -76,16 +76,16 @@ After each block, the disturbance changes, can increase or decrease in amplitude
 Ultimately, this method gives a "bounding box" of the disturbance on the final net, which is often sufficient to detect a functional failure.
 This approach was tested with some success on the same case study than put previously on silicon.
 It is still at its very early days, assumes a lot of simplifications and requires many improvements, however preliminary results tend to show it could actually be usable in a foreseeable future.
-There are several challenges to overcome, in particular identifying the proprer level in the hierarchy to model the blocks.
-Also, the propagation path is considered unidirectionnal, the discharge propagates from an entry point to an outer point.
+There are several challenges to overcome, in particular identifying the proper level in the hierarchy to model the blocks.
+Also, the propagation path is considered unidirectional, the discharge propagates from an entry point to an outer point.
 It is not really realistic, because it fact it spreads around the circuit.
 However, it is important to make simplifications initially in order to get a prototype at work and evaluate what improvements or modifications are actually needed.
 
 % Second modelling approach
-The second modelling method is more focused on facilitating cooperation between IC manufacturers and equipment manufacturers.
+The second modeling method is more focused on facilitating cooperation between IC manufacturers and equipment manufacturers.
 It integrates well inside the SEED methodology, where interaction between these two actors helps design robust products against ESD with optimal cost and development time.
 The objective is to characterize and model the relationship between an input pin and an output pin, and to check if a board simulation can be conducted with this black-box IC model.
-It was shown that a TLP characterization constitutes a good base for a pin model, in particular for modelling inputs.
+It was shown that a TLP characterization constitutes a good base for a pin model, in particular for modeling inputs.
 For output pins that are supposed to drive a potential in DC conditions, it was demonstrated that this method does not work and requires modifications.
 The I(V) curve extracted with the TLP combined with a DC model fails to drive correctly the output voltage and current.
 It is an interesting result that calls for more research on this topic.
@@ -116,5 +116,5 @@ Instead, more general methods and tools were explored.
 At the end of this work, most of them remain merely at the prototyping phase.
 We feel that this work provided new axes and research for future research, and that other people can actually takes those tools from a prototype to a production ready tool.
 Improvements to near-field scan processing, improvements of the TLP-HMM and a larger validation of the TLP versus HMM correlation are probably the most simple follow-up work on the topic.
-The bottom-up modelling method, the black-box IC method are still largely at the prototype phase and will require extensive research work before being production-ready.
+The bottom-up modeling method, the black-box IC method are still largely at the prototype phase and will require extensive research work before being production-ready.
 Finally, the functional block checker, probably the most promising method among all those explored, needs initial work to make a prototype and evaluate the concept.

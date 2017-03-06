@@ -9,8 +9,8 @@ This section discusses those errors and how improvements can be implemented.
 \label{sec:fixed-failure-threshold}
 
 % Explain why the fixed failure criteria is wrong
-The simulation presented earlier (Fig. \ref{fig:reference_simu}) clearly showed that the fixed threshold is a major source of modelling error.
-The problem was particularly clear forthe amplitude of signal V\textsubscript{1p0}.
+The simulation presented earlier (Fig. \ref{fig:reference_simu}) clearly showed that the fixed threshold is a major source of modeling error.
+The problem was particularly clear for the amplitude of signal V\textsubscript{1p0}.
 Indeed, a fixed failure criteria leads to an oversimplification of the output waveform model, as illustrated by Fig. \ref{fig:impact-single-failure-criteria}.
 The green waveforms show the case where the failure is not recorded, and the curve model is simply flat and constant (V\textsubscript{OUT} model).
 The red waveforms show the case where a failure is well recorded, but the amplitude of the original signal goes way beyond the failure criteria.
@@ -27,7 +27,7 @@ In this case, the curve model amplitude (V\textsubscript{OUT} model) is not larg
 Originally, the fixed failure criteria was used for historical reasons.
 It came from characterization of hard-failure robustness performed with Wunsch and Bell method \cite{wunsch-bell}.
 The methodology presented in this document started directly from this approach, and a first prototype was implemented using this same fixed failure criteria.
-In regard of the results presented earlier, the applicability of this fixed threshold for modelling soft-failure of analog block functions has been questionned.
+In regard of the results presented earlier, the applicability of this fixed threshold for modeling soft-failure of analog block functions has been questioned.
 The analysis in this section demonstrated that \textbf{a fixed failure threshold is not suitable in the modelisation of analog blocks}.
 This major observation is confirmed in the next section that discusses the impact of the fixed characterization load.
 
@@ -51,7 +51,7 @@ In this case, the bandgap must see an output impedance of at least 1 M\textOmega
 To evaluate this impact, the pre-regulator is characterized again by with 4 different load values ranging from 500 \textOmega{} to 1 M\textOmega{}.
 Results are summarized in table \ref{tab:impact-load-on-cz}.
 The three first column represent the input parameters, and the last column shows for how long the output was disturbed.
-The duration is mesured using the failure criteria of the pre-regulator (V\textsubscript{clamp9} < 0V).
+The duration is measured using the failure criteria of the pre-regulator (V\textsubscript{clamp9} < 0V).
 It is the time during which the failure criteria was violated.
 
 % Table observation
@@ -151,7 +151,7 @@ This result correlates with the observation made earlier in section \ref{sec:fix
 
 % Conclusion - fixed threshold sucks
 Two different sources of errors were analyzed in this section.
-It was established that the fixed failure threshold is unsuitable for characterizing and modelling analog block functions.
+It was established that the fixed failure threshold is unsuitable for characterizing and modeling analog block functions.
 It should also be noted that defining this fixed threshold is an issue in itself, because very often a purely arbitrary value has to be chosen.
 In some rare cases, the specification could be used to set this criteria, but it remained mostly an arbitrary level.
 For digital cells, a fixed criteria is correct because above a certain input level disturbance an output can be switched and the failure is clear.
@@ -163,8 +163,8 @@ In any case, the fixed threshold hides a lot of information about the degradatio
 % Secondary issue
 It was also suspected that the output load used during characterization might impact the results too much.
 In practice, it was proven in the case of the regulator that this is not exactly true.
-Changing the load can induce a varation, but seemingly more limited than the impact of the fixed failure criteria.
+Changing the load can induce a variation, but seemingly more limited than the impact of the fixed failure criteria.
 
 % Next
-In the next section, a modification is brought to the characterization and modelling method.
+In the next section, a modification is brought to the characterization and modeling method.
 The fixed threshold is removed and replaced by a more flexible and powerful solution.

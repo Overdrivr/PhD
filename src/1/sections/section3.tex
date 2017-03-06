@@ -26,7 +26,7 @@ It was extensively studied during the PhD thesis of N. Monnereau \cite{phd-monne
 The cable is initially charged with an high-voltage voltage supply through a high value resistor.
 This keeps the current small and avoids oscillations on the cable.
 When the voltage of the cable reaches the desired amplitude, a relay can be switched to trigger the discharge.
-The coaxial cable has usually a characteristic impedance of 50\textOmega{} and a length of 10 metres, corresponding to a 50ns propagation delay.
+The coaxial cable has usually a characteristic impedance of 50\textOmega{} and a length of 10 meters, corresponding to a 50ns propagation delay.
 The generated pulse is twice that delay.
 
 \begin{figure}[!h]
@@ -89,7 +89,7 @@ V_{measured} = V_{incident} + V_{reflected} = V_{incident} + (- (V_{incident} - 
 \end{equation}
 
 The same equation applies for computing the current value.
-In summary, the measured voltage and currents at the output of the TLP are equal to the voltage and current inside the load, when incident and reflected waves are sumperimposed.
+In summary, the measured voltage and currents at the output of the TLP are equal to the voltage and current inside the load, when incident and reflected waves are superimposed.
 An extensive analysis of \gls{tdr} \gls{tlp} is provided in \cite{phd-monnereau}.
 
 % Explanation of a typical esd protection response
@@ -158,14 +158,14 @@ However in some cases, it can be an issue for reproducing a failure observed wit
 % vf-tlp
 A few variations of the TLP exist to cover edge cases and specific characterization requirements.
 The very-fast \gls{tlp} (vf-TLP) is one of them.
-It was designed by H. Gieser \cite{vf-tlp} to reproduce gate oxyde breakdown.
+It was designed by H. Gieser \cite{vf-tlp} to reproduce gate oxide breakdown.
 Basically, it is a TLP with a shorter pulse width, usually in the range of 1ns to 10 ns.
 
 % vf-tlp for reflectometry
 vf-TLP requires more advanced calibration techniques for measuring load current and voltage, and stronger constraints on the quality and bandwidth of test elements and measurement systems.
-In this configuration, incident and reflected waves never sumperimpose and by default time-domain reflectometry cannot be employed as-is.
+In this configuration, incident and reflected waves never superimpose and by default time-domain reflectometry cannot be employed as-is.
 However, E. Grund adapted the technique to vf-TLP in \cite{vf-tlp-tdr}.
-With this method, it is possible to analyse and calculate the impedance of all elements between the generator and the load.
+With this method, it is possible to analyze and calculate the impedance of all elements between the generator and the load.
 
 % Minor conclusion
 To sum up, Transmission Line Pulsing is an extremely versatile and useful technique for the \gls{esd} field.
@@ -288,7 +288,7 @@ The characteristics of pulse 2A are given in fig. \ref{fig:iso_2a_pulse}.
 \end{figure}
 
 % How is the pulse generated
-The ISO 7637-2 standard does not enforce how stress generators must be constructed or modelled.
+The ISO 7637-2 standard does not enforce how stress generators must be constructed or modeled.
 A compliant generator can be implemented with a resistor-capacitor discharge network.
 By tuning both values, it is rather straightforward to produce the standardized waveform.
 It should be noted though that the behavior of an RC network is quite different from an actual inductive load disconnection.
@@ -313,7 +313,7 @@ Automotive equipment manufacturer are required to qualify products against ISO 7
 Therefore, it is relevant to test functional robustness of devices against this standard.
 
 % Modelling
-The VDA FAT-AK30 working group on simulation of mixed-systems with VHDL-AMS \cite{fat-ak30} has worked on modelling all ISO 7637-2 generators. They have provided open-source models of all pulses defined in the standard, as part of the \textit{vdalib} library \cite{vdalib}.
+The VDA FAT-AK30 working group on simulation of mixed-systems with VHDL-AMS \cite{fat-ak30} has worked on modeling all ISO 7637-2 generators. They have provided open-source models of all pulses defined in the standard, as part of the \textit{vdalib} library \cite{vdalib}.
 For instance, VHDL-AMS model of pulse 3B is provided in Listing \ref{lst:iso-7637-pulse3b}.
 
 \begin{code}
@@ -347,7 +347,7 @@ It is defined for a 50\textOmega{} load, with a pulse period of 15ms and a burst
 The standard defines a circuit diagram for the generator (Fig \ref{fig:iec_4_4_generator}).
 The discharge is produced by a resistor-capacitor R\textsubscript{C}-C\textsubscript{C} network and initiated by a spark-gap.
 A spark-gap consists in two conductive tips separated by a gap.
-When voltage accross the gap becomes superior to the breakdown voltage, a spark appears and resistance of the spark gap suddenly drops, allowing discharge current to flow through.
+When voltage across the gap becomes superior to the breakdown voltage, a spark appears and resistance of the spark gap suddenly drops, allowing discharge current to flow through.
 In Fig. \ref{fig:iec_4_4_generator}, R\textsubscript{s}, R\textsubscript{m} and C\textsubscript{d} shape the waveform.
 R\textsubscript{s} defines the duration of the pulse, R\textsubscript{m} performs an impedance matching and C\textsubscript{d} act as a \gls{dc} block.
 The generator's output is a coaxial plug to prevent radiated emission during the discharge.
@@ -385,7 +385,7 @@ Instead of specifying test pulses, this standard defines a way to inject stresse
 For automotive devices, the standard specifies the use of waveforms from ISO 7637-2 \cite{iso7637-2}.
 IEC 61000-4-4 \cite{iec61000-4-4} or IEC 61000-4-5 are required for industrial and consumer applications.
 Ultimately, the goal is to understand and classify interactions between a conducted disturbance and performance degradation induced in integrated circuits.
-The test method ressembles the \gls{dpi} technique defined in IEC 62132-4 \cite{iec62132-4}.
+The test method resembles the \gls{dpi} technique defined in IEC 62132-4 \cite{iec62132-4}.
 The \gls{dpi} standard focuses on frequency domain immunity, while this standard tests time-domain immunity.
 
 % How is the pulse generated

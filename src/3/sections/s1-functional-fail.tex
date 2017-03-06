@@ -47,9 +47,9 @@ After this preliminary testing on a real chip, the analysis is conducted with si
 
 % Compare sim and meas for Vbatt
 A transient simulation of the integrated regulation function is ran.
-It uses the transistor-level schematic of the function, and its surrounding environment composed of decoupling capacitors, printed cricuit board, \gls{dc} sources and test generator.
+It uses the transistor-level schematic of the function, and its surrounding environment composed of decoupling capacitors, printed circuit board, \gls{dc} sources and test generator.
 The simulation of V\textsubscript{batt} is compared to a measurement in Fig. \ref{fig:wvf-vbatt}.
-The simulation setup reproduces the measurement setup, using the modelling approach presented in previous chapter.
+The simulation setup reproduces the measurement setup, using the modeling approach presented in previous chapter.
 During the discharge, V\textsubscript{batt} has a larger amplitude in simulation, and reaches a more negative voltage.
 The positive overshoot after the pulse is correctly reproduced, although it dampens slower in the simulation.
 It looks like the measurement has less bandwidth than the simulation.
@@ -123,6 +123,6 @@ After each block, there is an aggravation or an amplification of the failure.
 Ultimately, the final regulation function that takes a lot of time to recover is hit, causing a full system restart.
 
 % Transition
-The next part of this research work is focused on developping measurement methods to acquire data at the silicon level, to confirm the simulations.
+The next part of this research work is focused on developing measurement methods to acquire data at the silicon level, to confirm the simulations.
 A testchip is designed to test new measurement and observation methods in section \ref{sec:test-vehicle-desc}.
 Modeling methods are explored in section \ref{sec:bottom-up-modeling} as a way to understand and predict these functional issues.

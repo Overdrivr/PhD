@@ -15,7 +15,7 @@ Fig. \ref{fig:principle-transfert-func-v2} summarizes the new model.
 \begin{figure}[!h]
   \centering
   \includegraphics{src/4/figures/principle_transfert_function_v2.pdf}
-  \caption{Improved modelling method}
+  \caption{Improved modeling method}
   \label{fig:principle-transfert-func-v2}
 \end{figure}
 
@@ -88,10 +88,10 @@ For V\textsubscript{1p0}, the width is extremely well reproduced, but the amplit
 It seems that taking the minimum amplitude value during the characterization is not ideal.
 This error should be investigated further to determine the actual root cause and provide a solution.
 The last signal V\textsubscript{2p5} shows a quite good correlation despite the fact that it is a triangle-like waveform.
-More validations were performed with (-20V, 1\textmu{}s) and (-20V, 100ns) stimulii.
+More validations were performed with (-20V, 1\textmu{}s) and (-20V, 100ns) stimuli.
 The results are provided in appendix \ref{apx:block-model-comparison}.
-Overall, the modifications brought to the modelling method seemed to have a positive impact on the curve models.
-A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{1p0} that systematically suffers from amplitude modelling error.
+Overall, the modifications brought to the modeling method seemed to have a positive impact on the curve models.
+A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{1p0} that systematically suffers from amplitude modeling error.
 
 \begin{figure}[!h]
   \centering
@@ -121,7 +121,7 @@ Two cases where this simplification is not straightforward are illustrated in Fi
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/better_output_modelling.pdf}
-  \caption{Improved output modelling method based on 90\% of maximum disturbance amplitude}
+  \caption{Improved output modeling method based on 90\% of maximum disturbance amplitude}
   \label{fig:impact-single-failure-criteria}
 \end{figure}
 
@@ -174,12 +174,12 @@ Each table stores the transient response of the characterized block against a wi
 On a single study-case, it was shown that this method is able to reproduce simplified waveforms of a disturbance propagating through a chain of block functions.
 
 % Limitations
-Some limitations must be overcomed before this method can be applied to a larger scale.
+Some limitations must be overcome before this method can be applied to a larger scale.
 So far, only very linear circuit topologies were considered.
-A single input net and ouput net was studied per block.
+A single input net and output net was studied per block.
 It is one-to-one relation.
 In reality, the relations are closer to many-to-one or many-to-many.
 A single input will impact multiple outputs when disturbed.
 Inputs do not have isolated impact, multiple inputs will affect the same group of outputs when they get stressed.
 
-Also, more study cases are required to verify further the hypothesis under which ESD simulations at silicon-level can be performed using exclusively rectangular pulses, to disturb blocks in isolated testbenched.
+Also, more study cases are required to verify further the hypothesis under which ESD simulations at silicon-level can be performed using exclusively rectangular pulses, to disturb blocks in isolated testbenches.

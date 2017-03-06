@@ -23,7 +23,7 @@ Inside the integrated circuit, two key parts of the circuit have been highlighte
 The primary supply is the function being studied in this chapter, and is powered by signal V\textsubscript{batt}.
 Its detailed operation is provided later in this section, but overall it down converts the battery voltage.
 On the output, it provides a regulated 2.5 V supply (signal V\textsubscript{2p5}).
-V\textsubscript{2p5} is used further in the ASIC, to power the core functionnities of the device constituted of digital cells, low voltage analog functions, communication buses, etc.
+V\textsubscript{2p5} is used further in the ASIC, to power the core functionalities of the device constituted of digital cells, low voltage analog functions, communication buses, etc.
 The core of the circuit interacts with external equipments such as airbags for instance, and communicates with sensors or other modules.
 Given this system architecture, it is obvious that the V\textsubscript{2p5} signal is critical for normal operation.
 The disturbance of this signal could cause a propagation of issues way outside the integrated circuit, impacting other electronic modules and making some functionalities temporarily unavailable.
@@ -34,9 +34,9 @@ The disturbance of this signal could cause a propagation of issues way outside t
 % Go down in the hierarchy to the primary supply and explain why testing this function
 The next part of the study focuses on the primary supply function found inside the ASIC.
 Preliminary analysis showed that this function is put at fault during ESD testing.
-Appart from that, there are two motivations for testing this particular function.
+Apart from that, there are two motivations for testing this particular function.
 The battery input V\textsubscript{batt} is an external pin, which is convenient to inject test stresses.
-The regulated voltage output V\textsubscript{2p5} is also exposed externally, because the function requires a large capacitor for stabilisation.
+The regulated voltage output V\textsubscript{2p5} is also exposed externally, because the function requires a large capacitor for stabilization.
 This is very convenient to monitor externally the behavior of the primary supply.
 
 % Main task
@@ -59,7 +59,7 @@ The second output of the pre-regulator called V\textsubscript{pwr} provides a 12
 % Second block
 The bandgap reference, connected downstream, is powered by V\textsubscript{clamp9}.
 After a startup delay, it generates a 1.0 V voltage reference on V\textsubscript{ref1p0}.
-This reference is stable accross a wide range of temperature, process variation and process mismatches.
+This reference is stable across a wide range of temperature, process variation and process mismatches.
 The bandgap also outputs a 10 uA current reference on I\textsubscript{ref10u}, and the V\textsubscript{bgok} flag to signal it is ready for operation.
 
 % Third major block

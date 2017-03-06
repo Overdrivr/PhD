@@ -14,7 +14,7 @@ The automotive world follows this trend as well, moving recently to 16nm technol
 Reduction of \textlambda{} results in more massive integration on a given silicon surface.
 The area occupied by a function on silicon is the main cost factor.
 Reducing this area allows to diminish the unit manufacturing cost resulting in increased profits and margins.
-For the same area, integrated circuits in more recent technologies can pack more functionnalities with higher performances.
+For the same area, integrated circuits in more recent technologies can pack more functionalities with higher performances.
 Weight reduction of electronic modules in automotive or aerospace lowers fuel consumption, and reduces the impact on the environment.
 
 \begin{figure}[!h]
@@ -25,7 +25,7 @@ Weight reduction of electronic modules in automotive or aerospace lowers fuel co
 \end{figure}
 
 % Side effects of size reduction
-The decrease of \textlambda{} results in reduction of insulating materials' thickness.
+The decrease of \textlambda{} results in reduction of insulating material's thickness.
 Transistor gate oxide becomes thinner, tolerating smaller differences of potential before breakdown.
 After breakdown, the oxide starts leaking significant amount of currents and the transistor becomes unusable.
 As a result, the technology provides more sensitive conception bricks and a larger silicon area must be dedicated to protecting the core circuitry \cite{evolution_technologies}.
@@ -33,9 +33,9 @@ As a result, the technology provides more sensitive conception bricks and a larg
 % Another trend in automotive - more electronic functions
 New major trends are also emerging in the automotive field.
 The development of fully autonomous driving is seeing tremendous progress.
-This class of functionnalities take decisions and perform critical actions such as braking or steering the wheel.
-Those features are developped to offer increased safety for the user.
-A side consequence is that electronic modules now have very high responsabilities.
+This class of functionalities take decisions and perform critical actions such as braking or steering the wheel.
+Those features are developed to offer increased safety for the user.
+A side consequence is that electronic modules now have very high responsibilities.
 The real-time constraint is particularly important, meaning that electronic circuits must perform their duties with no delay and operate correctly all the time.
 For instance, an airbag system must always be ready to trigger in case of car accident without any delay.
 Electric cars raise new challenges for safety as well, such as battery management.
@@ -45,7 +45,7 @@ Communication buses like the \gls{can} \cite{CAN} or \gls{lin} \cite{LIN} are sh
 The CAN bus with Flexible Data rate (CAN-FD) is an example of this trend.
 
 % Harsh environment in the automotive field
-The automotive environment is quite harsh for electronic devices and equipements are exposed to a wide range of stresses.
+The automotive environment is quite harsh for electronic devices and equipments are exposed to a wide range of stresses.
 A running engine generates plenty of vibrations and mechanical stress.
 A lot of heat and thermal cycling is produced when the engine is on, and a vehicle is exposed to large temperature variations during its lifetime.
 Electrical contacts, solder joints and connections suffer from these stresses, and must be designed to withstand them.
@@ -68,7 +68,7 @@ In terms of architecture, a vehicle is constituted by a multitude of electronic 
 Interconnected electronic systems need to share a good ground reference for them to communicate and work properly.
 The car's metallic body is the ground reference for all electronic modules, because a good connection to Earth is impossible inside a vehicle.
 Electronic modules and the battery are all linked to the car's body using wires and cables.
-In \gls{dc} and at low frequencies, this ground connection is good because the vehicle's body is a very large chunck of metal with a very low resistance.
+In \gls{dc} and at low frequencies, this ground connection is good because the vehicle's body is a very large chunk of metal with a very low resistance.
 At high-frequencies though, those cables have an inductive behavior.
 They oppose to variations of currents and exhibit large potential differences.
 Local disturbances can shift the ground reference between one module an another.
@@ -95,11 +95,11 @@ Recently, a new class of failures is being studied.
 Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
 Different levels of severity can be identified depending on the impact of the failure on the rest of the system.
 A module that is momentarily disturbed by a discharge but recovers immediately is less severe than a module that requires user intervention.
-Also, failures on the airbag system are much more severe than on the entairtainement system, because user safety is put at risk in the first case.
+Also, failures on the airbag system are much more severe than on the entertainment system, because user safety is put at risk in the first case.
 A first article on the topic was published by F. Caignet and N. Lacrampe in 2007 \cite{LacrampeTransientImmunity}.
-A large amount of research at the system level was published in EOS/ESD symposia 2012 \cite{soft-error-esd-1,SDRAMCase,mixedModeESDSims} and 2013 \cite{softFailSubsystem, powered-tlp-soft-fail}.
+A large amount of research at the system level was published in EOS/ESD symposium 2012 \cite{soft-error-esd-1,SDRAMCase,mixedModeESDSims} and 2013 \cite{softFailSubsystem, powered-tlp-soft-fail}.
 The draft standard IEC 62433-6 \cite{iec62433-6} aims to provide a base framework for soft-failures analysis and prediction.
-Analysis of the litterature reveals that most studies are currently focused on system-level soft-failure analysis.
+Analysis of the literature reveals that most studies are currently focused on system-level soft-failure analysis.
 There is currently no real work at the component level or studies performed inside the design of an integrated circuit.
 
 \begin{figure}[!h]
@@ -110,7 +110,7 @@ There is currently no real work at the component level or studies performed insi
 \end{figure}
 
 % Conception methods
-Beyond studying failures inside integrated circuits, it is important to keep in mind how chips are designed and developped.
+Beyond studying failures inside integrated circuits, it is important to keep in mind how chips are designed and developed.
 This is important to propose solutions that are actually implementable.
 This entire process from the specification to the manufacturing of a product is called the design flow.
 During this process, there are many teams and people involved.
@@ -124,24 +124,24 @@ Fundamental bricks are assembled together in rising complexity to create the req
 The main source of delay in this process is the manufacturing time which can be of several months.
 Designs are put on silicon but the parts are tested only after manufacturing, several months later.
 To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
-Each additionnal manufacturing is very expensive, and increases further the development time of the product.
+Each additional manufacturing is very expensive, and increases further the development time of the product.
 This is why any simulation tool able to predict early any kind of failure (and functional failures among them) is very valuable for silicon design companies.
 
 % What is provided in this document
-It was demonstrated that real-time electronic circuits have higher responsabilities yet they can be disturbed by disturbances such as electrostatic discharges.
-Also, most studies on the topic of functionnal failure due to \gls{esd} are focused on system-level analysis.
-In this document, research and analysis of functionnal weaknesses is done lower in the electronic system hierarchy, at the integrated circuit level.
+It was demonstrated that real-time electronic circuits have higher responsibilities yet they can be disturbed by disturbances such as electrostatic discharges.
+Also, most studies on the topic of functional failure due to \gls{esd} are focused on system-level analysis.
+In this document, research and analysis of functional weaknesses is done lower in the electronic system hierarchy, at the integrated circuit level.
 It is essential to understand how failures appear in order to fix them and prevent them prior to manufacturing.
 For this purpose, many approaches and methods are proposed in this document.
-A modelling method of electronic systems exposed to electrostatic discharge is developped, improving prior work on the topic \cite{phd-lacrampe, phd-monnereau}.
+A modeling method of electronic systems exposed to electrostatic discharge is developed, improving prior work on the topic \cite{phd-lacrampe, phd-monnereau}.
 It allows to determine what fraction of an incoming discharge actually reaches the integrated circuit.
 Then, on-chip measurement methods have been designed and manufactured, in order to acquire more data inside the chip.
 Those methods comprise monitoring devices such as an on-chip current sensor, overvoltage and undervoltage detectors, and a communication chain for fast prototyping.
-Finally, modelling methods were experimented using simulation tools.
+Finally, modeling methods were experimented using simulation tools.
 The first method models each block function individually, then offer to chain and combine models together to deduce the robustness of a complete top-level function.
 The second method aims to build an electrical equivalent model of the integrated circuit, for system-level simulations.
-Black box modelling that abstrat the internal design using only the external behavior is used.
-Finally, a concept of an assertion system is detailled, to identify quickly and efficiently during preliminary design phase the potential weakness of an integrated circuit.
+Black box modeling that abstract the internal design using only the external behavior is used.
+Finally, a concept of an assertion system is detailed, to identify quickly and efficiently during preliminary design phase the potential weakness of an integrated circuit.
 
 \begin{figure}[!h]
   \centering
@@ -154,7 +154,7 @@ Finally, a concept of an assertion system is detailled, to identify quickly and 
 %
 Chapter \ref{chap:1} details what is an electrostatic discharge and how to reproduce it in laboratory conditions.
 This preliminary work highlights how functional failures appear and how they impact electronic devices.
-The litterature about ESD-induced soft-failures is reviewed .
+The literature about ESD-induced soft-failures is reviewed .
 It is demonstrated that so far that most of the studies are focused at the system level, and that it remains very challenging to identify failure root cause without access to the chip design.
 
 %
@@ -163,7 +163,7 @@ The first challenge for understanding soft-failures at silicon-level is to deter
 Between the injection point of a stress and the disturbed circuit, many devices are connected such as cables, discrete devices, etc.
 Each element interacts with the discharge, absorbs a part of its current or changes the waveform.
 A model library of common electrical elements found in \gls{esd} testing environment has been constructed and is detailed.
-The modelling method is applied to a complex pulse generator, and yields a highly accurate model.
+The modeling method is applied to a complex pulse generator, and yields a highly accurate model.
 Finally, a new test generator was developed to overcome some issues met during the debug of silicon-level failures using system level \gls{esd} testers \cite{iec61000-4-2, iso10605}.
 The principle of operation and architecture of the generator is described.
 It produces the same compliant waveform than those standards, with some advantages such as increased testing reproducibility and zero radiated emission.
@@ -185,10 +185,10 @@ Analysis of the failure led to the development of a testchip, to put on silicon 
 When issues are discovered late in the testing lab, analysis is performed manually, by trial and error, searching inside the design why the function is failing.
 It is a complex and time-consuming process.
 The core research of this work focuses on proposing new analysis methods and tools for electrical simulations.
-It is detailled in chapter \ref{sec:methods-operating-esd-analysis}.
+It is detailed in chapter \ref{sec:methods-operating-esd-analysis}.
 The first method offers to study and model block functions individually, then connect the models together to deduce the robustness of a top-level function.
 The second method targets system-level simulations comprising integrated circuit.
-It focuses on modelling an integrated function with a behavioral model that is not aware of the internal design, in order to run powered ESD simulations.
+It focuses on modeling an integrated function with a behavioral model that is not aware of the internal design, in order to run powered ESD simulations.
 Finally, a concept is presented for easing the search of soft-failures during integrated circuit development.
 It is based on using a assertions inside the blocks to efficiently and quickly find which function or net is being disturbed due to an ESD.
 

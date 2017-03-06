@@ -60,7 +60,7 @@ uv\_vref1p2	   & 1.2V & undervoltage detect on bandgap reference (settable thres
 % What is in the communication system
 The communication buses provide a connection between the internal detectors and the external world, using digital \gls{io}.
 Configuration data can be provided from an external microcontroller and measurement data is output by the communication block.
-There are two readable buses and two writeable buses.
+There are two readable buses and two writable buses.
 The first read and write buses are used for preliminary validation of the on-chip monitoring.
 The complete register maps in read and write mode are given in appendix \ref{apx:testchip-register-maps}.
 
@@ -101,7 +101,7 @@ The offset of the designed comparator is below 5 mV and the switching speed unde
 % What is the purpose of filter
 On the output of the comparator (Fig. \ref{fig:architecture-ov}), an optional RC filter can be connected.
 This filter can deglitch very short overvoltages, to only let large overvoltages pass through the detector.
-The stratety behind this filter is to use multiple detectors monitoring the same net, each one with a different filter.
+The strategy behind this filter is to use multiple detectors monitoring the same net, each one with a different filter.
 In function of which detectors triggered, an estimation of the overvoltage length can be made.
 
 % Hysteresis buffer
@@ -129,7 +129,7 @@ Also, the two instances of the regulation function each need a supply connection
 The on-chip current sensor also require 4 pins for the calibration pattern and two pins per actual sensor.
 In the end, the available pin count would be too small for allowing to connect each detector to its own external pin.
 To overcome this issue, a custom communication bus has been designed, to discuss with the testchip before and after ESD tests.
-Initially, the JTAG (Joint Test Action Group) \cite{jtag} protocol was envisionned for this application.
+Initially, the JTAG (Joint Test Action Group) \cite{jtag} protocol was envisioned for this application.
 It is a test port for access and boundary-scan.
 It is commonly used to check that connections are correct between integrated circuits, and to configure internal parameters such as trim values and internal fuses.
 However, the JTAG system needs a digital state-machine for operation, described in any hardware description language (HDL).
@@ -177,7 +177,7 @@ The process is naturally repeated by the system, until the enable has been propa
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.95\textwidth]{src/3/figures/curve_read_cell.png}
-  \caption{Chronogram for the read cell}
+  \caption{Time chart for the read cell}
   \label{fig:read-cell-curve}
 \end{figure}
 
@@ -185,7 +185,7 @@ The process is naturally repeated by the system, until the enable has been propa
 
 % Explain behavior
 The write cell is a bit more complex but operates on the same principle (Fig. \ref{fig:write-cell-design}).
-Data is placed serially by the user on the \textit{bus} line, syncronously with the clock.
+Data is placed serially by the user on the \textit{bus} line, synchronously with the clock.
 The enable signal is propagated from cell to cell, so that each cell knows when to sample the bus line and store the value.
 Basically, this cell sets on its \textit{output} the value on the bus when its enable is high (Fig. \ref{fig:write-cell-curve}).
 
@@ -223,7 +223,7 @@ D  &  SDI  &  SE  &  CLK  &  Q \\ \midrule
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.95\textwidth]{src/3/figures/curve_write_cell.png}
-  \caption{Chronogram for the write cell}
+  \caption{Time chart for the write cell}
   \label{fig:write-cell-curve}
 \end{figure}
 
@@ -283,7 +283,7 @@ Sensor \textit{1} measures the current on the supply under test power input.
 During testing, this pin is be exposed to \gls{esd}s coupled on top of a DC supply voltage.
 Internally, this input is protected by a large \gls{esd-protection}, able to sustain IEC 61000-4-2 \gls{esd-gun} discharges.
 Sensor \textit{2} measures the current absorbed and deviated by the \gls{esd-protection} into the \textit{gndsub} metal ring (local ground reference).
-Sensors \textit{3} measures the current flowing to the external stabilisation capacitor of the regulator under test.
+Sensors \textit{3} measures the current flowing to the external stabilization capacitor of the regulator under test.
 Finally, sensors \textit{4} and \textit{5} measure the currents flowing from the \textit{gndsub} metal ring into the external ground pins, connected externally to the board ground.
 
 \subsection{Topcell}
