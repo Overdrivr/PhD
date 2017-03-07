@@ -22,7 +22,7 @@ The Common Mode Filter (CMF) and Pi filter are the two main devices being remove
 Inside the integrated circuit, two key parts of the circuit have been highlighted.
 The primary supply is the function being studied in this chapter, and is powered by signal V\textsubscript{batt}.
 Its detailed operation is provided later in this section, but overall it down converts the battery voltage.
-On the output, it provides a regulated 2.5 V supply (signal V\textsubscript{2p5}).
+On the output, it provides a regulated \SI{2.5}{\volt} supply (signal V\textsubscript{2p5}).
 V\textsubscript{2p5} is used further in the ASIC, to power the core functionalities of the device constituted of digital cells, low voltage analog functions, communication buses, etc.
 The core of the circuit interacts with external equipments such as airbags for instance, and communicates with sensors or other modules.
 Given this system architecture, it is obvious that the V\textsubscript{2p5} signal is critical for normal operation.
@@ -40,7 +40,7 @@ The regulated voltage output V\textsubscript{2p5} is also exposed externally, be
 This is very convenient to monitor externally the behavior of the primary supply.
 
 % Main task
-The main function of the regulation is to down-convert a battery voltage to a 2.5V regulated supply.
+The main function of the regulation is to down-convert a battery voltage to a \SI{2.5}{\volt} regulated supply.
 Its architecture is given in Fig. \ref{fig:monitored_function}.
 Several blocks are involved for processing the battery supply.
 
@@ -52,21 +52,21 @@ Several blocks are involved for processing the battery supply.
 \end{figure}
 
 % First block
-The pre-regulator clamps the battery input voltage (V\textsubscript{batt}) that can reach up to 40 V and down to 9 V.
+The pre-regulator clamps the battery input voltage (V\textsubscript{batt}) that can reach up to \SI{40}{\volt} and down to \SI{9}{\volt}.
 The clamped voltage is called V\textsubscript{clamp9}, has a current capability smaller than a few mA and is used for low-power functions.
-The second output of the pre-regulator called V\textsubscript{pwr} provides a 12V clamped output with a larger current capability of tens of mA.
+The second output of the pre-regulator called V\textsubscript{pwr} provides a \SI{12}{\volt} clamped output with a larger current capability of tens of mA.
 
 % Second block
 The bandgap reference, connected downstream, is powered by V\textsubscript{clamp9}.
-After a startup delay, it generates a 1.0 V voltage reference on V\textsubscript{ref1p0}.
+After a startup delay, it generates a \SI{1.0}{\volt} voltage reference on V\textsubscript{ref1p0}.
 This reference is stable across a wide range of temperature, process variation and process mismatches.
-The bandgap also outputs a 10 uA current reference on I\textsubscript{ref10u}, and the V\textsubscript{bgok} flag to signal it is ready for operation.
+The bandgap also outputs a \SI{10}{\micro\ampere} current reference on I\textsubscript{ref10u}, and the V\textsubscript{bgok} flag to signal it is ready for operation.
 
 % Third major block
-Finally, the \gls{ldo} regulator generates a stable 2.5V supply voltage on the external pin V\textsubscript{2p5}.
-This output can deliver up to 20 mA.
+Finally, the \gls{ldo} regulator generates a stable \SI{2.5}{\volt} supply voltage on the external pin V\textsubscript{2p5}.
+This output can deliver up to \SI{20}{\milli\ampere}.
 V\textsubscript{2p5} is used further in the integrated circuit to power digital gates, like previously detailed.
-A 100 nF decoupling capacitor is required on V\textsubscript{2p5} to absorb peak currents and help the regulator achieve stability.
+A \SI{100}{\nano\farad} decoupling capacitor is required on V\textsubscript{2p5} to absorb peak currents and help the regulator achieve stability.
 
 % What are the minor blocks doing
 The \textit{current mirrors} provide copied current values from the bandgap to the regulator, while offering much larger output impedance.

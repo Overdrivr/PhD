@@ -4,8 +4,8 @@
 % How is the failure produced
 The failure is observed on the V\textsubscript{2p5} output pin (Fig. \ref{fig:meas-reset-v2p5}).
 A negative \gls{tlp} pulse is injected on top of the \gls{dc} supply, connected to the input pin V\textsubscript{batt}.
-The width of the discharge is the usual 100 ns, with a risetime of 1 ns.
-Failures start to appear with pulse amplitudes larger than -80 V.
+The width of the discharge is the usual \SI{100}{\nano\second}, with a risetime of \SI{1}{\nano\second}.
+Failures start to appear with pulse amplitudes larger than \SI{-80}{\volt}.
 To perform the injection, the battery is replaced by a \gls{dc} source and a \gls{tlp} generator.
 Both devices are isolated from one another using a \gls{bias-tee}, as defined in the DPI standard \cite{iec62132-4}.
 This setup is simply a capacitor-inductor network as shown in Fig. \ref{fig:injection-setup-dpi}.
@@ -20,23 +20,23 @@ This setup is simply a capacitor-inductor network as shown in Fig. \ref{fig:inje
 % What is the root cause -> reset of regulator, soft-start
 The failure signature recorded on V\textsubscript{2p5} is given in Fig. \ref{fig:meas-reset-v2p5}.
 The area of the curve in red corresponds to the entire restart.
-The nominal value for V\textsubscript{2p5} is 2.5 V.
-The \gls{tlp} pulse is visible at 53 \textmu{}s.
-After a small delay of about 2 \textmu{}s, the regulation function slowly shuts down.
-The output voltage falls for nearly 30 \textmu{}s until reaching a voltage of 1.5 V.
+The nominal value for V\textsubscript{2p5} is \SI{2.5}{\volt}.
+The \gls{tlp} pulse is visible at \SI{53}{\micro\second}.
+After a small delay of about \SI{2}{\micro\second}, the regulation function slowly shuts down.
+The output voltage falls for nearly \SI{30}{\micro\second} until reaching a voltage of \SI{1.5}{\volt}.
 At this point, the supply cannot reliably power digital gates for instance, and is completely at fault.
 Afterwards, a new soft-start sequence begins.
 A soft-start normally happens only during system power-up, when the main external supply is switched on.
-During a soft-start, the supply voltage slowly rises from 0 V to its nominal value.
+During a soft-start, the supply voltage slowly rises from \SI{0}{\volt} to its nominal value.
 It avoids overshoots that could damage sensitive blocks, and is a slow procedure that takes tens of microseconds to complete.
-The shut-down followed by the soft-start last in total about 50 \textmu{}s
+The shut-down followed by the soft-start last in total about \SI{50}{\micro\second}.
 It corresponds to the time it takes for the signal V\textsubscript{2p5} to recover.
-In comparison, the input disturbance on V\textsubscript{batt} lasts only 100 ns.
+In comparison, the input disturbance on V\textsubscript{batt} lasts only \SI{100}{\nano\second}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.9\textwidth]{src/3/figures/v2p5_measure.png}
-  \caption{Measurement of V\textsubscript{2p5} after a -100V 100ns negative stress}
+  \caption{Measurement of V\textsubscript{2p5} after a \SI{-100}{\volt} \SI{100}{\nano\second} negative stress}
   \label{fig:meas-reset-v2p5}
 \end{figure}
 
@@ -66,7 +66,7 @@ Also, the timescale is much sorter than in Fig. X and the analysis focuses here 
 % Compare sim and meas for V2p5
 Fig. \ref{fig:wvf-v2p5} provides the same comparison for V\textsubscript{2p5}.
 The reset is clearly visible on both simulation and measurement.
-The restart happens almost at the same time in both waveforms, at about 32\textmu{}s after the stress was injected.
+The restart happens almost at the same time in both waveforms, at about \SI{32}{\micro\second} after the stress was injected.
 Right after the \gls{esd} injection, the disturbance amplitude is a bit larger in simulation.
 But overall, the accuracy is satisfying.
 Both comparisons tend to indicate that simulations can be trusted to reproduce the failure in this study case.
@@ -83,12 +83,12 @@ So far, the waveforms of V\textsubscript{batt} (external input) and V\textsubscr
 Simulations are now employed to observe the intermediate nets inside the integrated circuit.
 The waveform for the internal output V\textsubscript{clamp9} of the pre-regulator is given in Fig. \ref{fig:wvf-vclamp9}.
 The timescale is shorter than the previous curves.
-At 54 \textmugreek{}s,  V\textsubscript{clamp9} is disturbed by the negative stress, in two phases.
-The first phase is 100 ns wide, and corresponds to the direct exposure to the stress.
-During this phase, V\textsubscript{clamp9} reaches as low as 0V for a brief amount of time.
-Afterwards, there is a second phase, that lasts approximately 650 ns.
+At \SI{54}{\micro\second},  V\textsubscript{clamp9} is disturbed by the negative stress, in two phases.
+The first phase is \SI{100}{\nano\second} wide, and corresponds to the direct exposure to the stress.
+During this phase, V\textsubscript{clamp9} reaches as low as \SI{0}{\volt} for a brief amount of time.
+Afterwards, there is a second phase, that lasts approximately \SI{650}{\nano\second}.
 This second undervoltage will not be detailed but can be explained by the design and architecture of the block.
-Overall, V\textsubscript{clamp9} is disturbed for 750 ns.
+Overall, V\textsubscript{clamp9} is disturbed for \SI{750}{\nano\second}.
 
 \begin{figure}[!h]
   \centering
@@ -100,8 +100,8 @@ Overall, V\textsubscript{clamp9} is disturbed for 750 ns.
 % Next net, bandgap input
 V\textsubscript{clamp9} is used as a power supply for the bandgap reference.
 The bandgap is expected to be disturbed because of the variation on V\textsubscript{clamp9}.
-The observation of the 1.0V bandgap reference V\textsubscript{ref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
-The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
+The observation of the \SI{1.0}{\volt} bandgap reference V\textsubscript{ref1p0} confirms it (Fig. \ref{fig:wvf-v1p0}).
+The reference drops down to \SI{0.25}{\volt}, and is disturbed for about \SI{3}{\micro\second}.
 
 \begin{figure}[!h]
   \centering
@@ -111,14 +111,14 @@ The reference drops down to 0.25V, and is disturbed for about 3 \textmugreek{}s.
 \end{figure}
 
 % Final net
-Finally, V\textsubscript{ref1p0} is used by the regulator to generate the 2.5 V external supply output V\textsubscript{2p5}.
-Previously,  Fig. \ref{fig:wvf-v2p5} showed that V\textsubscript{2p5} drops below 1.5V, and is disturbed for more than 30 \textmugreek{}s.
+Finally, V\textsubscript{ref1p0} is used by the regulator to generate the \SI{2.5}{\volt} external supply output V\textsubscript{2p5}.
+Previously,  Fig. \ref{fig:wvf-v2p5} showed that V\textsubscript{2p5} drops below \SI{1.5}{\volt}, and is disturbed for more than \SI{30}{\micro\second}.
 
 % Preliminary conclusion with scale factor
 There is a clear trend regarding the duration of the failure.
-In the first block (pre-regulator), the disturbance width increased from 100 ns to 750 ns.
-In the second block (bandgap), it increased from 750 ns to 3 \textmugreek{}s.
-In the third block (regulator), it reached 30 \textmugreek{}s.
+In the first block (pre-regulator), the disturbance width increased from \SI{100}{\nano\second} to \SI{750}{\nano\second}.
+In the second block (bandgap), it increased from \SI{750}{\nano\second} to \SI{3}{\micro\second}.
+In the third block (regulator), it reached \SI{30}{\micro\second}.
 After each block, there is an aggravation or an amplification of the failure.
 Ultimately, the final regulation function that takes a lot of time to recover is hit, causing a full system restart.
 

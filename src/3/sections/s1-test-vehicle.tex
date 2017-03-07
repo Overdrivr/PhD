@@ -40,17 +40,17 @@ There are in total 9 detectors in the testchip.
 The 4 remaining blocks are monitoring the regulator under test (Table \ref{tab:detectors}).
 Threshold can be configured externally using a communication bus.
 When new value is set through the communication, a digital to analog converter generates the new threshold for each detector.
-The detectors are able to detect level crossings from half a volt up to 13 V, which is designed to match the voltage range of most signals inside the chip.
+The detectors are able to detect level crossings from half a volt up to \SI{13}{\volt}, which is designed to match the voltage range of most signals inside the chip.
 
 \begin{table}[!htbp]
 \centering
 \begin{tabular}{@{}lll@{}}
 \toprule
-Name           & Nominal value & Function \\ \toprule
-uv\_9V	       & 9V   & undervoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_9V	       & 9V   & overvoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_vref1p2	   & 1.2V & overvoltage detect on bandgap reference (settable threshold) \\
-uv\_vref1p2	   & 1.2V & undervoltage detect on bandgap reference (settable threshold) \\
+Name           & Nominal value     & Function \\ \toprule
+uv\_9V	       & \SI{9}{\volt}     & undervoltage detect on v\textsubscript{clamp9} (settable threshold)\\
+ov\_9V	       & \SI{9}{\volt}     & overvoltage detect on v\textsubscript{clamp9} (settable threshold)\\
+ov\_vref1p2	   & \SI{1.2}{\volt}   & overvoltage detect on bandgap reference (settable threshold) \\
+uv\_vref1p2	   & \SI{1.2}{\volt}   & undervoltage detect on bandgap reference (settable threshold) \\
 \bottomrule
 \end{tabular}
 \caption{Detectors on core functions}
@@ -89,7 +89,7 @@ It is designed with a two-stage operational amplifier with an output buffer (see
 This topology is well suited for high-gain, open-loop comparators.
 This comparator provides a very high input impedance, to ensure the monitored net is not disturbed.
 A high-gain is useful for limiting the comparator's offset and to ensure that the comparison will be accurate.
-The offset of the designed comparator is below 5 mV and the switching speed under 20 ns (on a 50pF load), which should be sufficient to detect fast glitches of several volts amplitude and a timescale similar to electrostatic discharges.
+The offset of the designed comparator is below \SI{5}{\milli\volt} and the switching speed under \SI{20}{\nano\second} (on a \SI{50}{\pico\farad} load), which should be sufficient to detect fast glitches of several volts amplitude and a timescale similar to electrostatic discharges.
 
 \begin{figure}[!h]
   \centering
@@ -106,7 +106,7 @@ In function of which detectors triggered, an estimation of the overvoltage lengt
 
 % Hysteresis buffer
 After the filter, an hysteresis buffer guarantees that a clean digital signal will be fed to the latch.
-The triggering levels are set quite far away, with the low level near 2V and the high level at about 6V.
+The triggering levels are set quite far away, with the low level near \SI{2}{\volt} and the high level at about \SI{6}{\volt}.
 
 % Latch
 Finally, the latch stores the overvoltage flag.
@@ -263,7 +263,7 @@ On silicon, three levels of metal are used to build the loop.
 The first level (in red) and the third level (in purple) form a circle.
 Metallic vias connect both levels to close the loop vertically.
 Finally, the sensed current is at the second level (pale blue), and circulates between nets \textit{S1} and \textit{S2}.
-An oscilloscope with 50\textOmega{} input impedance performs a differential voltage measurement between pins \textit{C1} and \textit{C2}.
+An oscilloscope with \SI{50}{\ohm} input impedance performs a differential voltage measurement between pins \textit{C1} and \textit{C2}.
 An example waveform obtained by injecting a rectangular pulse is given in Fig. \ref{fig:nfs-wvf}.
 The obtained waveform requires specific post-processing to reconstitute the original current waveform.
 The post-processing is detailed earlier in section \ref{sec:on-chip-near-field-process}.

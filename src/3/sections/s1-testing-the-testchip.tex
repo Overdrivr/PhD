@@ -2,7 +2,7 @@
 \label{sec:test-vehicle-testing}
 
 The testplan for the testchip is constituted of 7 steps, described in Fig. \ref{fig:verif-plan}.
-The verification of the on-board voltage regulation is checked with a voltmeter, to ensure that a regulated 12V is well established.
+The verification of the on-board voltage regulation is checked with a voltmeter, to ensure that a regulated \SI{12}{\volt} is well established.
 The on-chip regulation is checked with a voltmeter and observed with an oscilloscope to validate the behavior.
 All regulators from both boards and inside the testchip were found to operate as expected.
 
@@ -35,7 +35,7 @@ It required complex debugging steps such as parasitic devices extraction from la
 
 % How is the test done
 The test is conducted by sending a reading frame multiple times.
-By design, the integrated communication system expects a \textit{clk} signal with a frequency lower than 2MHz, and an \textit{en1} signal that must be high for a single rising clock edge.
+By design, the integrated communication system expects a \textit{clk} signal with a frequency lower than \SI{2}{\mega\hertz}, and an \textit{en1} signal that must be high for a single rising clock edge.
 With both these criteria met, the communication system should return the data on the \textit{data} pin.
 
 % What is expected
@@ -54,7 +54,7 @@ The \textit{en\_out} signal (not displayed here) stays low all the time.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_partial_frame.pdf}
-  \caption{Read-only partially returned frame (4ms/div, 5V/div) - clock frequency 1kHz}
+  \caption{Read-only partially returned frame (\SI[per-mode=symbol]{4}{\milli\second\per\div}, \SI[per-mode=symbol]{5}{\volt\per\div}) - clock frequency \SI{1}{\kilo\hertz}}
   \label{fig:read-only-partial-frame}
 \end{figure}
 
@@ -64,14 +64,14 @@ The enable is correctly propagated, and is visible on \textit{en\_out}, however 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/3/figures/read_only_corrupted_frame.pdf}
-  \caption{Read-only corrupted frame (4ms/div, 5V/div) - clock frequency 1kHz}
+  \caption{Read-only corrupted frame (\SI[per-mode=symbol]{4}{\milli\second\per\div}, \SI[per-mode=symbol]{5}{\volt\per\div}) - clock frequency \SI{1}{\kilo\hertz}}
   \label{fig:read-only-full-frame}
 \end{figure}
 
 % Potential cause - clock freq
 The clock frequency was initially suspected as a root cause for the problem.
-Previous measurements were taken for a slow 1kHz clock frequency, which is far slower than the upper limit 2MHz.
-Increasing the clock frequency at 10kHz, 100kHz and 1MHz did not improve the situation.
+Previous measurements were taken for a slow \SI{1}{\kilo\hertz} clock frequency, which is far slower than the upper limit \SI{2}{\mega\hertz}.
+Increasing the clock frequency at \SI{10}{\kilo\hertz}, \SI{100}{\kilo\hertz} and \SI{1}{\mega\hertz} did not improve the situation.
 
 % Potential cause - delays
 The impact of parasitic delays causing the communication system to malfunction was also suspected.
@@ -85,7 +85,7 @@ For all simulations, the read chain performed correctly.
 
 % Potential cause - susbstrate coupling
 Substrate couplings were also suspected.
-Some reading issues could be reproduced, but this type of coupling is highly unlikely to happen for clock frequencies of 1kHz.
+Some reading issues could be reproduced, but this type of coupling is highly unlikely to happen for clock frequencies of \SI{1}{\kilo\hertz}.
 
 \subsubsection{Future work}
 
