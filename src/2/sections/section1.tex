@@ -48,8 +48,8 @@ The topology of the system serves as a blueprint for connecting models.
 % Cables and delays identified as important for esd sims - because of similar order of magnitude
 Cables are critical elements in any \gls{esd} test setup.
 They introduce significant propagation delays in regard of the duration of an electrostatic discharge.
-A 50\textOmega{} coaxial cable has a propagation ratio of approximately 5 ns/m.
-In a laboratory, it is common to find cables of tens of centimeters to a couple of meters long, resulting in delays between 1 ns and 10 ns.
+A \SI{50}{\ohm} coaxial cable has a propagation ratio of approximately \SI{5}{\nano\second\per\metre}.
+In a laboratory, it is common to find cables of tens of centimeters to a couple of meters long, resulting in delays between \SIrange{1}{10}{\nano\second}.
 As a comparison, the scale of an electrostatic discharge is a few hundred nanoseconds.
 Both values are near the same order of magnitude and a large impact from cables on the simulation can logically be expected.
 Cables, microstrip lines, wires and electrical propagation media behave as transmission lines.
@@ -58,7 +58,7 @@ Transmission lines were originally analyzed by J. Maxwell, L. Kelvin and O. Heav
 % Cables can be a source of oscillations
 Cables can also be a source of ringing oscillations if the circuit contains impedance mismatches, which is often the case.
 Oscillation period is directly related to the cable length.
-In this situation, a delay even less than 1 ns can have a strong impact on waveforms.
+In this situation, a delay even less than \SI{1}{\nano\second} can have a strong impact on waveforms.
 Therefore, coaxial cables, long \gls{pcb} traces and any element that generates a significant delay superior to the nanosecond should be modeled.
 
 % Emphasize that a good line model is essential given how often the TLP is used for analysis in the ESD field
@@ -69,7 +69,7 @@ Thus, proper modeling of coaxial cables is useful in that regard as well.
 % model delays with lossless TL
 Transmission lines are characterized by their characteristic impedance, supposedly constant on the entire line.
 It is determined by its cross-sectional dimensions and constituting materials.
-For coaxial cables, common characteristic impedances are 50\textOmega{} or 75\textOmega{}.
+For coaxial cables, common characteristic impedances are \SI{50}{\ohm} or \SI{75}{\ohm}.
 This value is equivalent to the resistance that could be measured statically between outer and inner conductors for an \textbf{infinitely long} transmission line.
 All transmission lines are lossy, meaning that some part of the incoming power traversing it is dissipated.
 In most cases though, losses are very small and negligible, and the line is considered lossless.
@@ -183,9 +183,9 @@ An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 % Compare both models to know which one is preferrable
 Simulations are ran to compare both models.
 The expected theoretical response is a perfectly rectangular waveform measured at the load, because the transmission line is ideal and the load purely resistive.
-The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of 1 ps into a load through the modeled transmission line.
+The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of \SI{1}{\pico\second} into a load through the modeled transmission line.
 Different load values are employed to observe the performance and accuracy of each model.
-The transmission line to model has been chosen to a delay of 100ns and a characteristic impedance of 50 \textOmega.
+The transmission line to model has been chosen to a delay of \SI{100}{\nano\second} and a characteristic impedance of \SI{50}{\ohm}.
 Both values correspond to the cable usually employed in a transmission line pulsing generator and are thus very realistic.
 
 \begin{figure}[!h]
@@ -196,19 +196,19 @@ Both values correspond to the cable usually employed in a transmission line puls
 \end{figure}
 
 Overall, the behavioral model outperforms the distributed model for representing a perfect transmission line.
-It reproduces exactly the 1ps risetime on the load in all configurations (Fig. \ref{fig:lines-simulations}).
+It reproduces exactly the \SI{1}{\pico\second} risetime on the load in all configurations (Fig. \ref{fig:lines-simulations}).
 The distributed model is either not as accurate or much slower to simulate.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
-amount N         &  10           & 100        &  1000      &   10000    \\ \midrule
-simulation time  &  15 ms        & 170 ms     &  7.5 s     &   135 s    \\
-increase ratio   &  -            & x10        &  x44       &   x18      \\
+amount N         &  10                      & 100                     &  1000               &   10000                \\ \midrule
+simulation time  &  \SI{15}{\milli\second}  & \SI{170}{\milli\second} &  \SI{7.5}{\second}  &   \SI{135}{\second}    \\
+increase ratio   &  -                       & x10                     &  x44                &   x18                  \\
 \bottomrule
 \end{tabular}
-\caption{Impact of the amount of unit elements on the simulation times (the 2 port model has a constant simulation time of about 20 ms)}
+\caption{Impact of the amount of unit elements on the simulation times (the 2 port model has a constant simulation time of about \SI{20}{\milli\second})}
 \label{tab:tline-impact-simulation-time}
 \end{table}
 
@@ -216,14 +216,14 @@ For good accuracy, individual delay must be 2 or 10 times smaller than the short
 Also, simulators with variable timestep have trouble reproducing properly oscillating events.
 Simulated period is often wrong compared to what is mathematically expected.
 Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation times.
-To simulate a 100 ns TLP with a 100 ps risetime using the distributed model, it would require unit elements with a delay of 10ps.
+To simulate a \SI{100}{\nano\second} TLP with a \SI{100}{\pico\second} risetime using the distributed model, it would require unit elements with a delay of \SI{10}{\pico\second}.
 It means that 10000 elements are required to model the line, which is rather important and increases simulation time.
 Even with such a large amount, oscillations are still visible at high frequency in the simulation as shown in Fig. \ref{fig:lines-simulations}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tline_comparison.png}
-  \caption{Lumped versus two-port models comparison in simulation (charging voltage 1V)}
+  \caption{Lumped versus two-port models comparison in simulation (charging voltage \SI{1}{\volt})}
   \label{fig:lines-simulations}
 \end{figure}
 
@@ -245,7 +245,7 @@ This is how a capacitor can exhibit an inductive behavior above its resonance fr
 The frequency content of an electrostatic discharges was characterized in \cite{fft-esd}.
 The study focused on air discharges and non-shielded discharges that radiate heavily.
 In particular, the spectrum of the IEC 61000-4-2 standard \cite{iec61000-4-2} was recorded.
-It is shown that the majority of the frequency content is below 1GHz, with important magnitude until tens of MHz.
+It is shown that the majority of the frequency content is below \SI{1}{\giga\hertz}, with important magnitude until tens of MHz.
 This corresponds to the frequency range where parasitic behavior becomes important.
 Therefore for \gls{esd} simulations, passive devices require models that take those parasitic devices into account.
 
@@ -254,25 +254,25 @@ In practice, it was found that only some passive devices in a system have a nota
 For others, using a regular electrical model is sufficient.
 Decoupling capacitors were noticed to require parasitic device modeling.
 Since they are connected between a voltage reference (supply voltage) and a reference (ground), they have a strong impact on the disturbance waveforms that an \gls{ic} pin is exposed to.
-Passive device models working at frequencies below 1GHz are given in Fig. \ref{fig:rlc-esd-models} for inductors, resistors and capacitors.
+Passive device models working at frequencies below \SI{1}{\giga\hertz} are given in Fig. \ref{fig:rlc-esd-models} for inductors, resistors and capacitors.
 The parasitic devices are represented in orange.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/rlc_models.pdf}
-  \caption{High-frequency (< 1GHz) models for resistor, capacitor and inductor}
+  \caption{High-frequency (< \SI{1}{\giga\hertz}) models for resistor, capacitor and inductor}
   \label{fig:rlc-esd-models}
 \end{figure}
 
 % How to tune those models
 Those models are easily parameterized.
-Values can be extracted with an impedance meter capable of measuring impedances to at least 100 MHz.
+Values can be extracted with an impedance meter capable of measuring impedances to at least \SI{100}{\mega\hertz}.
 The extraction is performed in small-signal conditions, which can be an issue as will be later detailed.
-Fig. \ref{fig:frequency-response-capa} displays the magnitude and phase versus frequency of a 6.8 nF \gls{smd} capacitor.
-The capacitor exhibits a perfect behavior up to 45MHz.
-The slope of the curve below 45 MHz is negative and is a function of frequency and the capacitor value.
+Fig. \ref{fig:frequency-response-capa} displays the magnitude and phase versus frequency of a \SI{6.8}{\nano\farad} \gls{smd} capacitor.
+The capacitor exhibits a perfect behavior up to \SI{45}{\mega\hertz}.
+The slope of the curve below \SI{45}{\mega\hertz} is negative and is a function of frequency and the capacitor value.
 The capacitor value can be computed with Eq. \ref{eq:capacitor-impedance} obtained from capacitor theory.
-Below 45 MHz, the phase has a value of $-90$ degrees, corresponding to the theory.
+Below \SI{45}{\mega\hertz}, the phase has a value of \ang{-90}, corresponding to the theory.
 
 \begin{equation}
 C = \frac{1}{2\pi .f.\lvert Z \rvert}
@@ -282,8 +282,8 @@ C = \frac{1}{2\pi .f.\lvert Z \rvert}
 % What are the parasitic devices in this curve
 At the resonant frequency, the capacitor is equivalent to a non-ideal short-circuit, basically a low-value resistor.
 This resistor, also called \gls{esr}, is both a parasitic device and the series resistance in the high-frequency model presented earlier.
-Beyond 45 MHz, the capacitor behaves as an inductor.
-The phase shift is the one of an inductor at $+90$ degrees.
+Beyond \SI{45}{\mega\hertz}, the capacitor behaves as an inductor.
+The phase shift is the one of an inductor at \ang{+90}.
 This second slope is positive and a function of frequency and inductor value.
 The inductor value can be computed with Eq. \ref{eq:inductor-impedance}.
 In conclusion, the values for parasitic inductor and resistor can be computed very easily from a measurement.
@@ -296,7 +296,7 @@ L = \frac{\lvert Z \rvert}{2\pi .f}
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/capa_hf_response.png}
-  \caption{Magnitude and phase frequency response of a 6.8nF capacitor}
+  \caption{Magnitude and phase frequency response of a \SI{6.8}{\nano\farad} capacitor}
   \label{fig:frequency-response-capa}
 \end{figure}
 

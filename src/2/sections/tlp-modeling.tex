@@ -45,75 +45,75 @@ All of these steps should quickly converge on an accurate ESD model.
 % Explain how the model, how it was constructed
 The complete model is detailed in Fig. \ref{fig:complete-tlp-model}.
 Similarly to all TLPs, the principle of operation is rather straightforward.
-Initially, the relay is left open while the 50ns coaxial cable on the left is being charged by the high voltage \gls{dc} supply.
-The 10 M\textOmega{} resistor ensures that the cable charges slowly to avoid oscillations, and isolates the high voltage supply from the pulse.
-The two $1 fF$ capacitors placed at each end of the discharge cable help the simulator respect the initial condition for the charging voltage.
+Initially, the relay is left open while the \SI{50}{\nano\second} coaxial cable on the left is being charged by the high voltage \gls{dc} supply.
+The \SI{10}{\mega\ohm} resistor ensures that the cable charges slowly to avoid oscillations, and isolates the high voltage supply from the pulse.
+The two \SI{1}{\femto\farad} capacitors placed at each end of the discharge cable help the simulator respect the initial condition for the charging voltage.
 The cable is pre-charged to accelerate the simulation.
-After the relay, a 50 \textOmega{} resistor can be found, intended as an attenuator.
-Despite having a value of 50\textOmega{} like the coaxial cables, this resistor creates an impedance mismatch.
+After the relay, a \SI{50}{\ohm} resistor can be found, intended as an attenuator.
+Despite having a value of \SI{50}{\ohm} like the coaxial cables, this resistor creates an impedance mismatch.
 It is the perfect illustration of a small element that is easily missed out but impacts waveforms a lot.
 A current probe is connected immediately after the attenuator, and a voltage probe is connected at the output of the generator.
 Position of the probes are important as well, to reproduce the timeshift between them.
-The short transmission line represented by a 150 ps coaxial cable is a piece of bare wire.
-It creates impedance mismatches because it has an estimated characteristic impedance of 280 \textOmega{}.
+The short transmission line represented by a \SI{150}{\pico\second} coaxial cable is a piece of bare wire.
+It creates impedance mismatches because it has an estimated characteristic impedance of \SI{280}{\ohm}.
 Finally, two discharge paths are possible inside the generator depending on the configuration of the switch on the output.
 The direct path is at the bottom, where the pulse goes straight out from the generator.
 The top path provides a series resistance that limits the discharge current.
 
 % Detail a first comparison with 25 ohms
 A first comparison between measurement and simulation is given in Fig. \ref{fig:comparison-tlp-load}.
-With a 25\textOmega{} resistor and a charging voltage of 500V, a current of 4.5A (I\textsubscript{TLP}) and a voltage of 125mV (V\textsubscript{TLP}) are recorded.
-The ratio of V\textsubscript{TLP}/I\textsubscript{TLP} between 40 ns to 100 ns is equal to 25\textOmega{} as expected.
+With a \SI{25}{\ohm} resistor and a charging voltage of \SI{500}{\volt}, a current of \SI{4.5}{\ampere} (I\textsubscript{TLP}) and a voltage of \SI{125}{\milli\volt} (V\textsubscript{TLP}) are recorded.
+The ratio of V\textsubscript{TLP}/I\textsubscript{TLP} between \SI{40}{\nano\second} to \SI{100}{\nano\second} is equal to \SI{25}{\ohm} as expected.
 The small difference in the second step is due to a small mismatch between the defined charging voltage on the actual TLP bench and the value really applied onto the line.
 It can be easily corrected in simulation by adding a small offset to the charging voltage.
-Until 220 ns, both curves match closely.
+Until \SI{220}{\nano\second}, both curves match closely.
 After this time, some differences appear due to small modeling errors.
 Because of the reflected waves, the errors accumulate and become significant, but only after the main part of the pulse.
-Indeed, most ESD investigations focus on the part of the discharge below 120 ns which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
+Indeed, most ESD investigations focus on the part of the discharge below \SI{120}{\nano\second} which is the more relevant for the analysis because it actually represents voltage and current inside the device under test.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_R25_500V.png}
-  \caption{Voltage and current waveforms comparison : 500 V charging voltage on 25\textOmega{}}
+  \caption{Voltage and current waveforms comparison : \SI{500}{\volt} charging voltage on \SI{25}{\ohm}}
   \label{fig:comparison-tlp-load}
 \end{figure}
 
 % Second comparison with a short circuit
 Same comparison is performed on a short circuit in Fig. \ref{fig:comparison-tlp-short}.
 The goal is to test the extreme conditions where the model is going to be used.
-As expected the voltage is null and the current is close to the maximum 10A supplied by the TLP (500 V through 50\textOmega{}).
-At 120 ns, a large difference is observed between the two curves.
+As expected the voltage is null and the current is close to the maximum \SI{10}{\ampere} supplied by the TLP (\SI{500}{\volt} through \SI{50}{\ohm}).
+At \SI{120}{\nano\second}, a large difference is observed between the two curves.
 It is actually a measurement issue due to the oscilloscope clamping amplitude outside the observation window.
 Because this is a limitation of the equipment, it is not modeled inside the simulation.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_short_500V.png}
-  \caption{Voltage and current waveforms comparison : 500 V charging voltage on a short circuit}
+  \caption{Voltage and current waveforms comparison : \SI{500}{\volt} charging voltage on a short circuit}
   \label{fig:comparison-tlp-short}
 \end{figure}
 
 % Third comparison on an open circuit
 Finally, the process is repeated on an open circuit in Fig. \ref{fig:comparison-tlp-open}.
 Observations are similar to the previous figures.
-The voltage is recorded at 220V, corresponding to a bit less than half the TLP charging voltage.
-For an ideal TLP, the value would be exactly 250V.
-Due to the 50\textOmega{} resistor between signal and ground inside this TLP bench, the voltage is slightly lower.
-The current is close to 0A because the load is an open circuit and does absorb current.
-Between 100ns and 120ns, the same clamped measurement issue than previously is observed on the current waveform.
+The voltage is recorded at \SI{220}{\volt}, corresponding to a bit less than half the TLP charging voltage.
+For an ideal TLP, the value would be exactly \SI{250}{\volt}.
+Due to the \SI{50}{\ohm} resistor between signal and ground inside this TLP bench, the voltage is slightly lower.
+The current is close to \SI{0}{\ampere} because the load is an open circuit and does absorb current.
+Between \SI{100}{\nano\second} and \SI{120}{\nano\second}, the same clamped measurement issue than previously is observed on the current waveform.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_open_500V.png}
-  \caption{Voltage and current waveforms comparison : 500 V charging voltage on open circuit}
+  \caption{Voltage and current waveforms comparison : \SI{500}{\volt} charging voltage on open circuit}
   \label{fig:comparison-tlp-open}
 \end{figure}
 
 % Fourth load is capacitive
 So far, only resistive loads were tested.
 Capacitors are interesting to validate models with non real impedance.
-The response of the generator on a 1nF capacitor is given in Fig. \ref{fig:comparison-tlp-capa}.
-Between 40 ns and 100 ns, voltage and current are not stable, however measurement and simulation correlate well.
+The response of the generator on a \SI{1}{\nano\farad} capacitor is given in Fig. \ref{fig:comparison-tlp-capa}.
+Between \SI{40}{\nano\second} and \SI{100}{\nano\second}, voltage and current are not stable, however measurement and simulation correlate well.
 This is very interesting because it validates the behavior of the generator in dynamic regime, with large varying signals.
 The near-linear voltage curve is due to the capacitor being charged at nearly constant current by the TLP.
 The slope of this linear curve is directly related to the capacitor value.
@@ -121,7 +121,7 @@ The slope of this linear curve is directly related to the capacitor value.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/2/figures/tlp_comparison_1nF_500V.png}
-  \caption{Voltage and current waveforms comparison : 500 V charging voltage on a 1nF capacitor}
+  \caption{Voltage and current waveforms comparison : \SI{500}{\volt} charging voltage on a \SI{1}{\nano\farad} capacitor}
   \label{fig:comparison-tlp-capa}
 \end{figure}
 
