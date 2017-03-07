@@ -13,12 +13,12 @@ Study cases, observation methods and modeling approaches are presented.
 
 % Case 2 - CESAME IC - paper Vrignon + Ben dhia
 N. Lacrampe presents a functional failure case in \cite{LacrampeTransientImmunity}.
-Very-fast \gls{tlp} is injected on an 0.18 \textmu{}m CMOS technology (1.8 V supply voltage) testchip.
+Very-fast \gls{tlp} is injected on an \SI{0.18}{\micro\metre} CMOS technology (\SI{1.8}{\volt} supply voltage) testchip.
 The chip contains 6 instances on the same logic core, differing only by their power-rails architecture.
-The injection on power rails is performed using a \gls{dc} block 1 nF capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
+The injection on power rails is performed using a \gls{dc} block \SI{1}{\nano\farad} capacitor, similarly to the \gls{dpi} standard \cite{iec62132-4}.
 % What is the failure signature
 An output signal of the logic core is monitored.
-The susceptibility criteria is the amplitude crossing a 20\% threshold from the established logic level.
+The susceptibility criteria is the amplitude crossing a \SI{20}{\percent} threshold from the established logic level.
 Above this threshold, the core is supposed to no longer work reliably.
 It is proven that modeling the output buffer of the core logic is enough for reproducing with less than 20\% error the waveform on the output.
 It is less accurate than a full-netlist simulation, but faster to simulate.
@@ -69,7 +69,7 @@ After the failure location was determined, RC-networks are used as countermeasur
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/1/figures/current_distribution_mobile.png}
-  \caption{ESD Current Distribution on Mobile Phone and Backside sub-battery pack at (a) 1.0 ns and (b) 1.8 ns (Credit: \cite{softFailMobile})}
+  \caption{ESD Current Distribution on Mobile Phone and Backside sub-battery pack at (a) \SI{1.0}{\nano\second} and (b) \SI{1.8}{\nano\second} (Credit: \cite{softFailMobile})}
   \label{fig:mobile-phone-3d-em}
 \end{figure}
 
@@ -101,7 +101,7 @@ The new methods and tools presented in this document aim to solve exactly this k
 
 \subsection{Observation methods}
 
-F. Caignet proposes in \cite{eq-time-sampling} an on-chip measurement technique capable of recording \gls{esd} waveforms with a 20GHz bandwidth.
+F. Caignet proposes in \cite{eq-time-sampling} an on-chip measurement technique capable of recording \gls{esd} waveforms with a \SI{20}{\giga\hertz} bandwidth.
 It relies on equivalent-time sampling for measuring waveforms with a much larger bandwidth that real-time oscilloscopes.
 Equivalent time-sampling works exclusively with repeatable or periodic signals.
 A real-time oscilloscope takes a complete waveform constituted of \textit{N} samples in a single shot.
@@ -113,7 +113,7 @@ At the third waveform, the recording is at $t=2\Delta t$.
 The process is repeated while increasing the sampling delay by \textDelta{}t at each step until enough points were acquired.
 This approach is interesting because it reduces a lot the constraints on the measurement system, while offering a huge bandwidth.
 The main disadvantage is that it requires as many measurements as the amount of points needed.
-In \cite{eq-time-sampling}, the sampler was designed using a CMOS 65nm technology and embedded into a testchip.
+In \cite{eq-time-sampling}, the sampler was designed using a CMOS \SI{65}{\nano\metre} technology and embedded into a testchip.
 Architecture is given in Fig. \ref{fig:eq-time-sampler-architecture}.
 
 \begin{figure}[!h]
@@ -125,12 +125,12 @@ Architecture is given in Fig. \ref{fig:eq-time-sampler-architecture}.
 
 Other techniques exist in similar fields that could prove useful for ESD investigation.
 M. Nagata details in \cite{substrate-noise-measurement} an on-chip measurement technique for recording substrate noise waveforms at silicon level.
-Injection and measurement structures are directly integrated into a 0.4\textmu{}m CMOS technology test vehicle.
+Injection and measurement structures are directly integrated into a \SI{0.4}{\micro\metre} CMOS technology test vehicle.
 The injection structures consists in a controllable noise source.
 The amount of logic elements, transition directions and delays can be selected to generate different noise waveforms.
 By coupling, the substrate receives a part of this disturbance.
 The sensor consists in a latch comparator \ref{fig:noise-detect-latch-comparator}.
-With a few synchronization signals, it is sufficient to record waveforms with a 100ps time resolution.
+With a few synchronization signals, it is sufficient to record waveforms with a \SI{100}{\pico\second} time resolution.
 For \gls{esd}, this sampling frequency is almost ideal.
 
 \begin{figure}[!h]
@@ -218,12 +218,12 @@ In current silicon technologies, transistors are a few micrometers long, and met
 This range of dimensions is to compare with the capabilities of current near-field scanners.
 Spatial resolution of a near-field scanner is not bounded by the 3-axis that moves the probe, but by the probe itself.
 3-axis machines can easily be found with a positional accuracy of a micrometer, less than the typical observable structure dimensions on silicon.
-However, spatial resolution of current near-field probes is more in the range of 100\textmu{}m.
+However, spatial resolution of current near-field probes is more in the range of \SI{100}{\micro\metre}.
 This value depends mainly on the size of the loop, its diameter and the distance between sensor and source.
 For integrated circuits, this is not sufficient to isolate and identify structures.
 In the future, improvements can be expected on the spatial resolution, but it will raise new kinds of challenges.
-In the case of a probe with a resolution in the range of a 1\textmu{}m, the amount of points to record to build the map becomes huge.
-For a 5mm by 5mm silicon circuit sampled every micrometer, scanning the entire area requires 2.5 million ESD pulse injection and recordings.
+In the case of a probe with a resolution near \SI{1}{\micro\metre}, the amount of points to record to build the map becomes huge.
+For a \SI{5}{\milli\metre} by \SI{5}{\milli\metre} silicon circuit sampled every micrometer, scanning the entire area requires 2.5 million ESD pulse injection and recordings.
 No integrated circuit can sustain such an amount of repeated stressing, and the device will be destroyed before the end of the scan.
 Also, the test time for this brute force approach is going to be very important.
 If the entire process is automated and a delay of 2 seconds is left between each point, the test campaign will still take 1388 hours, approximately 2 months.
@@ -275,7 +275,7 @@ The extraction is performed with HFSS software (Ansoft).
 The goal of this analysis is to predict the susceptibility of integrated circuits against electrostatic discharges.
 \gls{pcb} tracks are modeled by a distributed RLC network.
 The package data from the IBIS model \cite{ibis-spec} was used in the simulations.
-Finally, a TLP stress generator is modeled using a lookup table I(V) component, in series with a 50\textOmega{} resistor.
+Finally, a TLP stress generator is modeled using a lookup table I(V) component, in series with a \SI{50}{\ohm} resistor.
 
 Once again, electromagnetic full-wave simulations are conducted in powered-on ESD analysis in \cite{softFailMobile}.
 System-level components are simulated, such as PCB, metallic casing and battery pack.

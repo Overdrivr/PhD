@@ -10,8 +10,8 @@ Several standards exist to guarantee that devices can survive this manufacturing
 % HBM
 The Human Body Model (HBM) reproduces the discharge of a human body into a device.
 It is standardized in Method 3015.9 of MIL-STD-883 \cite{MIL-STD-883} and JEDEC JS-001-2014 \cite{jedec-001}.
-The charged human body is modeled by a 100 pF capacitor and a discharge resistor of 1.5 k\textOmega{}.
-Charging voltages reach a maximum of 8kV, although nowadays customers tend to ask for less than that.
+The charged human body is modeled by a \SI{100}{\pico\farad} capacitor and a discharge resistor of \SI{1.5}{\kilo\ohm}.
+Charging voltages reach a maximum of \SI{8}{\kilo\volt}, although nowadays customers tend to ask for less than that.
 
 % CDM
 The Charged Device Model (CDM) is a field-induced ESD test.
@@ -73,7 +73,7 @@ It results in a significant increase of leakage current or apparition of short-c
 % Metal melt
 Finally, metal melting is the last kind of failures observed after a discharge.
 Inside an integrated circuit, metal tracks are rather resistive because of their form factor.
-Resistivity sits in the range of 10m\textOmega{}/$\Box$ to 100m\textOmega/$\Box$.
+Resistivity sits in the range of \SIrange{10}{100}{\milli\ohm\per\sq}.
 When large currents are flowing, metal tracks and vias dissipate power and heat up.
 The elevation of temperature, if large enough, can melt the metal track and turn it into an open-circuit.
 
@@ -180,11 +180,11 @@ This is called the conception window, illustrated in Fig. \ref{fig:soa-esd-prote
 In the absence of a discharge, protections must be transparent to the rest of the device.
 It corresponds to the area in green in Fig. \ref{fig:soa-esd-protection}.
 The protection must trigger above the operating voltage of the circuitry.
-For instance, if an input operates between 0V and 5V, and the protection switches on at 4V, it will trigger during normal operation and be immediately destroyed.
+For instance, if an input operates between \SI{0}{\volt} and \SI{5}{\volt}, and the protection switches on at \SI{4}{\volt}, it will trigger during normal operation and be immediately destroyed.
 On the other hand, protections must clamp voltage (by absorbing current) before reaching the maximum voltage tolerated by the silicon gate oxide.
 It corresponds to the red area on Fig. \ref{fig:soa-esd-protection}.
 When absorbing large currents, the protection heats up very high locally.
-If the temperature exceeds the melting of silicon (1414 °C), the protection device gets destroyed through thermal breakdown, corresponding to the area in orange in Fig. \ref{fig:soa-esd-protection}.
+If the temperature exceeds the melting of silicon (\SI{1414}{\degreeCelsius}), the protection device gets destroyed through thermal breakdown, corresponding to the area in orange in Fig. \ref{fig:soa-esd-protection}.
 For demanding applications, protections must trigger at a given voltage accurately, independently of manufacturing process, mismatches and temperature variation.
 This reduces the conception window substantially and makes the design more challenging.
 

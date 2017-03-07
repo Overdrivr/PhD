@@ -26,7 +26,7 @@ It was extensively studied during the PhD thesis of N. Monnereau \cite{phd-monne
 The cable is initially charged with an high-voltage voltage supply through a high value resistor.
 This keeps the current small and avoids oscillations on the cable.
 When the voltage of the cable reaches the desired amplitude, a relay can be switched to trigger the discharge.
-The coaxial cable has usually a characteristic impedance of 50\textOmega{} and a length of 10 meters, corresponding to a 50ns propagation delay.
+The coaxial cable has usually a characteristic impedance of \SI{50}{\ohm} and a length of \SI{10}{\metre}, corresponding to a \SI{50}{\nano\second} propagation delay.
 The generated pulse is twice that delay.
 
 \begin{figure}[!h]
@@ -40,7 +40,7 @@ The generated pulse is twice that delay.
 TLP systems constitute very well-controlled test generators.
 The pulse is generated inside a shielded environment.
 It is isolated from external radiated emissions and does not emit electromagnetic disturbances.
-The characteristic impedance of 50\textOmega{} can be controlled up to the load, by using appropriate 50\textOmega{} cables and hardware.
+The characteristic impedance of \SI{50}{\ohm} can be controlled up to the load, by using appropriate \SI{50}{\ohm} cables and hardware.
 Those properties result in clean and repeatable pulse waveforms without reflections.
 The main features of the generated pulse are given in figure \ref{tlp_pulse}.
 
@@ -55,7 +55,7 @@ The main features of the generated pulse are given in figure \ref{tlp_pulse}.
 The waveform parameters are completely controlled and easily tunable.
 The charging voltage is set by the high-voltage source.
 The pulse width can be increased or decreased by changing the length of the coaxial cable.
-The risetime can be enforced with a 50\textOmega{} matched risetime filter \cite{cao-risetime-filter, gaussian-lpf}.
+The risetime can be enforced with a \SI{50}{\ohm} matched risetime filter \cite{cao-risetime-filter, gaussian-lpf}.
 Unlike most filters, they are specifically designed to work by absorption and not by reflection.
 They do not pollute the system with reflected waves.
 
@@ -98,7 +98,7 @@ The recording is done in a \gls{tdr} configuration.
 Voltage and current waveforms usually exhibit two steps.
 The first step is due to the connection cable that links the \gls{tlp} to the load (see previously Fig. \ref{tlp_concept}).
 Delay \textDelta{}t\textsubscript{1} corresponds to the delay of the connection cable.
-The ratio $V_{1}/I_{1}$ is equal to the characteristic impedance of the connection cable, usually 50\textOmega{}.
+The ratio $V_{1}/I_{1}$ is equal to the characteristic impedance of the connection cable, usually \SI{50}{\ohm}.
 The second step is the response of the tested load.
 The value $V_{2}/I_{2}$ is the quasi-static resistance of the load.
 $V_{2}/I_{2}$ is a function of the \gls{tlp} charging voltage.
@@ -114,10 +114,10 @@ By averaging each waveform during a few tens of nanosecond, the current and volt
 % Continue explanantion
 The pulse ends when the main coaxial cable is fully discharged.
 The pulse lasts twice the delay of the discharge cable.
-At $t=0ns$ the relay is closed.
+At \SI{0}{\nano\second} the relay is closed.
 The cable starts discharging from the end closer to the relay.
-The other end starts discharging only 50ns later because of the propagation delay.
-It takes another 50ns delay for the discharge to completely propagate back to the relay side.
+The other end starts discharging only \SI{50}{\nano\second} later because of the propagation delay.
+It takes another \SI{50}{\nano\second} delay for the discharge to completely propagate back to the relay side.
 This explain why the pulse length is twice the coaxial cable delay.
 
 % Main application of TLP is IV characterization
@@ -159,7 +159,7 @@ However in some cases, it can be an issue for reproducing a failure observed wit
 A few variations of the TLP exist to cover edge cases and specific characterization requirements.
 The very-fast \gls{tlp} (vf-TLP) is one of them.
 It was designed by H. Gieser \cite{vf-tlp} to reproduce gate oxide breakdown.
-Basically, it is a TLP with a shorter pulse width, usually in the range of 1ns to 10 ns.
+Basically, it is a TLP with a shorter pulse width, usually in the range of \SIrange{1}{10}{\nano\second}.
 
 % vf-tlp for reflectometry
 vf-TLP requires more advanced calibration techniques for measuring load current and voltage, and stronger constraints on the quality and bandwidth of test elements and measurement systems.
@@ -194,20 +194,20 @@ They have largely improved since then although radiated emissions and shape of t
 
 % Explain the waveform
 Fig. \ref{iec_pulse} presents the main properties of the generated stress.
-The standard defines this waveform for a 2\textOmega{} load.
-The pulse starts by a fast peak with a $1ns$ risetime.
-It is followed by a slower slope of smaller amplitude but longer duration of about $200ns$.
-Voltage levels can reach 15kV peak and 30A of current.
+The standard defines this waveform for a \SI{2}{\ohm} load.
+The pulse starts by a fast peak with a \SI{1}{\nano\second} risetime.
+It is followed by a slower slope of smaller amplitude but longer duration of about \SI{200}{\nano\second}.
+Voltage levels can reach \SI{15}{\kilo\volt} peak and \SI{30}{\ampere} of current.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-2_waveform.pdf}
-  \caption{Main properties of an IEC 61000-4-2 pulse on a 2\textOmega\ resistive load}
+  \caption{Main properties of an IEC 61000-4-2 pulse on a \SI{2}{\ohm} resistive load}
   \label{iec_pulse}
 \end{figure}
 
 % How is the pulse generated
-The generation of the ESD pulse is done with a 330\textOmega{} resistor and 150 pF capacitor discharge network.
+The generation of the ESD pulse is done with a \SI{330}{\ohm} resistor and \SI{150}{\pico\farad} capacitor discharge network.
 The RC network alone though does not suffice to reproduce the waveform.
 Parasitic devices play an important part in shaping the waveform.
 Fig. \ref{fig:esd-gun-model} provides a physically-based ESD Gun model that helps understand the impact of parasitic devices.
@@ -228,7 +228,7 @@ IEC 61000-4-2\cite{iec61000-4-2} standard targets consumer electronics.
 ISO 10605\cite{iso10605} standard is intended for automotive equipment.
 It defines additional pulse waveforms to cover a wider range of ESD events (See fig \ref{iso_pulse}).
 Each pulse is generated with a different discharge network.
-Instead of the usual 150pF - 330\textOmega{} values, all combinations with 330pF and 2k\textOmega{} are also possible.
+Instead of the usual \SI{150}{\pico\farad} and \SI{330}{\ohm} values, all combinations with \SI{330}{\pico\farad} and \SI{2}{\kilo\ohm} are also possible.
 
 % Talk about HMM
 The \gls{hmm} \cite{hmm} specification aims to adapt those system-level standards for component-level testing.
@@ -239,7 +239,7 @@ The specification is standardized under ANSI/ESD SP5.6-2009 \cite{hmm}.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iso10605_waveform.pdf}
-  \caption{Waveforms defined in ISO 10605 standard on a 2\textOmega{} resistive load}
+  \caption{Waveforms defined in ISO 10605 standard on a \SI{2}{\ohm} resistive load}
   \label{iso_pulse}
 \end{figure}
 
@@ -276,14 +276,14 @@ Pulse 2A simulates the sudden disconnection of a load placed in parallel with th
 In a car, it reproduces the switching of devices separated by inductive wiring harnesses.
 When a load is abruptly switched off, the inductance opposes to the sudden interruption of current.
 Instead of flowing through the load, the current is maintained and reported onto the \gls{dut} which can be damaged or disturbed in the process.
-These events can be quite harmful with peak voltages above 50V during 50\textmu{}s.
+These events can be quite harmful with peak voltages above \SI{50}{\volt} during \SI{50}{\micro\second}.
 This pulse can be an interesting testing waveform in the context of this entire document.
 The characteristics of pulse 2A are given in fig. \ref{fig:iso_2a_pulse}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/1/figures/iso7637-2-2a.pdf}
-  \caption{Waveform 2A defined in ISO 7637-2 standard on a 2\textOmega{} resistive load}
+  \caption{Waveform 2A defined in ISO 7637-2 standard on a \SI{2}{\ohm} resistive load}
   \label{fig:iso_2a_pulse}
 \end{figure}
 
@@ -297,7 +297,7 @@ However, as long as the generated waveform follows the amplitude criteria define
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/1/figures/iso7637-2-3b.pdf}
-  \caption{Waveform 3B defined in ISO 7637-2 standard on a 50\textOmega{} resistive load}
+  \caption{Waveform 3B defined in ISO 7637-2 standard on a \SI{50}{\ohm} resistive load}
   \label{fig:iso_2b_pulse}
 \end{figure}
 
@@ -305,7 +305,7 @@ However, as long as the generated waveform follows the amplitude criteria define
 Pulse 3B simulates the result of a switching process on a wiring harness, causing negative spikes on a \gls{dut}.
 Its waveform is given in fig. \ref{fig:iso_2b_pulse}.
 Compared to pulse 2a, this waveform has a shorter duration and risetime and a higher amplitude.
-Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a 50\textOmega{} load.
+Interestingly, it is one of the rare \gls{esd} waveforms to be defined on a \SI{50}{\ohm} load.
 
 % Interest of this standard
 A few papers \cite{is-iso7637-real, iso7637-2-new-automotive-reqs, robustness-esd-iso7637} studied the impact of those waveforms on integrated ESD protections.
@@ -332,14 +332,14 @@ It concerns all kinds of inputs such as supply, signal and control lines.
 This standard applies to any field of application and is not specific to one.
 
 % What is the pulse
-The defined waveform is a double exponential pulse \ref{fig:iec_4_4_pulse} with a width of 50ns at 50\% of the peak amplitude.
-Risetime is comprised between 3.5ns and 6.5ns.
-It is defined for a 50\textOmega{} load, with a pulse period of 15ms and a burst period of 300ms.
+The defined waveform is a double exponential pulse \ref{fig:iec_4_4_pulse} with a width of \SI{50}{\nano\second} at \SI{50}{\percent} of the peak amplitude.
+Risetime is comprised between \SI{3.5}{\nano\second} and \SI{6.5}{\nano\second}.
+It is defined for a \SI{50}{\ohm} load, with a pulse period of \SI{15}{\milli\second} and a burst period of \SI{300}{\milli\second}.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/1/figures/iec61000-4-4_waveform.pdf}
-  \caption{IEC 61000-4-4 waveform on a 50\textOmega{} resistive load}
+  \caption{IEC 61000-4-4 waveform on a \SI{50}{\ohm} resistive load}
   \label{fig:iec_4_4_pulse}
 \end{figure}
 
