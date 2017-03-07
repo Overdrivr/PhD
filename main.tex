@@ -11,6 +11,7 @@
 % Main modules
 \usepackage{url}      % URL
 \usepackage[section]{placeins} % To ensure figures remain in their sections
+\usepackage{siunitx}           % For proper unit formatting
 \usepackage{graphicx} % Pictures
 \usepackage{wrapfig}  % In-line Pictures
 \usepackage{verbatim} % Code
@@ -29,7 +30,11 @@
 \usepackage{caption}     % float env with page breaks
 \usepackage{hyperref}    % Links
 
+% Package config
 \newenvironment{code}{\captionsetup{type=listing}}{}
+\DeclareSIUnit\sq{\ensuremath{\Box}}
+\DeclareSIUnit\sample{S}
+\DeclareSIUnit\div{div}
 
 % Glossary
 \loadglsentries{./src/glos}
