@@ -43,7 +43,7 @@ Finally, once the two electrical models and the failure model have been construc
 % What is the case study
 To validate the concept, the characterization is performed on the integrated primary supply studied earlier (see Chapter \ref{sec:supply-desc}).
 The input pin is called $V_{batt}$ and accepts the battery supply voltage.
-The output pin is called $V_{2p5}$ and is supposed to deliver a 2.5V regulated supply.
+The output pin is called $V_{2p5}$ and is supposed to deliver a \SI{2.5}{\volt} regulated supply.
 Fig. \ref{fig:black-box-applied} summarize the model configuration with those pins and function.
 
 \begin{figure}[!h]
@@ -80,14 +80,14 @@ etc.             & ...                 & ... \\ \bottomrule
 
 % How is the characterization conducted and with which values
 The characterization pulses are injected on the $V_{batt}$ input.
-If a voltage below 2.1V is detected on $V_{2p5}$, a failure is recorded.
+If a voltage below \SI{2.1}{\volt} is detected on $V_{2p5}$, a failure is recorded.
 This voltage threshold is the failure criteria.
 This value was chosen because it corresponds to a level below which digital cells powered by this supply will have noise margins too small for proper operation.
-The input stress amplitude range is from -50 V to -500 V.
-The input stress width is comprised between 1 ns and 1000 ns.
+The input stress amplitude range is \SIrange{-50}{-500}{\volt}.
+The input stress width is comprised between \SI{1}{\nano\second} and \SI{1000}{\nano\second}.
 The characterization setup is given in Fig. \ref{fig:cz-black-box-setup}.
-On the input pin, a 12 V bias supply is connected in series with the rectangular pulse generator.
-On the output, a 100 nF capacitor is connected because required by the regulation function for stabilization.
+On the input pin, a \SI{12}{\volt} bias supply is connected in series with the rectangular pulse generator.
+On the output, a \SI{100}{\nano\farad} capacitor is connected because required by the regulation function for stabilization.
 
 \begin{figure}[!h]
   \centering
@@ -120,8 +120,8 @@ The initial hypothesis in this section is that \gls{tlp} characterization can be
 Extracting the \gls{tlp} characteristic can be done with the device powered or unpowered.
 To see the impact of the biasing and decide the best approach, \gls{tlp} characterizations are performed in both conditions.
 The test setup for the input port is given in Fig. \ref{fig:tlp-input-testbench}.
-The DC source can be configured for 0 V supply (unpowered conditions) or 12 V (powered conditions).
-The TLP is a perfect rectangular source in combination with a series 50 \textOmega{} resistor.
+The DC source can be configured at \SI{0}{\volt} (unpowered conditions) or \SI{12}{\volt} (powered conditions).
+The TLP is a perfect rectangular source in combination with a series \SI{50}{\ohm} resistor.
 
 \begin{figure}[!h]
   \centering
@@ -186,8 +186,8 @@ During this \gls{tlp} characterization, I(V) curves were extracted for a wide ra
 However, not the entire I(V) curve is relevant for those soft-failure simulations.
 Any part of the I(V) curve beyond the safe operating area is irrelevant because after that the function is destroyed.
 Therefore, it is important to fit the I(V) curve with the piecewise linear curve inside the SOA.
-For the input, the modeling is focused on a voltage range from -10V to 40V.
-On the output, the modeling range is from -5V to 5V.
+For the input, the modeling is focused on a voltage range from \SIrange{-10}{40}{\volt}.
+On the output, the modeling range is from \SI{-5}{5}{\volt}.
 Those values are obtained from the function specification and correspond to the sustained input ranges.
 
 \subsubsection{Comparison of input model with reference circuit}
@@ -206,7 +206,7 @@ The full schematic is simply replaced by the Verilog-A input model.
 \end{figure}
 
 % What is the result of comparison of model versus complete schematic for input ?
-A first comparison is ran by injecting a -10V TLP with the device powered.
+A first comparison is ran by injecting a \SI{-10}{\volt} TLP with the device powered.
 The voltage and current waveforms are provided in Fig. \ref{fig:compare-model-simu-m10}.
 Voltage matches well between the reference and the Verilog-A model.
 The DC behavior as well as the transient behavior are correctly reproduced.
@@ -215,28 +215,28 @@ There is an offset in DC and in transient, probably due to a modeling error with
 There are two large spikes at the beginning and the end of the pulse that are not reproduced.
 This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
 Overall, the accuracy remains acceptable for an ESD simulation.
-Other validations are provided for positive 20V and 40V TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
+Other validations are provided for positive \SI{20}{\volt} and \SI{40}{\volt} TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
 They confirm that the input model performs correctly, and even better when exposed to positive stresses.
 Overall, this Verilog-A model is considered valid for the input port while considering that there is a lot of room for improvement.
 
 \begin{figure}[!p]
   \centering
   \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_m10V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (-10V TLP)}
+  \caption{Comparison of complete schematic and model simulations for input port (\SI{-10}{\volt} TLP)}
   \label{fig:compare-model-simu-m10}
 \end{figure}
 
 \begin{figure}[!p]
   \centering
   \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_20V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (20V TLP)}
+  \caption{Comparison of complete schematic and model simulations for input port (\SI{20}{\volt} TLP)}
   \label{fig:compare-model-simu-20}
 \end{figure}
 
 \begin{figure}[!p]
   \centering
   \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_40V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (40V TLP)}
+  \caption{Comparison of complete schematic and model simulations for input port (\SI{40}{volt} TLP)}
   \label{fig:compare-model-simu-40}
 \end{figure}
 
@@ -244,10 +244,10 @@ Overall, this Verilog-A model is considered valid for the input port while consi
 
 % The output port is not a passive device
 The output port is more complicated than the input port, because it is equivalent to an active device, unlike the input that can be assimilated to a passive port.
-The primary supply regulates a 2.5 V voltage on this output and drives a current into the external load to maintain that voltage.
+The primary supply regulates a \SI{2.5}{\volt} voltage on this output and drives a current into the external load to maintain that voltage.
 The Verilog-A I(V) model used for the input is just a voltage controlled current source and is not capable of regulating a voltage.
 A more complex architecture is proposed with Fig. \ref{fig:first-output-model}.
-A DC voltage source is added to generate the regulated 2.5V.
+A DC voltage source is added to generate the regulated \SI{2.5}{\volt}.
 In case of failure, the output port will also fail temporarily and the output voltage will fall down.
 A transient voltage source is added to the model to simulate the output fault.
 
@@ -260,7 +260,7 @@ A transient voltage source is added to the model to simulate the output fault.
 
 % Make the comparison
 This new output port model is compared to the complete schematic in simulation.
-With the complete schematic, a failure is triggered by applying a negative -10V TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
+With the complete schematic, a failure is triggered by applying a negative \SI{-10}{\volt} TLP on the input port $V_{batt}$ while watching the output $V_{2p5}$.
 For the model, the PWL source is used to fake a failure.
 The testbench is identical to the input validation testbench shown previously (Fig. \ref{fig:compare-veriloga-model-input}).
 Voltage and current waveforms are compared in Fig. \ref{fig:compare-model-simu-m10-output}.
@@ -268,29 +268,30 @@ Voltage and current waveforms are compared in Fig. \ref{fig:compare-model-simu-m
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_output_bad_m10V.png}
-  \caption{Comparison of complete schematic and model simulations for output port (-10V TLP)}
+  \caption{Comparison of complete schematic and model simulations for output port (\SI{-10}{\volt} TLP)}
   \label{fig:compare-model-simu-m10-output}
 \end{figure}
 
 % Comment the reference curve
 Large differences are observed between reference and model simulations.
-In the reference curve (in blue), the regulation is starting up between 0 and 35\textmu{}s.
+In the reference curve (in blue), the regulation function starts up between \SI{0}{\micro\second} and \SI{35}{\micro\second}.
 This part of the curve is not particularly relevant for the ESD analysis and can be ignored overall.
-Then, at 40\textmu{}s, the pulse is injected on the input (not plotted), resulting in a fault on this output.
+At \SI{40}{\micro\second} the pulse is injected on the input (not plotted), resulting in a fault on this output.
 In turn, the reference curve exhibits the typical restart explained previously in chapter \ref{sec:failure-case-study}.
-The voltage drops until 1V, then the regulator restarts until it is operating properly again at 75 \textmu{}s.
+The voltage drops until \SI{1}{\volt}.
+The regulator restarts until it is operating properly again at \SI{75}{\micro\second}.
 
 % Comment the model curve
 The model curve (in green) is very different from the reference.
-Initially, the 100nF capacitor connected on the output (Fig. \ref{fig:first-output-model}) is pre-charged at 2V, to see if the model is capable of charging it at 2.5V and reaching the DC operating point.
-Instead, the output voltage keeps increasing.
-This can be explained by looking at the I(V) curve of the output magnified between 1V and 4V (see Fig. \ref{fig:tlp-output-cz-zoomed}).
-At the beginning of the simulation, the I(V) model sees a potential difference of 2.0V across its terminals.
-For a 2.0V voltage, the I(V) curve model produces a value of 0.75 mA.
-It is not identical to the characterized value of 0.2mA but the error remains acceptable.
+Initially, the \SI{100}{\nano\farad} capacitor connected on the output (Fig. \ref{fig:first-output-model}) is pre-charged at \SI{2}{\volt}.
+This value is voluntarily set at a lower value than the nominal \SI{2.5}{\volt} to ensure that the model alone is capable of reaching this DC operating point.
+Instead of reaching and stabilizing at \SI{2.5}{\volt}, the output voltage keeps increasing.
+This can be explained by looking at the I(V) curve of the output magnified between \SI{1}{\volt} and \SI{4}{\volt} (see Fig. \ref{fig:tlp-output-cz-zoomed}).
+At the beginning of the simulation, the I(V) model sees a potential difference of \SI{2.0}{\volt} across its terminals.
+For a \SI{2.0}{\volt} voltage, the I(V) curve model produces a value of \SI{0.75}{\milli\ampere}.
+It is not identical to the characterized value of \SI{0.2}{\milli\ampere} but the error remains acceptable.
 This non-zero current is therefore forced by the Verilog-A model into the the capacitor, that keeps charging.
-In itself, the
-The combination of the DC source and the I(V) curve does not seem suitable for modeling an active output.
+In itself, the combination of the DC source and the I(V) curve does not seem suitable for modeling an active output.
 
 \begin{figure}[!h]
   \centering
@@ -299,7 +300,7 @@ The combination of the DC source and the I(V) curve does not seem suitable for m
   \label{fig:tlp-output-cz-zoomed}
 \end{figure}
 
-Configuring the Verilog-A model to generate a zero current at 2.5 V will not solve the problem either because with a resistive load the output will need to supply a DC current at 2.5V.
+Configuring the Verilog-A model to generate a zero current at \SI{2.5}{\volt} will not solve the problem either because with a resistive load the output will need to supply a DC current at \SI{2.5}{\volt}.
 The I(V) curve extracted with a TLP characterization in simulation does not seem to be usable as-is to model an active output.
 A more complex or different solution must be conceived and developed to solve those issues.
 One potential solution would be to create a custom Verilog-A model capable of regulating a voltage while offering proper output impedance.

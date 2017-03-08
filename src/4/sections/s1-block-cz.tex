@@ -67,10 +67,10 @@ The simulations in red contain a fail, meaning that the output voltage crossed t
 \centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
-    & 1ns                          & 10ns                         & 100ns                        & 1\textmugreek{}s             \\ \midrule
-15V & {\color[HTML]{FE0000} sim13} & {\color[HTML]{FE0000} sim23} & {\color[HTML]{FE0000} sim33} & {\color[HTML]{FE0000} sim43} \\
-10V & {\color[HTML]{32CB00} sim12} & {\color[HTML]{FE0000} sim22} & {\color[HTML]{FE0000} sim32} & {\color[HTML]{FE0000} sim42} \\
-5V  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
+               & \SI{1}{\nano\second}         & \SI{10}{\nano\second}        & \SI{100}{\nano\second}       & \SI{1}{\micro\second}        \\ \midrule
+\SI{15}{\volt} & {\color[HTML]{FE0000} sim13} & {\color[HTML]{FE0000} sim23} & {\color[HTML]{FE0000} sim33} & {\color[HTML]{FE0000} sim43} \\
+\SI{10}{\volt} & {\color[HTML]{32CB00} sim12} & {\color[HTML]{FE0000} sim22} & {\color[HTML]{FE0000} sim32} & {\color[HTML]{FE0000} sim42} \\
+\SI{5}{\volt}  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
 \bottomrule
 \end{tabular}
 \caption{Example of results on a set of simulations}
@@ -96,18 +96,18 @@ Because soft-failures are temporary issues, their duration is also very relevant
 Using the same characterization setup as before (Fig. \ref{block_function_cz}), it is possible to also measure the duration of a failure.
 It is possible to improve table \ref{simulation-results} by replacing the fail or no-fail flag by the duration of the fail.
 This is illustrated in table \ref{simulation-results-bis}.
-With those example values, for an input pulse stress of 5V with a input pulse width of 1ns, no failure was recorded.
-On the other hand, with a 5V 1\textmu{}s stress, a failure was recorded and the output waveform crossed the threshold during 2\textmu{}s.
-A 15V 1\textmu{}s stress caused a failure that lasted 30\textmu{}s.
+With those example values, for an input pulse stress of \SI{5}{\volt} with a input pulse width of \SI{1}{\nano\second}, no failure was recorded.
+On the other hand, with a \SI{5}{\volt} \SI{1}{\micro\second} stress, a failure was recorded and the output waveform crossed the threshold during \SI{2}{\micro\second}.
+A \SI{15}{\volt} \SI{2}{\micro\second} stress caused a failure that lasted \SI{30}{\micro\second}.
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-    & \multicolumn{1}{l}{1ns}      & \multicolumn{1}{l}{10ns}     & \multicolumn{1}{l}{100ns}    & \multicolumn{1}{l}{1us}     \\ \midrule
-15V & {\color[HTML]{00D2CB} 110ns} & {\color[HTML]{FFCB2F} 150ns} & {\color[HTML]{FE0000} 30us}  & {\color[HTML]{FE0000} 30us} \\
-10V & {\color[HTML]{32CB00} }      & {\color[HTML]{00D2CB} 125ns} & {\color[HTML]{F8A102} 540ns} & {\color[HTML]{FE0000} 30us} \\
-5V  & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }      & {\color[HTML]{F56B00} 2us}  \\
+                & \SI{1}{\nano\second}         & \SI{10}{\nano\second}        & \SI{100}{\nano\second}                        & \SI{1}{\micro\second}     \\ \midrule
+\SI{15}{\volt} & {\color[HTML]{00D2CB}110 ns} & {\color[HTML]{FFCB2F}150 ns} & {\color[HTML]{FE0000}\SI{30}{\micro\second}}  & {\color[HTML]{FE0000} \SI{30}{\micro\second}} \\
+\SI{10}{\volt} & {\color[HTML]{32CB00}}       & {\color[HTML]{00D2CB}125 ns} & {\color[HTML]{F8A102}540 ns}                  & {\color[HTML]{FE0000} \SI{30}{\micro\second}} \\
+\SI{5}{\volt}  & {\color[HTML]{32CB00}}       & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }                       & {\color[HTML]{F56B00} \SI{2}{\micro\second}}  \\
 \bottomrule
 \end{tabular}
 \caption{Example result set containing failure width information}
@@ -176,7 +176,7 @@ The characterization process detailed previously is performed on two different b
 Those two blocks are part of an hypothetical higher-level function.
 The function has an external input (called \textit{in}) and an external output (called \textit{out}).
 A stimulus is injected on the external input and the job of the model chain is to predict what will be the approximate waveform on the external output.
-Both blocks were previously (hypothetically) characterized and failure criteria V\textsubscript{fail} for block $A$ is 5 V and 2 V for block $B$.
+Both blocks were previously (hypothetically) characterized and failure criteria V\textsubscript{fail} for block $A$ is \SI{5}{\volt} and \SI{2}{\volt} for block $B$.
 In practice, the threshold selection is done either from the block specification or datasheet, or directly from its design.
 
 \begin{figure}[!h]
@@ -187,11 +187,11 @@ In practice, the threshold selection is done either from the block specification
 \end{figure}
 
 % What is the input stress
-The input stimulus is a rectangular 100 ns wide pulse with a 15V amplitude.
+The input stimulus is a rectangular \SI{100}{\nano\second} wide pulse with a \SI{15}{\volt} amplitude.
 Those two properties are fed into the hypothetical characterization of block $A$ (Fig. \ref{example_complete_curve}).
 In the graph, multiple curves can be identified, each corresponding to a boundary between two disturbance durations.
-For a point located below the green curve (with label "10 ns"), no stress was recorded on the output.
-For a point located above the 10 ns curve and below the 100 ns curve, a stress was indeed recorded with a duration comprised between 10 ns and 100 ns.
+For a point located below the green curve (with label "\SI{10}{\nano\second}"), no stress was recorded on the output.
+For a point located above the \SI{10}{\nano\second} curve and below the \SI{100}{\nano\second} curve, a stress was indeed recorded with a duration comprised between \SI{10}{\nano\second} and \SI{100}{\nano\second}.
 The exact value between those two boundaries is not known with this this kind visualization.
 In the analysis, the lower boundary is always chosen because the output is disturbed for at least this value.
 
@@ -203,16 +203,16 @@ In the analysis, the lower boundary is always chosen because the output is distu
 \end{figure}
 
 % Interpretate stress to deduce net1
-With the given 15 V 100 ns stimulus, the curve predicts that the output will fall below 5 V (V\textsubscript{fail} of block A) during 1 \textmugreek{}s.
+With the given \SI{15}{\volt} \SI{100}{\nano\second} stimulus, the curve predicts that the output will fall below \SI{5}{\volt} (V\textsubscript{fail} of block A) during \SI{1}{\micro\second}.
 Those two values describe the signal on the output of block A.
 Those values are now used to describe the stimulus on block B, since both blocks are connected.
 The failure criteria that was used to extract the characterization curve also serves as amplitude for the output signal.
-It means that with a 5V failure criteria, if a failure is recorded, the output waveform is approximated to also have an amplitude of 5V.
+It means that with a \SI{5}{\volt} failure criteria, if a failure is recorded, the output waveform is approximated to also have an amplitude of \SI{5}{\volt}.
 
 % Use net1 as input of next block
 Fig. \ref{example_complete_curve_B} shows an example curve for model B.
-The location of the stimulus from block A (5 V and 1 \textmugreek{}s) is also placed on the curve.
-The curve predicts that with this stimulus, block B will be disturbed during 10 \textmugreek{}s with an amplitude of 2 V (V\textsubscript{fail} of block B).
+The location of the stimulus from block A (\SI{5}{\volt} and \SI{1}{\micro\second}) is also placed on the curve.
+The curve predicts that with this stimulus, block B will be disturbed during \SI{10}{\micro\second} with an amplitude of \SI{2}{\volt} (V\textsubscript{fail} of block B).
 
 \begin{figure}[!h]
   \centering

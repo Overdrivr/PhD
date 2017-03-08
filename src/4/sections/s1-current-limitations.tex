@@ -34,35 +34,35 @@ This major observation is confirmed in the next section that discusses the impac
 \subsubsection{Impact of characterization output load}
 
 % First source of error - load impedance
-Previously, all characterization curves were extracted with a fixed output load of 1M\textOmega{}.
+Previously, all characterization curves were extracted with a fixed output load of \SI{1}{\mega\ohm}.
 This value was selected because it is rather high-impedance and does not prevent proper circuit operation.
 It also draws a non-negligible amount of current and reproduces the circuit load of the complete schematic.
 It is possible that this fixed high-impedance load is a factor of error for the model chain.
 
 % Compare 1Mohm with real case where blocks are connected together
-In practice, each block sees a load impedance on its output much different than 1 M\textOmega{}.
+In practice, each block sees a load impedance on its output much different than \SI{1}{\mega\ohm}.
 For instance, the output of the pre-regulator is used as a supply by other blocks.
-It can deliver a maximum of 20 mA of current while maintaining 8V, corresponding to a minimum output load this block can sustain is 400 \textOmega{}.
-The bandgap, on the other hand, provides a reference voltage at 1V but does not deliver a lot of DC current.
-More than 1uA is enough to make the output fall of a hundred millivolts.
-In this case, the bandgap must see an output impedance of at least 1 M\textOmega{}.
+It can deliver a maximum of \SI{20}{\milli\ampere} of current while maintaining \SI{8}{\volt}, corresponding to a minimum output load this block can sustain is \SI{400}{\ohm}.
+The bandgap, on the other hand, provides a reference voltage at \SI{1}{\volt} but does not deliver a lot of DC current.
+More than \SI{1}{\micro\ampere} is enough to make the output fall of a hundred millivolts.
+In this case, the bandgap must see an output impedance of at least \SI{1}{\mega\ohm}.
 
 % What is done next
-To evaluate this impact, the pre-regulator is characterized again by with 4 different load values ranging from 500 \textOmega{} to 1 M\textOmega{}.
+To evaluate this impact, the pre-regulator is characterized again by with 4 different load values ranging from \SI{500}{\ohm} to \SI{1}{\mega\ohm}.
 Results are summarized in table \ref{tab:impact-load-on-cz}.
 The three first column represent the input parameters, and the last column shows for how long the output was disturbed.
-The duration is measured using the failure criteria of the pre-regulator (V\textsubscript{clamp9} < 0V).
+The duration is measured using the failure criteria of the pre-regulator (V\textsubscript{clamp9} < \SI{0}{\volt}).
 It is the time during which the failure criteria was violated.
 
 % Table observation
-For the smallest 10V stress amplitude, the failure time is largely impacted by the output load.
-The worst case is for the -10V 1\textmugreek{}s pulse (Table \ref{tab:impact-load-on-cz}).
-The output goes below 0V for 1330 ns with 500\textOmega{} on the output, but with 1M\textOmega{}, no failure is observed.
-However, it is interesting to notice that for larger pulse amplitudes (below -30V), the output load has a limited impact on the failure duration.
+For the smallest \SI{10}{\volt} stress amplitude, the failure time is largely impacted by the output load.
+The worst case is for the \SI{-10}{\volt} \SI{1}{\micro\second} pulse (Table \ref{tab:impact-load-on-cz}).
+The output goes below \SI{0}{\volt} for \SI{1330}{\nano\second} with \SI{500}{\ohm} on the output, but with \SI{1}{\mega\ohm}, no failure is observed.
+However, it is interesting to notice that for larger pulse amplitudes (below \SI{-30}{\volt}), the output load has a limited impact on the failure duration.
 
 % Analyse the table
-Those observations tend to indicate that once the output is at fault, having 500\textOmega{} or 1M\textOmega{} connected to it doesn't change the period during which it remains at fault.
-This is a major observation, because it shows that the output load value is not a key parameter during the characterization, and that the 1 M\textOmega{} value is sufficient for this study case.
+Those observations tend to indicate that once the output is at fault, having \SI{500}{\ohm} or \SI{1}{\mega\ohm} connected to it doesn't change the period during which it remains at fault.
+This is a major observation, because it shows that the output load value is not a key parameter during the characterization, and that the \SI{1}{\mega\ohm} value is sufficient for this study case.
 
 \begin{table}[!p]
 \centering
@@ -124,9 +124,9 @@ load (\textOmega) & amplitude (V) & length (ns) & output disturbed (ns)   \\ \mi
 Fig. \ref{fig:impact-time-domain-load} provides a visual representation of this observation, which is helpful for understanding this result.
 When the output is disturbed and its amplitude is near the failure criteria, the load value has a strong impact on the width of the failure.
 This is represented by the green curve in Fig. \ref{fig:impact-time-domain-load}.
-A large load value such as 1 M\textOmega{} decreases the amplitude a little bit, causing the output to be above the failure criteria.
-With 1 M\textOmega{}, no failure is recorded.
-With a small load value (500 \textOmega{}) the output amplitude is increased a little bit (it becomes more negative).
+A large load value such as \SI{1}{\mega\ohm} decreases the amplitude a little bit, causing the output to be above the failure criteria.
+With \SI{1}{\mega\ohm}, no failure is recorded.
+With a small load value (\SI{500}{\ohm}) the output amplitude is increased a little bit (it becomes more negative).
 This time, it is below the failure criteria and a failure is recorded.
 This explains how the load has a large impact of the failure width for small stress amplitudes.
 
@@ -138,7 +138,7 @@ This explains how the load has a large impact of the failure width for small str
 \end{figure}
 
 % Explanation at large amplitude
-For large stress amplitude (red curve of Fig. \ref{fig:impact-time-domain-load}), the amplitude variation caused by a 500 \textOmega{} load versus 1 M\textOmega{} is not sufficient to change the outcome.
+For large stress amplitude (red curve of Fig. \ref{fig:impact-time-domain-load}), the amplitude variation caused by a \SI{500}{\ohm} load versus \SI{1}{\mega\ohm} is not sufficient to change the outcome.
 In both cases, a failure will be recorded.
 
 % Conclusion, the main impact is not the characterization load, but the single failure criteria

@@ -33,7 +33,6 @@ In particular, model chaining is performed the same way since block models still
 % Summary of the process
 %Fig. \ref{fig:full-method-v2} summarizes the entire characterization and chaining process for a 2-block setup.
 %Each block is characterized, generating the two tables mentionned earlier.
-%Then, using both tables, an input stress of 50V 100ns becomes a 12V 350ns disturbance after the first block, and a 3V 4000 ns after the second block.
 
 %\begin{figure}[!h]
 %  \centering
@@ -68,17 +67,17 @@ The other characterization tables of the bandgap and pre-regulator are provided 
 
 
 % What is done for validation
-The chaining process is performed again with a -30V 1 \textmu{}s rectangular input stimulus.
+The chaining process is performed again with a \SI{-30}{\volt} \SI{1}{\micro\second} rectangular input stimulus.
 The reference curve and reference test setups remain identical to the ones presented earlier (Fig. \ref{fig:reference_simu_circuit}).
 
 % Result of the chaining process
-The chaining process predicts that V\textsubscript{clamp9} will be down at -1.6V during 1800 ns.
-The 1.6V value is obtained by taking coordinates of the input stimulus (-30V, 1 \textmu{}s) and applying them to Fig. \ref{fig:pre_regu_amp}.
-1.6V then corresponds to the gradient value at those coordinates.
-The 1800ns is obtained with the same input coordinates but applied to Fig. \ref{fig:pre_regu_width} instead.
+The chaining process predicts that V\textsubscript{clamp9} will be down at \SI{-1.6}{\volt} during \SI{1800}{\nano\second}.
+The \SI{1.6}{\volt} value is obtained by taking coordinates of the input stimulus (\SI{-30}{\volt}, \SI{1}{\micro\second}) and applying them to Fig. \ref{fig:pre_regu_amp}.
+\SI{1.6}{\volt} then corresponds to the gradient value at those coordinates.
+The \SI{1800}{\nano\second} is obtained with the same input coordinates but applied to Fig. \ref{fig:pre_regu_width} instead.
 The same process is then used for the bandgap and the regulator.
-V\textsubscript{1p0} is predicted at -1.25V during 3300 ns.
-V\textsubscript{2p5} is predicted at 2.0V during 2700 ns.
+V\textsubscript{1p0} is predicted at \SI{-1.25}{\volt} during \SI{3300}{\nano\second}.
+V\textsubscript{2p5} is predicted at \SI{2.0}{\volt} during \SI{2700}{\nano\second}.
 Those values are employed for generating model waveforms, and are compared to the reference simulation in Fig. \ref{fig:reference_simu_v2}.
 
 % Curve analysis
@@ -88,7 +87,7 @@ For V\textsubscript{1p0}, the width is extremely well reproduced, but the amplit
 It seems that taking the minimum amplitude value during the characterization is not ideal.
 This error should be investigated further to determine the actual root cause and provide a solution.
 The last signal V\textsubscript{2p5} shows a quite good correlation despite the fact that it is a triangle-like waveform.
-More validations were performed with (-20V, 1\textmu{}s) and (-20V, 100ns) stimuli.
+More validations were performed with (\SI{-20}{\volt}, \SI{1}{\micro\second}) and (\SI{-20}{\volt}, \SI{100}{\nano\second}) stimuli.
 The results are provided in appendix \ref{apx:block-model-comparison}.
 Overall, the modifications brought to the modeling method seemed to have a positive impact on the curve models.
 A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{1p0} that systematically suffers from amplitude modeling error.
@@ -96,7 +95,7 @@ A lot of room is left for improvements, in particular for reproducing the bandga
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/total_simulation_30V_1u_V2.png}
-  \caption{Reference simulation waveform : TLP stress -30V 1\textmugreek{}s }
+  \caption{Reference simulation waveform : TLP stress \SI{-30}{\volt} \SI{1}{\micro\second}}
   \label{fig:reference_simu_v2}
 \end{figure}
 
@@ -121,7 +120,7 @@ Two cases where this simplification is not straightforward are illustrated in Fi
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/better_output_modelling.pdf}
-  \caption{Improved output modeling method based on 90\% of maximum disturbance amplitude}
+  \caption{Improved output modeling method based on \SI{90}{\percent} of maximum disturbance amplitude}
   \label{fig:impact-single-failure-criteria}
 \end{figure}
 
@@ -135,10 +134,10 @@ The width of the pulse is much shorter than the original curve, leading the mode
 Case \textit{B} is observed on nets with high capacitive coupling to ground.
 Those signals are not directly disturbed by the \gls{esd}, but the block that drives them can go into reset.
 In this situation, the nets slowly decreases then, once functionality resumes, the nets goes back to its nominal value.
-With the 90\% threshold, a large area of the disturbed waveform is missing in the model, making it very inaccurate.
+With the \SI{90}{\percent} threshold, a large area of the disturbed waveform is missing in the model, making it very inaccurate.
 
 % What is the consequence
-In both those cases, the 90\% threshold leads to underestimating the total disturbance width.
+In both those cases, the \SI{90}{\percent} threshold leads to underestimating the total disturbance width.
 The modeled waveform has a much smaller duration and area than the original one.
 Overall, it was observed that the model and original waveform areas should be close for the models to work.
 
