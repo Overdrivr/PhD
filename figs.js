@@ -1,15 +1,19 @@
+'use strict';
+
 var glob = require('glob');
            require('shelljs/global');
 
 glob("**/*.svg", function (err, files) {
+  let amount = files.length;
+  console.log('Found ' + amount + ' SVG figures to process');
+
   files.forEach(function(filename) {
-    filename = filename.replace('.svg','');
-    command = 'inkscape --file='       + '"' + filename + '.svg' + '"'
-                    + ' --export-pdf=' + '"' + filename + '.pdf' + '"'
+    let f = filename.replace('.svg','');
+    let command = 'inkscape --file='       + '"' + f + '.svg' + '"'
+                        + ' --export-pdf=' + '"' + f + '.pdf' + '"';
 
     exec(command, function(code, stdout, stderr) {
-      console.log(command);
-      console.log('Command exited with code: ', code);
+      console.log('Fig name (' + code + '): ' + f);
     });
   });
 })
