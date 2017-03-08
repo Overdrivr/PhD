@@ -3,7 +3,7 @@
 \subsubsection{Model validation}
 
 The response of the generator is tested in conditions as close as possible to the ISO 10605 standard \cite{iso10605}.
-The generator is connected to a 2\textOmega{} load, itself connected to a 12 GHz (10 ps/sample point) oscilloscope with a 50\textOmega{} input impedance.
+The generator is connected to a \SI{2}{\ohm} load, itself connected to a \SI{12}{\giga\hertz} (\SI{10}{\pico\second\per\sample}) oscilloscope with a \SI{50}{\ohm} input impedance.
 The setup (Fig. \ref{fig:injection_setup_validation}) has the same loading impedance than the standard measurement "target" \cite{iso10605, iec61000-4-2}.
 
 \begin{figure}[!h]
@@ -14,14 +14,14 @@ The setup (Fig. \ref{fig:injection_setup_validation}) has the same loading imped
 \end{figure}
 
 The measured and simulated waveforms are given in Fig. \ref{fig:tlp_hmm_waveforms}.
-Measured currents at 30ns and 60ns are within the 30\% tolerance of the standard (see Table \ref{tab:mes-sim-std-currents}).
-The measured peak current is a bit lower (110 mA short of minimum margin) than standard value.
+Measured currents at \SI{30}{\nano\second} and \SI{60}{\nano\second} are within the \SI{30}{\percent} tolerance of the standard (see Table \ref{tab:mes-sim-std-currents}).
+The measured peak current is a bit lower (\SI{110}{\milli\ampere} short of minimum margin) than standard value.
 This is easily corrected on the TLP by adding a small positive offset to the charging voltage.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.95\textwidth]{src/5/figures/tlp_hmm_waveforms.png}
-  \caption{Measurement versus simulation of a 250V TLP-HMM (equivalent 1kV HMM) on 2\textOmega{}}
+  \caption{Measurement versus simulation of a \SI{250}{\volt} TLP-HMM (equivalent \SI{1}{\kilo\volt} HMM) on \SI{2}{\ohm}}
   \label{fig:tlp_hmm_waveforms}
 \end{figure}
 
@@ -29,10 +29,10 @@ This is easily corrected on the TLP by adding a small positive offset to the cha
 \centering
 \begin{tabular}{@{}llll@{}}
 \toprule
-         & Standard (A)    & Measured (A)  & Simulated (A) \\ \midrule
-peak     & 3.75 \pm 0.375  & 3.26          & 3.52 \\
-30 ns    & 2 \pm 0.6       & 1.54          & 1.8  \\
-60 ns    & 1 \pm 0.3       & 1.18          & 1.32 \\ \bottomrule
+                            & Standard (A)    & Measured (A)  & Simulated (A) \\ \midrule
+peak                        & 3.75 \pm 0.375  & 3.26          & 3.52 \\
+\SI{30}{\nano\second}       & 2 \pm 0.6       & 1.54          & 1.8  \\
+\SI{60}{\nano\second}       & 1 \pm 0.3       & 1.18          & 1.32 \\ \bottomrule
 \end{tabular}
 \caption{Measured and simulated currents versus standardized values}
 \label{tab:mes-sim-std-currents}
@@ -40,13 +40,13 @@ peak     & 3.75 \pm 0.375  & 3.26          & 3.52 \\
 
 % Analyse the curve
 Overall, simulation and measurement correlate quite well.
-There is a small difference for the slopes between 40ns and 150ns.
+There is a small difference for the slopes between \SI{40}{\nano\second} and \SI{150}{\nano\second}.
 Investigation showed this difference comes from the shaping filter, and its inductances in particular.
 Their frequency behavior is not as good as expected, and having four inductances in parallel increases further this issue.
 Indeed, in this configuration parasitic capacitance of inductors are connected in parallel.
 They add up together, leading to a large total parasitic value and degraded frequency behavior.
 For the next iteration of the shaping filter, a single RF inductor should be used instead.
-The shaping filter model can be corrected by connecting in parallel a total parasitic capacitance of 2nF in series with a 15\textOmega{} parasitic resistor, like shown in Fig. \ref{fig:shaping_filter_schematic_parasitics}.
+The shaping filter model can be corrected by connecting in parallel a total parasitic capacitance of \SI{2}{\nano\farad} in series with a \SI{15}{\ohm} parasitic resistor, like shown in Fig. \ref{fig:shaping_filter_schematic_parasitics}.
 
 \begin{figure}[!h]
   \centering
@@ -55,12 +55,12 @@ The shaping filter model can be corrected by connecting in parallel a total para
   \label{fig:shaping_filter_schematic_parasitics}
 \end{figure}
 
-In Fig. \ref{fig:tlp_hmm_waveforms}, the glitch visible at approximately 120 ns is due to the absorber, because of two different parasitic devices.
+In Fig. \ref{fig:tlp_hmm_waveforms}, the glitch visible at approximately \SI{120}{\nano\second} is due to the absorber, because of two different parasitic devices.
 At the beginning of the TLP pulse, the parasitic capacitance between signal and ground is charged.
-Using the simulation, it is estimated at 20 pF.
-Its sudden discharge at the end of the TLP pulse causes the short voltage and current increase observed at 120 ns.
-The parasitic series inductance of the three 2.2nF capacitors and the 50\textOmega{} resistor (Fig. \ref{fig:absorber_schematic_parasitics}) is responsible afterward for the small oscillation observed between 120 ns to 150 ns.
-This issue should be fixed in the next iteration of the absorber by building the absorber on a dedicated PCB with 50\textOmega{} lines.
+Using the simulation, it is estimated at \SI{20}{\pico\farad}.
+Its sudden discharge at the end of the TLP pulse causes the short voltage and current increase observed at \SI{120}{\nano\second}.
+The parasitic series inductance of the three \SI{2.2}{\nano\farad} capacitors and the \SI{50}{\ohm} resistor (Fig. \ref{fig:absorber_schematic_parasitics}) is responsible afterward for the small oscillation observed between \SI{120}{\nano\second} and \SI{150}{\nano\second}.
+This issue should be fixed in the next iteration of the absorber by building the absorber on a dedicated PCB with \SI{50}{\ohm} lines.
 Guarantying matching along the path should eliminate this ringing oscillation.
 
 \begin{figure}[!h]
@@ -98,9 +98,9 @@ R\textsubscript{ON} (\textOmega{}) & 6.2  & 2.85 & 9.7  & 13.3 & 2.7 & 3.25& 2.4
 Testing results are summarized in Table \ref{tab:esd-protections}.
 Unfortunately, the result set is too small to draw a clear conclusion.
 It was discovered that the TLP-HMM is not able to deliver enough current to break structure E and above.
-The TLP-HMM relies on a regular TLP, whose high-voltage DC supply is limited to 1kV.
-On a true HMM generator, high-voltage \gls{dc} supplies are generally able to reach 15kV charging voltage and beyond.
-A TLP rarely requires DC supplies able to reach above 1kV, because the output impedance is lower than HMM.
+The TLP-HMM relies on a regular TLP, whose high-voltage DC supply is limited to \SI{1}{\kilo\volt}.
+On a true HMM generator, high-voltage \gls{dc} supplies are generally able to reach \SI{15}{\kilo\volt} charging voltage and beyond.
+A TLP rarely requires DC supplies able to reach above \SI{1}{\kilo\volt}, because the output impedance is lower than HMM.
 For a given charging voltage, a TLP will deliver a much larger amount of current than an HMM generator.
 However, in the TLP-HMM configuration, the equivalent impedance of the generator is higher than the one of a TLP.
 As a result, the injected current is smaller.
@@ -142,11 +142,11 @@ The key part of this approach is to consider the interaction between the on-resi
 
 % What is equivalent resistance for each generator
 Different equivalent DC voltages and resistances are found between TLP and HMM.
-The TLP used in the NXP lab has an equivalent output resistance of 83\textOmega{}.
-Interestingly, a 50\textOmega{} value was expected, but it turns out that this particular TLP has a mismatched attenuator in it, increasing slightly its equivalent output resistance.
-A more classic TLP at the LAAS laboratory was also characterized and exhibits an output resistance of about 53\textOmega{}.
+The TLP used in the NXP lab has an equivalent output resistance of \SI{83}{\ohm}.
+Interestingly, a \SI{50}{\ohm} value was expected, but it turns out that this particular TLP has a mismatched attenuator in it, increasing slightly its equivalent output resistance.
+A more classic TLP at the LAAS laboratory was also characterized and exhibits an output resistance of about \SI{53}{\ohm}.
 The HMM generator has a much larger output resistance, estimated at about 600 \textOmega{}.
-The TLP-HMM was also characterized, and situates somewhere in the middle with an output resistance of about 300\textOmega{}.
+The TLP-HMM was also characterized, and situates somewhere in the middle with an output resistance of about \SI{300}{\ohm}.
 
 \begin{figure}[!h]
   \centering
