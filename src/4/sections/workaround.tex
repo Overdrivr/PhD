@@ -53,18 +53,17 @@ The other characterization tables of the bandgap and pre-regulator are provided 
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/vpre_cz_v2_amplitude.png}
+  \includegraphics[width=\textwidth]{src/4/figures/preregulator_cz_v2_amp.pdf}
   \caption{Pre-regulator V\textsubscript{clamp9} amplitude matrix}
   \label{fig:pre_regu_amp}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/4/figures/vpre_cz_v2_width.png}
+  \includegraphics[width=\textwidth]{src/4/figures/preregulator_cz_v2_width.pdf}
   \caption{Pre-regulator V\textsubscript{clamp9} width matrix}
   \label{fig:pre_regu_width}
 \end{figure}
-
 
 % What is done for validation
 The chaining process is performed again with a \SI{-30}{\volt} \SI{1}{\micro\second} rectangular input stimulus.
@@ -72,8 +71,8 @@ The reference curve and reference test setups remain identical to the ones prese
 
 % Result of the chaining process
 The chaining process predicts that V\textsubscript{clamp9} will be down at \SI{-1.6}{\volt} during \SI{1800}{\nano\second}.
-The \SI{1.6}{\volt} value is obtained by taking coordinates of the input stimulus (\SI{-30}{\volt}, \SI{1}{\micro\second}) and applying them to Fig. \ref{fig:pre_regu_amp}.
-\SI{1.6}{\volt} then corresponds to the gradient value at those coordinates.
+The \SI{-1.6}{\volt} value is obtained by taking coordinates of the input stimulus (\SI{-30}{\volt}, \SI{1}{\micro\second}) and applying them to Fig. \ref{fig:pre_regu_amp}.
+\SI{-1.6}{\volt} then corresponds to the gradient value at those coordinates.
 The \SI{1800}{\nano\second} is obtained with the same input coordinates but applied to Fig. \ref{fig:pre_regu_width} instead.
 The same process is then used for the bandgap and the regulator.
 V\textsubscript{1p0} is predicted at \SI{-1.25}{\volt} during \SI{3300}{\nano\second}.
