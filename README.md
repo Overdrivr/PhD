@@ -163,19 +163,15 @@ t | top | Place the figure at the top of a page
 b | bottom | Place the figure at the bottom of a page
 p | page |  Place the figure in its own page, separated from text
 
-### Greek letters
+### Number and units
 
-Using `textgreek` package (see [here](http://texblog.org/2012/03/15/greek-letters-in-text-without-changing-to-math-mode/)).
-`textgreek` requires `cbgreek` package, you should install it with your package manager.
-
-```
-\textOmega
-```
-
-Append a `{}` afterward to get a trailing space afterward. Example:
+Instead of manually writing math symbols for units, a better approach is to use the [`siunitx`](https://www.ctan.org/pkg/siunitx) package.
+The `\SI{value}{units}` command enables to write properly formatted values with units without having to bother about greek letters or formatting.
 
 ```
-\textOmega{} foo
+\SI{2}{\kilo\ohm} // 2 kΩ
+\SI{15}{\pico\farad} // 15 pF
+\SI{10}{\nano\second} // 10 ns
 ```
 
 ### Equations
