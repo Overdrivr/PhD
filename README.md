@@ -44,7 +44,7 @@ To let grunt monitor changes in files and regenerate the output, run
 grunt
 ```
 
-Run the `latex` task to generate the pdf file manually
+Run the `latex` task to generate the pdf file manually. You should run it twice to ensure that all references are properly defined (this is due to how Latex works and is not specific to this repo).
 ```
 grunt latex
 ```
@@ -207,6 +207,18 @@ It is free, extremely fast, portable, small and is packed with good features.
 
 This [great little tool](http://www.tablesgenerator.com/) enables for quick code generation for latex tables. Doesn't work very well with large tables, doesn't support tabularx package.
 This [one](http://truben.no/table/) exists too, but has less features (no support for merging cells for instance).
+
+## Spell check
+
+On Windows, run
+
+```
+spellcheck.cmd
+```
+
+On Unix systems, just run the commands listed in this file.
+
+Also, the personal dictionary `personnal_dict_spellcheck` should be copied over your HOME directory if you don't want to redefine all false positives in this document.
 
 # How did you do that ?
 
