@@ -3,25 +3,30 @@
 
 As presented in the introduction, ESD are a major source of stress for electronic devices.
 They can cause hardware failures, damaging permanently devices.
-This class of issues has been studied for many years, and is the core of ESD research.
+This class of issues has been studied for ten years, and is still the core of ESD research.
 Recently, a new class of failures started to be considered.
 Electrostatic discharges can cause temporary disturbances on devices.
 In the context of always ever-more sensitive electronic devices and IC in particular, this is an issue.
 Even more considering that electronic modules nowadays have increasingly large responsibilities in regard of our safety.
-New trends for the autonomous car ask electronics to take vital decisions such as braking, direction, etc.
+New trends for the autonomous car require electronic devices to take vital decisions for controlling the vehicule.
 Guarantying safety of operation against electrostatic discharge is critical.
 
 % Chap 1
-In a first phase, a review of the test methods common in the ESD field was conducted, to identify relevant and realistic stress sources in laboratory environment.
-Then, a review of the literature on soft-failure analysis and prediction method showed few research at silicon level.
-Many general-purpose observation techniques exist such as EMMI, Near-field scan.
-Simulation tools were used in the past, such as \gls{spice} simulation of course, and more advanced techniques such as 3D full-wave electromagnetic simulations or \gls{tcad} simulations.
+A presentation of the context and topic is conducted in the introduction (chapter \ref{sec:global-intro}).
+Chapter \ref{chap:1} is a review of the state of the art in ESD testing and soft-failure analysis.
+It starts by describing common and recurrent test methods in the ESD field, and identifies relevant and realistic stress sources employed in laboratory environment.
+A review of the literature on soft-failure analysis and prediction method is conducted afterward.
+It showed that to this day there are rather few research on the topic of ESD-induced soft-failures at silicon level.
+Many general-purpose observation techniques exist such as EMMI and near-field scan.
+Among the simulation tools, it is common to find \gls{spice} simulation of course, and more advanced techniques such as 3D full-wave electromagnetic simulations or \gls{tcad} simulations.
 These tools are highly interesting at the system and board level, to evaluate what fraction of an incoming discharge actually reach an integrated circuit.
-We were interested in electrical simulations of conducted disturbances in particular.
+It is important to notice that no solution exists so far to investigate at chip level how functions are disturbed by electrostatic discharges.
+This point is a key part of the research presented in this document.
 
 % Chap 2
-For this purpose, chapter 2 provides a detailed modeling method of electronic systems for ESD that relies on past work on the topic.
-A modular approach is adopted, where each component is modeled individually to form a library, then assembled together in a hierarchical fashion.
+In chapter \ref{chap:2}, a modeling method of electronic systems for ESD is detailed.
+It relies and brings a few improvement over existing research conducted in the past on this topic.
+A modular approach is employed, where each component is modeled individually to form a library, then assembled together in a hierarchical fashion.
 Mostly physically based and most parameters can be extracted with simple tools, or by estimation where it is sometimes enough.
 A concrete case study is presented with the modeling of a complex TLP generator.
 It is perfect to illustrate a few key points for the modeling methods, and to demonstrate its accuracy against a lot of reference measurements.
@@ -41,24 +46,30 @@ Before being able to do so, the correlation method should be tested on a much la
 Failure analysis on the destroyed parts should be conducted to verify if the failure mechanism remains identical between the different generator.
 
 % Near-field current processing
-In the last part of the chapter 2, a detailed post-processing method for on-chip near-field sensor has been presented.
+In the last part of chapter \ref{chap:2}, a detailed post-processing method for on-chip near-field sensor has been presented.
 It details the operation of the post-processing pipeline developed for this kind of sensor.
-The processing script is released \cite{} under an open-source license in order to promote collaboration and future improvements on the topic.
+The processing script is released \cite{nfs-repository} under an open-source license to promote collaboration and future improvements on the topic.
 Two different methods are evaluated and compared in order to reconstitute a current waveform from the voltage measured across the on-chip sensor.
 
 % Chap 3
-Chapter 3 is a direct application on-silicon of those investigation methods.
-An actual case study is presented, where a complex analog function restarts because of an ESD.
-The function is a primary regulator for a large automotive product.
-To gain more insights and data, a custom test vehicle has been designed.
-Some monitoring structures were designed specifically for this purpose.
-Not all monitoring techniques were successful, as a few issues were met with the communication system responsible for outputting some measurement data.
-Those issues can be fixed for future testchips.
-Overall, the on-chip monitoring method lays a ground work for future silicon-level research and could be reused.
+Chapter \ref{chap:3} presents a real case study where a complex analog function goes into restart because of an ESD.
+The function is a primary regulator supply from a large automotive product.
+It is put in a lowered \gls{bom} configuration where the external filtering is reduced to diminish the total application cost.
+The ESD robustness of this configuration is studied, and a new failure is observed and explained.
+After this analysis, it was decided to build a custom chip integrating this particular function, alongside with custom monitoring structures.
+There were multiple objectives for making this test vehicle.
+The first goal was to acquire waveforms inside the chip, using on-chip measurement structures and sensors, to validate that standard circuit simulations can be employed during an ESD event.
+The second goal was to determine when and how analog function were disturbed by transient events, by using custom error detection cells.
+This data was meant to validate the modelling methods presented later in the document (in chapter \ref{sec:methods-operating-esd-analysis}).
+Creating an entire chip with custom cell designs and block reuse, alongside with the two application boards was extremely challenging.
+This is especially true given limited resources and constraints inherent to the test vehicle process.
+Despite extensive testing and validation, issues were met with the communication system responsible for outputting measurement data.
+However, the two regulation functions and the on-chip sensors worked properly.
+The extensive feedback and knowledge gained from the development of this custom chip is a ground work for new versions of this test vehicle and soft-failure research at silicon-level in general.
+It should help define testchip architectures in the future, and with the appropriate fixes the communication system will constitute a reusable and convenient framework for interacting with on-chip monitoring systems.
 
 % Chapter 4
-Research work also focused on developing tools for simulation environment.
-This work is presented in chapter 4.
+Chapter \ref{sec:methods-operating-esd-analysis} is mainly focused on the development of tools for simulation environment.
 The value of simulation tools is well known, because it enables to detect issues very early in the development cycle, which is extremely valuable for avoiding late issues and cutting the cost of fixing them late.
 The main challenge for ESD at silicon-level is the complexity of the circuits and simulations.
 Convergence issues are very common and sometimes extremely difficult to avoid.
@@ -81,6 +92,13 @@ Also, the propagation path is considered unidirectional, the discharge propagate
 It is not really realistic, because it fact it spreads around the circuit.
 However, it is important to make simplifications initially in order to get a prototype at work and evaluate what improvements or modifications are actually needed.
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/conclusion/figures/flow.pdf}
+  \caption{IC conception flow and proposed improvements}
+  \label{fig:new-flow}
+\end{figure}
+
 % Second modelling approach
 The second modeling method is more focused on facilitating cooperation between IC manufacturers and equipment manufacturers.
 It integrates well inside the SEED methodology, where interaction between these two actors helps design robust products against ESD with optimal cost and development time.
@@ -91,6 +109,7 @@ The I(V) curve extracted with the TLP combined with a DC model fails to drive co
 It is an interesting result that calls for more research on this topic.
 
 % Proposal
+% TODO Reduce and remove
 Finally, a new method is proposed for IC design teams.
 It is a complete proposal and has not been tested so far, however the concept seems highly promising with implications much further than ESD powered-on analysis and prediction.
 The idea is to let analog designers define for their analog function blocks a set of assertions, or checks, that are mandatory for proper operation.
