@@ -5,7 +5,7 @@
 This chapter details a study case of a real \gls{asic} from the automotive field exposed to \gls{esd} during normal operation.
 The studied chip performs high-level functions with significant roles inside the vehicle, such as communicating with sensors and performing safety-related duties.
 Tests and analysis are focused on one function in particular, the primary voltage regulation function of the device.
-In the final application, it is powered directly by the car's battery, and starts the entire product.
+In the final application, it is powered directly by the car's battery, and supplies the entire product.
 It is also a good opportunity to study the behavior of a complex analog function exposed to electrostatic discharges.
 This product was designed at NXP, and complete access to the schematic and layout was made available for this research work.
 The product operation, architecture and application are described in section \ref{sec:product-desc}.
@@ -18,7 +18,7 @@ Those constraints are not required by the functionality itself, but are needed t
 In this research study, the amount of external decoupling and filtering has been reduced intentionally.
 The objective is to reduce the bill of materials of the complete application and thus to diminish the cost for the equipment manufacturer.
 With this lighter configuration, and by running \gls{esd} simulations, it has been possible to discover a functional weakness.
-The failure is described in detailed in section \ref{sec:failure-case-study}.
+The failure is described in detail in section \ref{sec:failure-case-study}.
 
 \input{src/3/sections/case-study-product.tex}
 \input{src/3/sections/s1-functional-fail.tex}

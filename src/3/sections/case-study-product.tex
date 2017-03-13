@@ -21,10 +21,10 @@ The Common Mode Filter (CMF) and Pi filter are the two main devices being remove
 
 Inside the integrated circuit, two key parts of the circuit have been highlighted.
 The primary supply is the function being studied in this chapter, and is powered by signal V\textsubscript{batt}.
-Its detailed operation is provided later in this section, but overall it down converts the battery voltage.
+Its detailed operation is provided later in this section, but overall it is a buck converter that steps down the battery voltage.
 On the output, it provides a regulated \SI{2.5}{\volt} supply (signal V\textsubscript{2p5}).
 V\textsubscript{2p5} is used further in the ASIC, to power the core functionalities of the device constituted of digital cells, low voltage analog functions, communication buses, etc.
-The core of the circuit interacts with external equipments such as airbags for instance, and communicates with sensors or other modules.
+The core of the circuit interacts with external equipment such as airbags for instance, and communicates with sensors or other modules.
 Given this system architecture, it is obvious that the V\textsubscript{2p5} signal is critical for normal operation.
 The disturbance of this signal could cause a propagation of issues way outside the integrated circuit, impacting other electronic modules and making some functionalities temporarily unavailable.
 
@@ -59,7 +59,7 @@ The second output of the pre-regulator called V\textsubscript{pwr} provides a \S
 % Second block
 The bandgap reference, connected downstream, is powered by V\textsubscript{clamp9}.
 After a startup delay, it generates a \SI{1.0}{\volt} voltage reference on V\textsubscript{ref1p0}.
-This reference is stable across a wide range of temperature, process variation and process mismatches.
+This reference is stable across a wide range of temperatures, process variation and process mismatches.
 The bandgap also outputs a \SI{10}{\micro\ampere} current reference on I\textsubscript{ref10u}, and the V\textsubscript{bgok} flag to signal it is ready for operation.
 
 % Third major block

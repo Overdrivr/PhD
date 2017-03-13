@@ -4,7 +4,7 @@
 % A testchip has been made to put measurement structures on silicon
 Integrated circuits are very dense and fragile devices, enclosed in plastic or ceramic packages.
 It is nearly impossible to measure electrical properties without physical access.
-For instance, it could be useful to measure potential inside a given net inside the circuit.
+For instance, it could be useful to measure the potential at a given net inside the circuit.
 With integrated circuits, this is not doable and most of the time the external connections are the only points of access.
 Even with physical internal access, placing micro-probes to contact metal connections can disturb sensitive parts of the device.
 To overcome these issues, new approaches are required.
@@ -27,7 +27,7 @@ It is monitored in multiple points by the measurement and monitoring structures.
 
 % Left supply
 The second instance powers the monitoring functions and communication buses.
-It must not be disturbed by the discharges injected during testing on DC\textsubscript{2}.
+It must not be disturbed by the discharges injected during testing on DC\textsubscript{2} pin.
 It has its own external supply pin DC\textsubscript{1}, isolated from DC\textsubscript{2}.
 Large external filtering and decoupling capability has been setup on DC\textsubscript{1}.
 Except for the ground connection, the two regulators do not share connections.
@@ -36,9 +36,9 @@ Except for the ground connection, the two regulators do not share connections.
 The on-chip monitoring system is composed of several overvoltage and undervoltage detectors.
 They monitor voltages of multiple nets inside the supply under test.
 There are in total 9 detectors in the testchip.
-5 of them are dedicated to preliminary testing and self-validation, and are not actually monitoring analog blocks.
-The 4 remaining blocks are monitoring the regulator under test (Table \ref{tab:detectors}).
-Threshold can be configured externally using a communication bus.
+Five of them are dedicated to preliminary testing and self-validation, and are not actually monitoring analog blocks.
+The remaining four blocks are monitoring the regulator under test (Table \ref{tab:detectors}).
+Overvoltage and unvervoltage detector thresholds can be configured externally using a communication bus.
 When new value is set through the communication, a digital to analog converter generates the new threshold for each detector.
 The detectors are able to detect level crossings from half a volt up to \SI{13}{\volt}, which is designed to match the voltage range of most signals inside the chip.
 
@@ -47,10 +47,10 @@ The detectors are able to detect level crossings from half a volt up to \SI{13}{
 \begin{tabular}{@{}lll@{}}
 \toprule
 Name           & Nominal value     & Function \\ \toprule
-uv\_9V	       & \SI{9}{\volt}     & undervoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_9V	       & \SI{9}{\volt}     & overvoltage detect on v\textsubscript{clamp9} (settable threshold)\\
-ov\_vref1p2	   & \SI{1.2}{\volt}   & overvoltage detect on bandgap reference (settable threshold) \\
-uv\_vref1p2	   & \SI{1.2}{\volt}   & undervoltage detect on bandgap reference (settable threshold) \\
+uv\_9V	       & \SI{9}{\volt}     & UV detection on v\textsubscript{clamp9} (settable threshold)\\
+ov\_9V	       & \SI{9}{\volt}     & OV detection on v\textsubscript{clamp9} (settable threshold)\\
+ov\_vref1p2	   & \SI{1.2}{\volt}   & OV detection on bandgap reference (settable threshold) \\
+uv\_vref1p2	   & \SI{1.2}{\volt}   & UV detection on bandgap reference (settable threshold) \\
 \bottomrule
 \end{tabular}
 \caption{Detectors on core functions}
@@ -102,7 +102,7 @@ The offset of the designed comparator is below \SI{5}{\milli\volt} and the switc
 On the output of the comparator (Fig. \ref{fig:architecture-ov}), an optional RC filter can be connected.
 This filter can deglitch very short overvoltages, to only let large overvoltages pass through the detector.
 The strategy behind this filter is to use multiple detectors monitoring the same net, each one with a different filter.
-In function of which detectors triggered, an estimation of the overvoltage length can be made.
+In function of which detectors is triggered, an estimation of the overvoltage length can be made.
 
 % Hysteresis buffer
 After the filter, an hysteresis buffer guarantees that a clean digital signal will be fed to the latch.
@@ -114,7 +114,7 @@ By default it stores a low-level.
 Its copy input $D$ is connected to the supply.
 If the hysteresis buffer triggers high, the enable pin triggers a copy in the latch.
 The output $Q$ copies the value from the $D$, storing a logical high in the latch.
-This way, any detected overvoltage or undervoltage is stored until it can be red or the latch is reset.
+This way, any detected overvoltage or undervoltage is stored until it can be read or the latch is reset.
 
 % Origin of reference voltages
 The reference voltages for these comparators come from either fixed-values set by the protected supply, or \gls{dac} that can be reconfigured through the communication system.
@@ -125,8 +125,8 @@ The reference voltages for these comparators come from either fixed-values set b
 % Why a comm IO
 The manufacturing process at NXP for test vehicles requires a 48 pin package.
 On those 48 pins, a few are already required for ground connection and substrate connection.
-Also, the two instances of the regulation function each need a supply connection and two external decoupling capacitors.
-The on-chip current sensor also require 4 pins for the calibration pattern and two pins per actual sensor.
+Each of the two instances of the regulation function needs a supply connection and two external decoupling capacitors.
+The on-chip current sensor requires 4 pins for the calibration pattern and two pins per actual sensor.
 In the end, the available pin count would be too small for allowing to connect each detector to its own external pin.
 To overcome this issue, a custom communication bus has been designed, to discuss with the testchip before and after ESD tests.
 Initially, the JTAG (Joint Test Action Group) \cite{jtag} protocol was envisioned for this application.
@@ -136,12 +136,12 @@ However, the JTAG system needs a digital state-machine for operation, described 
 This step requires digital-synthesis, a step that converts a HDL sources into electrical netlist.
 Given the resource constraints in this research work, this step was not available for this test vehicle.
 Instead, a simplified serial to parallel protocol has been designed from scratch.
-The main idea to design reusable communication cells that can be duplicated and connected in a chain fashion, to get a register map of any size easily.
+The main idea is to design reusable communication cells that can be duplicated and connected in a chain fashion, to get a register map of any size easily.
 Changing the size of the register is simply a matter of adding or removing individual cells.
 No digital-synthesis is being required.
 
 % Overall architecture
-The chain of individual cells functions by propagating from cell to cell an enable signal.
+The chain of individual cells operates by propagating from cell to cell an enable signal.
 Each time a cell receives the enable signal, it will perform its task, then pass the enable to the next cell at the next clock edge.
 
 \subsubsection{Read cell}
@@ -230,7 +230,7 @@ D  &  SDI  &  SE  &  CLK  &  Q \\ \midrule
 % Describe the chronogram
 Fig. \ref{fig:write-cell-curve} shows the simulated behavior of a chain of 8 writing cells.
 Signals in green (\textit{en1} and \textit{clk}) must be provided externally.
-Signals in blue are internal control signals, to help the cells determine if to who belongs the data on the bus.
+Signals in blue are internal control signals, to help the cells determine to who belongs the data on the bus.
 The signals in red (\textit{bit 0} to \textit{bit n}) are the data output, set on each individual output bit.
 Ultimately, the reading-cell performs a serial to parallel conversion.
 The serial data is set on \textit{bus}, and the parallel outputs are \textit{bit 0} to \textit{bit n}.
@@ -238,7 +238,7 @@ The serial data is set on \textit{bus}, and the parallel outputs are \textit{bit
 \subsection{On-chip near-field current sensors}
 
 % Measuring currents is important too
-Current sensing magnetic loops were integrated on silicon to measure current trough a few critical nets.
+Current sensing magnetic loops were integrated on silicon to measure current through a few critical nets.
 They are sensitive to currents circulating nearby, and were placed close to metal tracks in which current must be measured.
 By coupling, the sensor generates a voltage proportional to the derivative of the current in the track.
 Figs. \ref{fig:near-field-current-sensor} and \ref{fig:near-field-current-sensor-layout} give respectively a visual representation of the metallic loop and its layout.
@@ -264,7 +264,7 @@ The first level (in red) and the third level (in purple) form a circle.
 Metallic vias connect both levels to close the loop vertically.
 Finally, the sensed current is at the second level (pale blue), and circulates between nets \textit{S1} and \textit{S2}.
 An oscilloscope with \SI{50}{\ohm} input impedance performs a differential voltage measurement between pins \textit{C1} and \textit{C2}.
-An example waveform obtained by injecting a rectangular pulse is given in Fig. \ref{fig:nfs-wvf}.
+An example of waveform obtained by injecting a rectangular pulse is given in Fig. \ref{fig:nfs-wvf}.
 The obtained waveform requires specific post-processing to reconstitute the original current waveform.
 The post-processing is detailed earlier in section \ref{sec:on-chip-near-field-process}.
 
@@ -280,7 +280,7 @@ In total, there are 6 near-field current sensors located on the device.
 The 6\textsuperscript{th} sensor is dedicated to calibration.
 The others are placed strategically on main \gls{io} susceptible to be disturbed directly or indirectly by \gls{esd}s.
 Sensor \textit{1} measures the current on the supply under test power input.
-During testing, this pin is be exposed to \gls{esd}s coupled on top of a DC supply voltage.
+During testing, this pin is exposed to \gls{esd}s coupled on top of a DC supply voltage.
 Internally, this input is protected by a large \gls{esd-protection}, able to sustain IEC 61000-4-2 \gls{esd-gun} discharges.
 Sensor \textit{2} measures the current absorbed and deviated by the \gls{esd-protection} into the \textit{gndsub} metal ring (local ground reference).
 Sensors \textit{3} measures the current flowing to the external stabilization capacitor of the regulator under test.
@@ -291,7 +291,7 @@ Finally, sensors \textit{4} and \textit{5} measure the currents flowing from the
 %
 The primary supply chain under test is directly extracted from a real product, described in \ref{sec:product-desc}.
 It is placed in appropriate operating conditions on the testchip, and behaves identically to the real product.
-Except for the two supply blocks, all the functionalities described previously were designed, simulated and layouted.
+Except for the two supply blocks, all the functionalities described previously were designed, simulated and the layout drawn.
 All layouts were assembled together to form the topcell (Fig. \ref{fig:top-cell-layout}).
 The complete pinout is given in appendix \ref{apx:testchip-pinout}.
 
