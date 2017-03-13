@@ -28,18 +28,7 @@ The validity of this threshold is discussed after in \ref{sec:limits-block-cz-fi
 
 % What does not change
 The rest of the methodology remains identical.
-In particular, model chaining is performed the same way since block models still accept and input width/disturbance and return an output width/disturbance.
-
-% Summary of the process
-%Fig. \ref{fig:full-method-v2} summarizes the entire characterization and chaining process for a 2-block setup.
-%Each block is characterized, generating the two tables mentionned earlier.
-
-%\begin{figure}[!h]
-%  \centering
-%  \includegraphics[width=0.7\textwidth]{src/4/figures/full_method_overview_v2.pdf}
-%  \caption{Overview of improved bottom-up method - example with two blocks}
-%  \label{fig:full-method-v2}
-%\end{figure}
+In particular, model chaining is performed the same way since block models still accept an input width/disturbance and return an output width/disturbance.
 
 \subsubsection{Application of the improved method}
 
@@ -75,21 +64,21 @@ The \SI{-1.6}{\volt} value is obtained by taking coordinates of the input stimul
 \SI{-1.6}{\volt} then corresponds to the gradient value at those coordinates.
 The \SI{1800}{\nano\second} is obtained with the same input coordinates but applied to Fig. \ref{fig:pre_regu_width} instead.
 The same process is then used for the bandgap and the regulator.
-V\textsubscript{1p0} is predicted at \SI{-1.25}{\volt} during \SI{3300}{\nano\second}.
+V\textsubscript{ref1p0} is predicted at \SI{-1.25}{\volt} during \SI{3300}{\nano\second}.
 V\textsubscript{2p5} is predicted at \SI{2.0}{\volt} during \SI{2700}{\nano\second}.
 Those values are employed for generating model waveforms, and are compared to the reference simulation in Fig. \ref{fig:reference_simu_v2}.
 
 % Curve analysis
 The model matches correctly the simulation of V\textsubscript{clamp9}, both in terms of amplitude and width.
 The width is slightly underestimated but overall the result is acceptable.
-For V\textsubscript{1p0}, the width is extremely well reproduced, but the amplitude is about twice the reference value.
+For V\textsubscript{ref1p0}, the width is extremely well reproduced, but the amplitude is about twice the reference value.
 It seems that taking the minimum amplitude value during the characterization is not ideal.
 This error should be investigated further to determine the actual root cause and provide a solution.
 The last signal V\textsubscript{2p5} shows a quite good correlation despite the fact that it is a triangle-like waveform.
 More validations were performed with (\SI{-20}{\volt}, \SI{1}{\micro\second}) and (\SI{-20}{\volt}, \SI{100}{\nano\second}) stimuli.
 The results are provided in appendix \ref{apx:block-model-comparison}.
 Overall, the modifications brought to the modeling method seemed to have a positive impact on the curve models.
-A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{1p0} that systematically suffers from amplitude modeling error.
+A lot of room is left for improvements, in particular for reproducing the bandgap output signal V\textsubscript{ref1p0} that systematically suffers from amplitude modeling error.
 
 \begin{figure}[!h]
   \centering
@@ -109,7 +98,7 @@ The next section discusses further improvements for extracting width and amplitu
 In the simulations described earlier, a single width and maximum amplitude per waveform were extracted manually.
 However, waveforms are never perfectly squared, and an width and amplitude cannot always be extracted easily.
 The challenge is to find the right rule for simplifying them into a rectangular waveform, and extracting the two parameters.
-This applies to the input waveform and the output waveform during the characterization of a block.
+This applies to the input and the output waveforms during the characterization of a block.
 
 % First approach with a 90% amplitude
 Initially, the rules were to set $V$ equal to the maximum value of the waveform (input or output), and $W$ the width of the pulse at \SI{90}{\percent} of $V$.
@@ -132,11 +121,11 @@ The width of the pulse is much shorter than the original curve, leading the mode
 % Explain case C
 Case \textit{B} is observed on nets with high capacitive coupling to ground.
 Those signals are not directly disturbed by the \gls{esd}, but the block that drives them can go into reset.
-In this situation, the nets slowly decreases then, once functionality resumes, the nets goes back to its nominal value.
+In this situation, the net slowly decreases then goes back to its nominal value once functionality resumes.
 With the \SI{90}{\percent} threshold, a large area of the disturbed waveform is missing in the model, making it very inaccurate.
 
 % What is the consequence
-In both those cases, the \SI{90}{\percent} threshold leads to underestimating the total disturbance width.
+In both cases, the \SI{90}{\percent} threshold leads to underestimating the total disturbance width.
 The modeled waveform has a much smaller duration and area than the original one.
 Overall, it was observed that the model and original waveform areas should be close for the models to work.
 

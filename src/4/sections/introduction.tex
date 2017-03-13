@@ -1,11 +1,11 @@
 % Electronic schematics are composed of transistor models
-The conception flow of integrated circuits relies on circuit schematics, a symbolic view describing an electronic circuit.
+The design flow of integrated circuits relies on circuit schematics, a symbolic view describing an electronic circuit.
 Those schematics are converted into a netlist composed of all components inside the schematic and connections between them.
 At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
 Each element is described by a model, which is a mathematical or algorithmic representation of their behavior.
 In electronics, models usually link current and voltages at the different terminals of the device, and can accept external parameters such as temperature.
 With the netlist and the model library, the simulator knows the stimuli, the devices and the connections inside the circuit.
-It is able to simulate circuit behavior, allowing for validation of the functionality very early in the design phase.
+It is able to simulate the circuit behavior, allowing for validation of the functionality very early in the design phase.
 As detailed in the global introduction, this is the main reason why simulations are so valuable and why simulation tools for ESD can avoid late and costly mistakes.
 
 % Circuits are complex hierarchies
@@ -29,30 +29,30 @@ Therefore, the investigation time can be rather large.
 
 % What is not taken into account in those transistor level models
 Also, those models and schematic are not perfect and do not take everything into account.
-Parasitic devices can be extracted from the layout, but require a layout which often is not designed until the end of the conception flow.
+Parasitic devices can be extracted from the layout, but require a layout which often is not achieved until the end of the design flow.
 Also, extraction is a time consuming and complex task, that takes quite some time to be computed.
-Finally, some phenomena such as substrate coupling are simply not reproduced and need special tooling for simulating them.
+Finally, some phenomena such as substrate coupling are simply not reproduced and need special tools for simulating them.
 
 % Talk about SEED and why it is a main driver for this chapter
 The \gls{seed} methodology is a novel approach for efficiently designing ESD robust applications.
 It is a significant trend in the ESD field supported by the Industry Council \cite{seed}.
-This methodology recommends a collaboration the chip and the system to handle the \gls{esd} robustness.
+This methodology recommends a global approach where the \gls{esd} robustness is handled by both integrated circuits and electronic modules.
 The goal of this method is to provide the most efficient and cost-effective solution for designing products, with a combination of protections at the system level and at silicon level.
 So far, \gls{seed} applies to hard-failure.
 It is believed that this trend will also apply to soft-failure once the topic starts to be more experienced by the community.
-The major lock nowadays is the lack analog IC function models that can be freely distributed, and that would allow equipment manufacturers to perform complete ESD simulations with the integrated circuit model.
+The major lock nowadays is the lack of analog IC function models that can be freely distributed, and that would allow equipment manufacturers to perform complete ESD simulations with the integrated circuit model.
 
 % Black box model is a solution
 Black box models are a potential solution to the issues and limitations described previously.
 They only reproduce the behavior of the device from an external point of view, without knowing intrinsic details.
 Because they abstract all the inner complexity, and are much simpler, they help drastically reducing simulation time of transistor-level schematics.
-The also hide the inner functionality and conception details.
+They also hide the inner functionality and design details.
 They can be distributed freely without revealing intellectual property.
 
 % What is done in this chapter
 In this chapter, three different kinds of modeling approaches at the integrated circuit level are explored.
 A bottom-up modeling method is presented first.
-It focuses on modeling mathematically interaction between an input and an output of individual block functions inside the chip.
+It focuses on mathematically modeling the interaction between an input and an output of individual block functions inside the chip.
 Those individual blocks can then be chained together to deduce the behavior of the complete functionality against a transient disturbance, using a much simpler model than the transistor-level schematic.
 A similar method is applied to a complete IC function.
 The goal is a bit different because the goal is to simulate electrically an IC function with a black box model.

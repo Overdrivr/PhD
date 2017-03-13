@@ -16,7 +16,7 @@
 \usepackage{wrapfig}  % In-line Pictures
 \usepackage{verbatim} % Code
 \usepackage{mathtools,amssymb}
-\usepackage{minted}   % Code
+\usepackage[newfloat]{minted}   % Code
 \usepackage[table,xcdraw]{xcolor} % For colors in tables
 \usepackage{textgreek}% Greek language
 \usepackage{booktabs} % Tables
@@ -31,7 +31,7 @@
 \usepackage{hyperref}    % Links
 
 % Package config
-\newenvironment{code}{\captionsetup{type=listing}}{}
+\newenvironment{code}{\captionsetup{type=listing,position=top}}{}
 \DeclareSIUnit\sq{\ensuremath{\Box}}
 \DeclareSIUnit\sample{S}
 \DeclareSIUnit\div{div}
@@ -65,7 +65,7 @@
 \njudge{8}
 \makesomeone{judge}{1}{Patrick Austin}{Professeur d'Université}{Président du Jury}
 \makesomeone{judge}{2}{Alain Sauvage}{Docteur}{Membre du Jury}
-\makesomeone{judge}{3}{Frederic Lafon}{Docteur HDR}{Membre du Jury}
+\makesomeone{judge}{3}{Frederic Lafon}{Docteur}{Membre du Jury}
 \makesomeone{judge}{4}{Geneviève Duchamp}{Professeur d'Université}{Membre du Jury}
 \makesomeone{judge}{5}{Pascal Nouet}{Professeur d'Université}{Membre du Jury}
 \makesomeone{judge}{6}{Fabrice Caignet}{Maitre de Conférence ?}{Membre du Jury}

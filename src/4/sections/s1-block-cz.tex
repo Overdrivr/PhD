@@ -1,4 +1,4 @@
-\section{Bottom-up block failure modeling}
+actual\section{Bottom-up block failure modeling}
 \label{sec:bottom-up-modeling}
 
 \subsection{Block failure characterization and modeling method}
@@ -8,7 +8,7 @@
 The modeling method presented in this section focuses first on studying low-level cells of the circuit.
 They are characterized individually, leading to the definition of a failure model for each cell.
 In a second step, the individual models are linked together.
-The connection between the models reproduce the connections between the cells in the actual circuit.
+The connection between the models reproduces the connections between the cells in the actual circuit.
 Finally, an electrical stimulus such as an electrostatic discharge is fed on the input of the first model.
 It is applied on this model that produces an output signal.
 In turn, this signal is used as stimulus for the second model in the chain which is using it as input.
@@ -28,14 +28,14 @@ This is why the characterization method presented here focuses on blocks and not
 
 % Models are not electrical but failure models
 The goal of this method is to build a propagation model and not an electrical \gls{spice} model.
-The models built here are not usable directly in standard simulations and does not produce strict waveforms on their outputs.
+The models built here are not usable directly in standard simulations and does not produce actual waveforms on their outputs.
 Instead, they represent input and output waveforms by bounding boxes of a given amplitude and width.
 The methodology is built on the hypothesis that simplified \gls{esd} waveforms could be sufficient to estimate the robustness of an integrated function.
-This hypothesis is tested as detailed later in the document.
+This hypothesis is validated in the document.
 
 % Describe the changes
 Several refinements of the modeling methods were applied to solve issues as they were encountered.
-This chapter gives a logical history of those improvements in order to understand the starting phase and the modifications applied after.
+This chapter gives a logical history of those improvements in order to understand the starting phase and the corrective modifications.
 Initially, Wunsch and Bell characterization \cite{wunsch-bell} is used to determine failure levels of individual cells when exposed to stresses of different width and amplitude.
 A single failure criteria was preliminary established for each model.
 It usually took the form of a voltage threshold applied on the output of a cell, above which a fault is recorded.
@@ -60,7 +60,8 @@ The threshold is chosen depending on multiple parameters such as the functionali
   \label{block_function_cz}
 \end{figure}
 
-The results are summarized into table \ref{simulation-results}.
+The results can be summarized into a table.
+An example is provided with table \ref{simulation-results}.
 The simulations in red contain a fail, meaning that the output voltage crossed the failure threshold.
 
 \begin{table}[!h]
@@ -73,7 +74,7 @@ The simulations in red contain a fail, meaning that the output voltage crossed t
 \SI{5}{\volt}  & {\color[HTML]{32CB00} sim11} & {\color[HTML]{32CB00} sim21} & {\color[HTML]{32CB00} sim31} & {\color[HTML]{FE0000} sim41} \\
 \bottomrule
 \end{tabular}
-\caption{Example of results on a set of simulations}
+\caption{Example of results on a set of simulations (x-axis: pulse width, y-axis: pulse amplitude, red color corresponds to a detected failure) }
 \label{simulation-results}
 \end{table}
 
@@ -110,7 +111,7 @@ A \SI{15}{\volt} \SI{2}{\micro\second} stress caused a failure that lasted \SI{3
 \SI{5}{\volt}  & {\color[HTML]{32CB00}}       & {\color[HTML]{32CB00} }      & {\color[HTML]{32CB00} }                       & {\color[HTML]{F56B00} \SI{2}{\micro\second}}  \\
 \bottomrule
 \end{tabular}
-\caption{Example result set containing failure width information}
+\caption{Example result set containing failure width information (x-axis: pulse width, y-axis: pulse amplitude, a warmer color corresponds to a longer failure)}
 \label{simulation-results-bis}
 \end{table}
 
@@ -128,7 +129,7 @@ In this figure, the warmer the gradient, the longer the output is disturbed.
   \label{wb_cz_curve_example_v2}
 \end{figure}
 
-The gradient can also be discretized into a few areas for better readability as shown in figure \ref{wb_cz_curve_example_v2_discrete}.
+The gradient can also be discretized into a few areas for better legibility as shown in figure \ref{wb_cz_curve_example_v2_discrete}.
 This representation looses some information compared to the gradient one but is easier to generate and read.
 
 \begin{figure}[!h]
@@ -162,15 +163,14 @@ Ultimately, the goal is to investigate whether or not a fixed failure threshold 
 
 % What is done next
 In the next section, those individual block models are chained together to deduce the robustness of a complete function.
-The processed is explained in detailed and is later applied on a practical case.
+The process is explained in detail and is later validated with a real case study.
 
 \subsection{Block models chaining}
 \label{sec:block-chaining}
 
 % Explain the chaining mechanism
-This section presents the second phase of the method that consists in chaining individual block models to deduce the robustness of a higher-level function.
+This section presents the second phase of the method that consists in chaining individual block models to predict the robustness of a higher-level function.
 To present this concept of chaining models, a purely hypothetical example is taken first.
-The method is tested with a true case study afterwards.
 The characterization process detailed previously is performed on two different blocks, called $A$ and $B$ (see Fig. \ref{example_toplevel_function}).
 Those two blocks are part of an hypothetical higher-level function.
 The function has an external input (called \textit{in}) and an external output (called \textit{out}).
@@ -191,18 +191,18 @@ Those two properties are fed into the hypothetical characterization of block $A$
 In the graph, multiple curves can be identified, each corresponding to a boundary between two disturbance durations.
 For a point located below the green curve (with label "\SI{10}{\nano\second}"), no stress was recorded on the output.
 For a point located above the \SI{10}{\nano\second} curve and below the \SI{100}{\nano\second} curve, a stress was indeed recorded with a duration comprised between \SI{10}{\nano\second} and \SI{100}{\nano\second}.
-The exact value between those two boundaries is not known with this this kind visualization.
+The exact value between those two boundaries is not known with this kind of visualization.
 In the analysis, the lower boundary is always chosen because the output is disturbed for at least this value.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/4/figures/example_complete_curve.pdf}
+  \includegraphics[width=0.7\textwidth]{src/4/figures/example_complete_curve.pdf}
   \caption{Model A curve and determination of impact of the TLP pulse - values in color represent the duration of failure on the output}
   \label{example_complete_curve}
 \end{figure}
 
 % Interpretate stress to deduce net1
-With the given \SI{15}{\volt} \SI{100}{\nano\second} stimulus, the curve predicts that the output will fall below \SI{5}{\volt} (V\textsubscript{fail} of block A) during \SI{1}{\micro\second}.
+With the given \SI{15}{\volt} \SI{100}{\nano\second} stimulus, the curve predicts that the output will fall down below \SI{5}{\volt} (V\textsubscript{fail} of block A) during \SI{1}{\micro\second}.
 Those two values describe the signal on the output of block A.
 Those values are now used to describe the stimulus on block B, since both blocks are connected.
 The failure criteria that was used to extract the characterization curve also serves as amplitude for the output signal.
@@ -215,7 +215,7 @@ The curve predicts that with this stimulus, block B will be disturbed during \SI
 
 \begin{figure}[!h]
   \centering
-  \includegraphics{src/4/figures/example_complete_curve_B.pdf}
+  \includegraphics[width=0.7\textwidth]{src/4/figures/example_complete_curve_B.pdf}
   \caption{Model B curve and determination of impact of the TLP pulse}
   \label{example_complete_curve_B}
 \end{figure}

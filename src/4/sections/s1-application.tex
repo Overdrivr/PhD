@@ -1,7 +1,7 @@
 \subsection{Application to the test vehicle}
 \label{sec:application-test-vehicle}
 
-The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on the regulation function of the testchip.
+The method described in both previous sections (\ref{sec:block-failure-cz} and \ref{sec:block-chaining}) is tested in simulation on the voltage regulation function of the testchip.
 The testchip was presented in section \ref{sec:supply-desc}, and it was shown that negative rectangular pulses can generate functional failures in it.
 The regulation function is composed mostly of a pre-regulator, a bandgap and a regulator.
 
@@ -65,7 +65,7 @@ In the setup provided here, blocks are characterized independently in different 
 Therefore, the orange connection cannot be made between the two blocks.
 V\textsubscript{clamp2p5} is left floating on the bandgap output.
 For the regulator, the biasing signal is modeled with a \SI{2.5}{\volt} DC supply in series with a \SI{1}{\kilo\ohm} resistor.
-The impact of the removal of this connection on the failure signature is discussed later in section \ref{sec:impact-missing-conns}.
+The impact of the removal of this connection on the failure signature is discussed later.
 
 \begin{figure}[!h]
   \centering
@@ -152,18 +152,18 @@ Those waveforms are simply generated with the duration and amplitude predicted b
 
 % Comment the results
 Overall, the model chain predicts quite well the disturbance on the output of each block.
-V\textsubscript{batt} has no waveform model because it is the input external signal.
+V\textsubscript{batt} has no waveform model because it is the external input signal.
 
 % Vclamp9
 V\textsubscript{clamp9} is well modeled and both waveforms match quite well.
-It should be noted that the correlation on the amplitude between model and simulation is purely incidental.
+It should be noted that the correlation on the amplitude between model and the real \gls{spice} simulation is purely incidental.
 It is due to the fact that the failure criteria was arbitrarily set at \SI{0}{\volt}, and that the block circuit design tends to clamp the output voltage near \SI{0}{\volt} in case of a negative disturbance.
 
 % Vref1p0
 The width of V\textsubscript{ref1p0} is also correctly modeled and matches the reference.
 On the other hand, the amplitude shows a large correlation difference.
 Here again, the design seems to clamp the output voltage near \SI{0}{\volt} on negative transients.
-Since the failure criteria is set above that at \SI{0.5}{\volt}, both curves do not match.
+Since the failure criteria is set above that value at \SI{0.5}{\volt}, both curves do not match.
 
 % V2p5
 Large differences are observed for V\textsubscript{2p5} between model and reference.
@@ -175,4 +175,4 @@ Despite this, the disturbance was detected by the model which is already a good 
 % Transition with next section
 This first simulation proved that the model chain method definitely has some potential.
 It has also highlighted some limitations.
-The next section discusses further pitfalls of the model chain and an improvement is proposed and tested.
+The next section discusses further pitfalls of the model chain and an improvement is proposed and validated.

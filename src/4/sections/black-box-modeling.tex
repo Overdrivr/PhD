@@ -10,7 +10,7 @@ The \gls{seed} methodology normally applies to hard-failure, but in this chapter
 To achieve this, it is necessary to have simulation tools capable of simulating both elements at the same time.
 The black-box model presented in this chapter is a potential solution to this issue.
 It does not reveal the internal IC design while allowing complete simulations of board and integrated circuits together to predict soft-failures.
-It also abstracts the internal complexity of the integrated circuit design, allowing significantly faster simulations and less convergence issues.
+It also hides the internal complexity of the integrated circuit design, allowing significantly faster simulations and less convergence issues.
 
 % Explanation of the model
 The proposed model is composed of two port models and a failure model as shown in Fig. \ref{fig:black-box-principle}.
@@ -29,7 +29,7 @@ If a fail was detected, the information is transferred to the output port model 
 % How is the model constructed
 The failure model is obtained with a preliminary characterization method.
 It is also inspired by the Wunsch-Bell methodology \cite{wunsch-bell}.
-The failure model is extracted first, using a set of variable amplitude and variable width rectangular pulses applied on the input pin while monitoring the output pin.
+The failure model is extracted first, using a set of rectangular pulses of variable amplitudes and variable widths applied on the input pin while monitoring the output pin.
 After this step, the robustness of the function against this range of stresses is known.
 A curve is built that describes the failure of the output when an input is stressed.
 The second step is to electrically model both the input and the output ports.
@@ -44,7 +44,7 @@ Finally, once the two electrical models and the failure model have been construc
 To validate the concept, the characterization is performed on the integrated primary supply studied earlier (see Chapter \ref{sec:supply-desc}).
 The input pin is called $V_{batt}$ and accepts the battery supply voltage.
 The output pin is called $V_{2p5}$ and is supposed to deliver a \SI{2.5}{\volt} regulated supply.
-Fig. \ref{fig:black-box-applied} summarize the model configuration with those pins and function.
+Fig. \ref{fig:black-box-applied} summarizes the model configuration with those pins and function.
 
 \begin{figure}[!h]
   \centering
@@ -57,7 +57,7 @@ Fig. \ref{fig:black-box-applied} summarize the model configuration with those pi
 \subsection{Function failure model}
 
 % First the function failure is characterized
-The primary regulation function is characterized by applying a set of variable width and variable amplitude rectangular pulses on the input pin, while monitoring the behavior of the output pin.
+The primary regulation function is characterized by applying a set of rectangular pulses of variable widths and variable amplitudes on the input pin, while monitoring the behavior of the output pin.
 In case of significant variations of behavior, a failure is recorded.
 The characterization yields a lookup table (see Table \ref{tab:cz-failure}) that associates to an input width and an input amplitude a flag representing the presence or absence of a failure.
 
@@ -87,7 +87,7 @@ The input stress amplitude range is \SIrange{-50}{-500}{\volt}.
 The input stress width is comprised between \SI{1}{\nano\second} and \SI{1000}{\nano\second}.
 The characterization setup is given in Fig. \ref{fig:cz-black-box-setup}.
 On the input pin, a \SI{12}{\volt} bias supply is connected in series with the rectangular pulse generator.
-On the output, a \SI{100}{\nano\farad} capacitor is connected because required by the regulation function for stabilization.
+On the output, a \SI{100}{\nano\farad} capacitor is connected because required by the voltage regulation function for stabilization.
 
 \begin{figure}[!h]
   \centering
@@ -106,7 +106,7 @@ Amplitude or width alone are not necessarily sufficient to put the function at f
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/black_box_regulator.png}
-  \caption{Black-box characterization of the regulation function}
+  \caption{Black-box characterization of the regulation function (cases in grey correspond a failure and transparent cases to no-failure.)}
   \label{fig:cz-black-box}
 \end{figure}
 
@@ -290,7 +290,7 @@ This can be explained by looking at the I(V) curve of the output magnified betwe
 At the beginning of the simulation, the I(V) model sees a potential difference of \SI{2.0}{\volt} across its terminals.
 For a \SI{2.0}{\volt} voltage, the I(V) curve model produces a value of \SI{0.75}{\milli\ampere}.
 It is not identical to the characterized value of \SI{0.2}{\milli\ampere} but the error remains acceptable.
-This non-zero current is therefore forced by the Verilog-A model into the the capacitor, that keeps charging.
+This non-zero current is therefore forced by the Verilog-A model into the capacitor, that keeps charging.
 In itself, the combination of the DC source and the I(V) curve does not seem suitable for modeling an active output.
 
 \begin{figure}[!h]
@@ -318,19 +318,19 @@ In this section, a first attempt at extracting and creating black-box models for
 TLP characterization was performed on input and output pin of a biased function, to extract an equivalent impedance.
 The resulting I(V) curve was then modeled using Verilog-A modeling language, then used in circuit simulations.
 For the input pin that is somehow equivalent to a passive device, this model has shown promising results with excellent correlation in both DC and transient domains.
-The Verilog-A model performed particularly good for the input when exposed to a positive rectangular stress.
+The Verilog-A model performed particularly well for the input when exposed to a positive rectangular stress.
 The correlation was less accurate with a negative rectangular pulse but remained acceptable for an ESD simulation.
 For the output pin, the situation was more complex because it should be modeled by an equivalent active device.
 A first model was proposed specifically for modeling active outputs, however it was not successful.
 Differences between the reference schematic and the model were simply too large, showing that a different or more complex approach is required.
-Despite the lack of correlation, this study has enabled to identify a important issue preventing to build a model of an integrated function, for ESD simulations.
+Despite the lack of correlation, this study has enabled to identify an important issue preventing to build a model of an integrated function, for ESD simulations.
 Solving this issue should be the topic for future work and research, and identifying it was already a significant milestone to reach for achieving this goal.
-Ultimately, black box models should enable to replace a integrated function during an ESD simulation, in order to reduce complexity, simulation time, and protect intellectual property.
+Ultimately, black box models should enable to replace an integrated function during an ESD simulation, in order to reduce complexity, simulation time, and protect intellectual property.
 
 % Opening work
-There are many new leads to explore on these black box models to get more accurate results.
+There are many new approaches to explore on these black box models to get more accurate results.
 It was shown that modeling of active outputs directly with a \gls{tlp} characterization and a bias does not seem to work and more research is required on this topic.
 Also, the behavior of the input port model against non-rectangular waveforms should be studied and investigated to ensure that the model works correctly in dynamic regime.
-The piecewise-linear modeling technique, usually employed in the ESD field for modeling ESD protections, should be improved by adding more fitting points to fit more closely the extracted I(V) curve.
+The piecewise-linear modeling technique, usually employed in the ESD field for modeling ESD protections, should be improved by adding more points to fit more closely the extracted I(V) curve.
 Also, this methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
-Research on all those topics should lead to the development a black-box model that will work for powered electrostatic discharge simulations.
+Research on all those topics should lead to the development of a black-box model that will work for powered electrostatic discharge simulations.

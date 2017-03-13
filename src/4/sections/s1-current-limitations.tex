@@ -10,7 +10,7 @@ This section discusses those errors and how improvements can be implemented.
 
 % Explain why the fixed failure criteria is wrong
 The simulation presented earlier (Fig. \ref{fig:reference_simu}) clearly showed that the fixed threshold is a major source of modeling error.
-The problem was particularly clear for the amplitude of signal V\textsubscript{1p0}.
+The problem was particularly clear for the amplitude of signal V\textsubscript{ref1p0}.
 Indeed, a fixed failure criteria leads to an oversimplification of the output waveform model, as illustrated by Fig. \ref{fig:impact-single-failure-criteria}.
 The green waveforms show the case where the failure is not recorded, and the curve model is simply flat and constant (V\textsubscript{OUT} model).
 The red waveforms show the case where a failure is well recorded, but the amplitude of the original signal goes way beyond the failure criteria.
@@ -28,7 +28,7 @@ Originally, the fixed failure criteria was used for historical reasons.
 It came from characterization of hard-failure robustness performed with Wunsch and Bell method \cite{wunsch-bell}.
 The methodology presented in this document started directly from this approach, and a first prototype was implemented using this same fixed failure criteria.
 In regard of the results presented earlier, the applicability of this fixed threshold for modeling soft-failure of analog block functions has been questioned.
-The analysis in this section demonstrated that \textbf{a fixed failure threshold is not suitable in the modelization of analog blocks}.
+The analysis in this section demonstrated that \textbf{a fixed failure threshold is not suitable in the modeling of analog blocks}.
 This major observation is confirmed in the next section that discusses the impact of the fixed characterization load.
 
 \subsubsection{Impact of characterization output load}
@@ -42,8 +42,8 @@ It is possible that this fixed high-impedance load is a factor of error for the 
 % Compare 1Mohm with real case where blocks are connected together
 In practice, each block sees a load impedance on its output much different than \SI{1}{\mega\ohm}.
 For instance, the output of the pre-regulator is used as a supply by other blocks.
-It can deliver a maximum of \SI{20}{\milli\ampere} of current while maintaining \SI{8}{\volt}, corresponding to a minimum output load this block can sustain is \SI{400}{\ohm}.
-The bandgap, on the other hand, provides a reference voltage at \SI{1}{\volt} but does not deliver a lot of DC current.
+It can deliver a maximum current of \SI{20}{\milli\ampere} while maintaining \SI{8}{\volt}, corresponding to a minimum output load this block can sustain is \SI{400}{\ohm}.
+The bandgap, on the other hand, provides a reference voltage at \SI{1}{\volt} but can only deliver a small DC current in the range of \SI{5}{\micro\ampere}.
 More than \SI{1}{\micro\ampere} is enough to make the output fall of a hundred millivolts.
 In this case, the bandgap must see an output impedance of at least \SI{1}{\mega\ohm}.
 
@@ -69,50 +69,50 @@ This is a major observation, because it shows that the output load value is not 
 \begin{tabular}{llll}
 \toprule
 load (\textOmega) & amplitude (V) & length (ns) & output disturbed (ns)   \\ \midrule
-500               & -10        & 10         & 10n    \\
-5k                &            &            & 1n    \\
+500               & -10        & 10         & 10    \\
+5k                &            &            & 1    \\
 50k               &            &            & None    \\
 1M                &            &            & None    \\
 \rowcolor[gray]{.95}
-500               &            & 100        & 100n    \\ \rowcolor[gray]{.95}
-5k                &            &            & 1n    \\ \rowcolor[gray]{.95}
+500               &            & 100        & 100    \\ \rowcolor[gray]{.95}
+5k                &            &            & 1    \\ \rowcolor[gray]{.95}
 50k               &            &            & None    \\ \rowcolor[gray]{.95}
 1M                &            &            & None    \\
 
-500               &            & 1000       & 1330n    \\
-5k                &            &            & 1289n    \\
+500               &            & 1000       & 1330    \\
+5k                &            &            & 1289    \\
 50k               &            &            & None    \\
 1M                &            &            & None     \\
 \rowcolor[gray]{.95}
-500               & -30        & 10         & 20n    \\ \rowcolor[gray]{.95}
-5k                &            &            & 10n    \\ \rowcolor[gray]{.95}
-50k               &            &            & 10n    \\ \rowcolor[gray]{.95}
-1M                &            &            & 10n    \\
+500               & -30        & 10         & 20    \\ \rowcolor[gray]{.95}
+5k                &            &            & 10    \\ \rowcolor[gray]{.95}
+50k               &            &            & 10    \\ \rowcolor[gray]{.95}
+1M                &            &            & 10    \\
 
-500               &            & 100        &  506n   \\
-5k                &            &            &  580n   \\
-50k               &            &            &  594n   \\
-1M                &            &            &  594n   \\
+500               &            & 100        &  506   \\
+5k                &            &            &  580   \\
+50k               &            &            &  594   \\
+1M                &            &            &  594   \\
 \rowcolor[gray]{.95}
 500               &            & 1000       & 2087    \\ \rowcolor[gray]{.95}
 5k                &            &            & 2194    \\ \rowcolor[gray]{.95}
 50k               &            &            & 2206    \\ \rowcolor[gray]{.95}
 1M                &            &            & 2206    \\
 
-500               & -45        & 10         & 46n    \\
-5k                &            &            & 10n    \\
-50k               &            &            & 10n    \\
-1M                &            &            & 10n    \\
+500               & -45        & 10         & 46    \\
+5k                &            &            & 10    \\
+50k               &            &            & 10    \\
+1M                &            &            & 10    \\
 \rowcolor[gray]{.95}
-500               &            & 100        & 657n    \\ \rowcolor[gray]{.95}
-5k                &            &            & 715n    \\ \rowcolor[gray]{.95}
-50k               &            &            & 717n    \\ \rowcolor[gray]{.95}
-1M                &            &            & 727n    \\
+500               &            & 100        & 657    \\ \rowcolor[gray]{.95}
+5k                &            &            & 715    \\ \rowcolor[gray]{.95}
+50k               &            &            & 717    \\ \rowcolor[gray]{.95}
+1M                &            &            & 727    \\
 
-500               &            & 1000       & 2668n    \\
-5k                &            &            & 2764n   \\
-50k               &            &            & 2800n    \\
-1M                &            &            & 2800n    \\
+500               &            & 1000       & 2668    \\
+5k                &            &            & 2764   \\
+50k               &            &            & 2800    \\
+1M                &            &            & 2800    \\
 
 \bottomrule
 \end{tabular}
