@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="301.56683mm"
+   height="132.77101mm"
+   viewBox="0 0 1068.5439 470.44847"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="structure_of_phd.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="552.63068"
+     inkscape:cy="231.55994"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-133.61741,6.6427243)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="143.44167"
+       y="242.21986"
+       id="text4136"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="143.44167"
+         y="242.21986">soft-failure</tspan><tspan
+         sodipodi:role="line"
+         x="143.44167"
+         y="260.96985"
+         id="tspan4140">investigation</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 255.56859,249.29093 94.95434,-2.0203"
+       id="path4142"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 254.41731,244.89009 348.3615,163.57281"
+       id="path4144"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4146"
+       y="242.21986"
+       x="360.62445"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4150"
+         y="242.21986"
+         x="360.62445"
+         sodipodi:role="line">physical</tspan><tspan
+         y="260.96985"
+         x="360.62445"
+         sodipodi:role="line"
+         id="tspan4154">methods</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="357.59399"
+       y="154.84166"
+       id="text4167"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="357.59399"
+         y="154.84166"
+         id="tspan4169">virtual</tspan><tspan
+         id="tspan4171"
+         sodipodi:role="line"
+         x="357.59399"
+         y="173.59166">methods</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4173"
+       y="250.02879"
+       x="544.08423"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4177"
+         y="250.02879"
+         x="544.08423"
+         sodipodi:role="line">injection methods</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="787.02594"
+       y="238.91711"
+       id="text4181"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="787.02594"
+         y="238.91711"
+         id="tspan4183">TLP-HMM</tspan><tspan
+         sodipodi:role="line"
+         x="787.02594"
+         y="257.66711"
+         id="tspan4197">(chap 3.3)</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4185"
+       y="15.383681"
+       x="745.91309"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         y="15.383681"
+         x="745.91309"
+         sodipodi:role="line"
+         id="tspan4189">system-level</tspan><tspan
+         y="34.133682"
+         x="745.91309"
+         sodipodi:role="line"
+         id="tspan4203">ESD modeling</tspan><tspan
+         y="52.883682"
+         x="745.91309"
+         sodipodi:role="line"
+         id="tspan4205">(chap 3.1)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="549.52295"
+       y="163.93301"
+       id="text4193"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4195"
+         sodipodi:role="line"
+         x="549.52295"
+         y="163.93301">chip-level</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4207"
+       d="M 398.86912,135.79362 492.81331,54.476335"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4209"
+       d="m 439.41635,161.40766 94.95434,-2.0203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 438.4062,249.79601 94.95434,-2.0203"
+       id="path4211"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4213"
+       d="m 683.87327,246.26048 94.95434,-2.0203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="989.23218"
+       y="20.016027"
+       id="text4215"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4219"
+         sodipodi:role="line"
+         x="989.23218"
+         y="20.016027">TLP modeling</tspan><tspan
+         id="tspan4221"
+         sodipodi:role="line"
+         x="989.23218"
+         y="38.766029">(chap 3.2)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="559.74158"
+       y="305.58716"
+       id="text4225"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="559.74158"
+         y="305.58716"
+         id="tspan4229">on-chip methods</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 438.91128,262.42291 106.57109,36.3655"
+       id="path4231"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4233"
+       y="286.89935"
+       x="1019.361"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4235"
+         y="286.89935"
+         x="1019.361"
+         sodipodi:role="line">near-field</tspan><tspan
+         id="tspan4237"
+         y="305.64935"
+         x="1019.361"
+         sodipodi:role="line">current sensor</tspan><tspan
+         y="324.39935"
+         x="1019.361"
+         sodipodi:role="line"
+         id="tspan4247">(chap 3.4 &amp; 4.2.4)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 688.92403,307.87979 94.95434,-2.0203"
+       id="path4249"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4253"
+       y="305.58716"
+       x="795.61218"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4255"
+         y="305.58716"
+         x="795.61218"
+         sodipodi:role="line">measurement</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4257"
+       d="m 912.16774,307.87979 94.95436,-2.0203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="795.61218"
+       y="368.21661"
+       id="text4259"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="795.61218"
+         y="368.21661"
+         id="tspan4261">monitoring</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 690.94434,317.9813 97.47972,43.43656"
+       id="path4263"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="1019.361"
+       y="366.94397"
+       id="text4265"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1019.361"
+         y="366.94397"
+         id="tspan4269">OV/UV detectors</tspan><tspan
+         id="tspan4271"
+         sodipodi:role="line"
+         x="1019.361"
+         y="385.69397">(chap 4.2.2)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 912.16774,366.20611 94.95436,-2.0203"
+       id="path4273"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4277"
+       y="415.35947"
+       x="814.18359"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4279"
+         y="415.35947"
+         x="814.18359"
+         sodipodi:role="line">debug</tspan><tspan
+         y="434.10947"
+         x="814.18359"
+         sodipodi:role="line"
+         id="tspan4283" /></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4281"
+       d="M 689.51577,322.26701 788.42406,404.275"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4285"
+       y="412.65826"
+       x="1019.361"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         id="tspan4287"
+         y="412.65826"
+         x="1019.361"
+         sodipodi:role="line">flexible communication</tspan><tspan
+         y="431.40826"
+         x="1019.361"
+         sodipodi:role="line"
+         id="tspan4293">bus</tspan><tspan
+         y="450.15826"
+         x="1019.361"
+         sodipodi:role="line"
+         id="tspan4289">(chap 4.2.3)</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4291"
+       d="m 912.16774,411.9204 94.95436,-2.0203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text4295"
+       y="163.93301"
+       x="749.39319"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"><tspan
+         y="163.93301"
+         x="749.39319"
+         sodipodi:role="line"
+         id="tspan4297">intra-chip block modeling</tspan><tspan
+         y="182.68301"
+         x="749.39319"
+         sodipodi:role="line"
+         id="tspan4311">(chap 5.1)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="502.34167"
+       y="51.097965"
+       id="text4299"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4305"
+         sodipodi:role="line"
+         x="502.34167"
+         y="51.097965">system-level</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:Roboto;font-stretch:normal;font-variant:normal;"
+       x="737.25031"
+       y="98.575867"
+       id="text4313"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4315"
+         sodipodi:role="line"
+         x="737.25031"
+         y="98.575867">black box modeling</tspan><tspan
+         id="tspan4317"
+         sodipodi:role="line"
+         x="737.25031"
+         y="117.32587">(chap 5.2)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 633.70206,161.40766 94.95434,-2.0203"
+       id="path4319"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 624.58341,153.65076 105.7299,-48.46014"
+       id="path4321"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4325"
+       d="m 605.84491,39.264803 94.95434,-2.0203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 603.57143,55.219346 722.14286,96.290775"
+       id="path4327"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 870.84491,22.836232 94.95434,-2.0203"
+       id="path4329"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
