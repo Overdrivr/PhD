@@ -1,15 +1,33 @@
 \chapter{Conclusion}
 \label{sec:final-conclusion}
 
-As presented in the introduction, ESD are a major source of stress for electronic devices.
+% Introduce the conclusion
+Electrostatic discharges are a major source of stress for electronic devices.
 They can cause hardware failures, damaging permanently devices.
-This class of issues has been studied for ten years, and is still the core of ESD research.
+This class of issues has been studied for ten years, and is still the core of \gls{esd} research.
 Recently, a new class of failures started to be considered.
 Electrostatic discharges can cause temporary disturbances on devices.
-In the context of always ever-more sensitive electronic devices and IC in particular, this is an issue.
-Even more considering that electronic modules nowadays have increasingly large responsibilities in regard of our safety.
+Most recent integrated technologies enable large performances and massive integration, but also makes more challenging the protection of integrated circuits against external disturbances.
+In the same time, electronic modules have increasingly large responsibilities in regard of our safety.
 New trends for the autonomous car require electronic devices to take vital decisions for controlling the vehicule.
 Guarantying safety of operation against electrostatic discharge is critical.
+
+% Overview of the document
+% TODO
+This document detailed three years of research about functional robustness of integrated circuits against electrical transient disturbances.
+This field of research is relatively recent, and brings new challenges for \gls{ESD} teams in integrated circuit design companies.
+This topic requires broader interactions between circuit design team and \gls{esd} team.
+
+In the past, \gls{esd} teams expertise was required during the very early phase of the product, from the specification and architecture definition.
+During the block design phase,
+
+%TODO Comment
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/conclusion/figures/flow.pdf}
+  \caption{IC conception flow and proposed improvements}
+  \label{fig:new-flow}
+\end{figure}
 
 % Chap 1
 A presentation of the context and topic is conducted in the introduction (chapter \ref{sec:global-intro}).
@@ -61,8 +79,7 @@ There were multiple objectives for making this test vehicle.
 The first goal was to acquire waveforms inside the chip, using on-chip measurement structures and sensors, to validate that standard circuit simulations can be employed during an ESD event.
 The second goal was to determine when and how analog function were disturbed by transient events, by using custom error detection cells.
 This data was meant to validate the modelling methods presented later in the document (in chapter \ref{sec:methods-operating-esd-analysis}).
-Creating an entire chip with custom cell designs and block reuse, alongside with the two application boards was extremely challenging.
-This is especially true given limited resources and constraints inherent to the test vehicle process.
+Creating an entire chip with custom cell design and block reuse, alongside with two application boards was extremely challenging, especially with limited resources and the constraints inherent to the test vehicle process.
 Despite extensive testing and validation, issues were met with the communication system responsible for outputting measurement data.
 However, the two regulation functions and the on-chip sensors worked properly.
 The extensive feedback and knowledge gained from the development of this custom chip is a ground work for new versions of this test vehicle and soft-failure research at silicon-level in general.
@@ -73,67 +90,48 @@ Chapter \ref{sec:methods-operating-esd-analysis} is mainly focused on the develo
 The value of simulation tools is well known, because it enables to detect issues very early in the development cycle, which is extremely valuable for avoiding late issues and cutting the cost of fixing them late.
 The main challenge for ESD at silicon-level is the complexity of the circuits and simulations.
 Convergence issues are very common and sometimes extremely difficult to avoid.
-The complexity of the circuits makes finding issues manually extremely hard.
+Circuit complexity makes finding issues manually extremely hard.
 Most of the time, it is required to manufacture a first silicon to test the parts against ESD and identify soft-failures.
-To avoid those issues, new methods are required and two of them were proposed and explored during this research.
+To avoid very costly re-design and late fixes, new methods are required.
+In this research, two methods were developped and are described in detail.
 
 % First modelling method
-The first method consist in characterizing and modeling some blocks of an analog function.
-More specifically, the relationship between a given block input and block output.
-Goal is to know at the silicon level what individual block was disturbed.
-It is definitely a tool for the IC designers.
-After a block model was constructed, it is possible to propagate from block to block a disturbance in the shape of a rectangular pulse of a given width and amplitude.
-After each block, the disturbance changes, can increase or decrease in amplitude, become longer or shorter.
-Ultimately, this method gives a "bounding box" of the disturbance on the final net, which is often sufficient to detect a functional failure.
-This approach was tested with some success on the same case study than put previously on silicon.
-It is still at its very early days, assumes a lot of simplifications and requires many improvements, however preliminary results tend to show it could actually be usable in a foreseeable future.
-There are several challenges to overcome, in particular identifying the proper level in the hierarchy to model the blocks.
-Also, the propagation path is considered unidirectional, the discharge propagates from an entry point to an outer point.
-It is not really realistic, because it fact it spreads around the circuit.
-However, it is important to make simplifications initially in order to get a prototype at work and evaluate what improvements or modifications are actually needed.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/conclusion/figures/flow.pdf}
-  \caption{IC conception flow and proposed improvements}
-  \label{fig:new-flow}
-\end{figure}
+The first method targets analysis and soft-failure prediction of analog function inside the chip, to detect weak spots during early design phase.
+It is constituted of two steps, a preliminary characterization and block modeling followed by a chaining process to connect multiple models together and predict their combined robustness.
+The characterization is performed by injecting variable amplitude and variable width rectangular pulses.
+This characterization results in two different tables, that constitute the block model.
+Those tables or model can later be used to determine the response of the block on an output when an input is exposed to a stilumus.
+With multiple blocks, stimuli can be propagated from block to block, allowing to predict the shape of the waveform on the final output, just by knowing the waveform on the initial input.
+This approach was tested successfully on the test vehicle detailed previously.
+It has enabled to predict a failure on the regulator, for different input stresses inject on the battery input.
+In summary, this method was validated on a complex analog function coming directly from a real automotive product, and has made possible to predict the ESD robustness of this function using a purely behavioral model.
 
 % Second modelling approach
 The second modeling method is more focused on facilitating cooperation between IC manufacturers and equipment manufacturers.
 It integrates well inside the SEED methodology, where interaction between these two actors helps design robust products against ESD with optimal cost and development time.
 The objective is to characterize and model the relationship between an input pin and an output pin, and to check if a board simulation can be conducted with this black-box IC model.
-It was shown that a TLP characterization constitutes a good base for a pin model, in particular for modeling inputs.
+It was shown that a TLP characterization constitutes a good base for a pin model, in particular for modeling input pins.
 For output pins that are supposed to drive a potential in DC conditions, it was demonstrated that this method does not work and requires modifications.
 The I(V) curve extracted with the TLP combined with a DC model fails to drive correctly the output voltage and current.
 It is an interesting result that calls for more research on this topic.
 
-% Proposal
-% TODO Reduce and remove
-Finally, a new method is proposed for IC design teams.
-It is a complete proposal and has not been tested so far, however the concept seems highly promising with implications much further than ESD powered-on analysis and prediction.
-The idea is to let analog designers define for their analog function blocks a set of assertions, or checks, that are mandatory for proper operation.
-For instance, the check could be to ensure that a large enough voltage difference is present between the gate of a current mirror and ground.
-It is also possible to add a check to ensure that a ground net never goes above a few hundred millivolts, otherwise it is either the sign that an ESD has induced a ground shift or that this net is simply floating.
-Ultimately, each block could own its set of functional assertions, that would be checked by the simulator.
-An appropriate tooling for observing the results and failed assertions is of course required, but it would be extremely helpful during power-on esd analysis to find which block was at fault, what block failed the first, understand how a disturbance has propagated inside the circuit and much more.
-This tool could serve during the normal design flow, to guarantee functionality and immediately detect issues in block interconnections for instance.
-There are no known technology locks that would present this method to be implemented.
-Although not tested due to a lack of time, this tool is proposed and described inside this document because it was imagined from the experience gained with this research, and is believe to yield good and positive results.
-Because of its modular nature (each block gets its own set of assertions), it fits extremely well inside the current IC design flow.
-In particular, it is very friendly for modular IC design trends such as IP block reuse.
-There are many challenges, in terms of user interaction, processing and display of results, integration with current simulation environments to be solved.
-A first prototype could serve as a ground work to identify more accurately those challenges and prepare for a more advanced implementation.
-
 % Final Conclusion
-In conclusion, this work has explored many different topics and axes in the relatively new field of soft-failure ESD analysis.
-The research could have been conducted in a very different manner.
-For instance, it could have been a lot more IC-design-oriented.
-A specific failure could have been studied extensively, a patch proposed and tested with a test-vehicle.
-However, it was decided that this kind of highly specific highly focused approach would not be beneficial for future work.
-Instead, more general methods and tools were explored.
-At the end of this work, most of them remain merely at the prototyping phase.
-We feel that this work provided new axes and research for future research, and that other people can actually takes those tools from a prototype to a production ready tool.
-Improvements to near-field scan processing, improvements of the TLP-HMM and a larger validation of the TLP versus HMM correlation are probably the most simple follow-up work on the topic.
-The bottom-up modeling method, the black-box IC method are still largely at the prototype phase and will require extensive research work before being production-ready.
-Finally, the functional block checker, probably the most promising method among all those explored, needs initial work to make a prototype and evaluate the concept.
+This research work is one of earliest studies on the topic of ESD-induced functional failures of integrated functions.
+It is probably the first to propose analysis and modeling methods at chip level capable of predicting the propagation of a disturbance through multiple analog block functions.
+The proposed simulation methods have shown great potential, and open up for many subsequent work and research.
+In particular, future work on the model-chain method could involve:
+
+\begin{enumerate}
+  \item Simplification of waveforms into rectangular shapes: Waveforms are approximated by a single rectangular pulse.
+  It was shown that some waveforms could be approximated better with multiple rectangular shapes.
+  It is necessary to study if those multiple shapes could be applied on the model chain input and recombined at the end to deduce the impact of a complex input disturbance.
+  Those potential improvements could improve further the accuracy of the model chain.
+  \item More robust characterization method: The influence of all elements of the characterization setup should be studied, and eventually taken into account in the model. The goal is to ensure that it is truly the block function that is being characterized, and that the characterization circuit does not interfere or impact the results. Ultimately, the model will be more portable and reusable.
+  \item Support of interactions between multiple pins: so far, the characterization is performed with one input and one output.
+  It enables to apply a stimulus on an input pin and deduce the signal on an output pin.
+  The response on multiple output pins should be also be studied and modelled when multiple input pins are disturbed.
+  It could enable to be complete models of analog functions that could reproduce the entire propagation of a fault inside the chip.
+\end{enumerate}
+
+This concludes this study on the analysis and prediction of losses of functionnality of analog integrated functions induced by electrostatic discharges.
+It is a first work that has explored many different approaches and has opened up new leads for future research work.
