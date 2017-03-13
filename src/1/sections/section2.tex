@@ -29,7 +29,7 @@ Those three tests (HBM, CDM, MM) aim to guarantee that the devices can survive t
 An \gls{epa} area involves special hardware such as anti-static wrist wraps or special carpet materials to avoid the accumulation of electrostatic potential and electrostatic discharges.
 
 %
-Over the years, manufacturing processes and standards have improved, reducing the requirements of discharge levels to sustain.
+Over the years, manufacturing processes and standards have been improved, reducing the requirements of discharge levels to sustain.
 In parallel, the factory environment has been studied extensively to identify actual levels devices are exposed to.
 Machine Model deprecation is the perfect illustration of increased community knowledge and experience.
 Those efforts aim to reduce the pressure on semiconductor manufacturers that are facing growing challenges to protect devices, because of the shrink of technologies and robustness.
@@ -92,7 +92,7 @@ Startups or power-on reset functions can interpret overvoltage or undervoltage c
 The device can also perform restarts to try a recovery because proper operations cannot be guaranteed, due to unexpected values on some nets.
 Most microcontrollers for instance monitor supply voltages of digital gates.
 If the voltage is too low, the noise margins of the gates cannot be guaranteed and proper operation either.
-At this point, the microcontroller restarts to try to recover.
+At this point, the microcontroller restarts in an attempt to recover normal operation.
 Restarts are slow processes compared to the operation of a chip.
 For critical applications, this delay is highly unwanted because it impacts human safety.
 The availability of the chip that triggers airbags in a car is vital for instance.
@@ -116,7 +116,7 @@ The most common solution, presented in the next section, is the \gls{esd} protec
 \subsection{ESD protection}
 
 % Principle of operation
-\gls{esd} protections deviate discharge current before it reaches sensitive circuitry.
+\gls{esd} protections divert discharge current before it reaches sensitive circuitry.
 By offering a low impedance path to ground, they clamp input voltages to avoid crossing the maximum accepted levels.
 Fig. \ref{fig:esd-protection-strategy} gives a simple example of \gls{esd} protection strategy.
 Current is routed into the ground before reaching the core circuitry.
@@ -142,7 +142,7 @@ Over the years, design techniques and simulations tools have improved, and more 
 On the other hand, equipment manufacturer were always looking for means of reducing the \gls{bom} or the cost of electronic systems.
 This led to a shift of responsibilities toward on-chip \gls{esd} protections for handling system-level stresses.
 The shrink of integrated technologies makes this tasks even more challenging.
-External protections are still very relevant, where an integration solution would occupy too much silicon area, or when very harsh requirements are demanded.
+External protections are still very relevant, where an integrated solution would occupy too much silicon area, or when very harsh requirements are demanded.
 
 \begin{figure}[!h]
   \centering

@@ -2,7 +2,7 @@
 The design flow of integrated circuits relies on circuit schematics, a symbolic view describing an electronic circuit.
 Those schematics are converted into a netlist composed of all components inside the schematic and connections between them.
 At silicon-level, these components are mostly capacitors, resistors, and transistor devices.
-Each element is described by a model, which is a mathematical or algorithmic representation of their behavior.
+Each element is described by a mathematical, physical or algorithmic model which is a representation of their behavior.
 In electronics, models usually link current and voltages at the different terminals of the device, and can accept external parameters such as temperature.
 With the netlist and the model library, the simulator knows the stimuli, the devices and the connections inside the circuit.
 It is able to simulate the circuit behavior, allowing for validation of the functionality very early in the design phase.
@@ -15,8 +15,9 @@ It is a lot of functionality to pack into the integrated circuit.
 In return, schematics are very complex and dense.
 To organize the design, a hierarchy is set in place, similar to a tree.
 The top-level cell has child cells themselves having child cells, until root cells composed of transistors, passive devices, etc.
-The design phase usually starts from the bottom, where basic blocks are designed with library devices, then blocks are connected together in rising complexity up to the top.
-For that reason, the design phase is usually called bottom-up.
+After the architecture definition, the transistor design phase starts from the bottom of the hierarchy.
+Basic blocks are designed with library devices, then blocks are connected together in rising complexity up to the top to match the conceived architecture.
+For that reason, the block design phase is usually called bottom-up.
 After the design phase, all the schematic views are converted and drawn into a layout view.
 The layout view represents the set of masks and layers that will be used during manufacturing to build the circuit.
 
@@ -29,7 +30,7 @@ Therefore, the investigation time can be rather large.
 
 % What is not taken into account in those transistor level models
 Also, those models and schematic are not perfect and do not take everything into account.
-Parasitic devices can be extracted from the layout, but require a layout which often is not achieved until the end of the design flow.
+Parasitic devices can be extracted from the layout, but it requires the layout to be completed, which is not possible before nearing the end of the design flow.
 Also, extraction is a time consuming and complex task, that takes quite some time to be computed.
 Finally, some phenomena such as substrate coupling are simply not reproduced and need special tools for simulating them.
 

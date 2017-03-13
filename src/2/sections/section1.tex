@@ -3,13 +3,13 @@
 
 % Context is a competitive environment, where any tool can make a difference
 The electronic design world is highly competitive, and especially the automotive field.
-Companies need to design products as fast as possible, with lowest possible costs, while guaranteeing expected quality.
+Companies need to design products as fast as possible, with lowest possible costs, while guaranteeing high levels of quality.
 On the other hand, electronics systems are complex to design and it is almost impossible to get the design right at the first manufacturing pass.
 As the project moves forward in the design cycle and reaches new milestones, every redesign and modification becomes exponentially more costly.
 For instance, modifying properties of a few transistors inside an integrated circuit during the early design phase comes almost for free.
-It takes a few minutes for a designer to make the changes.
+It takes a few minutes for a designer to make the changes, and the time required to run the validation simulations.
 However, if this change is done after a first tape-out, many more steps must be executed.
-It still takes a few minutes to a designer to make the changes, but now the top layout of the product must be updated, a new tapeout prepared and a new set of lithographic photo-masks manufactured.
+In addition of the modification and simulation time, the top layout of the product must be updated, a new tapeout prepared and a new set of lithographic photo-masks manufactured.
 After a few months of manufacturing time, and testing time of the new part, the modification is landed.
 In the process, it has cost a lot of time and manpower to the company.
 Therefore, to remain competitive, the amount of design-manufacturing phases must be kept to a bare minimum, ideally to a single pass.
@@ -169,7 +169,7 @@ V_{C2}(t) = V_{1}(t - \Delta t) + Z_{C}.I_{1}(t - \Delta t)
 
 % Explain the equations
 Z\textsubscript{C} is the characteristic impedance of the line and \textDelta{}t the propagation delay between both ports.
-Overall, the equations describes a system where voltage and current at both ports are defined by the combination of a forward traveling wave and a backward traveling wave.
+Overall, the equations describe a system where voltage and current at both ports are defined by the combination of a forward traveling wave and a backward traveling wave.
 An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 
 \begin{code}
@@ -181,7 +181,7 @@ An example of implementation in VHDL-AMS is provided in Listing \ref{lst:tline}.
 \subsubsection{Comparison}
 
 % Compare both models to know which one is preferrable
-Simulations are ran to compare both models.
+Simulations are run to compare both models.
 The expected theoretical response is a perfectly rectangular waveform measured at the load, because the transmission line is ideal and the load purely resistive.
 The setup is given in Fig. \ref{fig:lines-testbench} and consists in injecting a rectangular pulse with a risetime of \SI{1}{\pico\second} into a load through the modeled transmission line.
 Different load values are employed to observe the performance and accuracy of each model.
@@ -218,7 +218,7 @@ Simulated period is often wrong compared to what is mathematically expected.
 Oscillations also force the simulators to fall back to the smallest timestep, considerably increasing simulation times.
 To simulate a \SI{100}{\nano\second} TLP with a \SI{100}{\pico\second} risetime using the distributed model, it would require unit elements with a delay of \SI{10}{\pico\second}.
 It means that 10000 elements are required to model the line, which is rather important and increases simulation time.
-Even with such a large amount, oscillations are still visible at high frequency in the simulation as shown in Fig. \ref{fig:lines-simulations}.
+Even with such a large amount, oscillations are still visible at high frequency in the simulation as shown in Fig. \ref{fig:lines-simulations} and the risetime is not accurate.
 
 \begin{figure}[!h]
   \centering

@@ -106,7 +106,7 @@ Amplitude or width alone are not necessarily sufficient to put the function at f
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/4/figures/black_box_regulator.png}
-  \caption{Black-box characterization of the regulation function (cases in grey correspond a failure and transparent cases to no-failure.)}
+  \caption{Black-box characterization of the regulation function (area in grey corresponds to a failure on V\textsubscript{2p5})}
   \label{fig:cz-black-box}
 \end{figure}
 
@@ -118,7 +118,7 @@ Now that the characterization step is done, the next part of this work focuses o
 % Choose between powered or unpowered conditions
 The initial hypothesis in this section is that \gls{tlp} characterization can be used to represent an input or output port of an integrated function.
 Extracting the \gls{tlp} characteristic can be done with the device powered or unpowered.
-To see the impact of the biasing and decide the best approach, \gls{tlp} characterizations are performed in both conditions.
+To see the impact of the biasing and to decide the best approach, \gls{tlp} characterizations are performed in both conditions.
 The test setup for the input port is given in Fig. \ref{fig:tlp-input-testbench}.
 The DC source can be configured at \SI{0}{\volt} (unpowered conditions) or \SI{12}{\volt} (powered conditions).
 The TLP is a perfect rectangular source in combination with a series \SI{50}{\ohm} resistor.
@@ -309,7 +309,6 @@ This is a first step toward more advanced models and modeling techniques that ul
 
 \subsection{Conclusion on black-box modeling}
 
-
 % Conclusion
 Black box models are very promising for distributing SPICE models of integrated functions to third-parties without disclosing intellectual property.
 They do not disclose the internal design of the chip and might help achieve system-level ESD simulations with IC models.
@@ -321,16 +320,8 @@ For the input pin that is somehow equivalent to a passive device, this model has
 The Verilog-A model performed particularly well for the input when exposed to a positive rectangular stress.
 The correlation was less accurate with a negative rectangular pulse but remained acceptable for an ESD simulation.
 For the output pin, the situation was more complex because it should be modeled by an equivalent active device.
-A first model was proposed specifically for modeling active outputs, however it was not successful.
-Differences between the reference schematic and the model were simply too large, showing that a different or more complex approach is required.
-Despite the lack of correlation, this study has enabled to identify an important issue preventing to build a model of an integrated function, for ESD simulations.
-Solving this issue should be the topic for future work and research, and identifying it was already a significant milestone to reach for achieving this goal.
+A first model was proposed specifically for modeling active outputs.
+Differences between the reference schematic and the model were large, showing that a different or more complex approach is required.
+Despite the lack of correlation, this study has enabled to identify an important issue preventing to build a model of an integrated function, for \gls{esd} simulations.
+Solving this issue should be the topic of future work and research, and identifying it was already a significant milestone to reach for achieving this goal.
 Ultimately, black box models should enable to replace an integrated function during an ESD simulation, in order to reduce complexity, simulation time, and protect intellectual property.
-
-% Opening work
-There are many new approaches to explore on these black box models to get more accurate results.
-It was shown that modeling of active outputs directly with a \gls{tlp} characterization and a bias does not seem to work and more research is required on this topic.
-Also, the behavior of the input port model against non-rectangular waveforms should be studied and investigated to ensure that the model works correctly in dynamic regime.
-The piecewise-linear modeling technique, usually employed in the ESD field for modeling ESD protections, should be improved by adding more points to fit more closely the extracted I(V) curve.
-Also, this methodology should be applied to a wider number of analog functions, to observe if it can be used in a general manner.
-Research on all those topics should lead to the development of a black-box model that will work for powered electrostatic discharge simulations.
