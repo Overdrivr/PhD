@@ -13,15 +13,12 @@ New trends for the autonomous car require electronic devices to take vital decis
 Guarantying safety of operation against electrostatic discharge is critical.
 
 % Overview of the document
-% TODO
 This document detailed three years of research about functional robustness of integrated circuits against electrical transient disturbances.
-This field of research is relatively recent, and brings new challenges for \gls{ESD} teams in integrated circuit design companies.
-This topic requires broader interactions between circuit design team and \gls{esd} team.
+This field of research is relatively recent, and brings new challenges for \gls{esd} teams in integrated circuit design companies.
+During those three years, it became clearer that solving efficiently soft-failure issues requires broader interactions between circuit design team and \gls{esd} team.
+So far, there is already a lot of interaction between those two different areas of expertise.
+The development of integrated circuits involves substantial communication and feedback between the two, as shown in Fig. \ref{fig:new-flow}.
 
-In the past, \gls{esd} teams expertise was required during the very early phase of the product, from the specification and architecture definition.
-During the block design phase,
-
-%TODO Comment
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{src/conclusion/figures/flow.pdf}
@@ -29,7 +26,16 @@ During the block design phase,
   \label{fig:new-flow}
 \end{figure}
 
+In the past, \gls{esd} teams expertise was required during the very early phase of the product, from the specification and architecture definition.
+The \gls{esd} team also intervened near the end of the product design, when the topcell is being assembled, to ensure for instance that no fragile circuitry is left exposed to external harmful discharges.
+Block design phase was so far less concerned by \gls{esd} requirements.
+It also plays an important role after manufacturing during testing to guarantee that the product fullfils its specification.
+With new soft-failure issues, an extended workflow for the \gls{esd} team is proposed (Fig. \ref{fig:new-flow}), promoting interaction with the design during block design.
+Interactions can take the form of providing tools to designers for instance, such as the ones developped in this document to help them identify weak spots in their circuits.
+It will help them take informed decision to correct their design.
+
 % Chap 1
+This document was structured in five major chapters.
 A presentation of the context and topic is conducted in the introduction (chapter \ref{sec:global-intro}).
 Chapter \ref{chap:1} is a review of the state of the art in ESD testing and soft-failure analysis.
 It starts by describing common and recurrent test methods in the ESD field, and identifies relevant and realistic stress sources employed in laboratory environment.
