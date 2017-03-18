@@ -1,13 +1,13 @@
 \chapter{Introduction}
 \label{sec:global-intro}
 % Trends of the electronic field is size reduction
-Integrated circuits miniaturization continues nowadays allowing increasingly massive integration of electronic functions.
-Size reduction is accomplished by decreasing integrated technology feature size.
-An integrated technology defines the dimensions and processes required to manufacture an integrated circuit and its fundamental conception bricks.
+Integrated circuits miniaturization is still ongoing nowadays allowing increasingly massive integration of electronic functions.
+An integrated technology is the definition of the dimensions and processes required to manufacture an integrated circuit and its fundamental conception bricks.
 The main characteristic of a technology is the feature size called \textlambda{} that represents the smallest dimension for a transistor gate.
+Size reduction of integrated circuit is mainly accomplished by decreasing this feature size.
 All other dimensions of the technology are defined as an integer multiplication factor of \textlambda{}.
-The value of \textlambda{} determines the size, power consumption, switching speed, performance and many other properties of the complete chip.
-Until recently, Moore's law successfully predicted that technology dimensions will be reduced by a factor of two every 18 months.
+The value of \textlambda{} determines the size, power consumption, switching speed, performance and many other properties of a chip.
+So far, Moore's law successfully predicted that technology dimensions will be reduced by a factor of two every 18 months.
 The automotive world follows this trend as well, moving recently to \SI{16}{\nano\metre} technology nodes (see Fig. \ref{fig:nxp-techno-increase}) \cite{evolution_technologies} that are normally employed in less demanding applications.
 
 % Benefits of size reduction
@@ -112,29 +112,33 @@ There is currently no real work at the component level or studies performed insi
 % Conception methods
 Beyond studying failures inside integrated circuits, it is important to keep in mind how chips are designed and developed.
 This is important to propose solutions that are actually implementable.
-This entire process from the specification to the manufacturing of a product is called the design flow.
+This entire process from the specification to the manufacturing of a product is called the design flow (see Fig. \ref{fig:ic-design-flow}).
 During this process, there are many teams and people involved.
 Modeling team creates electrical model of technology components.
 Design team assembles component together to create integrated functions that conform to the specification.
 Layout team translates the symbolic view of electrical netlists into the series of masks and layers required by manufacturing.
 The laboratory tests manufactured parts and runs investigations in case of failures.
 The \gls{esd} and \gls{emc} team has the particularity to interact will all teams because issues and solutions can be found in any step of the design flow.
-Overall, the integrated circuits are designed hierarchically and the flow is a bottom-up process.
-Fundamental bricks are assembled together in rising complexity to create the required functions.
 The main source of delay in this process is the manufacturing time which can be of several months.
 Designs are put on silicon but the parts are tested only after manufacturing, several months later.
 To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
 Each additional manufacturing is very expensive, and increases further the development time of the product.
 This is why any simulation tool able to predict early any kind of failure (and functional failures among them) is very valuable for silicon design companies.
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{src/1/figures/overview_flow.pdf}
+  \caption{Simplified integrated circuit design flow}
+  \label{fig:ic-design-flow}
+\end{figure}
+
 % What is provided in this document
 It was demonstrated that real-time electronic circuits have higher responsibilities yet they can be disturbed by disturbances such as electrostatic discharges.
-Also, most studies on the topic of functional failure due to \gls{esd} are focused on system-level analysis.
-In this document, research and analysis of functional weaknesses is done lower in the electronic system hierarchy, at the integrated circuit level.
 It is essential to understand how failures appear in order to fix them and prevent them prior to manufacturing.
-For this purpose, many approaches and methods are proposed in this document.
-A modeling method of electronic systems exposed to electrostatic discharge is developed, improving prior work on the topic \cite{phd-lacrampe, phd-monnereau}.
-It allows to determine what fraction of an incoming discharge actually reaches the integrated circuit.
+For this purpose, many approaches and methods were explored and detailed in this document.
+Fig. \ref{fig:phd-map} shows the different paths taken during the research, all studied in parallel with the ultimate goal to develop and validate integrated circuit models for soft-failures.
+Amongs all proposed approaches, a modeling method of electronic systems exposed to electrostatic discharge is developed, improving prior work on the topic \cite{phd-lacrampe, phd-monnereau}.
+It helps determining what fraction of an incoming discharge reaches the integrated circuit.
 Then, on-chip measurement methods have been designed and manufactured, in order to acquire more data inside the chip.
 Those methods comprise monitoring devices such as an on-chip current sensor, overvoltage and undervoltage detectors, and a communication chain for fast prototyping.
 Finally, modeling methods were experimented using simulation tools.
@@ -145,12 +149,13 @@ Finally, a concept of an assertion system is detailed, to identify quickly and e
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/1/figures/overview_flow.pdf}
-  \caption{Highly simplified integrated circuit design flow - specification, symbolic view, layout, silicon}
-  \label{fig:ic-design-flow}
+  \includegraphics[width=\textwidth]{src/1/figures/structure_of_phd.pdf}
+  \caption{Explored research paths for soft-failure investigation and prediction}
+  \label{fig:phd-map}
 \end{figure}
 
 % Presentation des chapitres
+This introduction constitutes the first chapter of the document.
 %
 Chapter \ref{chap:1} details what is an electrostatic discharge and how to reproduce it in laboratory conditions.
 This preliminary work highlights how functional failures appear and how they impact electronic devices.
