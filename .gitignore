@@ -47,3 +47,6 @@ dist
 
 # minted package work folder
 _minted-phd
+
+# hunspell backup files
+*.bak
