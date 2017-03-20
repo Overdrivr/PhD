@@ -38,7 +38,7 @@ They monitor voltages of multiple nets inside the supply under test.
 There are in total 9 detectors in the testchip.
 Five of them are dedicated to preliminary testing and self-validation, and are not actually monitoring analog blocks.
 The remaining four blocks are monitoring the regulator under test (Table \ref{tab:detectors}).
-Overvoltage and unvervoltage detector thresholds can be configured externally using a communication bus.
+Overvoltage and undervoltage detector thresholds can be configured externally using a communication bus.
 When new value is set through the communication, a digital to analog converter generates the new threshold for each detector.
 The detectors are able to detect level crossings from half a volt up to \SI{13}{\volt}, which is designed to match the voltage range of most signals inside the chip.
 

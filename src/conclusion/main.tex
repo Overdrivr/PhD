@@ -10,7 +10,7 @@ Recently, a new class of failures started to be considered.
 Electrostatic discharges can cause temporary disturbances on devices.
 Most recent integrated technologies enable large performances and massive integration, but also makes more challenging the protection of integrated circuits against external disturbances.
 In the same time, electronic modules have increasingly large responsibilities in regard of our safety.
-New trends for the autonomous car require electronic devices to take vital decisions for controlling the vehicule.
+New trends for the autonomous car require electronic devices to take vital decisions for controlling the vehicle.
 Guarantying safety of operation against electrostatic discharge is critical.
 
 % Overview of the document
@@ -78,7 +78,7 @@ After this analysis, it was decided to build a custom chip integrating this part
 There were multiple objectives for making this test vehicle.
 The first goal was to acquire waveforms inside the chip, using on-chip measurement structures and sensors, to validate that standard circuit simulations can be employed during an ESD event.
 The second goal was to determine when and how analog function were disturbed by transient events, by using custom error detection cells.
-This data was meant to validate the modelling methods presented later in the document (in chapter \ref{sec:methods-operating-esd-analysis}).
+This data was meant to validate the modeling methods presented later in the document (in chapter \ref{sec:methods-operating-esd-analysis}).
 Creating an entire chip with custom cell design and block reuse, alongside with two application boards was extremely challenging, especially with limited resources and the constraints inherent to the test vehicle process.
 Despite extensive testing and validation, issues were met with the communication system responsible for outputting measurement data.
 However, the two regulation functions and the on-chip sensors worked properly.
@@ -93,14 +93,14 @@ Convergence issues are very common and sometimes extremely difficult to avoid.
 Circuit complexity makes finding issues manually extremely hard.
 Most of the time, it is required to manufacture a first silicon to test the parts against ESD and identify soft-failures.
 To avoid very costly re-design and late fixes, new methods are required.
-In this research, two methods were developped and are described in detail.
+In this research, two methods were developed and are described in detail.
 
 % First modelling method
 The first method targets analysis and soft-failure prediction of analog function inside the chip, to detect weak spots during early design phase.
 It is constituted of two steps, a preliminary characterization and block modeling followed by a chaining process to connect multiple models together and predict their combined robustness.
 The characterization is performed by injecting variable amplitude and variable width rectangular pulses.
 This characterization results in two different tables, that constitute the block model.
-Those tables or model can later be used to determine the response of the block on an output when an input is exposed to a stilumus.
+Those tables or model can later be used to determine the response of the block on an output when an input is exposed to a stimulus.
 With multiple blocks, stimuli can be propagated from block to block, allowing to predict the shape of the waveform on the final output, just by knowing the waveform on the initial input.
 This approach was tested successfully on the test vehicle detailed previously.
 It has enabled to predict a failure on the regulator, for different input stresses inject on the battery input.
@@ -129,9 +129,9 @@ In particular, future work on the model-chain method could involve:
   \item More robust characterization method: The influence of all elements of the characterization setup should be studied, and eventually taken into account in the model. The goal is to ensure that it is truly the block function that is being characterized, and that the characterization circuit does not interfere or impact the results. Ultimately, the model will be more portable and reusable.
   \item Support of interactions between multiple pins: so far, the characterization is performed with one input and one output.
   It enables to apply a stimulus on an input pin and deduce the signal on an output pin.
-  The response on multiple output pins should be also be studied and modelled when multiple input pins are disturbed.
+  The response on multiple output pins should be also be studied and modeled when multiple input pins are disturbed.
   It could enable to be complete models of analog functions that could reproduce the entire propagation of a fault inside the chip.
 \end{enumerate}
 
-This concludes this study on the analysis and prediction of losses of functionnality of analog integrated functions induced by electrostatic discharges.
+This concludes this study on the analysis and prediction of losses of functionality of analog integrated functions induced by electrostatic discharges.
 It is a first work that has explored many different approaches and has opened up new leads for future research work.
