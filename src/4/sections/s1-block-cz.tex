@@ -139,13 +139,6 @@ This representation looses some information compared to the gradient one but is 
   \label{wb_cz_curve_example_v2_discrete}
 \end{figure}
 
-% Summarize the method
-In this section, a method was detailed to extract the robustness of a block function.
-It relies on injecting pulses on an input and watching for changes on an output.
-After characterization, a model can be constructed.
-It is composed of a characterization table and a failure criteria.
-Fig. \ref{fig:principle-transfert-func} provides a visual representation of this model.
-
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\textwidth]{src/4/figures/principle_transfert_function.pdf}
@@ -172,7 +165,7 @@ The process is explained in detail and is later validated with a real case study
 This section presents the second phase of the method that consists in chaining individual block models to predict the robustness of a higher-level function.
 To present this concept of chaining models, a purely hypothetical example is taken first.
 The characterization process detailed previously is performed on two different blocks, called $A$ and $B$ (see Fig. \ref{example_toplevel_function}).
-Those two blocks are part of an hypothetical higher-level function.
+Those two blocks are part of an higher-level function.
 The function has an external input (called \textit{in}) and an external output (called \textit{out}).
 A stimulus is injected on the external input and the job of the model chain is to predict what will be the approximate waveform on the external output.
 Both blocks were previously (hypothetically) characterized and failure criteria V\textsubscript{fail} for block $A$ is \SI{5}{\volt} and \SI{2}{\volt} for block $B$.
@@ -187,7 +180,7 @@ In practice, the threshold selection is done either from the block specification
 
 % What is the input stress
 The input stimulus is a rectangular \SI{100}{\nano\second} wide pulse with a \SI{15}{\volt} amplitude.
-Those two properties are fed into the hypothetical characterization of block $A$ (Fig. \ref{example_complete_curve}).
+Those two properties are fed into the characterization of block $A$ (Fig. \ref{example_complete_curve}).
 In the graph, multiple curves can be identified, each corresponding to a boundary between two disturbance durations.
 For a point located below the green curve (with label "\SI{10}{\nano\second}"), no stress was recorded on the output.
 For a point located above the \SI{10}{\nano\second} curve and below the \SI{100}{\nano\second} curve, a stress was indeed recorded with a duration comprised between \SI{10}{\nano\second} and \SI{100}{\nano\second}.
@@ -208,17 +201,18 @@ Those values are now used to describe the stimulus on block B, since both blocks
 The failure criteria that was used to extract the characterization curve also serves as amplitude for the output signal.
 It means that with a \SI{5}{\volt} failure criteria, if a failure is recorded, the output waveform is approximated to also have an amplitude of \SI{5}{\volt}.
 
-% Use net1 as input of next block
-Fig. \ref{example_complete_curve_B} shows an example curve for model B.
-The location of the stimulus from block A (\SI{5}{\volt} and \SI{1}{\micro\second}) is also placed on the curve.
-The curve predicts that with this stimulus, block B will be disturbed during \SI{10}{\micro\second} with an amplitude of \SI{2}{\volt} (V\textsubscript{fail} of block B).
-
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.7\textwidth]{src/4/figures/example_complete_curve_B.pdf}
   \caption{Model B curve and determination of impact of the TLP pulse}
   \label{example_complete_curve_B}
 \end{figure}
+
+% Use net1 as input of next block
+Fig. \ref{example_complete_curve_B} shows an example curve for model B.
+The location of the stimulus from block A (\SI{5}{\volt} and \SI{1}{\micro\second}) is also placed on the curve.
+The curve predicts that with this stimulus, block B will be disturbed during \SI{10}{\micro\second} with an amplitude of \SI{2}{\volt} (V\textsubscript{fail} of block B).
+
 
 % Repeatable process
 This process can be repeated in theory with as many blocks as required by the original design, until the final pin is reached.
