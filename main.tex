@@ -29,12 +29,14 @@
 \usepackage[ED=GEET-Elec, Ets=UT3]{tlsflyleaf} % Document cover
 \usepackage{caption}     % float env with page breaks
 \usepackage{hyperref}    % Links
+\usepackage{bookmark}
 
 % Package config
 \newenvironment{code}{\captionsetup{type=listing,position=top}}{}
 \DeclareSIUnit\sq{\ensuremath{\Box}}
 \DeclareSIUnit\sample{S}
 \DeclareSIUnit\div{div}
+\bookmarksetup{open,numbered}
 
 % Glossary
 \loadglsentries{./src/glos}
@@ -92,7 +94,9 @@
 
 % Conclusion
 \input{src/conclusion/main.tex}
+
 % Appendix
+\bookmarksetupnext{level=part}
 \input{src/appendices/main.tex}
 
 % Bibliography
