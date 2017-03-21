@@ -11,7 +11,7 @@
 %
 %
 % This work has the LPPL maintenance status `maintained'.
-% 
+%
 % The Current Maintainer of this work is T. GREGOIRE
 %
 %
@@ -42,7 +42,7 @@
 %        - Use \title instead of \FRtitle
 %  v0.8:
 %        - Add auto aggrement with number (boss and referee by adding 's' if number greater than 1)
-%        - Add a fancy flyleaf load with the 'fancy' option 
+%        - Add a fancy flyleaf load with the 'fancy' option
 %        - Automatic position of the background figure (doesn't depend on the paper size)
 %        - Rename \makepdg to \makeflyleaf
 %        - Rename \pdg to \makepdg
@@ -61,10 +61,10 @@
 % ============================================================
 % OPTION
 %emptysheetbefore => Insert two white pages (one sheet) before the flyleaf
-\newif\if@emptysheetbefore\@emptysheetbeforefalse 
+\newif\if@emptysheetbefore\@emptysheetbeforefalse
 \DeclareOptionX{emptysheetbefore}[none]{\@emptysheetbeforetrue}
 %emptypageafter => insert one page after the flyleaf
-\newif\if@emptypageafter\@emptypageafterfalse 
+\newif\if@emptypageafter\@emptypageafterfalse
 \DeclareOptionX{emptypageafter}[none]{\@emptypageaftertrue}
 %draft => Remove flyleaf page
 \newif\if@draft\@draftfalse
@@ -691,6 +691,12 @@
             \includegraphics[width=5cm]{tlsflyleaf/logo-univ}%
         }
     }
+  % Company logo
+  %\put(\convertto{pt}{\paperwidth-4.8\@pdgMargeSize},\convertto{pt}{\paperheight-3.8\@pdgMargeSize}){%
+  %      \parbox[t][\paperheight]{\paperwidth}{%
+  %          \includegraphics[width=5cm]{tlsflyleaf/NXP_logo_RGB_web}%
+  %      }
+  %  }
 	% Background picture
     \put(\convertto{pt}{\paperwidth-6.92\@pdgMargeSize}, \convertto{pt}{0.42\@pdgMargeSize}){%
 		\parbox[b][\paperheight]{\paperwidth}{%
@@ -709,7 +715,7 @@
 \definecolor{pdgred}{rgb}{0.676,0.224,0.288}
 
 % ============================================================
-\newif\if@showCotutelle\@showCotutellefalse 
+\newif\if@showCotutelle\@showCotutellefalse
 % SIMPLE STRING
 \def\defencedate#1{\gdef\@defencedate{#1}}
 \def\lab#1{\gdef\@lab{#1}}
@@ -778,42 +784,42 @@
                         \shadowrgb{0.4, 0.2, 0.2}
                         \shadowtext{\textcolor{pdgred}{\fontfamily{pbk}\fontsize{1.5cm}{1.8cm}\selectfont{TH\`ESE}}}
                         %%%%%%%%%%%%%%%%%
-                        
+
                         \vspace*{1.4cm}
                         %%%%% DOC %%%%%
                         {\bfseries En vue de l'obtention du}
 
                         \bigskip
                         {\Large \bfseries DOCTORAT DE L'UNIVERSIT\'E DE TOULOUSE}
-                    
+
                         %%%%% ETS & COTUTELLE %%%%%
                         \bigskip
                         \mbox{\bfseries D\'elivr\'e par :} \mbox{\textit{\@establishment}} \if@showCotutelle\mbox{Cotutelle internationale \@cotutelle}\fi
-                        %%%%%%%%%%%%%%%				
-                    
+                        %%%%%%%%%%%%%%%
+
                         \vfill
-                    
+
                         \rule{\textwidth}{2.5pt}
-					        
+
                         \vspace{-2ex}
                         \rule{\textwidth}{1.2pt}
-                        {\bfseries \fontfamily{cmr} Pr\'esent\'ee et soutenue le} \textit{\@defencedate} {\bfseries \fontfamily{cmr} par :}\\
+                        {\bfseries \fontfamily{cmr} Thèse CIFRE pr\'esent\'ee et soutenue le} \textit{\@defencedate} {\bfseries \fontfamily{cmr} par :}\\
                         \settowidth{\RuleWidth}{\large\fontfamily{cmr}\textbf{\textsc{\@author}}}
-                        
+
                         \smallskip
                         {\large\fontfamily{cmr}\textbf{\textsc{\@author}}}
-                        
+
                         \vspace*{-5pt}
                         ~{\color{pdgred}\rule{1.2\RuleWidth}{0.8pt}}
                         \vspace*{3pt}
 
                         {\large\bf\@title}
-                        
+
                         \rule{\textwidth}{1.2pt}
-                        
+
                         \vspace{-1.6ex}
                         \rule{\textwidth}{2.5pt}
-					
+
                         \vfill
                         %%%% JURY %%%%
                         {\bfseries JURY}
@@ -828,19 +834,21 @@
                           }
                         \fi
                         %%%% JURY %%%%
-                        
+
                         \vfill
                         \rule{\textwidth}{1.2pt}
 
                         {\raggedright\bfseries \'Ecole doctorale et sp\'ecialit\'e :\\} \hfill\parbox[t]{0.92\textwidth}{\textit{\@docschool}}
 
                         \ifx\@doubleSpe\undefined\else{\raggedright\bfseries Double mention :\\} \hfill\parbox[t]{0.92\textwidth}{\textit{\@doubleSpe}}\fi
-                    
-                    
+
+
                         {\raggedright\bfseries Unit\'e de Recherche :\\} \hfill\parbox[t]{0.92\textwidth}{\textit{\@lab}}
-                    
+
+                        {\raggedright\bfseries Entreprise CIFRE :\\} \hfill\parbox[t]{0.92\textwidth}{\textit{NXP Semiconductors Toulouse}}
+
                         \ifnumgreater{\@nboss}{1}{%TRUE
-                            {\raggedright\bfseries Directeur(s) de Th\`ese :\\}
+                            {\raggedright\bfseries Directeurs de Th\`ese :\\}
                         }{%FALSE
                             {\raggedright\bfseries Directeur de Th\`ese :\\}
                         }
@@ -864,7 +872,7 @@
                                 }
                             }
                         }
-                    
+
                         \ifnumgreater{\@nreferee}{1}{%TRUE
                             {\raggedright\bfseries Rapporteurs :\\}
                         }{%FALSE
@@ -891,7 +899,7 @@
                             }
                         }
                         \vfill
-                                        
+
                     \end{center}
                 \end{minipage}
             \vfill
