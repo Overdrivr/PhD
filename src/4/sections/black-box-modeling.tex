@@ -215,29 +215,15 @@ There is an offset in DC and in transient, probably due to a modeling error with
 There are two large spikes at the beginning and the end of the pulse that are not reproduced.
 This behavior was expected because the piecewise-linear model is not able to reproduce this kind of dynamic behavior.
 Overall, the accuracy remains acceptable for an ESD simulation.
-Other validations are provided for positive \SI{20}{\volt} and \SI{40}{\volt} TLP in Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}).
+Other validations are provided in Appendix \ref{apx:black-box-validations} (see Fig. \ref{fig:compare-model-simu-20} and Fig. \ref{fig:compare-model-simu-40}) for positive \SI{20}{\volt} and \SI{40}{\volt} TLP.
 They confirm that the input model performs correctly, and even better when exposed to positive stresses.
 Overall, this Verilog-A model is considered valid for the input port while considering that there is a lot of room for improvement.
 
-\begin{figure}[!p]
+\begin{figure}[!h]
   \centering
-  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_m10V.png}
+  \includegraphics[width=\textwidth]{src/4/figures/comparison_model_total_m10V.png}
   \caption{Comparison of complete schematic and model simulations for input port (\SI{-10}{\volt} TLP)}
   \label{fig:compare-model-simu-m10}
-\end{figure}
-
-\begin{figure}[!p]
-  \centering
-  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_20V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (\SI{20}{\volt} TLP)}
-  \label{fig:compare-model-simu-20}
-\end{figure}
-
-\begin{figure}[!p]
-  \centering
-  \includegraphics[width=0.8\textwidth]{src/4/figures/comparison_model_total_40V.png}
-  \caption{Comparison of complete schematic and model simulations for input port (\SI{40}{volt} TLP)}
-  \label{fig:compare-model-simu-40}
 \end{figure}
 
 \subsubsection{Comparison of output model with reference circuit}
