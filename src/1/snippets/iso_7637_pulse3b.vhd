@@ -155,7 +155,6 @@ begin
 end entity ISO_7637_PULSE3B;
 
 architecture IDEAL of ISO_7637_PULSE3B is
-
   constant UA0 : REAL := 0.0;
   constant D2 : REAL := LOG(10.0)/(TD-TR);
   type   STATE_TYP is (S0, S1, S2, S3);
@@ -163,12 +162,10 @@ architecture IDEAL of ISO_7637_PULSE3B is
   signal TSTART : REAL      := 0.0;
   signal ACTIVE : BOOLEAN   := FALSE;
   signal ACTIVE_CTRL : BOOLEAN;
-
   quantity VSW across ISW through EL_1 to EL_2;
   quantity V   across I   through EL_1 to EL_2;
 
 begin
-
   process is
   begin
       STATE  <= S0;
@@ -224,9 +221,7 @@ begin
   end use;
 
   break on ACTIVE, ACTIVE_CTRL;
-
 end architecture IDEAL;
-
 
 
 -- ----------------------------------------------------------------------------
