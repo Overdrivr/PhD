@@ -92,7 +92,6 @@ In the \gls{esd} field, there are two kinds of failures to consider.
 The hardware failure, or hard-failure, is when an electronic device is permanently damaged \cite{impactESDsemiconductors}.
 Destruction can occur through oxide breakdown, when a voltage too large is applied on an insulating material.
 It can also occur through thermal breakdown, when current through a structure is too high and causes a meltdown.
-Two examples of failures can be observed in Fig. \ref{fig:esd-failures}).
 Recently, a new class of failures is being studied.
 Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
 Different levels of severity can be identified depending on the impact of the failure on the rest of the system.
@@ -103,13 +102,6 @@ A large amount of research at the system level was published in EOS/ESD symposiu
 The draft standard IEC 62433-6 \cite{iec62433-6} aims to provide a base framework for soft-failures analysis and prediction.
 Analysis of the literature reveals that most studies are currently focused on system-level soft-failure analysis.
 There is currently no real work at the component level or studies performed inside the design of an integrated circuit.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{src/1/figures/esd_failures.pdf}
-  \caption{Different kinds of ESD-induced failures (Credit: \cite{phd-monnereau})}
-  \label{fig:esd-failures}
-\end{figure}
 
 % Conception methods
 Beyond studying failures inside integrated circuits, it is important to keep in mind how chips are designed and developed.
@@ -129,7 +121,7 @@ This is why any simulation tool able to predict early any kind of failure (and f
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{src/1/figures/overview_flow.pdf}
+  \includegraphics[width=0.8\textwidth]{src/1/figures/overview_flow.pdf}
   \caption{Simplified integrated circuit design flow}
   \label{fig:ic-design-flow}
 \end{figure}
