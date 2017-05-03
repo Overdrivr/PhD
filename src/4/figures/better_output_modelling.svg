@@ -543,8 +543,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="215.26824"
-     inkscape:cy="33.146608"
+     inkscape:cx="218.80377"
+     inkscape:cy="28.903967"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -576,7 +576,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -610,7 +610,7 @@
          y="285.17175"
          x="813.65295"
          sodipodi:role="line"
-         id="tspan5003">Time</tspan></text>
+         id="tspan5003">time</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#ff7e7e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 726.23832,182.50731 25,0 c 0,0 5.16867,1.1989 10,10 4.83133,8.8011 3,72 5,75 2,3 10,0 10,0 4,-2 2.16551,-44.18741 10.22814,-45.03892 35.09272,-3.70619 61.82639,0.62023 73.77187,-2.96108 11.9455,-3.58131 8,-20 21,-37 l 45,0"
@@ -712,7 +712,7 @@
          sodipodi:role="line"
          x="1045.403"
          y="285.17175"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">Time</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">time</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path7894"
@@ -856,7 +856,7 @@
          sodipodi:role="line"
          x="-244.62299"
          y="719.10223"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">Voltage</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">voltage</tspan></text>
     <text
        transform="matrix(0,-1,1,0,0,0)"
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
@@ -872,6 +872,6 @@
          y="944.10223"
          x="-244.62299"
          sodipodi:role="line"
-         id="tspan4457">Voltage</tspan></text>
+         id="tspan4457">voltage</tspan></text>
   </g>
 </svg>
