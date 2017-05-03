@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="74.39019mm"
-   height="37.374737mm"
-   viewBox="0 0 263.58729 132.43017"
+   width="76.064606mm"
+   height="38.561852mm"
+   viewBox="0 0 269.52026 136.63648"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -603,8 +603,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.0000001"
-     inkscape:cx="127.10401"
-     inkscape:cy="103.84601"
+     inkscape:cx="108.48556"
+     inkscape:cy="77.578066"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -612,9 +612,9 @@
      fit-margin-right="4"
      fit-margin-bottom="2"
      fit-margin-left="4"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
+     inkscape:window-width="1304"
+     inkscape:window-height="745"
+     inkscape:window-x="54"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
@@ -625,8 +625,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid4164"
-       originx="-253.39351"
-       originy="59.519885" />
+       originx="-247.46052"
+       originy="63.726206" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -644,7 +644,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-719.63182,-154.59701)">
+     transform="translate(-713.69884,-154.59701)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:8.75px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -696,7 +696,7 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7098);marker-end:url(#marker7318)" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7900)"
-       d="m 836.23832,257.5073 25,0"
+       d="m 831.23832,257.5073 25,0"
        id="path7892"
        inkscape:connector-curvature="0" />
     <path
@@ -730,7 +730,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path8144"
-       d="m 836.23832,202.96838 25,0"
+       d="m 831.23832,202.96838 25,0"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8146)" />
     <text
        inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
@@ -747,5 +747,129 @@
          x="875.68359"
          sodipodi:role="line"
          id="tspan8500">&quot;convoluted&quot; waveforms</tspan></text>
+    <text
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4455"
+       y="229.58585"
+       x="774.32593"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="229.58585"
+         x="774.32593"
+         sodipodi:role="line"
+         id="tspan4457">time</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-212.87613"
+       y="732.55957"
+       id="text4459"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         id="tspan4461"
+         sodipodi:role="line"
+         x="-212.87613"
+         y="732.55957"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">voltage</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="774.32593"
+       y="284.08585"
+       id="text4463"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
+         id="tspan4465"
+         sodipodi:role="line"
+         x="774.32593"
+         y="284.08585"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">time</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4467"
+       y="732.55957"
+       x="-267.37613"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="732.55957"
+         x="-267.37613"
+         sodipodi:role="line"
+         id="tspan4469">voltage</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="914.33307"
+       y="229.58585"
+       id="text4471"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"><tspan
+         id="tspan4473"
+         sodipodi:role="line"
+         x="914.33307"
+         y="229.58585"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">time</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4475"
+       y="872.56671"
+       x="-212.87613"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="872.56671"
+         x="-212.87613"
+         sodipodi:role="line"
+         id="tspan4477">voltage</tspan></text>
+    <text
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4479"
+       y="284.08585"
+       x="914.33307"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="284.08585"
+         x="914.33307"
+         sodipodi:role="line"
+         id="tspan4481">time</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;line-height:125%;font-family:Roboto;-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-267.37613"
+       y="872.56671"
+       id="text4483"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         id="tspan4485"
+         sodipodi:role="line"
+         x="-267.37613"
+         y="872.56671"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.25px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">voltage</tspan></text>
   </g>
 </svg>

@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="129.19058mm"
-   height="39.352489mm"
-   viewBox="0 0 457.76191 139.43796"
+   width="132.87872mm"
+   height="39.352493mm"
+   viewBox="0 0 470.83013 139.43797"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -543,8 +543,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="222.55811"
-     inkscape:cy="60.251281"
+     inkscape:cx="215.26824"
+     inkscape:cy="33.146608"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -552,9 +552,9 @@
      fit-margin-right="4"
      fit-margin-bottom="2"
      fit-margin-left="4"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
+     inkscape:window-width="1304"
+     inkscape:window-height="745"
+     inkscape:window-x="54"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
@@ -565,8 +565,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid4164"
-       originx="-243.32136"
-       originy="64.860918" />
+       originx="-230.25319"
+       originy="64.860931" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -584,7 +584,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-709.55968,-152.93026)">
+     transform="translate(-696.4915,-152.93026)">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
        d="m 799.23832,257.50731 -28,0"
@@ -841,5 +841,37 @@
        id="path7906"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-244.62299"
+       y="719.10223"
+       id="text4451"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         id="tspan4453"
+         sodipodi:role="line"
+         x="-244.62299"
+         y="719.10223"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'">Voltage</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="C:\Users\B48923\Documents\MesRapports-Papiers-Presentations\Rapports these\07 - Approche characterization blocks\blockcz\ab.png"
+       inkscape:export-ydpi="180"
+       inkscape:export-xdpi="180"
+       sodipodi:linespacing="125%"
+       id="text4455"
+       y="944.10223"
+       x="-244.62299"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25000095px;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:11.25000095px;font-family:Roboto;-inkscape-font-specification:'Roboto Light'"
+         y="944.10223"
+         x="-244.62299"
+         sodipodi:role="line"
+         id="tspan4457">Voltage</tspan></text>
   </g>
 </svg>
