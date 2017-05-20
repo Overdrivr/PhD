@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="absorber_filter_schematic.svg">
+   sodipodi:docname="absorber_schematic.svg"
+   inkscape:export-filename="C:\Users\Bart\Documents\GitHub\PhD\src\5\figures\absorber_schematic.png"
+   inkscape:export-xdpi="299.61884"
+   inkscape:export-ydpi="299.61884">
   <defs
      id="defs4">
     <marker
@@ -111,8 +114,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="92.78949"
-     inkscape:cy="68.662547"
+     inkscape:cx="99.330228"
+     inkscape:cy="28.35746"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -120,9 +123,9 @@
      fit-margin-right="14"
      fit-margin-bottom="1"
      fit-margin-left="14"
-     inkscape:window-width="1920"
-     inkscape:window-height="1018"
-     inkscape:window-x="1912"
+     inkscape:window-width="1304"
+     inkscape:window-height="745"
+     inkscape:window-x="54"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
@@ -144,7 +147,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
