@@ -28,7 +28,7 @@ Weight reduction of electronic modules in automotive or aerospace lowers fuel co
 
 % Side effects of size reduction
 The decrease of \textlambda{} results in reduction of insulating material's thickness.
-Transistor gate oxide becomes thinner, tolerating smaller differences of potential before breakdown.
+Transistor gate oxide becomes thinner, tolerating lower electrical fields before breakdown.
 After breakdown, the oxide starts leaking significant amount of currents and the transistor becomes unusable.
 As a result, the technology provides more sensitive conception bricks and a larger silicon area must be dedicated to protecting the core circuitry \cite{evolution_technologies}.
 
@@ -38,7 +38,7 @@ The development of fully autonomous driving is seeing tremendous progress.
 This class of functionalities take decisions and perform critical actions such as braking or steering the wheel.
 Those features are developed to offer increased safety for the user.
 A side consequence is that electronic modules now have very high responsibilities.
-The real-time constraint is particularly important, meaning that electronic circuits must perform their duties with no delay and operate correctly all the time.
+The real-time constraint is particularly important, meaning that electronic circuits must perform their duties without delay and operate correctly all the time.
 For instance, an airbag system must always be ready to trigger in case of car accident without any delay.
 Electric cars raise new challenges for safety as well, such as battery management.
 Those features require more computing power, more sensing capabilities and more data to exchange.
@@ -60,7 +60,7 @@ Another major source of electrical stress is called the \gls{esd}.
 % What is an ESD
 An electrostatic discharge is the sudden flow of electricity between two objects of different charge.
 It is the result of a local accumulation of electrostatic potential.
-When a large enough potential difference is reached, a very rapid and violent discharge occurs.
+When a large enough potential difference is reached, a very rapid and large discharge occurs.
 It is common to record amplitudes in the range of thousands of volts and tens of amperes.
 A study by Renault car manufacturer \cite{Renault-esd} estimates that electronic devices are exposed 10000 times to \gls{esd}s during their lifetime.
 It has always been considered a very serious threat for electronic systems.
@@ -76,7 +76,7 @@ They oppose to variations of currents and exhibit large potential differences.
 Local disturbances can shift the ground reference between one module an another.
 Electrostatic discharges are high frequency events of very large amplitude and can cause disturbances like this.
 Inside a vehicle, the discharges can propagate inside cables by conduction, or by coupling between cables through radiated emission.
-Electronic modules are designed to be robust but the complex architecture and the very violent nature of ESD makes challenging to guarantee immunity.
+Electronic modules are designed to be robust but the complex architecture and the very harsh nature of ESD makes challenging to guarantee immunity.
 
 \begin{figure}[!h]
   \centering
@@ -90,7 +90,7 @@ In summary, electronic devices must operate in severe automotive environment whi
 Despite the robustness of modules, disturbances such as electrostatic discharges can cause failures.
 In the \gls{esd} field, there are two kinds of failures to consider.
 The hardware failure, or hard-failure, is when an electronic device is permanently damaged \cite{impactESDsemiconductors}.
-Destruction can occur through oxide breakdown, when a voltage too large is applied on an insulating material.
+Destruction can occur through oxide breakdown, when a too large voltage is applied on an insulating material.
 It can also occur through thermal breakdown, when current through a structure is too high and causes a meltdown.
 Recently, a new class of failures is being studied.
 Soft-failure, or functional failure, is when an electronic device fails temporarily to perform its function, because of an electrical disturbance.
@@ -110,12 +110,12 @@ This entire process from the specification to the manufacturing of a product is 
 During this process, there are many teams and people involved.
 Modeling team creates electrical model of technology components.
 Design team assembles component together to create integrated functions that conform to the specification.
-Layout team translates the symbolic view of electrical netlists into the series of masks and layers required by manufacturing.
+Layout team translates the electrical schematic into the series of masks and layers required by manufacturing.
 The laboratory tests manufactured parts and runs investigations in case of failures.
 The \gls{esd} and \gls{emc} team has the particularity to interact will all teams because issues and solutions can be found in any step of the design flow.
 The main source of delay in this process is the manufacturing time which can be of several months.
 Designs are put on silicon but the parts are tested only after manufacturing, several months later.
-To gain time to market and be competitive, it is essential to reduce to a bare minimum the amount of design-manufacturing-testing cycles.
+To gain time to market and be competitive, it is essential to reduce the number of design-manufacturing-testing cycles.
 Each additional manufacturing is very expensive, and increases further the development time of the product.
 This is why any simulation tool able to predict early any kind of failure (and functional failures among them) is very valuable for silicon design companies.
 
